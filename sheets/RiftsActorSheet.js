@@ -42,13 +42,21 @@ export class RiftsActorSheet extends ActorSheet {
       .filter((i) => i.type === "occ_ability")
       .sort((a, b) => a.system.level - b.system.level);
 
+    context.primarySkills = context.skills.filter(s => !s.system.isSecondary);
+    context.secondarySkills = context.skills.filter(s => s.system.isSecondary);
+
     context.skillsByCategory = {};
-    for (const skill of context.skills) {
+    for (const skill of context.primarySkills) {
       const cat = skill.system.category || "uncategorized";
-      if (!context.skillsByCategory[cat]) {
-        context.skillsByCategory[cat] = [];
-      }
+      if (!context.skillsByCategory[cat]) context.skillsByCategory[cat] = [];
       context.skillsByCategory[cat].push(skill);
+    }
+
+    context.secondaryByCategory = {};
+    for (const skill of context.secondarySkills) {
+      const cat = skill.system.category || "uncategorized";
+      if (!context.secondaryByCategory[cat]) context.secondaryByCategory[cat] = [];
+      context.secondaryByCategory[cat].push(skill);
     }
 
     context.alignments = {
@@ -115,6 +123,13 @@ export class RiftsActorSheet extends ActorSheet {
 
     // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+
+    // Toggle primary <-> secondary
+    html.find(".skill-toggle-secondary").click(async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const item = this.actor.items.get(itemId);
+      if (item) await item.update({"system.isSecondary": !item.system.isSecondary});
+    });
 
     if (!this.isEditable) return;
 

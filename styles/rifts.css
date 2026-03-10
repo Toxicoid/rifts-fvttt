@@ -1347,3 +1347,60 @@
   border-top: 1px solid var(--rifts-border);
   margin-top: var(--gap-sm);
 }
+
+/* ── Skills Section Headers ──────────────────────────────── */
+.skills-section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-display);
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 6px var(--gap-sm);
+  border-bottom: 2px solid var(--rifts-orange);
+  margin-bottom: 4px;
+}
+
+.primary-header {
+  color: var(--rifts-orange);
+}
+
+.secondary-header {
+  color: var(--rifts-teal);
+  border-bottom-color: var(--rifts-teal);
+}
+
+.skills-section-count {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  background: var(--rifts-panel);
+  border-radius: 10px;
+  padding: 1px 6px;
+  color: var(--rifts-text-dim);
+}
+
+.skills-section-hint {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--rifts-text-dim);
+  margin-left: auto;
+  font-style: italic;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+.secondary-cat-header {
+  border-left-color: var(--rifts-teal);
+}
+
+.secondary-skill-row {
+  opacity: 0.85;
+}
+
+.secondary-empty {
+  padding: var(--gap-sm);
+  color: var(--rifts-text-dim);
+  font-style: italic;
+  font-size: 11px;
+}

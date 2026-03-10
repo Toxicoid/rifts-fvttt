@@ -18,6 +18,13 @@
 
   {{#if skills.length}}
 
+    {{!-- ── PRIMARY SKILLS ─────────────────────────────────── --}}
+    <div class="skills-section-header primary-header">
+      <i class="fas fa-star"></i> O.C.C. Skills
+      <span class="skills-section-count">{{primarySkills.length}}</span>
+    </div>
+
+    {{#if primarySkills.length}}
     <div class="skills-column-headers">
       <span class="sh-name">Skill</span>
       <span class="sh-category">Category</span>
@@ -102,6 +109,12 @@
                 <i class="fas fa-dice-d20"></i>
               </button>
               <button type="button"
+                      class="skill-toggle-secondary icon-btn"
+                      data-item-id="{{this.id}}"
+                      title="Move to Secondary Skills">
+                <i class="fas fa-exchange-alt"></i>
+              </button>
+              <button type="button"
                       class="item-delete icon-btn"
                       title="Delete">
                 <i class="fas fa-trash"></i>
@@ -112,6 +125,95 @@
         {{/each}}
       </div>
     {{/each}}
+    {{/if}}
+
+    {{!-- ── SECONDARY SKILLS ──────────────────────────────── --}}
+    <div class="skills-section-header secondary-header" style="margin-top: 1rem;">
+      <i class="fas fa-book-open"></i> Secondary Skills
+      <span class="skills-section-count">{{secondarySkills.length}}</span>
+      <span class="skills-section-hint">No OCC bonus applied</span>
+    </div>
+
+    {{#if secondarySkills.length}}
+    <div class="skills-column-headers">
+      <span class="sh-name">Skill</span>
+      <span class="sh-category">Category</span>
+      <span class="sh-base">Base %<span class="sh-sub">starting %</span></span>
+      <span class="sh-bonus">Bonus %<span class="sh-sub">+% per lvl</span></span>
+      <span class="sh-total">Total %<span class="sh-sub">max 98%</span></span>
+      <span class="sh-actions"></span>
+    </div>
+
+    {{#each secondaryByCategory as |categorySkills categoryKey|}}
+      <div class="skill-category-group">
+        <div class="skill-category-header secondary-cat-header">
+          <span class="category-name">{{capitalize categoryKey}}</span>
+          <span class="category-count">{{categorySkills.length}}</span>
+        </div>
+
+        {{#each categorySkills}}
+          <div class="skill-row item-row secondary-skill-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 140px 54px 54px 60px 70px;gap:4px;align-items:center;">
+
+            <input class="skill-name-input item-name-input"
+                   type="text"
+                   value="{{this.name}}"
+                   placeholder="Skill name" />
+
+            <select class="skill-category-select"
+                    data-item-id="{{this.id}}"
+                    data-item-path="system.category">
+              <option value="">— Category —</option>
+              <option value="communications" {{#if (eq this.system.category "communications")}}selected{{/if}}>Communications</option>
+              <option value="domestic" {{#if (eq this.system.category "domestic")}}selected{{/if}}>Domestic</option>
+              <option value="electrical" {{#if (eq this.system.category "electrical")}}selected{{/if}}>Electrical</option>
+              <option value="espionage" {{#if (eq this.system.category "espionage")}}selected{{/if}}>Espionage</option>
+              <option value="horsemanship" {{#if (eq this.system.category "horsemanship")}}selected{{/if}}>Horsemanship</option>
+              <option value="mechanical" {{#if (eq this.system.category "mechanical")}}selected{{/if}}>Mechanical</option>
+              <option value="medical" {{#if (eq this.system.category "medical")}}selected{{/if}}>Medical</option>
+              <option value="military" {{#if (eq this.system.category "military")}}selected{{/if}}>Military</option>
+              <option value="physical" {{#if (eq this.system.category "physical")}}selected{{/if}}>Physical</option>
+              <option value="pilot" {{#if (eq this.system.category "pilot")}}selected{{/if}}>Pilot</option>
+              <option value="pilotRelated" {{#if (eq this.system.category "pilotRelated")}}selected{{/if}}>Pilot Related</option>
+              <option value="rogue" {{#if (eq this.system.category "rogue")}}selected{{/if}}>Rogue</option>
+              <option value="science" {{#if (eq this.system.category "science")}}selected{{/if}}>Science</option>
+              <option value="technical" {{#if (eq this.system.category "technical")}}selected{{/if}}>Technical</option>
+              <option value="weaponProficiency" {{#if (eq this.system.category "weaponProficiency")}}selected{{/if}}>W.P.</option>
+              <option value="wilderness" {{#if (eq this.system.category "wilderness")}}selected{{/if}}>Wilderness</option>
+            </select>
+
+            <input class="skill-base" type="number"
+                   data-item-id="{{this.id}}" data-item-path="system.basePercent"
+                   value="{{this.system.basePercent}}" min="0" max="98" />
+
+            <input class="skill-bonus" type="number"
+                   data-item-id="{{this.id}}" data-item-path="system.bonusPercent"
+                   value="{{this.system.bonusPercent}}" min="0" />
+
+            <span class="skill-total
+              {{#if (gt this.system.totalPercent 79)}}skill-high
+              {{else if (gt this.system.totalPercent 49)}}skill-mid
+              {{else}}skill-low{{/if}}">
+              {{this.system.totalPercent}}%
+            </span>
+
+            <div class="skill-actions">
+              <button type="button" class="skill-roll roll-btn" title="Roll {{this.name}}">
+                <i class="fas fa-dice-d20"></i>
+              </button>
+              <button type="button" class="item-delete icon-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+
+          </div>
+        {{/each}}
+      </div>
+    {{/each}}
+    {{else}}
+      <div class="empty-state secondary-empty">
+        <p>No secondary skills yet. Add a skill and check "Secondary".</p>
+      </div>
+    {{/if}}
 
     <p class="skills-footer-note">
       * Remember to add per-level bonuses manually to the Bonus% field each level.
