@@ -5,10 +5,8 @@
 
 <form class="rifts-sheet actor" autocomplete="off">
 
-  {{!-- ── Sheet Header ──────────────────────────────────────── --}}
   <header class="sheet-header">
 
-    {{!-- Character Portrait --}}
     <div class="portrait-wrap">
       <img class="profile-img"
            src="{{actor.img}}"
@@ -18,10 +16,8 @@
       <div class="portrait-glow"></div>
     </div>
 
-    {{!-- Identity Block --}}
     <div class="header-identity">
 
-      {{!-- Character Name --}}
       <div class="char-name-wrap">
         <input class="char-name"
                type="text"
@@ -29,35 +25,31 @@
                placeholder="Character Name" />
       </div>
 
-      {{!-- OCC / Level Row --}}
       <div class="header-row">
         <div class="header-field">
           <label>O.C.C.</label>
           <input type="text"
-                 name="system.identity.occ"
-                 data-dtype="String"
+                 data-path="system.identity.occ"
                  value="{{system.identity.occ}}"
                  placeholder="O.C.C." />
         </div>
         <div class="header-field">
           <label>Type</label>
           <input type="text"
-                 name="system.identity.occType"
-                 data-dtype="String"
+                 data-path="system.identity.occType"
                  value="{{system.identity.occType}}"
                  placeholder="Soldier / Scholar..." />
         </div>
         <div class="header-field short">
           <label>Level</label>
           <input type="number"
-                 name="system.identity.level"
-                 data-dtype="Number"
+                 data-path-number="system.identity.level"
                  value="{{system.identity.level}}"
                  min="1" max="15" />
         </div>
         <div class="header-field">
           <label>Alignment</label>
-          <select name="system.identity.alignment" data-dtype="String">
+          <select data-path="system.identity.alignment">
             <option value="">— Select —</option>
             {{#each alignments as |label key|}}
               <option value="{{key}}"
@@ -69,35 +61,30 @@
         </div>
       </div>
 
-      {{!-- XP Row --}}
       <div class="header-row">
         <div class="header-field">
           <label>Experience</label>
           <input type="number"
-                 name="system.identity.experience"
-                 data-dtype="Number"
+                 data-path-number="system.identity.experience"
                  value="{{system.identity.experience}}"
                  min="0" />
         </div>
         <div class="header-field">
           <label>Next Level</label>
           <input type="number"
-                 name="system.identity.nextLevel"
-                 data-dtype="Number"
+                 data-path-number="system.identity.nextLevel"
                  value="{{system.identity.nextLevel}}"
                  min="0" />
         </div>
         <div class="header-field">
           <label>Homeland</label>
           <input type="text"
-                 name="system.identity.homeland"
-                 data-dtype="String"
+                 data-path="system.identity.homeland"
                  value="{{system.identity.homeland}}"
                  placeholder="Coalition, Lazlo..." />
         </div>
       </div>
 
-      {{!-- HP / SDC / AR Bar --}}
       <div class="health-bar">
 
         <div class="health-block hp">
@@ -105,14 +92,12 @@
           <div class="health-inputs">
             <input class="health-input"
                    type="number"
-                   data-dtype="Number"
                    data-field="system.health.hp.value"
                    value="{{system.health.hp.value}}"
                    min="0" />
             <span class="health-sep">/</span>
             <input type="number"
-                   name="system.health.hp.max"
-                   data-dtype="Number"
+                   data-path-number="system.health.hp.max"
                    value="{{system.health.hp.max}}"
                    min="0" />
           </div>
@@ -123,14 +108,12 @@
           <div class="health-inputs">
             <input class="health-input"
                    type="number"
-                   data-dtype="Number"
                    data-field="system.health.sdc.value"
                    value="{{system.health.sdc.value}}"
                    min="0" />
             <span class="health-sep">/</span>
             <input type="number"
-                   name="system.health.sdc.max"
-                   data-dtype="Number"
+                   data-path-number="system.health.sdc.max"
                    value="{{system.health.sdc.max}}"
                    min="0" />
           </div>
@@ -139,8 +122,7 @@
         <div class="health-block ar">
           <label>A.R.</label>
           <input type="number"
-                 name="system.health.ar.value"
-                 data-dtype="Number"
+                 data-path-number="system.health.ar.value"
                  value="{{system.health.ar.value}}"
                  min="0" max="20" />
         </div>
@@ -148,8 +130,7 @@
         <div class="health-block credits">
           <label>Credits</label>
           <input type="number"
-                 name="system.money.credits"
-                 data-dtype="Number"
+                 data-path-number="system.money.credits"
                  value="{{system.money.credits}}"
                  min="0" />
         </div>
@@ -158,7 +139,6 @@
     </div>
   </header>
 
-  {{!-- ── Tab Navigation ───────────────────────────────────── --}}
   <nav class="sheet-tabs tabs" data-group="primary">
     <a class="item active" data-tab="attributes">
       <i class="fas fa-fist-raised"></i> Attributes
@@ -180,7 +160,6 @@
     </a>
   </nav>
 
-  {{!-- ── Tab Content ──────────────────────────────────────── --}}
   <section class="sheet-body">
 
     <div class="tab" data-tab="attributes">

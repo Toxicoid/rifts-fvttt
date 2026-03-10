@@ -1,11 +1,9 @@
 // ============================================================
 // RIFTS RPG - RiftsActorSheet.js
-// Controls the character sheet window, data binding,
-// and all user interactions on the sheet
+// Foundry VTT v13 compatible character sheet controller
 // ============================================================
 
 export class RiftsActorSheet extends ActorSheet {
-  // ── defaultOptions ─────────────────────────────────────────
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["rifts", "sheet", "actor"],
@@ -100,19 +98,9 @@ export class RiftsActorSheet extends ActorSheet {
     return context;
   }
 
+  // ── activateListeners ──────────────────────────────────────
   activateListeners(html) {
     super.activateListeners(html);
-
-    // ── Prevent name duplication on re-render ─────────────
-    // Remove all default Foundry bindings on the name field
-    // and replace with a blur-only handler so it only saves
-    // when the user clicks away — not on every keystroke
-    html.find(".char-name").off("change input keyup");
-    html.find(".char-name").on("blur", (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      this.actor.update({ name: event.currentTarget.value });
-    });
 
     // ── Rollable attributes ───────────────────────────────
     html.find(".attribute-roll").click(this._onAttributeRoll.bind(this));
@@ -125,6 +113,40 @@ export class RiftsActorSheet extends ActorSheet {
 
     if (!this.isEditable) return;
 
+    // ── Character name ────────────────────────────────────
+    html.find(".char-name").off("change input keyup");
+    html.find(".char-name").on("blur", async (event) => {
+      await this.actor.update({ name: event.currentTarget.value.trim() });
+    });
+
+    // ── All text inputs — save on blur ────────────────────
+    html.find("input[data-path]").on("blur", async (event) => {
+      const path = event.currentTarget.dataset.path;
+      const value = event.currentTarget.value;
+      await this.actor.update({ [path]: value });
+    });
+
+    // ── All number inputs — save on blur ──────────────────
+    html.find("input[data-path-number]").on("blur", async (event) => {
+      const path = event.currentTarget.dataset.pathNumber;
+      const value = Number(event.currentTarget.value) || 0;
+      await this.actor.update({ [path]: value });
+    });
+
+    // ── All select dropdowns — save on change ─────────────
+    html.find("select[data-path]").on("change", async (event) => {
+      const path = event.currentTarget.dataset.path;
+      const value = event.currentTarget.value;
+      await this.actor.update({ [path]: value });
+    });
+
+    // ── HP / SDC current value changes ────────────────────
+    html.find(".health-input").on("blur", async (event) => {
+      const field = event.currentTarget.dataset.field;
+      const value = Number(event.currentTarget.value) || 0;
+      await this.actor.update({ [field]: value });
+    });
+
     // ── Add item buttons ──────────────────────────────────
     html.find(".item-add").click(this._onItemAdd.bind(this));
 
@@ -135,10 +157,7 @@ export class RiftsActorSheet extends ActorSheet {
     html.find(".item-edit").click(this._onItemEdit.bind(this));
 
     // ── Inline item name editing ──────────────────────────
-    html.find(".item-name-input").change(this._onItemNameChange.bind(this));
-
-    // ── HP / SDC changes ─────────────────────────────────
-    html.find(".health-input").change(this._onHealthChange.bind(this));
+    html.find(".item-name-input").on("blur", this._onItemNameChange.bind(this));
   }
 
   async _onAttributeRoll(event) {
@@ -158,10 +177,8 @@ export class RiftsActorSheet extends ActorSheet {
 
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-      flavor: `
-        <strong>${label} Check</strong> — Attribute: ${attrValue}<br>
-        Rolled: ${roll.total} — ${resultText}
-      `,
+      flavor: `<strong>${label} Check</strong> — Attribute: ${attrValue}<br>
+        Rolled: ${roll.total} — ${resultText}`,
     });
   }
 
@@ -219,20 +236,5 @@ export class RiftsActorSheet extends ActorSheet {
     const itemId = element.closest(".item-row").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (item) await item.update({ name: element.value });
-  }
-
-  async _onHealthChange(event) {
-    event.preventDefault();
-    const element = event.currentTarget;
-    const field = element.dataset.field;
-    const value = parseInt(element.value) || 0;
-    await this.actor.update({ [field]: value });
-  }
-
-  // ── _updateObject ────────────────────────────────────────
-  // Foundry v13 compatible form submission handler
-  async _updateObject(event, formData) {
-    const expanded = foundry.utils.expandObject(formData);
-    await this.actor.update(expanded);
   }
 }
