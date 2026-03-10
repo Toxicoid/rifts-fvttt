@@ -6,7 +6,6 @@
 
 export class RiftsActorSheet extends ActorSheet {
   // ── defaultOptions ─────────────────────────────────────────
-  // Tells Foundry the basic properties of this sheet window
   static get defaultOptions() {
     return mergeObject(super.defaultOptions, {
       classes: ["rifts", "sheet", "actor"],
@@ -24,40 +23,26 @@ export class RiftsActorSheet extends ActorSheet {
     });
   }
 
-  // ── getData ────────────────────────────────────────────────
-  // Prepares all data that gets sent to the HTML template.
-  // Anything you want available in your Handlebars HTML
-  // must be returned from this method.
   getData() {
-    // Start with Foundry's base context
     const context = super.getData();
-
-    // Grab the actor and its system data
     const actor = this.actor;
     const systemData = actor.system;
 
-    // Pass through core data
     context.system = systemData;
     context.flags = actor.flags;
 
-    // ── Sort items by type ─────────────────────────────────
-    // Split the actor's items into typed arrays for the template
     context.skills = actor.items
       .filter((i) => i.type === "skill")
       .sort((a, b) => a.name.localeCompare(b.name));
 
     context.weapons = actor.items.filter((i) => i.type === "weapon");
-
     context.armor = actor.items.filter((i) => i.type === "armor");
-
     context.equipment = actor.items.filter((i) => i.type === "equipment");
 
     context.occAbilities = actor.items
       .filter((i) => i.type === "occ_ability")
       .sort((a, b) => a.system.level - b.system.level);
 
-    // ── Group skills by category ───────────────────────────
-    // Organizes skills into their category groups for display
     context.skillsByCategory = {};
     for (const skill of context.skills) {
       const cat = skill.system.category || "uncategorized";
@@ -67,7 +52,6 @@ export class RiftsActorSheet extends ActorSheet {
       context.skillsByCategory[cat].push(skill);
     }
 
-    // ── Pass config data for dropdowns ────────────────────
     context.alignments = {
       principled: "Principled (Good)",
       scrupulous: "Scrupulous (Good)",
@@ -103,8 +87,6 @@ export class RiftsActorSheet extends ActorSheet {
       wilderness: "Wilderness",
     };
 
-    // ── Derived display values ─────────────────────────────
-    // Pre-calculate things that are handy to show in the sheet
     const attrs = systemData.attributes;
     context.derived = {
       trustPercent: attrs.ma?.trustPercent ?? 0,
@@ -118,50 +100,47 @@ export class RiftsActorSheet extends ActorSheet {
     return context;
   }
 
-  // ── activateListeners ──────────────────────────────────────
-  // Wires up all the interactive elements on the sheet.
-  // This runs every time the sheet is rendered.
   activateListeners(html) {
     super.activateListeners(html);
 
-    // ── Rollable attributes (click an attribute to roll) ───
+    // ── Prevent name duplication on re-render ─────────────
+    // Remove all default Foundry bindings on the name field
+    // and replace with a blur-only handler so it only saves
+    // when the user clicks away — not on every keystroke
+    html.find(".char-name").off("change input keyup");
+    html.find(".char-name").on("blur", (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      this.actor.update({ name: event.currentTarget.value });
+    });
+
+    // ── Rollable attributes ───────────────────────────────
     html.find(".attribute-roll").click(this._onAttributeRoll.bind(this));
 
-    // ── Combat rolls ───────────────────────────────────────
+    // ── Combat rolls ──────────────────────────────────────
     html.find(".combat-roll").click(this._onCombatRoll.bind(this));
 
-    // ── Skill rolls ────────────────────────────────────────
+    // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
 
-    // ── Only allow editing if sheet is editable ───────────
     if (!this.isEditable) return;
-    // Prevent name field from updating on every keystroke
-    html
-      .find(".char-name")
-      .off("change")
-      .on("change", (event) => {
-        event.preventDefault();
-        this.actor.update({ name: event.currentTarget.value });
-      });
 
-    // ── Add item buttons ───────────────────────────────────
+    // ── Add item buttons ──────────────────────────────────
     html.find(".item-add").click(this._onItemAdd.bind(this));
 
-    // ── Delete item buttons ────────────────────────────────
+    // ── Delete item buttons ───────────────────────────────
     html.find(".item-delete").click(this._onItemDelete.bind(this));
 
-    // ── Edit item (open item sheet) ────────────────────────
+    // ── Edit item ─────────────────────────────────────────
     html.find(".item-edit").click(this._onItemEdit.bind(this));
 
-    // ── Inline item name editing ───────────────────────────
+    // ── Inline item name editing ──────────────────────────
     html.find(".item-name-input").change(this._onItemNameChange.bind(this));
 
-    // ── HP / SDC current value changes ────────────────────
+    // ── HP / SDC changes ─────────────────────────────────
     html.find(".health-input").change(this._onHealthChange.bind(this));
   }
 
-  // ── _onAttributeRoll ──────────────────────────────────────
-  // Handles clicking on an attribute to roll a check
   async _onAttributeRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -169,8 +148,6 @@ export class RiftsActorSheet extends ActorSheet {
     const attrValue = this.actor.system.attributes[attr]?.value ?? 0;
     const label = element.dataset.label ?? attr.toUpperCase();
 
-    // Attribute checks in Palladium are typically roll-under on d20
-    // or a straight d20 roll depending on context
     const roll = new Roll("1d20");
     await roll.evaluate();
 
@@ -188,20 +165,14 @@ export class RiftsActorSheet extends ActorSheet {
     });
   }
 
-  // ── _onCombatRoll ─────────────────────────────────────────
-  // Handles strike / parry / dodge / initiative rolls
   async _onCombatRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const rollType = element.dataset.roll;
     const bonus = parseInt(element.dataset.bonus) || 0;
-    const label = element.dataset.label ?? rollType;
-
+    const label = element.dataset.label ?? element.dataset.roll;
     await this.actor.rollD20(label, bonus);
   }
 
-  // ── _onSkillRoll ──────────────────────────────────────────
-  // Handles clicking the roll button next to a skill
   async _onSkillRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -210,42 +181,30 @@ export class RiftsActorSheet extends ActorSheet {
     if (skill) await skill.roll();
   }
 
-  // ── _onItemAdd ────────────────────────────────────────────
-  // Creates a new blank item of the specified type
   async _onItemAdd(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const type = element.dataset.type;
-
     const itemData = {
       name: `New ${type.charAt(0).toUpperCase() + type.slice(1)}`,
       type: type,
     };
-
     await Item.create(itemData, { parent: this.actor });
   }
 
-  // ── _onItemDelete ─────────────────────────────────────────
-  // Deletes an item after confirmation
   async _onItemDelete(event) {
     event.preventDefault();
     const element = event.currentTarget;
     const itemId = element.closest(".item-row").dataset.itemId;
     const item = this.actor.items.get(itemId);
-
     if (!item) return;
-
-    // Ask the user to confirm before deleting
     const confirmed = await Dialog.confirm({
       title: "Delete Item",
       content: `<p>Delete <strong>${item.name}</strong>? This cannot be undone.</p>`,
     });
-
     if (confirmed) await item.delete();
   }
 
-  // ── _onItemEdit ───────────────────────────────────────────
-  // Opens the item's own sheet for detailed editing
   _onItemEdit(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -254,8 +213,6 @@ export class RiftsActorSheet extends ActorSheet {
     if (item) item.sheet.render(true);
   }
 
-  // ── _onItemNameChange ─────────────────────────────────────
-  // Saves an inline name edit directly on the sheet
   async _onItemNameChange(event) {
     event.preventDefault();
     const element = event.currentTarget;
@@ -264,8 +221,6 @@ export class RiftsActorSheet extends ActorSheet {
     if (item) await item.update({ name: element.value });
   }
 
-  // ── _onHealthChange ───────────────────────────────────────
-  // Saves HP or SDC current value changes
   async _onHealthChange(event) {
     event.preventDefault();
     const element = event.currentTarget;
