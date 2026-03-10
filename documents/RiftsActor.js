@@ -4,6 +4,32 @@
 // ============================================================
 
 export class RiftsActor extends Actor {
+
+  // ── _preCreate ────────────────────────────────────────────
+  // Sets default token configuration for new characters
+  async _preCreate(data, options, user) {
+    await super._preCreate(data, options, user);
+
+    if (this.type === "character") {
+      this.updateSource({
+        "prototypeToken.bar1": { attribute: "health.hp" },
+        "prototypeToken.bar2": { attribute: "health.sdc" },
+        "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+        "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+        "prototypeToken.sight.enabled": true,
+        "prototypeToken.actorLink": true,
+        "prototypeToken.texture.src": data.img ?? "icons/svg/mystery-man.svg",
+        // Circular ring with sci-fi border (Foundry v12+ ring system)
+        "prototypeToken.ring.enabled": true,
+        "prototypeToken.ring.subject.scale": 0.9,
+        "prototypeToken.ring.colors.ring": "#e8751a",
+        "prototypeToken.ring.colors.background": "#000000",
+        "prototypeToken.width": 1,
+        "prototypeToken.height": 1,
+      });
+    }
+  }
+
   // ── prepareDerivedData ─────────────────────────────────────
   // Foundry calls this automatically whenever actor data changes.
   // This is where we calculate stats that derive from other stats.
@@ -28,6 +54,7 @@ export class RiftsActor extends Actor {
   // Calculates the standard Palladium bonuses that come
   // directly from raw attribute scores
   _prepareAttributeBonuses(attrs, combat, saves) {
+
     // ── I.Q. Bonus ─────────────────────────────────────────
     // IQ 16+ grants a bonus to skills (tracked, applied in skill rolls)
     const iq = attrs.iq.value;
@@ -44,7 +71,7 @@ export class RiftsActor extends Actor {
     // ── M.A. Bonus ─────────────────────────────────────────
     // MA determines Trust/Intimidate percentage
     const ma = attrs.ma.value;
-    attrs.ma.trustPercent = ma >= 16 ? 30 + (ma - 16) * 5 : ma * 2;
+    attrs.ma.trustPercent = ma >= 16 ? 30 + ((ma - 16) * 5) : ma * 2;
 
     // ── P.S. Bonus ─────────────────────────────────────────
     // PS 16+ adds to damage
@@ -71,12 +98,12 @@ export class RiftsActor extends Actor {
       saves.diseaseBonus += pe - 15;
     }
     // Coma/Death % = PE x 2 + 10 (base Palladium formula)
-    saves.coma = pe * 2 + 10;
+    saves.coma = (pe * 2) + 10;
 
     // ── P.B. Bonus ─────────────────────────────────────────
     // PB determines Charm/Impress percentage
     const pb = attrs.pb.value;
-    attrs.pb.charmPercent = pb >= 16 ? 30 + (pb - 16) * 5 : 0;
+    attrs.pb.charmPercent = pb >= 16 ? 30 + ((pb - 16) * 5) : 0;
 
     // ── Spd ────────────────────────────────────────────────
     // Speed in yards per melee (approx), and mph
