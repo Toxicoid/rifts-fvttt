@@ -51,7 +51,9 @@
         "criticalOn": 20,
         "damageBonus": 0,
         "punchDamage": "1d4",
-        "kickDamage": "1d6"
+        "kickDamage": "1d6",
+        "powerPunch": "2d6",
+        "leapkick": "2d8"
       },
 
       "saves": {
