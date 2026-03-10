@@ -9,45 +9,45 @@
 /* ── CSS Variables ──────────────────────────────────────────── */
 :root {
   /* Core palette */
-  --rifts-black: #0a0a0c;
-  --rifts-dark: #111318;
-  --rifts-mid: #1c2028;
-  --rifts-panel: #232830;
-  --rifts-border: #2e3440;
+  --rifts-black:        #0a0a0c;
+  --rifts-dark:         #111318;
+  --rifts-mid:          #1c2028;
+  --rifts-panel:        #232830;
+  --rifts-border:       #2e3440;
   --rifts-border-light: #3d4558;
 
   /* Accent colours */
-  --rifts-orange: #e8751a;
-  --rifts-orange-dim: #a84f0a;
-  --rifts-orange-glow: rgba(232, 117, 26, 0.15);
-  --rifts-red: #c0392b;
-  --rifts-red-dim: #7d2317;
-  --rifts-yellow: #f0c040;
-  --rifts-green: #27ae60;
-  --rifts-green-dim: #1a7040;
-  --rifts-blue: #2980b9;
+  --rifts-orange:       #e8751a;
+  --rifts-orange-dim:   #a84f0a;
+  --rifts-orange-glow:  rgba(232, 117, 26, 0.15);
+  --rifts-red:          #c0392b;
+  --rifts-red-dim:      #7d2317;
+  --rifts-yellow:       #f0c040;
+  --rifts-green:        #27ae60;
+  --rifts-green-dim:    #1a7040;
+  --rifts-blue:         #2980b9;
 
   /* Text colours */
-  --rifts-text: #c8d0dc;
-  --rifts-text-dim: #7a8494;
-  --rifts-text-bright: #e8edf4;
-  --rifts-label: #9aa4b4;
+  --rifts-text:         #c8d0dc;
+  --rifts-text-dim:     #7a8494;
+  --rifts-text-bright:  #e8edf4;
+  --rifts-label:        #9aa4b4;
 
   /* Typography */
-  --font-display: "Bebas Neue", sans-serif;
-  --font-mono: "Share Tech Mono", monospace;
-  --font-body: "Barlow Condensed", sans-serif;
+  --font-display:       "Bebas Neue", sans-serif;
+  --font-mono:          "Share Tech Mono", monospace;
+  --font-body:          "Barlow Condensed", sans-serif;
 
   /* Spacing */
-  --gap-xs: 4px;
-  --gap-sm: 8px;
-  --gap-md: 12px;
-  --gap-lg: 16px;
-  --gap-xl: 24px;
+  --gap-xs:  4px;
+  --gap-sm:  8px;
+  --gap-md:  12px;
+  --gap-lg:  16px;
+  --gap-xl:  24px;
 
   /* Borders */
-  --radius: 4px;
-  --radius-lg: 8px;
+  --radius:     4px;
+  --radius-lg:  8px;
 }
 
 /* ── Reset & Base ───────────────────────────────────────────── */
@@ -377,15 +377,9 @@
   color: var(--rifts-label);
 }
 
-.health-block.hp label {
-  color: var(--rifts-red);
-}
-.health-block.sdc label {
-  color: var(--rifts-yellow);
-}
-.health-block.ar label {
-  color: var(--rifts-blue);
-}
+.health-block.hp label  { color: var(--rifts-red); }
+.health-block.sdc label { color: var(--rifts-yellow); }
+.health-block.ar label  { color: var(--rifts-blue); }
 
 .health-inputs {
   display: flex;
@@ -413,9 +407,7 @@
   font-family: var(--font-mono);
 }
 
-.health-block.credits label {
-  color: var(--rifts-green);
-}
+.health-block.credits label { color: var(--rifts-green); }
 
 /* ════════════════════════════════════════════════════════════
    TABS
@@ -971,7 +963,7 @@
   border-bottom-color: var(--rifts-orange) !important;
 }
 
-.skill-cat-select {
+.skill-category-select {
   font-size: 11px !important;
   padding: 2px 4px !important;
 }
@@ -992,15 +984,9 @@
   padding: 2px;
 }
 
-.skill-total.skill-high {
-  color: var(--rifts-green);
-}
-.skill-total.skill-mid {
-  color: var(--rifts-yellow);
-}
-.skill-total.skill-low {
-  color: var(--rifts-red);
-}
+.skill-total.skill-high  { color: var(--rifts-green); }
+.skill-total.skill-mid   { color: var(--rifts-yellow); }
+.skill-total.skill-low   { color: var(--rifts-red); }
 
 .skill-controls {
   display: flex;
@@ -1082,16 +1068,19 @@
   background: var(--rifts-panel);
 }
 
-.weapon-row {
-  grid-template-columns: 1fr 90px 70px 80px 70px 56px 52px 56px;
+/* Weapons: Name | Damage | Type | Range | ROF | Ammo | Strike | Actions */
+.gear-section:nth-of-type(1) .gear-row {
+  grid-template-columns: 1fr 70px 80px 70px 60px 44px 44px 56px;
 }
 
-.armor-row {
-  grid-template-columns: 1fr 50px 100px 80px 60px 56px;
+/* Armor: Name | AR | SDC | Mobility | Weight | Actions */
+.gear-section:nth-of-type(2) .gear-row {
+  grid-template-columns: 1fr 50px 100px 90px 70px 56px;
 }
 
-.equipment-row {
-  grid-template-columns: 1fr 44px 60px 80px 1fr 40px;
+/* Equipment: Name | Qty | Weight | Cost | Notes | Actions */
+.gear-section:nth-of-type(3) .gear-row {
+  grid-template-columns: 1fr 44px 60px 70px 1fr 40px;
 }
 
 .gear-name {
