@@ -67,7 +67,10 @@
       "money": {
         "credits": 0,
         "blackMarket": 0
-      }
+      },
+      "sessionNotes": "",
+      "contacts": "",
+      "debts": ""
     }
   },
 
