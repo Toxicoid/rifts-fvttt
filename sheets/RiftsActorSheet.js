@@ -135,6 +135,14 @@ export class RiftsActorSheet extends ActorSheet {
 
     // ── Only allow editing if sheet is editable ───────────
     if (!this.isEditable) return;
+    // Prevent name field from updating on every keystroke
+    html
+      .find(".char-name")
+      .off("change")
+      .on("change", (event) => {
+        event.preventDefault();
+        this.actor.update({ name: event.currentTarget.value });
+      });
 
     // ── Add item buttons ───────────────────────────────────
     html.find(".item-add").click(this._onItemAdd.bind(this));
