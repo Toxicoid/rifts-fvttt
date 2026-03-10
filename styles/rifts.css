@@ -1340,3 +1340,10 @@
 .item-row {
   position: relative;
 }
+
+/* ── Notes full row (damage record) ─────────────────────── */
+.notes-full-row {
+  padding: var(--gap-sm) var(--gap-md);
+  border-top: 1px solid var(--rifts-border);
+  margin-top: var(--gap-sm);
+}

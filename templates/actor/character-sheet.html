@@ -118,21 +118,51 @@
                    min="0" />
           </div>
         </div>
+
         <div class="health-block ppe">
-  <label>P.P.E.</label>
-  <div class="health-inputs">
-    <input class="health-input"
-           type="number"
-           data-field="system.health.ppe.value"
-           value="{{system.health.ppe.value}}"
-           min="0" />
-    <span class="health-sep">/</span>
-    <input type="number"
-           data-path-number="system.health.ppe.max"
-           value="{{system.health.ppe.max}}"
-           min="0" />
-  </div>
-</div>
+          <label>P.P.E.</label>
+          <div class="health-inputs">
+            <input type="number"
+                   data-path-number="system.health.ppe.value"
+                   value="{{system.health.ppe.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input type="number"
+                   data-path-number="system.health.ppe.max"
+                   value="{{system.health.ppe.max}}"
+                   min="0" />
+          </div>
+        </div>
+
+        <div class="health-block isp">
+          <label>I.S.P.</label>
+          <div class="health-inputs">
+            <input type="number"
+                   data-path-number="system.health.isp.value"
+                   value="{{system.health.isp.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input type="number"
+                   data-path-number="system.health.isp.max"
+                   value="{{system.health.isp.max}}"
+                   min="0" />
+          </div>
+        </div>
+
+        <div class="health-block chi">
+          <label>C.H.I.</label>
+          <div class="health-inputs">
+            <input type="number"
+                   data-path-number="system.health.chi.value"
+                   value="{{system.health.chi.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input type="number"
+                   data-path-number="system.health.chi.max"
+                   value="{{system.health.chi.max}}"
+                   min="0" />
+          </div>
+        </div>
 
         <div class="health-block ar">
           <label>A.R.</label>
@@ -149,7 +179,6 @@
                  value="{{system.money.credits}}"
                  min="0" />
         </div>
-        
 
       </div>
     </div>

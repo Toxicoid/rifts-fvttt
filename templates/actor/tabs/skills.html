@@ -21,9 +21,18 @@
     <div class="skills-column-headers">
       <span class="sh-name">Skill</span>
       <span class="sh-category">Category</span>
-      <span class="sh-base">Base%</span>
-      <span class="sh-bonus">Bonus%</span>
-      <span class="sh-total">Total%</span>
+      <span class="sh-base" title="Starting skill percentage before bonuses">
+        Base %
+        <span class="sh-sub">starting %</span>
+      </span>
+      <span class="sh-bonus" title="Add per-level bonus each time you level up">
+        Bonus %
+        <span class="sh-sub">+% per lvl</span>
+      </span>
+      <span class="sh-total" title="Final skill percentage (Base + Bonus, max 98%)">
+        Total %
+        <span class="sh-sub">max 98%</span>
+      </span>
       <span class="sh-actions"></span>
     </div>
 
@@ -46,6 +55,7 @@
                     data-item-id="{{this.id}}"
                     data-item-path="system.category">
               <option value="">— Category —</option>
+              <option value="secondary" {{#if (eq this.system.category "secondary")}}selected{{/if}}>— Secondary —</option>
               <option value="communications" {{#if (eq this.system.category "communications")}}selected{{/if}}>Communications</option>
               <option value="domestic" {{#if (eq this.system.category "domestic")}}selected{{/if}}>Domestic</option>
               <option value="electrical" {{#if (eq this.system.category "electrical")}}selected{{/if}}>Electrical</option>

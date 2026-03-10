@@ -4,6 +4,7 @@
     "character": {
       "biography": "",
       "notes": "",
+
       "attributes": {
         "iq": { "value": 10, "label": "I.Q." },
         "me": { "value": 10, "label": "M.E." },
@@ -19,23 +20,35 @@
         "hp": { "value": 10, "max": 10 },
         "sdc": { "value": 10, "max": 10 },
         "ar": { "value": 0 },
-        "ppe": { "value": 10, "max": 10 }
+        "ppe": { "value": 10, "max": 10 },
+        "isp": { "value": 0, "max": 0 },
+        "chi": { "value": 0, "max": 0 }
       },
 
       "identity": {
         "occ": "",
         "occType": "",
+        "race": "",
+        "trueName": "",
         "level": 1,
         "experience": 0,
         "nextLevel": 0,
         "alignment": "",
         "age": "",
+        "lifeSpan": "",
         "sex": "",
         "height": "",
         "weight": "",
         "description": "",
         "homeland": "",
-        "languages": ""
+        "languages": "",
+        "familyOrigin": "",
+        "environment": "",
+        "sentimentToward1Label": "",
+        "sentimentToward1": "",
+        "sentimentToward2Label": "",
+        "sentimentToward2": "",
+        "insanity": ""
       },
 
       "combat": {
@@ -53,27 +66,41 @@
         "punchDamage": "1d4",
         "kickDamage": "1d6",
         "powerPunch": "2d6",
-        "leapkick": "2d8"
+        "leapKick": "2d8",
+        "runSpeed": "",
+        "runMelees": "",
+        "swimSpeed": "",
+        "swimMelees": "",
+        "leapLengthRunning": "",
+        "leapLengthStanding": "",
+        "leapHeight": "",
+        "liftCapacity": "",
+        "carryCapacity": "",
+        "throwCapacity": ""
       },
 
       "saves": {
         "magicBonus": 0,
+        "ritualMagicBonus": 0,
         "psionicBonus": 0,
         "poisonBonus": 0,
         "diseaseBonus": 0,
+        "drugBonus": 0,
         "horrorBonus": 0,
         "insanityBonus": 0,
-        "deathBonus": 0,
-        "coma": 0,
-        "ritualMagicBonus": 0,
         "possessionBonus": 0,
-        "painBonus": 0
+        "deathBonus": 0,
+        "painBonus": 0,
+        "coma": 0
       },
 
       "money": {
         "credits": 0,
-        "blackMarket": 0
+        "blackMarket": 0,
+        "salary": 0
       },
+
+      "damageRecord": "",
       "sessionNotes": "",
       "contacts": "",
       "debts": ""
@@ -84,6 +111,7 @@
     "types": ["skill", "weapon", "armor", "equipment", "occ_ability"],
     "skill": {
       "category": "",
+      "isSecondary": false,
       "basePercent": 0,
       "bonusPercent": 0,
       "totalPercent": 0,

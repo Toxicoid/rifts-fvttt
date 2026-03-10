@@ -1,11 +1,15 @@
-{{!-- ============================================================ RIFTS RPG -
-tabs/combat.html Combat tab: attacks, bonuses, damage, OCC abilities
+{{!-- ============================================================
+  RIFTS RPG - tabs/combat.html
+  Combat tab: attacks, bonuses, damage, OCC abilities
 ============================================================ --}}
 
 <div class="tab-content combat-tab">
+
   <div class="combat-layout">
+
     {{!-- ── LEFT COLUMN: Combat Stats ──────────────────── --}}
     <div class="combat-column">
+
       <h2 class="section-title">
         <i class="fas fa-crosshairs"></i> Combat Stats
       </h2>
@@ -13,218 +17,161 @@ tabs/combat.html Combat tab: attacks, bonuses, damage, OCC abilities
       <div class="attacks-block">
         <span class="attacks-label">Attacks per Melee</span>
         <span class="attacks-value">{{system.combat.attacksPerMelee}}</span>
-        <input
-          class="attacks-input"
-          type="number"
-          data-path-number="system.combat.attacksPerMelee"
-          value="{{system.combat.attacksPerMelee}}"
-          min="1"
-          max="20"
-        />
+        <input class="attacks-input"
+               type="number"
+               data-path-number="system.combat.attacksPerMelee"
+               value="{{system.combat.attacksPerMelee}}"
+               min="1" max="20" />
       </div>
 
       <div class="combat-bonuses">
+
         <div class="combat-bonus-row">
           <span class="bonus-name">Initiative</span>
-          <input
-            type="number"
-            data-path-number="system.combat.initiativeBonus"
-            value="{{system.combat.initiativeBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="initiative"
-            data-bonus="{{system.combat.initiativeBonus}}"
-            data-label="Initiative"
-          >
+          <input type="number"
+                 data-path-number="system.combat.initiativeBonus"
+                 value="{{system.combat.initiativeBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="initiative"
+                  data-bonus="{{system.combat.initiativeBonus}}"
+                  data-label="Initiative">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
 
         <div class="combat-bonus-row">
           <span class="bonus-name">Strike</span>
-          <input
-            type="number"
-            data-path-number="system.combat.strikeBonus"
-            value="{{system.combat.strikeBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="strike"
-            data-bonus="{{system.combat.strikeBonus}}"
-            data-label="Strike"
-          >
+          <input type="number"
+                 data-path-number="system.combat.strikeBonus"
+                 value="{{system.combat.strikeBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="strike"
+                  data-bonus="{{system.combat.strikeBonus}}"
+                  data-label="Strike">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
 
         <div class="combat-bonus-row">
           <span class="bonus-name">Parry</span>
-          <input
-            type="number"
-            data-path-number="system.combat.parryBonus"
-            value="{{system.combat.parryBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="parry"
-            data-bonus="{{system.combat.parryBonus}}"
-            data-label="Parry"
-          >
+          <input type="number"
+                 data-path-number="system.combat.parryBonus"
+                 value="{{system.combat.parryBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="parry"
+                  data-bonus="{{system.combat.parryBonus}}"
+                  data-label="Parry">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
 
         <div class="combat-bonus-row">
           <span class="bonus-name">Dodge</span>
-          <input
-            type="number"
-            data-path-number="system.combat.dodgeBonus"
-            value="{{system.combat.dodgeBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="dodge"
-            data-bonus="{{system.combat.dodgeBonus}}"
-            data-label="Dodge"
-          >
+          <input type="number"
+                 data-path-number="system.combat.dodgeBonus"
+                 value="{{system.combat.dodgeBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="dodge"
+                  data-bonus="{{system.combat.dodgeBonus}}"
+                  data-label="Dodge">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
 
         <div class="combat-bonus-row">
           <span class="bonus-name">Roll w/ Punch</span>
-          <input
-            type="number"
-            data-path-number="system.combat.rollBonus"
-            value="{{system.combat.rollBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="roll"
-            data-bonus="{{system.combat.rollBonus}}"
-            data-label="Roll w/ Punch"
-          >
+          <input type="number"
+                 data-path-number="system.combat.rollBonus"
+                 value="{{system.combat.rollBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="roll"
+                  data-bonus="{{system.combat.rollBonus}}"
+                  data-label="Roll w/ Punch">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
 
         <div class="combat-bonus-row">
           <span class="bonus-name">Pull Punch</span>
-          <input
-            type="number"
-            data-path-number="system.combat.pullPunchBonus"
-            value="{{system.combat.pullPunchBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="pullpunch"
-            data-bonus="{{system.combat.pullPunchBonus}}"
-            data-label="Pull Punch"
-          >
+          <input type="number"
+                 data-path-number="system.combat.pullPunchBonus"
+                 value="{{system.combat.pullPunchBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="pullpunch"
+                  data-bonus="{{system.combat.pullPunchBonus}}"
+                  data-label="Pull Punch">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
 
         <div class="combat-bonus-row">
           <span class="bonus-name">Disarm</span>
-          <input
-            type="number"
-            data-path-number="system.combat.disarmBonus"
-            value="{{system.combat.disarmBonus}}"
-          />
-          <button
-            type="button"
-            class="combat-roll roll-btn"
-            data-roll="disarm"
-            data-bonus="{{system.combat.disarmBonus}}"
-            data-label="Disarm"
-          >
+          <input type="number"
+                 data-path-number="system.combat.disarmBonus"
+                 value="{{system.combat.disarmBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="disarm"
+                  data-bonus="{{system.combat.disarmBonus}}"
+                  data-label="Disarm">
             <i class="fas fa-dice-d20"></i>
           </button>
         </div>
+
       </div>
 
-      <h2 class="section-title" style="margin-top: 1.2rem">
+      <h2 class="section-title" style="margin-top: 1.2rem;">
         <i class="fas fa-fist-raised"></i> Damage
       </h2>
 
       <div class="damage-grid">
         <div class="damage-field">
           <label>Damage Bonus</label>
-          <input
-            type="number"
-            data-path-number="system.combat.damageBonus"
-            value="{{system.combat.damageBonus}}"
-          />
+          <input type="number"
+                 data-path-number="system.combat.damageBonus"
+                 value="{{system.combat.damageBonus}}" />
         </div>
         <div class="damage-field">
           <label>Punch Damage</label>
-          <input
-            type="text"
-            data-path="system.combat.punchDamage"
-            value="{{system.combat.punchDamage}}"
-            placeholder="1d4"
-          />
+          <input type="text"
+                 data-path="system.combat.punchDamage"
+                 value="{{system.combat.punchDamage}}"
+                 placeholder="1d4" />
         </div>
         <div class="damage-field">
           <label>Kick Damage</label>
-          <input
-            type="text"
-            data-path="system.combat.kickDamage"
-            value="{{system.combat.kickDamage}}"
-            placeholder="1d6"
-          />
-        </div>
-        <div class="damage-field">
-          <label>Power Punch</label>
-          <input
-            type="text"
-            data-path="system.combat.powerPunch"
-            value="{{system.combat.powerPunch}}"
-            placeholder="2d6"
-          />
-        </div>
-        <div class="damage-field">
-          <label>Leap Kick</label>
-          <input
-            type="text"
-            data-path="system.combat.leapKick"
-            value="{{system.combat.leapKick}}"
-            placeholder="2d8"
-          />
+          <input type="text"
+                 data-path="system.combat.kickDamage"
+                 value="{{system.combat.kickDamage}}"
+                 placeholder="1d6" />
         </div>
         <div class="damage-field">
           <label>Critical on</label>
-          <input
-            type="number"
-            data-path-number="system.combat.criticalOn"
-            value="{{system.combat.criticalOn}}"
-            min="1"
-            max="20"
-          />
+          <input type="number"
+                 data-path-number="system.combat.criticalOn"
+                 value="{{system.combat.criticalOn}}"
+                 min="1" max="20" />
         </div>
         <div class="damage-field">
           <label>Knockout on</label>
-          <input
-            type="number"
-            data-path-number="system.combat.knockoutOn"
-            value="{{system.combat.knockoutOn}}"
-            min="0"
-            max="20"
-          />
+          <input type="number"
+                 data-path-number="system.combat.knockoutOn"
+                 value="{{system.combat.knockoutOn}}"
+                 min="0" max="20" />
         </div>
       </div>
+
     </div>
 
     {{!-- ── RIGHT COLUMN: OCC Abilities ────────────────── --}}
     <div class="combat-column">
+
       <h2 class="section-title">
         <i class="fas fa-star"></i> O.C.C. Abilities
         <button type="button" class="item-add add-btn" data-type="occ_ability">
@@ -232,40 +179,93 @@ tabs/combat.html Combat tab: attacks, bonuses, damage, OCC abilities
         </button>
       </h2>
 
-      {{#if occAbilities.length}} {{#each occAbilities}}
-      <div class="occ-ability-card item-row" data-item-id="{{this.id}}">
-        <div class="ability-header">
-          <span class="ability-name">{{this.name}}</span>
-          <span class="ability-level">Lvl {{this.system.level}}</span>
-          <div class="ability-controls">
-            <button type="button" class="item-edit icon-btn" title="Edit">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button type="button" class="item-delete icon-btn" title="Delete">
-              <i class="fas fa-trash"></i>
-            </button>
+      {{#if occAbilities.length}}
+        {{#each occAbilities}}
+          <div class="occ-ability-card item-row" data-item-id="{{this.id}}">
+            <div class="ability-header">
+              <span class="ability-name">{{this.name}}</span>
+              <span class="ability-level">Lvl {{this.system.level}}</span>
+              <div class="ability-controls">
+                <button type="button" class="item-edit icon-btn" title="Edit">
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button type="button" class="item-delete icon-btn" title="Delete">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </div>
+            {{#if this.system.description}}
+              <p class="ability-desc">{{this.system.description}}</p>
+            {{/if}}
           </div>
-        </div>
-        {{#if this.system.description}}
-        <p class="ability-desc">{{this.system.description}}</p>
-        {{/if}}
-      </div>
-      {{/each}} {{else}}
-      <p class="empty-state">No O.C.C. abilities yet. Click + to add one.</p>
+        {{/each}}
+      {{else}}
+        <p class="empty-state">No O.C.C. abilities yet. Click + to add one.</p>
       {{/if}}
 
-      <h2 class="section-title" style="margin-top: 1.2rem">
-        <i class="fas fa-coins"></i> Black Market Credits
+      <h2 class="section-title" style="margin-top: 1.2rem;">
+        <i class="fas fa-running"></i> Physical Capabilities
       </h2>
-      <div class="damage-field">
-        <label>Black Market Credits</label>
-        <input
-          type="number"
-          data-path-number="system.money.blackMarket"
-          value="{{system.money.blackMarket}}"
-          min="0"
-        />
+
+      <div class="damage-grid">
+        <div class="damage-field">
+          <label>Run Speed (mph)</label>
+          <input type="text" data-path="system.combat.runSpeed" value="{{system.combat.runSpeed}}" placeholder="e.g. 15 mph" />
+        </div>
+        <div class="damage-field">
+          <label>Run (max melees)</label>
+          <input type="text" data-path="system.combat.runMelees" value="{{system.combat.runMelees}}" placeholder="e.g. 10" />
+        </div>
+        <div class="damage-field">
+          <label>Swim Speed (mph)</label>
+          <input type="text" data-path="system.combat.swimSpeed" value="{{system.combat.swimSpeed}}" placeholder="e.g. 5 mph" />
+        </div>
+        <div class="damage-field">
+          <label>Swim (max melees)</label>
+          <input type="text" data-path="system.combat.swimMelees" value="{{system.combat.swimMelees}}" placeholder="e.g. 8" />
+        </div>
+        <div class="damage-field">
+          <label>Leap (running)</label>
+          <input type="text" data-path="system.combat.leapLengthRunning" value="{{system.combat.leapLengthRunning}}" placeholder="e.g. 5 ft" />
+        </div>
+        <div class="damage-field">
+          <label>Leap (standing)</label>
+          <input type="text" data-path="system.combat.leapLengthStanding" value="{{system.combat.leapLengthStanding}}" placeholder="e.g. 3 ft" />
+        </div>
+        <div class="damage-field">
+          <label>Leap (height)</label>
+          <input type="text" data-path="system.combat.leapHeight" value="{{system.combat.leapHeight}}" placeholder="e.g. 4 ft" />
+        </div>
+        <div class="damage-field">
+          <label>Lift (lbs)</label>
+          <input type="text" data-path="system.combat.liftCapacity" value="{{system.combat.liftCapacity}}" placeholder="e.g. 200 lbs" />
+        </div>
+        <div class="damage-field">
+          <label>Carry (lbs)</label>
+          <input type="text" data-path="system.combat.carryCapacity" value="{{system.combat.carryCapacity}}" placeholder="e.g. 100 lbs" />
+        </div>
+        <div class="damage-field">
+          <label>Throw (max lbs)</label>
+          <input type="text" data-path="system.combat.throwCapacity" value="{{system.combat.throwCapacity}}" placeholder="e.g. 50 lbs" />
+        </div>
       </div>
+
+      <h2 class="section-title" style="margin-top: 1.2rem;">
+        <i class="fas fa-coins"></i> Money
+      </h2>
+      <div class="damage-grid">
+        <div class="damage-field">
+          <label>Black Market Credits</label>
+          <input type="number" data-path-number="system.money.blackMarket" value="{{system.money.blackMarket}}" min="0" />
+        </div>
+        <div class="damage-field">
+          <label>Salary (per month)</label>
+          <input type="number" data-path-number="system.money.salary" value="{{system.money.salary}}" min="0" />
+        </div>
+      </div>
+
     </div>
+
   </div>
+
 </div>
