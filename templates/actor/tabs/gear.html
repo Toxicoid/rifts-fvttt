@@ -206,29 +206,4 @@
   </div>
 
 <
-  {{!-- ── OUTFITS ──────────────────────────────────────────── --}}
-  <div class="gear-section outfits-section">
-    <div class="gear-section-header">
-      <h3 class="gear-section-title">
-        <i class="fas fa-tshirt"></i> Outfits
-      </h3>
-    </div>
-
-    <div class="outfits-list">
-      {{#each system.outfits as |outfit i|}}
-        <div class="outfit-row">
-          <input type="checkbox"
-                 class="outfit-checkbox"
-                 data-path-index="{{i}}"
-                 {{#if outfit.equipped}}checked{{/if}} />
-          <input type="text"
-                 class="outfit-label-input"
-                 data-path="system.outfits.{{i}}.label"
-                 value="{{outfit.label}}"
-                 placeholder="Outfit description..." />
-        </div>
-      {{/each}}
-    </div>
-  </div>
-
 </div>
