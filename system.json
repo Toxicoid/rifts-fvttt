@@ -2,10 +2,10 @@
   "id": "rifts",
   "title": "Rifts: Palladium RPG",
   "description": "A Foundry VTT system for Rifts by Palladium Books. Personal use only.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "compatibility": {
     "minimum": "11",
-    "verified": "12"
+    "verified": "13"
   },
   "authors": [
     {

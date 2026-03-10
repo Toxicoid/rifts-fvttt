@@ -23,11 +23,10 @@
 
       {{!-- Character Name --}}
       <div class="char-name-wrap">
-<input class="char-name"
-       type="text"
-       id="char-name-input"
-       value="{{actor.name}}"
-       placeholder="Character Name" />
+        <input class="char-name"
+               type="text"
+               value="{{actor.name}}"
+               placeholder="Character Name" />
       </div>
 
       {{!-- OCC / Level Row --}}
@@ -36,6 +35,7 @@
           <label>O.C.C.</label>
           <input type="text"
                  name="system.identity.occ"
+                 data-dtype="String"
                  value="{{system.identity.occ}}"
                  placeholder="O.C.C." />
         </div>
@@ -43,6 +43,7 @@
           <label>Type</label>
           <input type="text"
                  name="system.identity.occType"
+                 data-dtype="String"
                  value="{{system.identity.occType}}"
                  placeholder="Soldier / Scholar..." />
         </div>
@@ -50,12 +51,13 @@
           <label>Level</label>
           <input type="number"
                  name="system.identity.level"
+                 data-dtype="Number"
                  value="{{system.identity.level}}"
                  min="1" max="15" />
         </div>
         <div class="header-field">
           <label>Alignment</label>
-          <select name="system.identity.alignment">
+          <select name="system.identity.alignment" data-dtype="String">
             <option value="">— Select —</option>
             {{#each alignments as |label key|}}
               <option value="{{key}}"
@@ -73,6 +75,7 @@
           <label>Experience</label>
           <input type="number"
                  name="system.identity.experience"
+                 data-dtype="Number"
                  value="{{system.identity.experience}}"
                  min="0" />
         </div>
@@ -80,6 +83,7 @@
           <label>Next Level</label>
           <input type="number"
                  name="system.identity.nextLevel"
+                 data-dtype="Number"
                  value="{{system.identity.nextLevel}}"
                  min="0" />
         </div>
@@ -87,6 +91,7 @@
           <label>Homeland</label>
           <input type="text"
                  name="system.identity.homeland"
+                 data-dtype="String"
                  value="{{system.identity.homeland}}"
                  placeholder="Coalition, Lazlo..." />
         </div>
@@ -100,12 +105,14 @@
           <div class="health-inputs">
             <input class="health-input"
                    type="number"
+                   data-dtype="Number"
                    data-field="system.health.hp.value"
                    value="{{system.health.hp.value}}"
                    min="0" />
             <span class="health-sep">/</span>
             <input type="number"
                    name="system.health.hp.max"
+                   data-dtype="Number"
                    value="{{system.health.hp.max}}"
                    min="0" />
           </div>
@@ -116,12 +123,14 @@
           <div class="health-inputs">
             <input class="health-input"
                    type="number"
+                   data-dtype="Number"
                    data-field="system.health.sdc.value"
                    value="{{system.health.sdc.value}}"
                    min="0" />
             <span class="health-sep">/</span>
             <input type="number"
                    name="system.health.sdc.max"
+                   data-dtype="Number"
                    value="{{system.health.sdc.max}}"
                    min="0" />
           </div>
@@ -131,6 +140,7 @@
           <label>A.R.</label>
           <input type="number"
                  name="system.health.ar.value"
+                 data-dtype="Number"
                  value="{{system.health.ar.value}}"
                  min="0" max="20" />
         </div>
@@ -139,6 +149,7 @@
           <label>Credits</label>
           <input type="number"
                  name="system.money.credits"
+                 data-dtype="Number"
                  value="{{system.money.credits}}"
                  min="0" />
         </div>
