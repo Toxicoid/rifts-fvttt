@@ -124,6 +124,12 @@ export class RiftsActorSheet extends ActorSheet {
     // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
 
+    // Outfit checkboxes
+    html.find(".outfit-checkbox").on("change", async (event) => {
+      const i = event.currentTarget.dataset.pathIndex;
+      await this.actor.update({[`system.outfits.${i}.equipped`]: event.currentTarget.checked});
+    });
+
     // Toggle primary <-> secondary
     html.find(".skill-toggle-secondary").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;

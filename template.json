@@ -103,7 +103,14 @@
       "damageRecord": "",
       "sessionNotes": "",
       "contacts": "",
-      "debts": ""
+      "debts": "",
+      "outfits": [
+        { "label": "", "equipped": false },
+        { "label": "", "equipped": false },
+        { "label": "", "equipped": false },
+        { "label": "", "equipped": false },
+        { "label": "", "equipped": false }
+      ]
     }
   },
 
