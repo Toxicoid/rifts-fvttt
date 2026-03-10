@@ -1,0 +1,343 @@
+{{!-- ============================================================ RIFTS RPG -
+tabs/combat.html Combat tab: attacks, bonuses, damage, saves, OCC abilities
+============================================================ --}}
+
+<div class="tab-content combat-tab">
+  {{!-- ── Two Column Layout ───────────────────────────────── --}}
+  <div class="combat-layout">
+    {{!-- ── LEFT COLUMN: Combat Card ───────────────────── --}}
+    <div class="combat-column">
+      {{!-- Attacks Per Melee --}}
+      <h2 class="section-title">
+        <i class="fas fa-crosshairs"></i> Combat Card
+      </h2>
+
+      <div class="attacks-block">
+        <div class="attacks-display">
+          <span class="attacks-number">
+            {{system.combat.attacksPerMelee}}
+          </span>
+          <span class="attacks-label">Attacks per Melee</span>
+        </div>
+        <input
+          class="attacks-input"
+          type="number"
+          name="system.combat.attacksPerMelee"
+          value="{{system.combat.attacksPerMelee}}"
+          min="1"
+          max="20"
+        />
+      </div>
+
+      {{!-- Combat Bonuses Grid --}}
+      <div class="combat-bonuses">
+        {{!-- Initiative --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Initiative</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.initiativeBonus"
+            value="{{system.combat.initiativeBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="initiative"
+            data-bonus="{{system.combat.initiativeBonus}}"
+            data-label="Initiative"
+            title="Roll Initiative"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+
+        {{!-- Strike --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Strike</span>
+            <span class="bonus-hint">PP bonus included</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.strikeBonus"
+            value="{{system.combat.strikeBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="strike"
+            data-bonus="{{system.combat.strikeBonus}}"
+            data-label="Strike"
+            title="Roll to Strike"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+
+        {{!-- Parry --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Parry</span>
+            <span class="bonus-hint">PP bonus included</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.parryBonus"
+            value="{{system.combat.parryBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="parry"
+            data-bonus="{{system.combat.parryBonus}}"
+            data-label="Parry"
+            title="Roll to Parry"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+
+        {{!-- Dodge --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Dodge</span>
+            <span class="bonus-hint">PP bonus included</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.dodgeBonus"
+            value="{{system.combat.dodgeBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="dodge"
+            data-bonus="{{system.combat.dodgeBonus}}"
+            data-label="Dodge"
+            title="Roll to Dodge"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+
+        {{!-- Roll with Impact --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Roll w/ Impact</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.rollBonus"
+            value="{{system.combat.rollBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="roll"
+            data-bonus="{{system.combat.rollBonus}}"
+            data-label="Roll w/ Impact"
+            title="Roll to Roll with Impact"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+
+        {{!-- Pull Punch --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Pull Punch</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.pullPunchBonus"
+            value="{{system.combat.pullPunchBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="pullpunch"
+            data-bonus="{{system.combat.pullPunchBonus}}"
+            data-label="Pull Punch"
+            title="Roll to Pull Punch"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+
+        {{!-- Disarm --}}
+        <div class="combat-bonus-row">
+          <div class="bonus-label-wrap">
+            <span class="bonus-name">Disarm</span>
+          </div>
+          <input
+            class="bonus-value"
+            type="number"
+            name="system.combat.disarmBonus"
+            value="{{system.combat.disarmBonus}}"
+          />
+          <button
+            class="combat-roll roll-btn"
+            type="button"
+            data-roll="disarm"
+            data-bonus="{{system.combat.disarmBonus}}"
+            data-label="Disarm"
+            title="Roll to Disarm"
+          >
+            <i class="fas fa-dice-d20"></i>
+          </button>
+        </div>
+      </div>
+      {{!-- end combat-bonuses --}} {{!-- Damage & Unarmed --}}
+      <h2 class="section-title" style="margin-top: 1.2rem">
+        <i class="fas fa-hand-rock"></i> Damage & Unarmed
+      </h2>
+
+      <div class="damage-grid">
+        <div class="damage-field">
+          <label>Damage Bonus</label>
+          <input
+            type="number"
+            name="system.combat.damageBonus"
+            value="{{system.combat.damageBonus}}"
+          />
+        </div>
+
+        <div class="damage-field">
+          <label>Punch Damage</label>
+          <input
+            type="text"
+            name="system.combat.punchDamage"
+            value="{{system.combat.punchDamage}}"
+            placeholder="1d4"
+          />
+        </div>
+
+        <div class="damage-field">
+          <label>Kick Damage</label>
+          <input
+            type="text"
+            name="system.combat.kickDamage"
+            value="{{system.combat.kickDamage}}"
+            placeholder="1d6"
+          />
+        </div>
+
+        <div class="damage-field">
+          <label>Critical Strike On</label>
+          <input
+            type="number"
+            name="system.combat.criticalOn"
+            value="{{system.combat.criticalOn}}"
+            min="1"
+            max="20"
+          />
+        </div>
+
+        <div class="damage-field">
+          <label>Knockout On</label>
+          <input
+            type="number"
+            name="system.combat.knockoutOn"
+            value="{{system.combat.knockoutOn}}"
+            min="0"
+            max="20"
+          />
+          <span class="field-hint">0 = none</span>
+        </div>
+      </div>
+      {{!-- end damage-grid --}}
+    </div>
+    {{!-- end combat-column left --}} {{!-- ── RIGHT COLUMN: OCC Abilities
+    ────────────────── --}}
+    <div class="combat-column">
+      <div class="abilities-header">
+        <h2 class="section-title">
+          <i class="fas fa-star"></i> O.C.C. Abilities
+        </h2>
+        <button
+          class="item-add add-btn"
+          type="button"
+          data-type="occ_ability"
+          title="Add O.C.C. Ability"
+        >
+          <i class="fas fa-plus"></i> Add
+        </button>
+      </div>
+
+      {{!-- OCC Abilities List --}} {{#if occAbilities.length}}
+      <div class="abilities-list">
+        {{#each occAbilities as |ability|}}
+        <div class="ability-card item-row" data-item-id="{{ability.id}}">
+          <div class="ability-header-row">
+            <input
+              class="ability-name item-name-input"
+              type="text"
+              value="{{ability.name}}"
+              placeholder="Ability name"
+            />
+            <div class="ability-level">
+              <label>Lvl</label>
+              <input
+                type="number"
+                name="system.level"
+                value="{{ability.system.level}}"
+                min="1"
+                max="15"
+              />
+            </div>
+            <div class="ability-controls">
+              <button class="item-edit icon-btn" type="button" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button
+                class="item-delete icon-btn danger"
+                type="button"
+                title="Delete"
+              >
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="ability-description">
+            <p>{{ability.system.description}}</p>
+          </div>
+        </div>
+        {{/each}}
+      </div>
+
+      {{else}}
+      <div class="empty-state">
+        <i class="fas fa-star"></i>
+        <p>No O.C.C. abilities yet.</p>
+        <p class="empty-hint">Click <strong>Add</strong> to add an ability.</p>
+      </div>
+      {{/if}} {{!-- Black Market Credits --}}
+      <h2 class="section-title" style="margin-top: 1.5rem">
+        <i class="fas fa-coins"></i> Black Market
+      </h2>
+
+      <div class="bm-block">
+        <label>Black Market Items / Barter Value</label>
+        <input
+          type="number"
+          name="system.money.blackMarket"
+          value="{{system.money.blackMarket}}"
+          min="0"
+          placeholder="0"
+        />
+      </div>
+    </div>
+    {{!-- end combat-column right --}}
+  </div>
+  {{!-- end combat-layout --}}
+</div>
+{{!-- end tab-content --}}

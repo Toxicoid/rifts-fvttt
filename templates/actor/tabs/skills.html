@@ -1,0 +1,224 @@
+{{!-- ============================================================
+  RIFTS RPG - tabs/skills.html
+  Skills tab: grouped by category, % display, roll buttons
+============================================================ --}}
+
+<div class="tab-content skills-tab">
+
+  {{!-- ── Skills Header ────────────────────────────────────── --}}
+  <div class="skills-header">
+    <div class="skills-title-wrap">
+      <h2 class="section-title">
+        <i class="fas fa-book"></i> Skills
+      </h2>
+      {{#if derived.iqSkillBonus}}
+        <span class="iq-bonus-badge"
+              title="I.Q. bonus applied to all skills">
+          IQ +{{derived.iqSkillBonus}}%
+        </span>
+      {{/if}}
+    </div>
+    <button class="item-add add-btn"
+            type="button"
+            data-type="skill"
+            title="Add Skill">
+      <i class="fas fa-plus"></i> Add Skill
+    </button>
+  </div>
+
+  {{!-- ── Column Headers ──────────────────────────────────── --}}
+  <div class="skills-col-headers">
+    <span class="sh-name">Skill</span>
+    <span class="sh-cat">Category</span>
+    <span class="sh-base">Base</span>
+    <span class="sh-bonus">Bonus</span>
+    <span class="sh-total">Total</span>
+    <span class="sh-controls"></span>
+  </div>
+
+  {{!-- ── Skills List ─────────────────────────────────────── --}}
+  {{#if skills.length}}
+
+    {{!-- Loop through each skill category that has skills --}}
+    {{#each skillsByCategory as |categorySkills category|}}
+
+      {{!-- Category Header --}}
+      <div class="skill-category-header">
+        <span class="category-name">
+          {{#if (eq category "communications")}}Communications
+          {{else if (eq category "domestic")}}Domestic
+          {{else if (eq category "electrical")}}Electrical
+          {{else if (eq category "espionage")}}Espionage
+          {{else if (eq category "horsemanship")}}Horsemanship
+          {{else if (eq category "mechanical")}}Mechanical
+          {{else if (eq category "medical")}}Medical
+          {{else if (eq category "military")}}Military
+          {{else if (eq category "physical")}}Physical
+          {{else if (eq category "pilot")}}Pilot
+          {{else if (eq category "pilotRelated")}}Pilot Related
+          {{else if (eq category "rogue")}}Rogue
+          {{else if (eq category "science")}}Science
+          {{else if (eq category "technical")}}Technical
+          {{else if (eq category "weaponProficiency")}}W.P.
+          {{else if (eq category "wilderness")}}Wilderness
+          {{else}}{{category}}
+          {{/if}}
+        </span>
+        <span class="category-count">{{categorySkills.length}}</span>
+      </div>
+
+      {{!-- Skills within this category --}}
+      {{#each categorySkills as |skill|}}
+        <div class="skill-row item-row" data-item-id="{{skill.id}}">
+
+          {{!-- Skill Name --}}
+          <input class="skill-name item-name-input"
+                 type="text"
+                 value="{{skill.name}}"
+                 placeholder="Skill name" />
+
+          {{!-- Category Dropdown --}}
+          <select class="skill-cat-select"
+                  name="system.category">
+            <option value="">—</option>
+            <option value="communications"
+              {{#if (eq skill.system.category "communications")}}selected{{/if}}>
+              Communications
+            </option>
+            <option value="domestic"
+              {{#if (eq skill.system.category "domestic")}}selected{{/if}}>
+              Domestic
+            </option>
+            <option value="electrical"
+              {{#if (eq skill.system.category "electrical")}}selected{{/if}}>
+              Electrical
+            </option>
+            <option value="espionage"
+              {{#if (eq skill.system.category "espionage")}}selected{{/if}}>
+              Espionage
+            </option>
+            <option value="horsemanship"
+              {{#if (eq skill.system.category "horsemanship")}}selected{{/if}}>
+              Horsemanship
+            </option>
+            <option value="mechanical"
+              {{#if (eq skill.system.category "mechanical")}}selected{{/if}}>
+              Mechanical
+            </option>
+            <option value="medical"
+              {{#if (eq skill.system.category "medical")}}selected{{/if}}>
+              Medical
+            </option>
+            <option value="military"
+              {{#if (eq skill.system.category "military")}}selected{{/if}}>
+              Military
+            </option>
+            <option value="physical"
+              {{#if (eq skill.system.category "physical")}}selected{{/if}}>
+              Physical
+            </option>
+            <option value="pilot"
+              {{#if (eq skill.system.category "pilot")}}selected{{/if}}>
+              Pilot
+            </option>
+            <option value="pilotRelated"
+              {{#if (eq skill.system.category "pilotRelated")}}selected{{/if}}>
+              Pilot Related
+            </option>
+            <option value="rogue"
+              {{#if (eq skill.system.category "rogue")}}selected{{/if}}>
+              Rogue
+            </option>
+            <option value="science"
+              {{#if (eq skill.system.category "science")}}selected{{/if}}>
+              Science
+            </option>
+            <option value="technical"
+              {{#if (eq skill.system.category "technical")}}selected{{/if}}>
+              Technical
+            </option>
+            <option value="weaponProficiency"
+              {{#if (eq skill.system.category "weaponProficiency")}}selected{{/if}}>
+              W.P.
+            </option>
+            <option value="wilderness"
+              {{#if (eq skill.system.category "wilderness")}}selected{{/if}}>
+              Wilderness
+            </option>
+          </select>
+
+          {{!-- Base % --}}
+          <input class="skill-percent"
+                 type="number"
+                 name="system.basePercent"
+                 value="{{skill.system.basePercent}}"
+                 min="0" max="98"
+                 placeholder="0" />
+
+          {{!-- Bonus % --}}
+          <input class="skill-percent"
+                 type="number"
+                 name="system.bonusPercent"
+                 value="{{skill.system.bonusPercent}}"
+                 min="0" max="98"
+                 placeholder="0" />
+
+          {{!-- Total % (read only, auto calculated) --}}
+          <div class="skill-total
+            {{#if (gt skill.system.totalPercent 79)}}skill-high
+            {{else if (gt skill.system.totalPercent 49)}}skill-mid
+            {{else}}skill-low{{/if}}">
+            {{skill.system.totalPercent}}%
+          </div>
+
+          {{!-- Controls: Roll + Delete --}}
+          <div class="skill-controls">
+            <button class="skill-roll roll-btn"
+                    type="button"
+                    title="Roll {{skill.name}}">
+              <i class="fas fa-dice"></i>
+            </button>
+            <button class="item-delete icon-btn danger"
+                    type="button"
+                    title="Delete skill">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+
+        </div>
+        {{!-- end skill-row --}}
+
+      {{/each}}
+      {{!-- end skills in category --}}
+
+    {{/each}}
+    {{!-- end skillsByCategory --}}
+
+  {{else}}
+
+    {{!-- Empty state --}}
+    <div class="empty-state">
+      <i class="fas fa-book-open"></i>
+      <p>No skills added yet.</p>
+      <p class="empty-hint">
+        Click <strong>Add Skill</strong> to get started.
+      </p>
+    </div>
+
+  {{/if}}
+  {{!-- end skills.length check --}}
+
+  {{!-- ── Per-Level Bonus Note ────────────────────────────── --}}
+  {{#if skills.length}}
+    <div class="skills-footer">
+      <span class="footer-note">
+        <i class="fas fa-info-circle"></i>
+        Skill totals are capped at 98%. Per-level bonuses are tracked
+        on each skill's item sheet (click
+        <i class="fas fa-edit"></i> to edit).
+      </span>
+    </div>
+  {{/if}}
+
+</div>
+{{!-- end tab-content --}}

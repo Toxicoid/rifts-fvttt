@@ -1,0 +1,201 @@
+{{!-- ============================================================
+  RIFTS RPG - character-sheet.html
+  Main sheet wrapper: header, portrait, tabs
+============================================================ --}}
+
+<form class="rifts-sheet actor" autocomplete="off">
+
+  {{!-- ── Sheet Header ──────────────────────────────────────── --}}
+  <header class="sheet-header">
+
+    {{!-- Character Portrait --}}
+    <div class="portrait-wrap">
+      <img class="profile-img"
+           src="{{actor.img}}"
+           data-edit="img"
+           title="{{actor.name}}"
+           alt="Portrait" />
+      <div class="portrait-glow"></div>
+    </div>
+
+    {{!-- Identity Block --}}
+    <div class="header-identity">
+
+      {{!-- Character Name --}}
+      <div class="char-name-wrap">
+        <input class="char-name"
+               type="text"
+               name="name"
+               value="{{actor.name}}"
+               placeholder="Character Name" />
+      </div>
+
+      {{!-- OCC / Level Row --}}
+      <div class="header-row">
+        <div class="header-field">
+          <label>O.C.C.</label>
+          <input type="text"
+                 name="system.identity.occ"
+                 value="{{system.identity.occ}}"
+                 placeholder="O.C.C." />
+        </div>
+        <div class="header-field">
+          <label>Type</label>
+          <input type="text"
+                 name="system.identity.occType"
+                 value="{{system.identity.occType}}"
+                 placeholder="Soldier / Scholar..." />
+        </div>
+        <div class="header-field short">
+          <label>Level</label>
+          <input type="number"
+                 name="system.identity.level"
+                 value="{{system.identity.level}}"
+                 min="1" max="15" />
+        </div>
+        <div class="header-field">
+          <label>Alignment</label>
+          <select name="system.identity.alignment">
+            <option value="">— Select —</option>
+            {{#each alignments as |label key|}}
+              <option value="{{key}}"
+                {{#if (eq ../system.identity.alignment key)}}selected{{/if}}>
+                {{label}}
+              </option>
+            {{/each}}
+          </select>
+        </div>
+      </div>
+
+      {{!-- XP Row --}}
+      <div class="header-row">
+        <div class="header-field">
+          <label>Experience</label>
+          <input type="number"
+                 name="system.identity.experience"
+                 value="{{system.identity.experience}}"
+                 min="0" />
+        </div>
+        <div class="header-field">
+          <label>Next Level</label>
+          <input type="number"
+                 name="system.identity.nextLevel"
+                 value="{{system.identity.nextLevel}}"
+                 min="0" />
+        </div>
+        <div class="header-field">
+          <label>Homeland</label>
+          <input type="text"
+                 name="system.identity.homeland"
+                 value="{{system.identity.homeland}}"
+                 placeholder="Coalition, Lazlo..." />
+        </div>
+      </div>
+
+      {{!-- HP / SDC / AR Bar --}}
+      <div class="health-bar">
+
+        <div class="health-block hp">
+          <label>H.P.</label>
+          <div class="health-inputs">
+            <input class="health-input"
+                   type="number"
+                   data-field="system.health.hp.value"
+                   value="{{system.health.hp.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input type="number"
+                   name="system.health.hp.max"
+                   value="{{system.health.hp.max}}"
+                   min="0" />
+          </div>
+        </div>
+
+        <div class="health-block sdc">
+          <label>S.D.C.</label>
+          <div class="health-inputs">
+            <input class="health-input"
+                   type="number"
+                   data-field="system.health.sdc.value"
+                   value="{{system.health.sdc.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input type="number"
+                   name="system.health.sdc.max"
+                   value="{{system.health.sdc.max}}"
+                   min="0" />
+          </div>
+        </div>
+
+        <div class="health-block ar">
+          <label>A.R.</label>
+          <input type="number"
+                 name="system.health.ar.value"
+                 value="{{system.health.ar.value}}"
+                 min="0" max="20" />
+        </div>
+
+        <div class="health-block credits">
+          <label>Credits</label>
+          <input type="number"
+                 name="system.money.credits"
+                 value="{{system.money.credits}}"
+                 min="0" />
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  {{!-- ── Tab Navigation ───────────────────────────────────── --}}
+  <nav class="sheet-tabs tabs" data-group="primary">
+    <a class="item active" data-tab="attributes">
+      <i class="fas fa-fist-raised"></i> Attributes
+    </a>
+    <a class="item" data-tab="combat">
+      <i class="fas fa-crosshairs"></i> Combat
+    </a>
+    <a class="item" data-tab="skills">
+      <i class="fas fa-book"></i> Skills
+    </a>
+    <a class="item" data-tab="gear">
+      <i class="fas fa-shield-alt"></i> Gear
+    </a>
+    <a class="item" data-tab="background">
+      <i class="fas fa-scroll"></i> Background
+    </a>
+    <a class="item" data-tab="notes">
+      <i class="fas fa-sticky-note"></i> Notes
+    </a>
+  </nav>
+
+  {{!-- ── Tab Content ──────────────────────────────────────── --}}
+  <section class="sheet-body">
+
+    <div class="tab" data-tab="attributes">
+      {{> "systems/rifts/templates/actor/tabs/attributes.html"}}
+    </div>
+
+    <div class="tab" data-tab="combat">
+      {{> "systems/rifts/templates/actor/tabs/combat.html"}}
+    </div>
+
+    <div class="tab" data-tab="skills">
+      {{> "systems/rifts/templates/actor/tabs/skills.html"}}
+    </div>
+
+    <div class="tab" data-tab="gear">
+      {{> "systems/rifts/templates/actor/tabs/gear.html"}}
+    </div>
+
+    <div class="tab" data-tab="background">
+      {{> "systems/rifts/templates/actor/tabs/background.html"}}
+    </div>
+
+    <div class="tab" data-tab="notes">
+      {{> "systems/rifts/templates/actor/tabs/notes.html"}}
+    </div>
+
+  </section>
+
+</form>

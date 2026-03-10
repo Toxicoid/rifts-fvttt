@@ -1,0 +1,115 @@
+{
+  "Actor": {
+    "types": ["character"],
+    "character": {
+      "biography": "",
+      "notes": "",
+      "attributes": {
+        "iq": { "value": 10, "label": "I.Q." },
+        "me": { "value": 10, "label": "M.E." },
+        "ma": { "value": 10, "label": "M.A." },
+        "ps": { "value": 10, "label": "P.S." },
+        "pp": { "value": 10, "label": "P.P." },
+        "pe": { "value": 10, "label": "P.E." },
+        "pb": { "value": 10, "label": "P.B." },
+        "spd": { "value": 10, "label": "Spd" }
+      },
+
+      "health": {
+        "hp": { "value": 10, "max": 10 },
+        "sdc": { "value": 10, "max": 10 },
+        "ar": { "value": 0 }
+      },
+
+      "identity": {
+        "occ": "",
+        "occType": "",
+        "level": 1,
+        "experience": 0,
+        "nextLevel": 0,
+        "alignment": "",
+        "age": "",
+        "sex": "",
+        "height": "",
+        "weight": "",
+        "description": "",
+        "homeland": "",
+        "languages": ""
+      },
+
+      "combat": {
+        "attacksPerMelee": 2,
+        "initiativeBonus": 0,
+        "strikeBonus": 0,
+        "parryBonus": 0,
+        "dodgeBonus": 0,
+        "rollBonus": 0,
+        "pullPunchBonus": 0,
+        "disarmBonus": 0,
+        "knockoutOn": 0,
+        "criticalOn": 20,
+        "damageBonus": 0,
+        "punchDamage": "1d4",
+        "kickDamage": "1d6"
+      },
+
+      "saves": {
+        "magicBonus": 0,
+        "psionicBonus": 0,
+        "poisonBonus": 0,
+        "diseaseBonus": 0,
+        "horrorBonus": 0,
+        "insanityBonus": 0,
+        "deathBonus": 0,
+        "coma": 0
+      },
+
+      "money": {
+        "credits": 0,
+        "blackMarket": 0
+      }
+    }
+  },
+
+  "Item": {
+    "types": ["skill", "weapon", "armor", "equipment", "occ_ability"],
+    "skill": {
+      "category": "",
+      "basePercent": 0,
+      "bonusPercent": 0,
+      "totalPercent": 0,
+      "perLevelBonus": 0,
+      "relatedAttribute": "",
+      "notes": ""
+    },
+    "weapon": {
+      "damage": "",
+      "damageType": "SDC",
+      "range": "",
+      "rateOfFire": "",
+      "payload": 0,
+      "weight": "",
+      "cost": 0,
+      "bonusToStrike": 0,
+      "notes": ""
+    },
+    "armor": {
+      "ar": 0,
+      "sdc": { "value": 0, "max": 0 },
+      "mobility": "",
+      "weight": "",
+      "cost": 0,
+      "notes": ""
+    },
+    "equipment": {
+      "quantity": 1,
+      "weight": "",
+      "cost": 0,
+      "notes": ""
+    },
+    "occ_ability": {
+      "level": 1,
+      "description": ""
+    }
+  }
+}

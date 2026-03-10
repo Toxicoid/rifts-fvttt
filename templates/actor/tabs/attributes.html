@@ -1,0 +1,418 @@
+{{!-- ============================================================ RIFTS RPG -
+tabs/attributes.html Attributes tab: 8 core stats, derived bonuses, saves,
+physical description
+============================================================ --}}
+
+<div class="tab-content attributes-tab">
+  {{!-- ── Two Column Layout ───────────────────────────────── --}}
+  <div class="attr-layout">
+    {{!-- ── LEFT COLUMN: Attributes ─────────────────────── --}}
+    <div class="attr-column">
+      <h2 class="section-title">
+        <i class="fas fa-fist-raised"></i> Attributes
+      </h2>
+
+      <div class="attributes-grid">
+        {{!-- IQ --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="iq"
+              data-label="I.Q. Check"
+              title="Click to roll I.Q. check"
+              >I.Q.</span
+            >
+            <span class="attr-full">Intelligence Quotient</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.iq.value"
+            value="{{system.attributes.iq.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            {{#if derived.iqSkillBonus}}
+            <span class="bonus-tag" title="Skill Bonus from IQ">
+              +{{derived.iqSkillBonus}}% Skills
+            </span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{!-- ME --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="me"
+              data-label="M.E. Check"
+              title="Click to roll M.E. check"
+              >M.E.</span
+            >
+            <span class="attr-full">Mental Endurance</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.me.value"
+            value="{{system.attributes.me.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            {{#if (gt system.attributes.me.value 15)}}
+            <span
+              class="bonus-tag"
+              title="Bonus to saves vs Psionics & Insanity"
+            >
+              +{{add system.attributes.me.value -15}} Psi/Insanity
+            </span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{!-- MA --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="ma"
+              data-label="M.A. Check"
+              title="Click to roll M.A. check"
+              >M.A.</span
+            >
+            <span class="attr-full">Mental Affinity</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.ma.value"
+            value="{{system.attributes.ma.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            <span class="bonus-tag" title="Trust / Intimidate %">
+              {{derived.trustPercent}}% Trust
+            </span>
+          </div>
+        </div>
+
+        {{!-- PS --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="ps"
+              data-label="P.S. Check"
+              title="Click to roll P.S. check"
+              >P.S.</span
+            >
+            <span class="attr-full">Physical Strength</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.ps.value"
+            value="{{system.attributes.ps.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            {{#if (gt system.attributes.ps.value 15)}}
+            <span class="bonus-tag" title="Bonus to damage">
+              +{{add system.attributes.ps.value -15}} Damage
+            </span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{!-- PP --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="pp"
+              data-label="P.P. Check"
+              title="Click to roll P.P. check"
+              >P.P.</span
+            >
+            <span class="attr-full">Physical Prowess</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.pp.value"
+            value="{{system.attributes.pp.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            {{#if (gt system.attributes.pp.value 15)}}
+            <span class="bonus-tag" title="Bonus to Strike, Parry & Dodge">
+              +{{add system.attributes.pp.value -15}} Str/Par/Dod
+            </span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{!-- PE --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="pe"
+              data-label="P.E. Check"
+              title="Click to roll P.E. check"
+              >P.E.</span
+            >
+            <span class="attr-full">Physical Endurance</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.pe.value"
+            value="{{system.attributes.pe.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            <span class="bonus-tag" title="Coma / Death save %">
+              {{derived.comaPercent}}% Coma
+            </span>
+          </div>
+        </div>
+
+        {{!-- PB --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="pb"
+              data-label="P.B. Check"
+              title="Click to roll P.B. check"
+              >P.B.</span
+            >
+            <span class="attr-full">Physical Beauty</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.pb.value"
+            value="{{system.attributes.pb.value}}"
+            min="1"
+            max="30"
+          />
+          <div class="attr-bonus">
+            {{#if derived.charmPercent}}
+            <span class="bonus-tag" title="Charm / Impress %">
+              {{derived.charmPercent}}% Charm
+            </span>
+            {{/if}}
+          </div>
+        </div>
+
+        {{!-- Spd --}}
+        <div class="attribute-row">
+          <div class="attr-label-wrap">
+            <span
+              class="attr-abbr attribute-roll"
+              data-attr="spd"
+              data-label="Spd Check"
+              title="Click to roll Speed check"
+              >Spd</span
+            >
+            <span class="attr-full">Speed</span>
+          </div>
+          <input
+            class="attr-value"
+            type="number"
+            name="system.attributes.spd.value"
+            value="{{system.attributes.spd.value}}"
+            min="1"
+            max="60"
+          />
+          <div class="attr-bonus">
+            <span class="bonus-tag" title="Speed in yards per melee / mph">
+              {{derived.spdYards}} yd | {{derived.spdMph}} mph
+            </span>
+          </div>
+        </div>
+      </div>
+      {{!-- end attributes-grid --}}
+    </div>
+    {{!-- end attr-column left --}} {{!-- ── RIGHT COLUMN: Saves + Physical
+    ─────────────── --}}
+    <div class="attr-column">
+      {{!-- Saving Throws --}}
+      <h2 class="section-title">
+        <i class="fas fa-shield-alt"></i> Saving Throws
+      </h2>
+
+      <div class="saves-grid">
+        <div class="save-row">
+          <span class="save-label">vs. Magic</span>
+          <span class="save-target">12+</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.magicBonus"
+            value="{{system.saves.magicBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row">
+          <span class="save-label">vs. Psionics</span>
+          <span class="save-target">12+</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.psionicBonus"
+            value="{{system.saves.psionicBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row">
+          <span class="save-label">vs. Poison (lethal)</span>
+          <span class="save-target">14+</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.poisonBonus"
+            value="{{system.saves.poisonBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row">
+          <span class="save-label">vs. Disease</span>
+          <span class="save-target">14+</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.diseaseBonus"
+            value="{{system.saves.diseaseBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row">
+          <span class="save-label">vs. Horror Factor</span>
+          <span class="save-target">Varies</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.horrorBonus"
+            value="{{system.saves.horrorBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row">
+          <span class="save-label">vs. Insanity</span>
+          <span class="save-target">12+</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.insanityBonus"
+            value="{{system.saves.insanityBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row">
+          <span class="save-label">vs. Death</span>
+          <span class="save-target">16+</span>
+          <input
+            class="save-bonus"
+            type="number"
+            name="system.saves.deathBonus"
+            value="{{system.saves.deathBonus}}"
+          />
+          <span class="save-hint">bonus</span>
+        </div>
+
+        <div class="save-row coma-row">
+          <span class="save-label">Coma / Death %</span>
+          <span class="save-target coma-value">{{derived.comaPercent}}%</span>
+          <span class="save-hint coma-hint">(auto from P.E.)</span>
+        </div>
+      </div>
+      {{!-- end saves-grid --}} {{!-- Physical Description --}}
+      <h2 class="section-title" style="margin-top: 1.2rem">
+        <i class="fas fa-user"></i> Description
+      </h2>
+
+      <div class="description-grid">
+        <div class="desc-field">
+          <label>Age</label>
+          <input
+            type="text"
+            name="system.identity.age"
+            value="{{system.identity.age}}"
+            placeholder="e.g. 24"
+          />
+        </div>
+
+        <div class="desc-field">
+          <label>Sex</label>
+          <input
+            type="text"
+            name="system.identity.sex"
+            value="{{system.identity.sex}}"
+            placeholder="e.g. Male"
+          />
+        </div>
+
+        <div class="desc-field">
+          <label>Height</label>
+          <input
+            type="text"
+            name="system.identity.height"
+            value="{{system.identity.height}}"
+            placeholder="e.g. 5'11&quot;"
+          />
+        </div>
+
+        <div class="desc-field">
+          <label>Weight</label>
+          <input
+            type="text"
+            name="system.identity.weight"
+            value="{{system.identity.weight}}"
+            placeholder="e.g. 180 lbs"
+          />
+        </div>
+
+        <div class="desc-field full-width">
+          <label>Languages Spoken</label>
+          <input
+            type="text"
+            name="system.identity.languages"
+            value="{{system.identity.languages}}"
+            placeholder="e.g. American, Dragonese, Spanish"
+          />
+        </div>
+
+        <div class="desc-field full-width">
+          <label>Physical Description</label>
+          <textarea
+            name="system.identity.description"
+            placeholder="Hair, eyes, distinguishing features..."
+          >
+            {{system.identity.description}}
+          </textarea>
+        </div>
+      </div>
+      {{!-- end description-grid --}}
+    </div>
+    {{!-- end attr-column right --}}
+  </div>
+  {{!-- end attr-layout --}}
+</div>
+{{!-- end tab-content --}}

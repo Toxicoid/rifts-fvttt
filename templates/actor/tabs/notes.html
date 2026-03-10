@@ -1,0 +1,177 @@
+{{!-- ============================================================ RIFTS RPG -
+tabs/notes.html Notes tab: session notes, contacts, rumours, GM info
+============================================================ --}}
+
+<div class="tab-content notes-tab">
+  {{!-- ── Two Column Layout ───────────────────────────────── --}}
+  <div class="notes-layout">
+    {{!-- ── LEFT COLUMN: Session Notes ────────────────────── --}}
+    <div class="notes-column">
+      <h2 class="section-title">
+        <i class="fas fa-sticky-note"></i> Session Notes
+      </h2>
+
+      <div class="notes-block">
+        <label class="notes-label"> Notes, Clues & Reminders </label>
+        <textarea
+          class="notes-textarea"
+          name="system.notes"
+          rows="16"
+          placeholder="Session notes, plot hooks, things to remember...
+
+• Clues picked up this session
+• Important NPCs encountered
+• Locations discovered
+• Rumours heard
+• Things left unresolved"
+        >
+{{system.notes}}</textarea
+        >
+      </div>
+    </div>
+    {{!-- end left column --}} {{!-- ── RIGHT COLUMN: Contacts & Allies
+    ───────────────── --}}
+    <div class="notes-column">
+      <h2 class="section-title">
+        <i class="fas fa-users"></i> Contacts & Allies
+      </h2>
+
+      <div class="notes-block">
+        <label class="notes-label"> Known NPCs, Contacts & Enemies </label>
+        <textarea
+          class="notes-textarea"
+          name="system.biography"
+          rows="8"
+          placeholder="List important NPCs, allies, contacts, and enemies.
+
+Format however works for you:
+• Name — relationship — last known location
+• Friendly: Marcus (arms dealer, Chi-Town black market)
+• Enemy: General Straud (CS officer, wants the party dead)"
+        >
+{{system.biography}}</textarea
+        >
+      </div>
+
+      {{!-- Debts & Obligations --}}
+      <h2 class="section-title" style="margin-top: 1.2rem">
+        <i class="fas fa-handshake"></i> Debts & Obligations
+      </h2>
+
+      <div class="notes-block">
+        <label class="notes-label">
+          Favours Owed, Contracts & Loose Ends
+        </label>
+        <textarea
+          class="notes-textarea"
+          name="system.notes"
+          rows="7"
+          placeholder="Favours owed or called in, ongoing contracts, bounties, oaths...
+
+• Owe Silas 3,000 credits by end of next run
+• Promised Anya safe passage to Lazlo
+• Wanted by the Coalition in the Burbs"
+        >
+{{system.notes}}</textarea
+        >
+      </div>
+    </div>
+    {{!-- end right column --}}
+  </div>
+  {{!-- end notes-layout --}} {{!-- ── Full Width: Quick Reference
+  ──────────────────────── --}}
+  <div class="quick-ref-block">
+    <h2 class="section-title"><i class="fas fa-bolt"></i> Quick Reference</h2>
+
+    <div class="quick-ref-grid">
+      <div class="qr-card">
+        <h3 class="qr-title">Melee Combat</h3>
+        <ul class="qr-list">
+          <li>
+            <strong>Strike</strong> — Roll d20 + strike bonus vs defender's
+            parry/dodge
+          </li>
+          <li>
+            <strong>Parry</strong> — Roll d20 + parry bonus to block incoming
+            attack
+          </li>
+          <li>
+            <strong>Dodge</strong> — Roll d20 + dodge bonus; costs one attack
+          </li>
+          <li>
+            <strong>Roll w/ Impact</strong> — Roll d20 + bonus to halve damage
+            from falls/blasts
+          </li>
+          <li>
+            <strong>Pull Punch</strong> — Roll d20 + bonus to reduce damage
+            dealt
+          </li>
+          <li>
+            <strong>Critical Strike</strong> — Natural
+            {{system.combat.criticalOn}}+ = double damage
+          </li>
+          {{#if system.combat.knockoutOn}}
+          <li>
+            <strong>Knockout</strong> — Natural {{system.combat.knockoutOn}}+ =
+            KO
+          </li>
+          {{/if}}
+        </ul>
+      </div>
+
+      <div class="qr-card">
+        <h3 class="qr-title">Saving Throws</h3>
+        <ul class="qr-list">
+          <li>
+            <strong>vs. Magic</strong> — Roll d20, need 12+ (bonus:
+            {{system.saves.magicBonus}})
+          </li>
+          <li>
+            <strong>vs. Psionics</strong> — Roll d20, need 12+ (bonus:
+            {{system.saves.psionicBonus}})
+          </li>
+          <li>
+            <strong>vs. Poison</strong> — Roll d20, need 14+ (bonus:
+            {{system.saves.poisonBonus}})
+          </li>
+          <li>
+            <strong>vs. Horror Factor</strong> — Roll d20, need HF score (bonus:
+            {{system.saves.horrorBonus}})
+          </li>
+          <li>
+            <strong>vs. Insanity</strong> — Roll d20, need 12+ (bonus:
+            {{system.saves.insanityBonus}})
+          </li>
+          <li>
+            <strong>Coma/Death</strong> — {{derived.comaPercent}}% chance to
+            survive
+          </li>
+        </ul>
+      </div>
+
+      <div class="qr-card">
+        <h3 class="qr-title">This Character</h3>
+        <ul class="qr-list">
+          <li>
+            <strong>Attacks/Melee</strong> — {{system.combat.attacksPerMelee}}
+          </li>
+          <li><strong>Strike</strong> — +{{system.combat.strikeBonus}}</li>
+          <li><strong>Parry</strong> — +{{system.combat.parryBonus}}</li>
+          <li><strong>Dodge</strong> — +{{system.combat.dodgeBonus}}</li>
+          <li><strong>Damage</strong> — +{{system.combat.damageBonus}}</li>
+          <li>
+            <strong>Speed</strong> — {{derived.spdYards}} yd/melee
+            ({{derived.spdMph}} mph)
+          </li>
+          <li><strong>Trust</strong> — {{derived.trustPercent}}%</li>
+          {{#if derived.charmPercent}}
+          <li><strong>Charm</strong> — {{derived.charmPercent}}%</li>
+          {{/if}}
+        </ul>
+      </div>
+    </div>
+    {{!-- end quick-ref-grid --}}
+  </div>
+  {{!-- end quick-ref-block --}}
+</div>
+{{!-- end tab-content --}}

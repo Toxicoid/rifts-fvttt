@@ -1,0 +1,325 @@
+{{!-- ============================================================
+  RIFTS RPG - tabs/gear.html
+  Gear tab: weapons, armor, equipment
+============================================================ --}}
+
+<div class="tab-content gear-tab">
+
+  {{!-- ══════════════════════════════════════════════════════
+    WEAPONS SECTION
+  ══════════════════════════════════════════════════════ --}}
+  <div class="gear-section">
+
+    <div class="gear-section-header">
+      <h2 class="section-title">
+        <i class="fas fa-gun"></i> Weapons
+      </h2>
+      <button class="item-add add-btn"
+              type="button"
+              data-type="weapon"
+              title="Add Weapon">
+        <i class="fas fa-plus"></i> Add
+      </button>
+    </div>
+
+    {{#if weapons.length}}
+
+      {{!-- Weapons Column Headers --}}
+      <div class="gear-col-headers weapon-headers">
+        <span class="gh-name">Weapon</span>
+        <span class="gh-damage">Damage</span>
+        <span class="gh-type">Type</span>
+        <span class="gh-range">Range</span>
+        <span class="gh-rof">R.O.F.</span>
+        <span class="gh-payload">Payload</span>
+        <span class="gh-strike">Strike</span>
+        <span class="gh-controls"></span>
+      </div>
+
+      {{!-- Weapon Rows --}}
+      {{#each weapons as |weapon|}}
+        <div class="gear-row weapon-row item-row"
+             data-item-id="{{weapon.id}}">
+
+          {{!-- Name --}}
+          <input class="gear-name item-name-input"
+                 type="text"
+                 value="{{weapon.name}}"
+                 placeholder="Weapon name" />
+
+          {{!-- Damage --}}
+          <input class="gear-field"
+                 type="text"
+                 name="system.damage"
+                 value="{{weapon.system.damage}}"
+                 placeholder="e.g. 5d6 MD" />
+
+          {{!-- Damage Type --}}
+          <select class="gear-select"
+                  name="system.damageType">
+            {{#each ../damageTypes as |label key|}}
+              <option value="{{key}}"
+                {{#if (eq weapon.system.damageType key)}}selected{{/if}}>
+                {{label}}
+              </option>
+            {{/each}}
+          </select>
+
+          {{!-- Range --}}
+          <input class="gear-field"
+                 type="text"
+                 name="system.range"
+                 value="{{weapon.system.range}}"
+                 placeholder="e.g. 1200 ft" />
+
+          {{!-- Rate of Fire --}}
+          <input class="gear-field short"
+                 type="text"
+                 name="system.rateOfFire"
+                 value="{{weapon.system.rateOfFire}}"
+                 placeholder="e.g. Single" />
+
+          {{!-- Payload --}}
+          <input class="gear-field short"
+                 type="number"
+                 name="system.payload"
+                 value="{{weapon.system.payload}}"
+                 min="0"
+                 placeholder="0" />
+
+          {{!-- Strike Bonus --}}
+          <input class="gear-field short"
+                 type="number"
+                 name="system.bonusToStrike"
+                 value="{{weapon.system.bonusToStrike}}" />
+
+          {{!-- Controls --}}
+          <div class="gear-controls">
+            <button class="item-edit icon-btn"
+                    type="button"
+                    title="Edit weapon details">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="item-delete icon-btn danger"
+                    type="button"
+                    title="Delete weapon">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+
+        </div>
+        {{!-- end weapon-row --}}
+
+      {{/each}}
+
+    {{else}}
+      <div class="empty-state compact">
+        <i class="fas fa-gun"></i>
+        <p>No weapons. Click <strong>Add</strong> to add one.</p>
+      </div>
+    {{/if}}
+
+  </div>
+  {{!-- end weapons section --}}
+
+
+  {{!-- ══════════════════════════════════════════════════════
+    ARMOR SECTION
+  ══════════════════════════════════════════════════════ --}}
+  <div class="gear-section">
+
+    <div class="gear-section-header">
+      <h2 class="section-title">
+        <i class="fas fa-shield-alt"></i> Armor
+      </h2>
+      <button class="item-add add-btn"
+              type="button"
+              data-type="armor"
+              title="Add Armor">
+        <i class="fas fa-plus"></i> Add
+      </button>
+    </div>
+
+    {{#if armor.length}}
+
+      {{!-- Armor Column Headers --}}
+      <div class="gear-col-headers armor-headers">
+        <span class="gh-name">Armor</span>
+        <span class="gh-ar">A.R.</span>
+        <span class="gh-sdc">S.D.C.</span>
+        <span class="gh-mobility">Mobility</span>
+        <span class="gh-weight">Weight</span>
+        <span class="gh-controls"></span>
+      </div>
+
+      {{!-- Armor Rows --}}
+      {{#each armor as |armorItem|}}
+        <div class="gear-row armor-row item-row"
+             data-item-id="{{armorItem.id}}">
+
+          {{!-- Name --}}
+          <input class="gear-name item-name-input"
+                 type="text"
+                 value="{{armorItem.name}}"
+                 placeholder="Armor name" />
+
+          {{!-- AR --}}
+          <input class="gear-field short"
+                 type="number"
+                 name="system.ar"
+                 value="{{armorItem.system.ar}}"
+                 min="0" max="20" />
+
+          {{!-- SDC current / max --}}
+          <div class="armor-sdc">
+            <input class="gear-field short"
+                   type="number"
+                   name="system.sdc.value"
+                   value="{{armorItem.system.sdc.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input class="gear-field short"
+                   type="number"
+                   name="system.sdc.max"
+                   value="{{armorItem.system.sdc.max}}"
+                   min="0" />
+          </div>
+
+          {{!-- Mobility --}}
+          <input class="gear-field"
+                 type="text"
+                 name="system.mobility"
+                 value="{{armorItem.system.mobility}}"
+                 placeholder="e.g. Good, Poor" />
+
+          {{!-- Weight --}}
+          <input class="gear-field short"
+                 type="text"
+                 name="system.weight"
+                 value="{{armorItem.system.weight}}"
+                 placeholder="lbs" />
+
+          {{!-- Controls --}}
+          <div class="gear-controls">
+            <button class="item-edit icon-btn"
+                    type="button"
+                    title="Edit armor details">
+              <i class="fas fa-edit"></i>
+            </button>
+            <button class="item-delete icon-btn danger"
+                    type="button"
+                    title="Delete armor">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+
+        </div>
+        {{!-- end armor-row --}}
+
+      {{/each}}
+
+    {{else}}
+      <div class="empty-state compact">
+        <i class="fas fa-shield-alt"></i>
+        <p>No armor. Click <strong>Add</strong> to add some.</p>
+      </div>
+    {{/if}}
+
+  </div>
+  {{!-- end armor section --}}
+
+
+  {{!-- ══════════════════════════════════════════════════════
+    EQUIPMENT SECTION
+  ══════════════════════════════════════════════════════ --}}
+  <div class="gear-section">
+
+    <div class="gear-section-header">
+      <h2 class="section-title">
+        <i class="fas fa-backpack"></i> Equipment
+      </h2>
+      <button class="item-add add-btn"
+              type="button"
+              data-type="equipment"
+              title="Add Equipment">
+        <i class="fas fa-plus"></i> Add
+      </button>
+    </div>
+
+    {{#if equipment.length}}
+
+      {{!-- Equipment Column Headers --}}
+      <div class="gear-col-headers equipment-headers">
+        <span class="gh-name">Item</span>
+        <span class="gh-qty">Qty</span>
+        <span class="gh-weight">Weight</span>
+        <span class="gh-cost">Cost (Cr)</span>
+        <span class="gh-notes">Notes</span>
+        <span class="gh-controls"></span>
+      </div>
+
+      {{!-- Equipment Rows --}}
+      {{#each equipment as |item|}}
+        <div class="gear-row equipment-row item-row"
+             data-item-id="{{item.id}}">
+
+          {{!-- Name --}}
+          <input class="gear-name item-name-input"
+                 type="text"
+                 value="{{item.name}}"
+                 placeholder="Item name" />
+
+          {{!-- Quantity --}}
+          <input class="gear-field short"
+                 type="number"
+                 name="system.quantity"
+                 value="{{item.system.quantity}}"
+                 min="1" />
+
+          {{!-- Weight --}}
+          <input class="gear-field short"
+                 type="text"
+                 name="system.weight"
+                 value="{{item.system.weight}}"
+                 placeholder="lbs" />
+
+          {{!-- Cost --}}
+          <input class="gear-field short"
+                 type="number"
+                 name="system.cost"
+                 value="{{item.system.cost}}"
+                 min="0" />
+
+          {{!-- Notes --}}
+          <input class="gear-field wide"
+                 type="text"
+                 name="system.notes"
+                 value="{{item.system.notes}}"
+                 placeholder="Notes..." />
+
+          {{!-- Controls --}}
+          <div class="gear-controls">
+            <button class="item-delete icon-btn danger"
+                    type="button"
+                    title="Delete item">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+
+        </div>
+        {{!-- end equipment-row --}}
+
+      {{/each}}
+
+    {{else}}
+      <div class="empty-state compact">
+        <i class="fas fa-backpack"></i>
+        <p>No equipment. Click <strong>Add</strong> to add gear.</p>
+      </div>
+    {{/if}}
+
+  </div>
+  {{!-- end equipment section --}}
+
+</div>
+{{!-- end tab-content --}}

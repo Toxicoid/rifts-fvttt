@@ -1,0 +1,27 @@
+{
+  "id": "rifts",
+  "title": "Rifts: Palladium RPG",
+  "description": "A Foundry VTT system for Rifts by Palladium Books. Personal use only.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "authors": [
+    {
+      "name": "Toxicoid"
+    }
+  ],
+  "esmodules": ["rifts.js"],
+  "styles": ["styles/rifts.css"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "url": "https://github.com/Toxicoid/rifts-fvttt",
+  "manifest": "https://raw.githubusercontent.com/Toxicoid/rifts-fvttt/main/Rifts/system.json",
+  "download": "https://github.com/Toxicoid/rifts-fvttt/archive/refs/heads/main.zip"
+}

@@ -1,0 +1,208 @@
+{
+  "RIFTS": {
+    "SheetTitle": "Rifts Character Sheet",
+
+    "Tabs": {
+      "Attributes": "Attributes",
+      "Combat": "Combat",
+      "Skills": "Skills",
+      "Gear": "Gear",
+      "Background": "Background",
+      "Notes": "Notes"
+    },
+
+    "Attributes": {
+      "iq": "I.Q.",
+      "me": "M.E.",
+      "ma": "M.A.",
+      "ps": "P.S.",
+      "pp": "P.P.",
+      "pe": "P.E.",
+      "pb": "P.B.",
+      "spd": "Spd"
+    },
+
+    "AttributesFull": {
+      "iq": "Intelligence Quotient",
+      "me": "Mental Endurance",
+      "ma": "Mental Affinity",
+      "ps": "Physical Strength",
+      "pp": "Physical Prowess",
+      "pe": "Physical Endurance",
+      "pb": "Physical Beauty",
+      "spd": "Speed"
+    },
+
+    "Health": {
+      "HP": "H.P.",
+      "HPFull": "Hit Points",
+      "SDC": "S.D.C.",
+      "SDCFull": "Structural Damage Capacity",
+      "AR": "A.R.",
+      "ARFull": "Armor Rating",
+      "Current": "Current",
+      "Max": "Max"
+    },
+
+    "Identity": {
+      "OCC": "O.C.C.",
+      "OCCType": "O.C.C. Type",
+      "Level": "Level",
+      "Experience": "Experience",
+      "NextLevel": "Next Level",
+      "Alignment": "Alignment",
+      "Age": "Age",
+      "Sex": "Sex",
+      "Height": "Height",
+      "Weight": "Weight",
+      "Description": "Description",
+      "Homeland": "Homeland",
+      "Languages": "Languages Spoken"
+    },
+
+    "Alignments": {
+      "principled": "Principled (Good)",
+      "scrupulous": "Scrupulous (Good)",
+      "unprincipled": "Unprincipled (Selfish)",
+      "anarchist": "Anarchist (Selfish)",
+      "miscreant": "Miscreant (Evil)",
+      "aberrant": "Aberrant (Evil)",
+      "diabolic": "Diabolic (Evil)"
+    },
+
+    "Combat": {
+      "Title": "Combat",
+      "AttacksPerMelee": "Attacks per Melee",
+      "Initiative": "Initiative Bonus",
+      "Strike": "Strike",
+      "Parry": "Parry",
+      "Dodge": "Dodge",
+      "Roll": "Roll w/ Impact",
+      "PullPunch": "Pull Punch",
+      "Disarm": "Disarm",
+      "Damage": "Damage Bonus",
+      "KnockoutOn": "Knockout On",
+      "CriticalOn": "Critical On",
+      "PunchDamage": "Punch Damage",
+      "KickDamage": "Kick Damage"
+    },
+
+    "Saves": {
+      "Title": "Saving Throws",
+      "Magic": "vs. Magic",
+      "Psionic": "vs. Psionics",
+      "Poison": "vs. Poison",
+      "Disease": "vs. Disease",
+      "Horror": "vs. Horror Factor",
+      "Insanity": "vs. Insanity",
+      "Death": "vs. Death",
+      "Coma": "Coma/Death %"
+    },
+
+    "Money": {
+      "Title": "Currency",
+      "Credits": "Credits",
+      "BlackMarket": "Black Market Items"
+    },
+
+    "Skills": {
+      "Title": "Skills",
+      "Name": "Skill Name",
+      "Category": "Category",
+      "Base": "Base %",
+      "Bonus": "Bonus %",
+      "Total": "Total %",
+      "PerLevel": "Per Level",
+      "Attribute": "Key Attribute",
+      "Notes": "Notes",
+      "Roll": "Roll Skill"
+    },
+
+    "SkillCategories": {
+      "communications": "Communications",
+      "domestic": "Domestic",
+      "electrical": "Electrical",
+      "espionage": "Espionage",
+      "horsemanship": "Horsemanship",
+      "mechanical": "Mechanical",
+      "medical": "Medical",
+      "military": "Military",
+      "physical": "Physical",
+      "pilot": "Pilot",
+      "pilotRelated": "Pilot Related",
+      "rogue": "Rogue",
+      "science": "Science",
+      "technical": "Technical",
+      "weaponProficiency": "W.P.",
+      "wilderness": "Wilderness"
+    },
+
+    "Weapons": {
+      "Title": "Weapons",
+      "Name": "Weapon",
+      "Damage": "Damage",
+      "DamageType": "Type",
+      "Range": "Range",
+      "RateOfFire": "R.O.F.",
+      "Payload": "Payload",
+      "Weight": "Weight",
+      "Cost": "Cost",
+      "StrikeBonus": "Strike Bonus",
+      "Notes": "Notes"
+    },
+
+    "DamageTypes": {
+      "sdc": "S.D.C.",
+      "mdc": "M.D.C.",
+      "md": "Mega-Damage"
+    },
+
+    "Armor": {
+      "Title": "Armor",
+      "Name": "Armor",
+      "AR": "A.R.",
+      "SDC": "S.D.C.",
+      "Mobility": "Mobility",
+      "Weight": "Weight",
+      "Cost": "Cost",
+      "Notes": "Notes"
+    },
+
+    "Equipment": {
+      "Title": "Equipment",
+      "Name": "Item",
+      "Quantity": "Qty",
+      "Weight": "Weight",
+      "Cost": "Cost",
+      "Notes": "Notes"
+    },
+
+    "OCCAbilities": {
+      "Title": "O.C.C. Abilities",
+      "Name": "Ability",
+      "Level": "Gained at Level",
+      "Description": "Description"
+    },
+
+    "Background": {
+      "Title": "Background",
+      "Biography": "Biography & Background"
+    },
+
+    "Notes": {
+      "Title": "Notes",
+      "Content": "Session Notes"
+    },
+
+    "Buttons": {
+      "AddSkill": "Add Skill",
+      "AddWeapon": "Add Weapon",
+      "AddArmor": "Add Armor",
+      "AddEquipment": "Add Equipment",
+      "AddAbility": "Add Ability",
+      "Delete": "Delete",
+      "Edit": "Edit",
+      "Roll": "Roll"
+    }
+  }
+}
