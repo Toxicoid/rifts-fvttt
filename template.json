@@ -64,7 +64,10 @@
         "horrorBonus": 0,
         "insanityBonus": 0,
         "deathBonus": 0,
-        "coma": 0
+        "coma": 0,
+        "ritualMagicBonus": 0,
+        "possessionBonus": 0,
+        "painBonus": 0
       },
 
       "money": {

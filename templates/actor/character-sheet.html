@@ -118,6 +118,21 @@
                    min="0" />
           </div>
         </div>
+        <div class="health-block ppe">
+  <label>P.P.E.</label>
+  <div class="health-inputs">
+    <input class="health-input"
+           type="number"
+           data-field="system.health.ppe.value"
+           value="{{system.health.ppe.value}}"
+           min="0" />
+    <span class="health-sep">/</span>
+    <input type="number"
+           data-path-number="system.health.ppe.max"
+           value="{{system.health.ppe.max}}"
+           min="0" />
+  </div>
+</div>
 
         <div class="health-block ar">
           <label>A.R.</label>
@@ -134,21 +149,7 @@
                  value="{{system.money.credits}}"
                  min="0" />
         </div>
-        <div class="health-block ppe">
-  <label>P.P.E.</label>
-  <div class="health-inputs">
-    <input class="health-input"
-           type="number"
-           data-field="system.health.ppe.value"
-           value="{{system.health.ppe.value}}"
-           min="0" />
-    <span class="health-sep">/</span>
-    <input type="number"
-           data-path-number="system.health.ppe.max"
-           value="{{system.health.ppe.max}}"
-           min="0" />
-  </div>
-</div>
+        
 
       </div>
     </div>
