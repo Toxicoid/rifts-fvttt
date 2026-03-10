@@ -7,7 +7,7 @@
 export class RiftsActorSheet extends ActorSheet {
   // ── defaultOptions ─────────────────────────────────────────
   static get defaultOptions() {
-    return mergeObject(super.defaultOptions, {
+    return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["rifts", "sheet", "actor"],
       template: "systems/rifts/templates/actor/character-sheet.html",
       width: 780,
@@ -227,5 +227,12 @@ export class RiftsActorSheet extends ActorSheet {
     const field = element.dataset.field;
     const value = parseInt(element.value) || 0;
     await this.actor.update({ [field]: value });
+  }
+
+  // ── _updateObject ────────────────────────────────────────
+  // Foundry v13 compatible form submission handler
+  async _updateObject(event, formData) {
+    const expanded = foundry.utils.expandObject(formData);
+    await this.actor.update(expanded);
   }
 }
