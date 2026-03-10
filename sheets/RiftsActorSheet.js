@@ -120,11 +120,13 @@ export class RiftsActorSheet extends ActorSheet {
     });
 
     // ── All text inputs — save on blur ────────────────────
-    html.find("input[data-path]").on("blur", async (event) => {
-      const path = event.currentTarget.dataset.path;
-      const value = event.currentTarget.value;
-      await this.actor.update({ [path]: value });
-    });
+    html
+      .find("input[data-path], textarea[data-path]")
+      .on("blur", async (event) => {
+        const path = event.currentTarget.dataset.path;
+        const value = event.currentTarget.value;
+        await this.actor.update({ [path]: value });
+      });
 
     // ── All number inputs — save on blur ──────────────────
     html.find("input[data-path-number]").on("blur", async (event) => {
