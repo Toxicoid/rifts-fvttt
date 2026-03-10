@@ -108,6 +108,7 @@
       "mobility": "",
       "weight": "",
       "cost": 0,
+      "prowlPenalty": 0,
       "notes": ""
     },
     "equipment": {

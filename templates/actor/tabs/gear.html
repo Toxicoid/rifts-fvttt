@@ -96,11 +96,12 @@
         <span>S.D.C.</span>
         <span>Mobility</span>
         <span>Weight</span>
+        <span>-Prowl%</span>
         <span></span>
       </div>
 
       {{#each armor}}
-        <div class="gear-row armor-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 50px 110px 90px 70px 56px;gap:4px;align-items:center;">
+        <div class="gear-row armor-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 50px 110px 90px 60px 60px 56px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -133,6 +134,12 @@
                  data-item-path="system.weight"
                  value="{{this.system.weight}}"
                  placeholder="lbs" />
+          <input type="number"
+                class="item-input"
+                data-item-id="{{this.id}}"
+                data-item-path="system.prowlPenalty"
+                value="{{this.system.prowlPenalty}}"
+                placeholder="0" />
           <div class="gear-actions">
             <button type="button" class="item-edit icon-btn" title="Edit">
               <i class="fas fa-edit"></i>
