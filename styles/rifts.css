@@ -940,7 +940,7 @@
 /* ── Skill Row ───────────────────────────────────────────── */
 .skill-row {
   display: grid;
-  grid-template-columns: 1fr 130px 54px 54px 54px 70px;
+  grid-template-columns: 1fr 140px 54px 54px 60px 70px;
   gap: var(--gap-xs);
   align-items: center;
   padding: 3px var(--gap-xs);
@@ -1069,17 +1069,17 @@
 }
 
 /* Weapons: Name | Damage | Type | Range | ROF | Ammo | Strike | Actions */
-.gear-section:nth-of-type(1) .gear-row {
+.weapon-item-row {
   grid-template-columns: 1fr 70px 80px 70px 60px 44px 44px 56px;
 }
 
 /* Armor: Name | AR | SDC | Mobility | Weight | Actions */
-.gear-section:nth-of-type(2) .gear-row {
-  grid-template-columns: 1fr 50px 100px 90px 70px 56px;
+.armor-item-row {
+  grid-template-columns: 1fr 50px 110px 90px 70px 56px;
 }
 
 /* Equipment: Name | Qty | Weight | Cost | Notes | Actions */
-.gear-section:nth-of-type(3) .gear-row {
+.equip-item-row {
   grid-template-columns: 1fr 44px 60px 70px 1fr 40px;
 }
 
