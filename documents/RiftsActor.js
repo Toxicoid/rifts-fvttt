@@ -19,13 +19,12 @@ export class RiftsActor extends Actor {
         "prototypeToken.sight.enabled": true,
         "prototypeToken.actorLink": true,
         "prototypeToken.texture.src": data.img ?? "icons/svg/mystery-man.svg",
-        // Circular ring with sci-fi border (Foundry v12+ ring system)
-        "prototypeToken.ring.enabled": true,
-        "prototypeToken.ring.subject.scale": 0.9,
-        "prototypeToken.ring.colors.ring": "#e8751a",
-        "prototypeToken.ring.colors.background": "#000000",
+        "prototypeToken.texture.scaleX": 1,
+        "prototypeToken.texture.scaleY": 1,
+        "prototypeToken.ring.enabled": false,
         "prototypeToken.width": 1,
         "prototypeToken.height": 1,
+        "prototypeToken.shape": "circle",
       });
     }
   }
