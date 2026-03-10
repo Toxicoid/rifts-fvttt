@@ -27,7 +27,7 @@
       </div>
 
       {{#each weapons}}
-        <div class="gear-row weapon-item-row item-row" data-item-id="{{this.id}}">
+        <div class="gear-row weapon-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 56px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -100,7 +100,7 @@
       </div>
 
       {{#each armor}}
-        <div class="gear-row armor-item-row item-row" data-item-id="{{this.id}}">
+        <div class="gear-row armor-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 50px 110px 90px 70px 56px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -168,7 +168,7 @@
       </div>
 
       {{#each equipment}}
-        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}">
+        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 40px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
