@@ -4,6 +4,7 @@
 // ============================================================
 
 export class RiftsActorSheet extends ActorSheet {
+
   static get defaultOptions() {
     return foundry.utils.mergeObject(super.defaultOptions, {
       classes: ["rifts", "sheet", "actor"],
@@ -98,7 +99,6 @@ export class RiftsActorSheet extends ActorSheet {
     return context;
   }
 
-  // ── activateListeners ──────────────────────────────────────
   activateListeners(html) {
     super.activateListeners(html);
 
@@ -119,23 +119,21 @@ export class RiftsActorSheet extends ActorSheet {
       await this.actor.update({ name: event.currentTarget.value.trim() });
     });
 
-    // ── All text inputs — save on blur ────────────────────
-    html
-      .find("input[data-path], textarea[data-path]")
-      .on("blur", async (event) => {
-        const path = event.currentTarget.dataset.path;
-        const value = event.currentTarget.value;
-        await this.actor.update({ [path]: value });
-      });
+    // ── Actor text inputs and textareas ───────────────────
+    html.find("input[data-path], textarea[data-path]").on("blur", async (event) => {
+      const path = event.currentTarget.dataset.path;
+      const value = event.currentTarget.value;
+      await this.actor.update({ [path]: value });
+    });
 
-    // ── All number inputs — save on blur ──────────────────
+    // ── Actor number inputs ───────────────────────────────
     html.find("input[data-path-number]").on("blur", async (event) => {
       const path = event.currentTarget.dataset.pathNumber;
       const value = Number(event.currentTarget.value) || 0;
       await this.actor.update({ [path]: value });
     });
 
-    // ── All select dropdowns — save on change ─────────────
+    // ── Actor select dropdowns ────────────────────────────
     html.find("select[data-path]").on("change", async (event) => {
       const path = event.currentTarget.dataset.path;
       const value = event.currentTarget.value;
@@ -147,6 +145,33 @@ export class RiftsActorSheet extends ActorSheet {
       const field = event.currentTarget.dataset.field;
       const value = Number(event.currentTarget.value) || 0;
       await this.actor.update({ [field]: value });
+    });
+
+    // ── Item text/select fields (gear, skills) ────────────
+    html.find("input[data-item-path], textarea[data-item-path]").on("blur", async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const path = event.currentTarget.dataset.itemPath;
+      const value = event.currentTarget.value;
+      const item = this.actor.items.get(itemId);
+      if (item) await item.update({ [path]: value });
+    });
+
+    // ── Item number fields ────────────────────────────────
+    html.find("input[data-item-path][type='number']").on("blur", async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const path = event.currentTarget.dataset.itemPath;
+      const value = Number(event.currentTarget.value) || 0;
+      const item = this.actor.items.get(itemId);
+      if (item) await item.update({ [path]: value });
+    });
+
+    // ── Item select dropdowns ─────────────────────────────
+    html.find("select[data-item-path]").on("change", async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const path = event.currentTarget.dataset.itemPath;
+      const value = event.currentTarget.value;
+      const item = this.actor.items.get(itemId);
+      if (item) await item.update({ [path]: value });
     });
 
     // ── Add item buttons ──────────────────────────────────
