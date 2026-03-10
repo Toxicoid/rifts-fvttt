@@ -96,6 +96,11 @@ export class RiftsActorSheet extends ActorSheet {
       spdMph: attrs.spd?.mph ?? 0,
     };
 
+    // Pre-build skill category options HTML to avoid nested Handlebars context issues
+    context.skillCategoryOptions = Object.entries(context.skillCategories)
+      .map(([key, label]) => `<option value="${key}">${label}</option>`)
+      .join('');
+
     return context;
   }
 

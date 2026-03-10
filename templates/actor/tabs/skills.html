@@ -45,12 +45,8 @@
             <select class="skill-category-select"
                     data-item-id="{{this.id}}"
                     data-item-path="system.category">
-              {{#each ../../../skillCategories as |catLabel catKey|}}
-                <option value="{{catKey}}"
-                  {{#if (eq ../../this.system.category catKey)}}selected{{/if}}>
-                  {{catLabel}}
-                </option>
-              {{/each}}
+              <option value="">— Category —</option>
+              {{{../../../skillCategoryOptions}}}
             </select>
 
             <input class="skill-base"
