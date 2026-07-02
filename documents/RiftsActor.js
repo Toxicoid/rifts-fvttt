@@ -130,6 +130,60 @@ export class RiftsActor extends Actor {
 
   // ── roll ──────────────────────────────────────────────────
   // Generic d20 roll with a bonus — used for strike/parry/dodge
+  // ── Weapon strike roll ─────────────────────────────────
+  async rollWeaponStrike(weapon) {
+    const strikeBonus = this.system.combat.strikeBonus ?? 0;
+    const weaponBonus = weapon.system.bonusToStrike ?? 0;
+    const total = strikeBonus + weaponBonus;
+
+    const roll = new Roll(`1d20 + ${total}`);
+    await roll.evaluate();
+
+    const natural = roll.dice[0].total;
+    let resultText = "";
+    if (natural === 20) resultText = ` — <span style="color:#e8751a;font-weight:bold;">NATURAL 20! CRITICAL!</span>`;
+    else if (natural === 1) resultText = ` — <span style="color:#e33;font-weight:bold;">NATURAL 1!</span>`;
+    else if (roll.total >= 5) resultText = ` — <span style="color:#3c3;">HIT (5+)</span>`;
+    else resultText = ` — <span style="color:#e33;">MISS (under 5)</span>`;
+
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `<strong>${weapon.name}</strong> — Strike Roll${resultText}<br>
+               <span style="font-size:11px;">d20 ${natural} + ${total} bonus (dodge/parry may still apply)</span>`,
+    });
+  }
+
+  // ── Weapon damage roll ─────────────────────────────────
+  async rollWeaponDamage(weapon) {
+    let dmgString = (weapon.system.damage ?? "").trim();
+
+    // Extract dice expression: handles "3d6", "1d4x10 M.D.", "2d6+2", etc.
+    const match = dmgString.match(/(\d+)[dD](\d+)\s*(?:[xX×](\d+))?\s*(?:\+(\d+))?/);
+    if (!match) {
+      ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: `<strong>${weapon.name}</strong> — damage "${dmgString || "not set"}" cannot be auto-rolled. Roll manually.`,
+      });
+      return;
+    }
+
+    const [, num, sides, mult, plus] = match;
+    let formula = `${num}d${sides}`;
+    if (mult) formula = `(${formula}) * ${mult}`;
+    if (plus) formula = `${formula} + ${plus}`;
+
+    // Add character damage bonus for melee/SDC hand weapons? Keep manual - just roll weapon dice.
+    const roll = new Roll(formula);
+    await roll.evaluate();
+
+    const dmgType = weapon.system.damageType === "MDC" ? "M.D." : "S.D.C.";
+
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `<strong>${weapon.name}</strong> — Damage (${dmgType})`,
+    });
+  }
+
   async rollD20(label, bonus = 0) {
     const roll = new Roll(`1d20 + ${bonus}`);
     await roll.evaluate();

@@ -1478,7 +1478,7 @@
 
 .equipped-weapon-row {
   display: grid;
-  grid-template-columns: 1fr 60px 50px 70px 70px;
+  grid-template-columns: 1fr 60px 50px 70px 70px 64px;
   gap: 6px;
   align-items: center;
   background: var(--rifts-panel);
@@ -1534,4 +1534,23 @@
 
 .weapon-equipped {
   border-left: 3px solid var(--rifts-orange);
+}
+
+/* ── Equipped weapon roll buttons ────────────────────────── */
+.ew-actions {
+  display: flex;
+  gap: 3px;
+}
+
+.ew-actions .icon-btn {
+  font-size: 11px;
+  padding: 3px 6px;
+}
+
+.weapon-strike-roll:hover {
+  color: var(--rifts-orange);
+}
+
+.weapon-damage-roll:hover {
+  color: #e33;
 }

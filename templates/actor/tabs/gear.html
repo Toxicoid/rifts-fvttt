@@ -41,7 +41,7 @@
       </div>
 
       {{#each weapons}}
-        <div class="gear-row weapon-item-row item-row {{#if this.system.equipped}}weapon-equipped{{/if}}" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 84px;gap:4px;align-items:center;">
+        <div class="gear-row weapon-item-row item-row {{#if this.system.equipped}}weapon-equipped{{/if}}" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 140px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -80,6 +80,18 @@
                  data-item-path="system.bonusToStrike"
                  value="{{this.system.bonusToStrike}}" />
           <div class="gear-actions">
+            <button type="button"
+                    class="weapon-strike-roll icon-btn"
+                    data-item-id="{{this.id}}"
+                    title="Roll Strike (d20)">
+              <i class="fas fa-crosshairs"></i>
+            </button>
+            <button type="button"
+                    class="weapon-damage-roll icon-btn"
+                    data-item-id="{{this.id}}"
+                    title="Roll Damage">
+              <i class="fas fa-burst"></i>
+            </button>
             <button type="button"
                     class="weapon-equip-toggle icon-btn {{#if this.system.equipped}}equipped{{/if}}"
                     data-item-id="{{this.id}}"

@@ -146,6 +146,19 @@ export class RiftsActorSheet extends ActorSheet {
     // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
 
+    // Weapon strike & damage rolls
+    html.find(".weapon-strike-roll").click(async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const weapon = this.actor.items.get(itemId);
+      if (weapon) await this.actor.rollWeaponStrike(weapon);
+    });
+
+    html.find(".weapon-damage-roll").click(async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const weapon = this.actor.items.get(itemId);
+      if (weapon) await this.actor.rollWeaponDamage(weapon);
+    });
+
     // Weapon equip toggle
     html.find(".weapon-equip-toggle").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;
