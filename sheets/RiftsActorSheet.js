@@ -104,6 +104,28 @@ export class RiftsActorSheet extends ActorSheet {
       spdMph: attrs.spd?.mph ?? 0,
     };
 
+    // ── Equipped weapons for attributes tab panel ────────
+    context.equippedWeapons = actor.items.filter(
+      (i) => i.type === "weapon" && i.system.equipped
+    );
+
+    // ── Encumbrance calculation ──────────────────────────
+    const ps = actor.system.attributes.ps?.value ?? 10;
+    context.carryLimit = ps * 10;   // P.S. x 10 lbs
+    context.liftLimit = ps * 20;    // P.S. x 20 lbs
+
+    let totalWeight = 0;
+    for (const item of actor.items) {
+      if (!["weapon", "armor", "equipment"].includes(item.type)) continue;
+      const w = parseFloat(item.system.weight);
+      if (isNaN(w)) continue;
+      const qty = item.type === "equipment" ? (item.system.quantity ?? 1) : 1;
+      totalWeight += w * qty;
+    }
+    context.totalWeight = Math.round(totalWeight * 10) / 10;
+    context.encumbered = totalWeight > context.carryLimit;
+    context.weightPercent = Math.min(100, Math.round((totalWeight / context.carryLimit) * 100));
+
     // Pre-build skill category options HTML to avoid nested Handlebars context issues
     context.skillCategoryOptions = Object.entries(context.skillCategories)
       .map(([key, label]) => `<option value="${key}">${label}</option>`)
@@ -123,6 +145,13 @@ export class RiftsActorSheet extends ActorSheet {
 
     // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+
+    // Weapon equip toggle
+    html.find(".weapon-equip-toggle").click(async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const item = this.actor.items.get(itemId);
+      if (item) await item.update({"system.equipped": !item.system.equipped});
+    });
 
     // Toggle primary <-> secondary
     html.find(".skill-toggle-secondary").click(async (event) => {

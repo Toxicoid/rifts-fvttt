@@ -1404,3 +1404,134 @@
   font-style: italic;
   font-size: 11px;
 }
+/* ── OCC ability description line breaks ─────────────────── */
+.ability-desc {
+  white-space: pre-line;
+}
+
+/* ── Encumbrance Bar ─────────────────────────────────────── */
+.encumbrance-bar-wrap {
+  padding: var(--gap-sm) var(--gap-md);
+  border-bottom: 1px solid var(--rifts-border);
+  margin-bottom: var(--gap-sm);
+}
+
+.encumbrance-labels {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  margin-bottom: 4px;
+}
+
+.enc-title {
+  font-family: var(--font-display);
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--rifts-orange);
+}
+
+.enc-numbers {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--rifts-text);
+}
+
+.enc-lift {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--rifts-text-dim);
+  margin-left: auto;
+}
+
+.enc-warning {
+  color: #e33;
+  font-weight: bold;
+  margin-left: 8px;
+  letter-spacing: 1px;
+}
+
+.encumbrance-track {
+  height: 6px;
+  background: var(--rifts-input-bg);
+  border: 1px solid var(--rifts-border);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.encumbrance-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--rifts-orange), #ffa040);
+  transition: width 0.3s ease;
+}
+
+.encumbered .encumbrance-fill {
+  background: linear-gradient(90deg, #c22, #e44);
+}
+
+/* ── Equipped Weapons Panel ──────────────────────────────── */
+.equipped-weapons-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.equipped-weapon-row {
+  display: grid;
+  grid-template-columns: 1fr 60px 50px 70px 70px;
+  gap: 6px;
+  align-items: center;
+  background: var(--rifts-panel);
+  border: 1px solid var(--rifts-border);
+  border-left: 3px solid var(--rifts-orange);
+  border-radius: 3px;
+  padding: 5px 8px;
+}
+
+.ew-name {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--rifts-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ew-damage {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--rifts-orange);
+  text-align: center;
+}
+
+.ew-type, .ew-range {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--rifts-text-dim);
+  text-align: center;
+}
+
+.ew-strike {
+  font-family: var(--font-mono);
+  font-size: 10px;
+  color: var(--rifts-teal, #00c8c8);
+  text-align: right;
+}
+
+.equipped-empty {
+  color: var(--rifts-text-dim);
+  font-style: italic;
+  font-size: 11px;
+  padding: var(--gap-sm);
+}
+
+/* ── Weapon equip toggle ─────────────────────────────────── */
+.weapon-equip-toggle.equipped {
+  color: var(--rifts-orange);
+  border-color: var(--rifts-orange);
+}
+
+.weapon-equipped {
+  border-left: 3px solid var(--rifts-orange);
+}

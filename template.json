@@ -120,6 +120,7 @@
       "notes": ""
     },
     "weapon": {
+      "equipped": false,
       "damage": "",
       "damageType": "SDC",
       "range": "",

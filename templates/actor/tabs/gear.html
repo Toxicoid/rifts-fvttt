@@ -5,6 +5,20 @@
 
 <div class="tab-content gear-tab">
 
+  {{!-- ── ENCUMBRANCE ─────────────────────────────────────── --}}
+  <div class="encumbrance-bar-wrap {{#if encumbered}}encumbered{{/if}}">
+    <div class="encumbrance-labels">
+      <span class="enc-title"><i class="fas fa-weight-hanging"></i> Carried Weight</span>
+      <span class="enc-numbers">{{totalWeight}} / {{carryLimit}} lbs
+        {{#if encumbered}}<span class="enc-warning">ENCUMBERED</span>{{/if}}
+      </span>
+      <span class="enc-lift" title="Maximum lift (P.S. x 20)">Lift max: {{liftLimit}} lbs</span>
+    </div>
+    <div class="encumbrance-track">
+      <div class="encumbrance-fill" style="width: {{weightPercent}}%;"></div>
+    </div>
+  </div>
+
   {{!-- ── WEAPONS ─────────────────────────────────────────── --}}
   <div class="gear-section">
     <h2 class="section-title">
@@ -27,7 +41,7 @@
       </div>
 
       {{#each weapons}}
-        <div class="gear-row weapon-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 56px;gap:4px;align-items:center;">
+        <div class="gear-row weapon-item-row item-row {{#if this.system.equipped}}weapon-equipped{{/if}}" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 84px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -66,6 +80,12 @@
                  data-item-path="system.bonusToStrike"
                  value="{{this.system.bonusToStrike}}" />
           <div class="gear-actions">
+            <button type="button"
+                    class="weapon-equip-toggle icon-btn {{#if this.system.equipped}}equipped{{/if}}"
+                    data-item-id="{{this.id}}"
+                    title="{{#if this.system.equipped}}Unequip{{else}}Equip{{/if}}">
+              <i class="fas {{#if this.system.equipped}}fa-hand-fist{{else}}fa-hand{{/if}}"></i>
+            </button>
             <button type="button" class="item-edit icon-btn" title="Edit">
               <i class="fas fa-edit"></i>
             </button>
