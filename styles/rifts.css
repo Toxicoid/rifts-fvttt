@@ -1554,3 +1554,55 @@
 .weapon-damage-roll:hover {
   color: #e33;
 }
+
+/* ── Armor M.D.C. locations strip ────────────────────────── */
+.armor-item-wrap {
+  border-bottom: 1px solid var(--rifts-border);
+  padding-bottom: 4px;
+  margin-bottom: 4px;
+}
+
+.armor-mdc-locations {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 3px 8px 3px 16px;
+}
+
+.mdc-loc-label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--rifts-text-dim);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.mdc-loc {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.mdc-loc label {
+  font-family: var(--font-mono);
+  font-size: 9px;
+  color: var(--rifts-orange);
+  text-transform: uppercase;
+}
+
+.mdc-loc input {
+  width: 42px;
+  text-align: center;
+  font-size: 11px;
+  padding: 2px;
+}
+
+.mdc-loc span {
+  color: var(--rifts-text-dim);
+  font-size: 10px;
+}
+
+.mdc-pair input {
+  color: var(--rifts-orange);
+}
