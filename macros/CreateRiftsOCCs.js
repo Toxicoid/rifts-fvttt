@@ -13,6 +13,7 @@ const PACK_LABEL = "Rifts O.C.C.s";
 const OCC_MACROS = [
   { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/svg/combat.svg" },
   { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",   img: "icons/svg/mystery-man.svg" },
+  { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/svg/beast.svg" },
 ];
 
 // ── Find or create the compendium ─────────────────────────
