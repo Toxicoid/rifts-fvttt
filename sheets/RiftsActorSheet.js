@@ -159,6 +159,15 @@ export class RiftsActorSheet extends ActorSheet {
       if (weapon) await this.actor.rollWeaponDamage(weapon);
     });
 
+    // Armor detail expand/collapse
+    html.find(".armor-expand-toggle").click((event) => {
+      const wrap = event.currentTarget.closest(".armor-item-wrap");
+      wrap.classList.toggle("expanded");
+      const icon = event.currentTarget.querySelector("i");
+      icon.classList.toggle("fa-chevron-down");
+      icon.classList.toggle("fa-chevron-up");
+    });
+
     // Weapon equip toggle
     html.find(".weapon-equip-toggle").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;
@@ -282,7 +291,7 @@ export class RiftsActorSheet extends ActorSheet {
   async _onSkillRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const itemId = element.closest(".item-row").dataset.itemId;
+    const itemId = element.closest("[data-item-id]").dataset.itemId;
     const skill = this.actor.items.get(itemId);
     if (skill) await skill.roll();
   }
@@ -301,7 +310,7 @@ export class RiftsActorSheet extends ActorSheet {
   async _onItemDelete(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const itemId = element.closest(".item-row").dataset.itemId;
+    const itemId = element.closest("[data-item-id]").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (!item) return;
     const confirmed = await Dialog.confirm({
@@ -314,7 +323,7 @@ export class RiftsActorSheet extends ActorSheet {
   _onItemEdit(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const itemId = element.closest(".item-row").dataset.itemId;
+    const itemId = element.closest("[data-item-id]").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (item) item.sheet.render(true);
   }
@@ -322,7 +331,7 @@ export class RiftsActorSheet extends ActorSheet {
   async _onItemNameChange(event) {
     event.preventDefault();
     const element = event.currentTarget;
-    const itemId = element.closest(".item-row").dataset.itemId;
+    const itemId = element.closest("[data-item-id]").dataset.itemId;
     const item = this.actor.items.get(itemId);
     if (item) await item.update({ name: element.value });
   }

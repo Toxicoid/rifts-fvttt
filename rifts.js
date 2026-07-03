@@ -107,6 +107,7 @@ Hooks.once("ready", async () => {
     { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js",  img: "icons/svg/combat.svg" },
     { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",    img: "icons/svg/mystery-man.svg" },
     { name: "Create Rifts Armory",        file: "CreateRiftsArmory.js", img: "icons/svg/chest.svg" },
+    { name: "Create Rifts OCCs Compendium", file: "CreateRiftsOCCs.js",  img: "icons/svg/book.svg" },
   ];
 
   let folder = game.folders.find((f) => f.type === "Macro" && f.name === "Rifts");
