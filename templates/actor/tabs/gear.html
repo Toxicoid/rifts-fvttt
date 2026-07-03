@@ -122,116 +122,103 @@
     </h2>
 
     {{#if armor.length}}
-      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 90px 100px 80px 60px 54px 56px;gap:4px;">
-        <span>Name</span>
-        <span>A.R.</span>
-        <span>S.D.C.</span>
-        <span>M.D.C. Main</span>
-        <span>Mobility</span>
-        <span>Weight</span>
-        <span>-Prowl%</span>
-        <span></span>
-      </div>
-
+      <div class="armor-cards">
       {{#each armor}}
-        <div class="armor-item-wrap" data-item-id="{{this.id}}">
-        <div class="gear-row armor-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 44px 90px 100px 80px 60px 54px 56px;gap:4px;align-items:center;">
-          <input class="item-name-input"
-                 type="text"
-                 value="{{this.name}}"
-                 placeholder="Armor name" />
-          <input type="number"
-                 data-item-id="{{this.id}}"
-                 data-item-path="system.ar"
-                 value="{{this.system.ar}}"
-                 min="0" max="20"
-                 title="A.R. (S.D.C. armor only)" />
-          <div class="sdc-pair" title="S.D.C. (non-M.D.C. armor)">
-            <input type="number"
-                   data-item-id="{{this.id}}"
-                   data-item-path="system.sdc.value"
-                   value="{{this.system.sdc.value}}"
-                   min="0" />
-            <span>/</span>
-            <input type="number"
-                   data-item-id="{{this.id}}"
-                   data-item-path="system.sdc.max"
-                   value="{{this.system.sdc.max}}"
-                   min="0" />
+        <div class="armor-card" data-item-id="{{this.id}}">
+          <div class="armor-card-header">
+            <input class="item-name-input armor-card-name"
+                   type="text"
+                   value="{{this.name}}"
+                   placeholder="Armor name" />
+            <div class="gear-actions">
+              <button type="button" class="item-edit icon-btn" title="Open item sheet">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" class="item-delete icon-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
           </div>
-          <div class="sdc-pair mdc-pair" title="Main Body M.D.C.">
-            <input type="number"
-                   data-item-id="{{this.id}}"
-                   data-item-path="system.mdc.main.value"
-                   value="{{this.system.mdc.main.value}}"
-                   min="0" />
-            <span>/</span>
-            <input type="number"
-                   data-item-id="{{this.id}}"
-                   data-item-path="system.mdc.main.max"
-                   value="{{this.system.mdc.main.max}}"
-                   min="0" />
+
+          <div class="armor-card-grid">
+            <div class="ac-field">
+              <label>A.R.</label>
+              <input type="number"
+                     data-item-id="{{this.id}}"
+                     data-item-path="system.ar"
+                     value="{{this.system.ar}}"
+                     min="0" max="20" />
+            </div>
+
+            <div class="ac-field ac-dc">
+              <select data-item-id="{{this.id}}" data-item-path="system.dcType" title="Damage capacity type">
+                <option value="MDC" {{#if (eq this.system.dcType "MDC")}}selected{{/if}}>M.D.C.</option>
+                <option value="SDC" {{#if (eq this.system.dcType "SDC")}}selected{{/if}}>S.D.C.</option>
+              </select>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.main.value" value="{{this.system.main.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.main.max" value="{{this.system.main.max}}" min="0" />
+              </div>
+            </div>
+
+            <div class="ac-field">
+              <label>Weight</label>
+              <input type="text"
+                     data-item-id="{{this.id}}"
+                     data-item-path="system.weight"
+                     value="{{this.system.weight}}"
+                     placeholder="lbs" />
+            </div>
+
+            <div class="ac-field">
+              <label>Cost</label>
+              <input type="number"
+                     data-item-id="{{this.id}}"
+                     data-item-path="system.cost"
+                     value="{{this.system.cost}}"
+                     min="0" />
+            </div>
+
+            <div class="ac-field">
+              <label>Prowl -%</label>
+              <input type="number"
+                     data-item-id="{{this.id}}"
+                     data-item-path="system.prowlPenalty"
+                     value="{{this.system.prowlPenalty}}"
+                     min="0" />
+            </div>
+
+            <div class="ac-field">
+              <label>Helmet</label>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.helmet.value" value="{{this.system.helmet.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.helmet.max" value="{{this.system.helmet.max}}" min="0" />
+              </div>
+            </div>
+
+            <div class="ac-field">
+              <label>Arms (ea)</label>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.arms.value" value="{{this.system.arms.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.arms.max" value="{{this.system.arms.max}}" min="0" />
+              </div>
+            </div>
+
+            <div class="ac-field">
+              <label>Legs (ea)</label>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.legs.value" value="{{this.system.legs.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.legs.max" value="{{this.system.legs.max}}" min="0" />
+              </div>
+            </div>
           </div>
-          <input type="text"
-                 data-item-id="{{this.id}}"
-                 data-item-path="system.mobility"
-                 value="{{this.system.mobility}}"
-                 placeholder="Good/Fair/Poor" />
-          <input type="text"
-                 data-item-id="{{this.id}}"
-                 data-item-path="system.weight"
-                 value="{{this.system.weight}}"
-                 placeholder="lbs" />
-          <input type="number"
-                 data-item-id="{{this.id}}"
-                 data-item-path="system.prowlPenalty"
-                 value="{{this.system.prowlPenalty}}"
-                 min="0"
-                 title="Mobility skill penalty %" />
-          <div class="gear-actions">
-            <button type="button" class="item-edit icon-btn" title="Edit">
-              <i class="fas fa-edit"></i>
-            </button>
-            <button type="button" class="item-delete icon-btn" title="Delete">
-              <i class="fas fa-trash"></i>
-            </button>
-          </div>
-        </div>
-        <div class="armor-mdc-locations">
-          <span class="mdc-loc-label">M.D.C. by location:</span>
-          <div class="mdc-loc">
-            <label>Helmet</label>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.helmet.value" value="{{this.system.mdc.helmet.value}}" min="0" />
-            <span>/</span>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.helmet.max" value="{{this.system.mdc.helmet.max}}" min="0" />
-          </div>
-          <div class="mdc-loc">
-            <label>L. Arm</label>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.armLeft.value" value="{{this.system.mdc.armLeft.value}}" min="0" />
-            <span>/</span>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.armLeft.max" value="{{this.system.mdc.armLeft.max}}" min="0" />
-          </div>
-          <div class="mdc-loc">
-            <label>R. Arm</label>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.armRight.value" value="{{this.system.mdc.armRight.value}}" min="0" />
-            <span>/</span>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.armRight.max" value="{{this.system.mdc.armRight.max}}" min="0" />
-          </div>
-          <div class="mdc-loc">
-            <label>L. Leg</label>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.legLeft.value" value="{{this.system.mdc.legLeft.value}}" min="0" />
-            <span>/</span>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.legLeft.max" value="{{this.system.mdc.legLeft.max}}" min="0" />
-          </div>
-          <div class="mdc-loc">
-            <label>R. Leg</label>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.legRight.value" value="{{this.system.mdc.legRight.value}}" min="0" />
-            <span>/</span>
-            <input type="number" data-item-id="{{this.id}}" data-item-path="system.mdc.legRight.max" value="{{this.system.mdc.legRight.max}}" min="0" />
-          </div>
-        </div>
         </div>
       {{/each}}
+      </div>
     {{else}}
       <p class="empty-state">No armor. Click + to add one.</p>
     {{/if}}

@@ -5,6 +5,7 @@
 
 // ── Imports ─────────────────────────────────────────────────
 import { RiftsActorSheet } from "./sheets/RiftsActorSheet.js";
+import { RiftsItemSheet } from "./sheets/RiftsItemSheet.js";
 import { RiftsActor } from "./documents/RiftsActor.js";
 import { RiftsItem } from "./documents/RiftsItem.js";
 
@@ -25,6 +26,9 @@ Hooks.once("init", function () {
     makeDefault: true,
     label: "RIFTS.SheetTitle",
   });
+
+  Items.unregisterSheet("core", ItemSheet);
+  Items.registerSheet("rifts", RiftsItemSheet, { makeDefault: true });
 
   // ── Register Item Sheets ───────────────────────────────────
   Items.unregisterSheet("core", ItemSheet);
@@ -90,4 +94,43 @@ Hooks.once("init", function () {
     if (!str) return "";
     return str.charAt(0).toUpperCase() + str.slice(1);
   });
+});
+
+/* ── Auto-import system macros into a "Rifts" folder ─────────
+   Add new macros to systems/rifts/macros/ and list them here.
+   They are created once per world (skipped if a macro with the
+   same name already exists — delete the macro to re-import). */
+Hooks.once("ready", async () => {
+  if (!game.user.isGM) return;
+
+  const SYSTEM_MACROS = [
+    { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js",  img: "icons/svg/combat.svg" },
+    { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",    img: "icons/svg/mystery-man.svg" },
+    { name: "Create Rifts Armory",        file: "CreateRiftsArmory.js", img: "icons/svg/chest.svg" },
+  ];
+
+  let folder = game.folders.find((f) => f.type === "Macro" && f.name === "Rifts");
+  if (!folder) {
+    folder = await Folder.create({ name: "Rifts", type: "Macro", color: "#e8751a" });
+  }
+
+  for (const m of SYSTEM_MACROS) {
+    if (game.macros.find((x) => x.name === m.name)) continue;
+    try {
+      const resp = await fetch(`systems/rifts/macros/${m.file}`);
+      if (!resp.ok) continue;
+      const command = await resp.text();
+      await Macro.create({
+        name: m.name,
+        type: "script",
+        scope: "global",
+        command,
+        folder: folder.id,
+        img: m.img,
+      });
+      console.log(`Rifts | Imported macro: ${m.name}`);
+    } catch (err) {
+      console.warn(`Rifts | Failed to import macro ${m.file}`, err);
+    }
+  }
 });

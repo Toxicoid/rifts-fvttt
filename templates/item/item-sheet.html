@@ -1,0 +1,186 @@
+{{!-- ============================================================
+  RIFTS RPG - templates/item/item-sheet.html
+  Single template covering all item types via conditionals.
+============================================================ --}}
+
+<form class="rifts-item-sheet {{itemType}}" autocomplete="off">
+
+  {{!-- ── HEADER ─────────────────────────────────────────── --}}
+  <header class="item-sheet-header">
+    <img class="item-sheet-img" src="{{item.img}}" data-edit="img" title="{{item.name}}" height="48" width="48" />
+    <div class="item-sheet-title">
+      <input class="item-sheet-name" type="text" value="{{item.name}}" placeholder="Item name" />
+      <span class="item-sheet-type">{{itemType}}</span>
+    </div>
+  </header>
+
+  <section class="item-sheet-body">
+
+    {{!-- ── WEAPON ───────────────────────────────────────── --}}
+    {{#if (eq itemType "weapon")}}
+      <div class="is-grid">
+        <div class="is-field">
+          <label>Damage</label>
+          <input type="text" data-path="system.damage" value="{{system.damage}}" placeholder="1d6" />
+        </div>
+        <div class="is-field">
+          <label>Damage Type</label>
+          <select data-path="system.damageType">
+            <option value="SDC" {{#if (eq system.damageType "SDC")}}selected{{/if}}>S.D.C.</option>
+            <option value="MDC" {{#if (eq system.damageType "MDC")}}selected{{/if}}>M.D.C.</option>
+          </select>
+        </div>
+        <div class="is-field">
+          <label>Effective Range</label>
+          <input type="text" data-path="system.range" value="{{system.range}}" placeholder="400 ft" />
+        </div>
+        <div class="is-field">
+          <label>R.O.F.</label>
+          <input type="text" data-path="system.rateOfFire" value="{{system.rateOfFire}}" placeholder="Single / Burst" />
+        </div>
+        <div class="is-field">
+          <label>Payload</label>
+          <input type="number" data-path-number="system.payload" value="{{system.payload}}" min="0" />
+        </div>
+        <div class="is-field">
+          <label>Bonus to Strike</label>
+          <input type="number" data-path-number="system.bonusToStrike" value="{{system.bonusToStrike}}" />
+        </div>
+        <div class="is-field">
+          <label>Weight</label>
+          <input type="text" data-path="system.weight" value="{{system.weight}}" placeholder="0.5 lbs" />
+        </div>
+        <div class="is-field">
+          <label>Cost (credits)</label>
+          <input type="number" data-path-number="system.cost" value="{{system.cost}}" min="0" />
+        </div>
+      </div>
+    {{/if}}
+
+    {{!-- ── ARMOR ────────────────────────────────────────── --}}
+    {{#if (eq itemType "armor")}}
+      <div class="is-grid">
+        <div class="is-field">
+          <label>Type</label>
+          <select data-path="system.dcType">
+            <option value="MDC" {{#if (eq system.dcType "MDC")}}selected{{/if}}>M.D.C.</option>
+            <option value="SDC" {{#if (eq system.dcType "SDC")}}selected{{/if}}>S.D.C.</option>
+          </select>
+        </div>
+        <div class="is-field">
+          <label>A.R. (S.D.C. only)</label>
+          <input type="number" data-path-number="system.ar" value="{{system.ar}}" min="0" max="20" />
+        </div>
+        <div class="is-field">
+          <label>Main Body</label>
+          <div class="is-pair">
+            <input type="number" data-path-number="system.main.value" value="{{system.main.value}}" min="0" />
+            <span>/</span>
+            <input type="number" data-path-number="system.main.max" value="{{system.main.max}}" min="0" />
+          </div>
+        </div>
+        <div class="is-field">
+          <label>Helmet</label>
+          <div class="is-pair">
+            <input type="number" data-path-number="system.helmet.value" value="{{system.helmet.value}}" min="0" />
+            <span>/</span>
+            <input type="number" data-path-number="system.helmet.max" value="{{system.helmet.max}}" min="0" />
+          </div>
+        </div>
+        <div class="is-field">
+          <label>Arms (each)</label>
+          <div class="is-pair">
+            <input type="number" data-path-number="system.arms.value" value="{{system.arms.value}}" min="0" />
+            <span>/</span>
+            <input type="number" data-path-number="system.arms.max" value="{{system.arms.max}}" min="0" />
+          </div>
+        </div>
+        <div class="is-field">
+          <label>Legs (each)</label>
+          <div class="is-pair">
+            <input type="number" data-path-number="system.legs.value" value="{{system.legs.value}}" min="0" />
+            <span>/</span>
+            <input type="number" data-path-number="system.legs.max" value="{{system.legs.max}}" min="0" />
+          </div>
+        </div>
+        <div class="is-field">
+          <label>Mobility</label>
+          <input type="text" data-path="system.mobility" value="{{system.mobility}}" placeholder="Good / Fair / Poor" />
+        </div>
+        <div class="is-field">
+          <label>Prowl Penalty -%</label>
+          <input type="number" data-path-number="system.prowlPenalty" value="{{system.prowlPenalty}}" min="0" />
+        </div>
+        <div class="is-field">
+          <label>Weight</label>
+          <input type="text" data-path="system.weight" value="{{system.weight}}" placeholder="18 lbs" />
+        </div>
+        <div class="is-field">
+          <label>Cost (credits)</label>
+          <input type="number" data-path-number="system.cost" value="{{system.cost}}" min="0" />
+        </div>
+      </div>
+    {{/if}}
+
+    {{!-- ── EQUIPMENT ────────────────────────────────────── --}}
+    {{#if (eq itemType "equipment")}}
+      <div class="is-grid">
+        <div class="is-field">
+          <label>Quantity</label>
+          <input type="number" data-path-number="system.quantity" value="{{system.quantity}}" min="0" />
+        </div>
+        <div class="is-field">
+          <label>Weight (each)</label>
+          <input type="text" data-path="system.weight" value="{{system.weight}}" placeholder="1 lb" />
+        </div>
+        <div class="is-field">
+          <label>Cost (credits)</label>
+          <input type="number" data-path-number="system.cost" value="{{system.cost}}" min="0" />
+        </div>
+      </div>
+    {{/if}}
+
+    {{!-- ── SKILL ────────────────────────────────────────── --}}
+    {{#if (eq itemType "skill")}}
+      <div class="is-grid">
+        <div class="is-field">
+          <label>Base %</label>
+          <input type="number" data-path-number="system.basePercent" value="{{system.basePercent}}" min="0" max="98" />
+        </div>
+        <div class="is-field">
+          <label>Bonus %</label>
+          <input type="number" data-path-number="system.bonusPercent" value="{{system.bonusPercent}}" min="0" />
+        </div>
+        <div class="is-field">
+          <label>+% per Level</label>
+          <input type="number" data-path-number="system.perLevelBonus" value="{{system.perLevelBonus}}" min="0" />
+        </div>
+      </div>
+    {{/if}}
+
+    {{!-- ── OCC ABILITY ──────────────────────────────────── --}}
+    {{#if (eq itemType "occ_ability")}}
+      <div class="is-field is-full">
+        <label>Description</label>
+        <textarea data-path="system.description" rows="10">{{system.description}}</textarea>
+      </div>
+    {{/if}}
+
+    {{!-- ── DESCRIPTION (weapon/armor/equipment) ─────────── --}}
+    {{#unless (eq itemType "occ_ability")}}
+      {{#unless (eq itemType "skill")}}
+        <div class="is-field is-full">
+          <label>Description</label>
+          <textarea data-path="system.description" rows="5" placeholder="Item description, history, special rules...">{{system.description}}</textarea>
+        </div>
+      {{/unless}}
+    {{/unless}}
+
+    {{!-- ── NOTES (all types) ────────────────────────────── --}}
+    <div class="is-field is-full">
+      <label>Notes</label>
+      <textarea data-path="system.notes" rows="3" placeholder="Table notes, house rules...">{{system.notes}}</textarea>
+    </div>
+
+  </section>
+</form>
