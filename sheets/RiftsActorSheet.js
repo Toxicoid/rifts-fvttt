@@ -146,6 +146,16 @@ export class RiftsActorSheet extends ActorSheet {
     // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
 
+    // Saving throw rolls
+    html.find(".save-roll").click(async (event) => {
+      const el = event.currentTarget;
+      const label = el.dataset.saveLabel;
+      const target = Number(el.dataset.saveTarget) || 0;
+      const path = el.dataset.savePath;
+      const bonus = foundry.utils.getProperty(this.actor, path) ?? 0;
+      await this.actor.rollSave(label, bonus, target);
+    });
+
     // Weapon strike & damage rolls
     html.find(".weapon-strike-roll").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;

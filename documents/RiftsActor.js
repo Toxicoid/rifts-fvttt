@@ -130,6 +130,28 @@ export class RiftsActor extends Actor {
 
   // ── roll ──────────────────────────────────────────────────
   // Generic d20 roll with a bonus — used for strike/parry/dodge
+  // ── Saving throw roll ──────────────────────────────────
+  async rollSave(label, bonus, target) {
+    const roll = new Roll(`1d20 + ${bonus}`);
+    await roll.evaluate();
+
+    const natural = roll.dice[0].total;
+    let resultText = "";
+    if (target > 0) {
+      if (natural === 20) resultText = ` — <span style="color:#e8751a;font-weight:bold;">NATURAL 20!</span>`;
+      else if (roll.total >= target) resultText = ` — <span style="color:#3c3;font-weight:bold;">SAVED (${target}+)</span>`;
+      else resultText = ` — <span style="color:#e33;font-weight:bold;">FAILED (needs ${target}+)</span>`;
+    } else {
+      resultText = ` — <span style="color:#aaa;">vs GM's target</span>`;
+    }
+
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `<strong>Save ${label}</strong>${resultText}<br>
+               <span style="font-size:11px;">d20 ${natural} + ${bonus} bonus</span>`,
+    });
+  }
+
   // ── Weapon strike roll ─────────────────────────────────
   async rollWeaponStrike(weapon) {
     const strikeBonus = this.system.combat.strikeBonus ?? 0;

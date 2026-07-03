@@ -561,7 +561,7 @@
 
 .save-row {
   display: grid;
-  grid-template-columns: 1fr 50px 50px 40px;
+  grid-template-columns: 1fr 50px 50px 40px 32px;
   align-items: center;
   gap: var(--gap-sm);
   padding: 4px var(--gap-sm);
