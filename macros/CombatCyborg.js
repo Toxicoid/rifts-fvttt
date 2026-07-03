@@ -41,6 +41,7 @@ await actor.update({
   "system.attributes.spd.value": 44,  // Bionic legs
 
   // Cyborg body — using SDC field to track main body M.D.C.
+  "system.health.dcType": "MDC",
   "system.health.hp.value": 12,
   "system.health.hp.max": 12,
   "system.health.sdc.value": 0,

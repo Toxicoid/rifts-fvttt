@@ -103,24 +103,12 @@
           </div>
         </div>
 
-        <div class="health-block sdc">
-          <label>S.D.C.</label>
-          <div class="health-inputs">
-            <input class="health-input"
-                   type="number"
-                   data-field="system.health.sdc.value"
-                   value="{{system.health.sdc.value}}"
-                   min="0" />
-            <span class="health-sep">/</span>
-            <input type="number"
-                   data-path-number="system.health.sdc.max"
-                   value="{{system.health.sdc.max}}"
-                   min="0" />
-          </div>
-        </div>
-
-        <div class="health-block mdc">
-          <label>M.D.C.</label>
+        <div class="health-block dc-block">
+          <select class="dc-type-select" data-path="system.health.dcType" title="Damage capacity type">
+            <option value="SDC" {{#if (eq system.health.dcType "SDC")}}selected{{/if}}>S.D.C.</option>
+            <option value="MDC" {{#if (eq system.health.dcType "MDC")}}selected{{/if}}>M.D.C.</option>
+          </select>
+          {{#if (eq system.health.dcType "MDC")}}
           <div class="health-inputs">
             <input type="number"
                    data-path-number="system.health.mdc.value"
@@ -132,6 +120,19 @@
                    value="{{system.health.mdc.max}}"
                    min="0" />
           </div>
+          {{else}}
+          <div class="health-inputs">
+            <input type="number"
+                   data-path-number="system.health.sdc.value"
+                   value="{{system.health.sdc.value}}"
+                   min="0" />
+            <span class="health-sep">/</span>
+            <input type="number"
+                   data-path-number="system.health.sdc.max"
+                   value="{{system.health.sdc.max}}"
+                   min="0" />
+          </div>
+          {{/if}}
         </div>
 
         <div class="health-block ppe">

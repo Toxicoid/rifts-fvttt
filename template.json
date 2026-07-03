@@ -17,6 +17,7 @@
       },
 
       "health": {
+        "dcType": "SDC",
         "hp": { "value": 10, "max": 10 },
         "sdc": { "value": 10, "max": 10 },
         "mdc": { "value": 0, "max": 0 },

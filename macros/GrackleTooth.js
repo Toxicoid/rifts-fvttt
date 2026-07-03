@@ -73,6 +73,7 @@ await actor.update({
   "system.attributes.pb.value": pb,
   "system.attributes.spd.value": spd,
 
+  "system.health.dcType": "MDC",
   "system.health.mdc.value": mdcTotal,
   "system.health.mdc.max": mdcTotal,
   "system.health.ppe.value": ppe,
