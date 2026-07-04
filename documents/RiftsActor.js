@@ -178,13 +178,17 @@ export class RiftsActor extends Actor {
   // ── Weapon damage roll ─────────────────────────────────
   async rollWeaponDamage(weapon) {
     let dmgString = (weapon.system.damage ?? "").trim();
+    const special = (weapon.system.special ?? "").trim();
+    const specialHtml = special
+      ? `<div class="weapon-special" style="margin-top: 4px; font-size: 12px; border-top: 1px dotted #999; padding-top: 3px; white-space: pre-line;"><em>${special}</em></div>`
+      : "";
 
     // Extract dice expression: handles "3d6", "1d4x10 M.D.", "2d6+2", etc.
     const match = dmgString.match(/(\d+)[dD](\d+)\s*(?:[xX×](\d+))?\s*(?:\+(\d+))?/);
     if (!match) {
       ChatMessage.create({
         speaker: ChatMessage.getSpeaker({ actor: this }),
-        content: `<strong>${weapon.name}</strong> — damage "${dmgString || "not set"}" cannot be auto-rolled. Roll manually.`,
+        content: `<strong>${weapon.name}</strong> — damage "${dmgString || "not set"}" cannot be auto-rolled. Roll manually.${specialHtml}`,
       });
       return;
     }
@@ -202,7 +206,7 @@ export class RiftsActor extends Actor {
 
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: `<strong>${weapon.name}</strong> — Damage (${dmgType})`,
+      flavor: `<strong>${weapon.name}</strong> — Damage (${dmgType})${specialHtml}`,
     });
   }
 
