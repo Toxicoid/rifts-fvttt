@@ -174,6 +174,29 @@ await actor.update({
 });
 
 // ── 4. OCC SKILLS ─────────────────────────────────────────
+// Common RUE pilot skill bases — fuzzy-matched against the typed name.
+// VERIFY these bases vs RUE p.302-303; unmatched names fall back to 0.
+const PILOT_BASES = [
+  { match: /hovercycle|skycycle|rocket ?bike/i, base: 70, per: 3 },
+  { match: /hover ?craft/i,                     base: 50, per: 5 },
+  { match: /automobile|(^|\s)car(\s|$)/i,       base: 60, per: 2 },
+  { match: /motorcycle|snowmobile/i,            base: 60, per: 4 },
+  { match: /truck/i,                            base: 40, per: 4 },
+  { match: /tank|apc/i,                         base: 56, per: 3 },
+  { match: /jet ?pack/i,                        base: 42, per: 4 },
+  { match: /jet/i,                              base: 40, per: 4 },
+  { match: /helicopter/i,                       base: 35, per: 5 },
+  { match: /airplane|plane/i,                   base: 50, per: 4 },
+  { match: /sail/i,                             base: 60, per: 5 },
+  { match: /boat|ship/i,                        base: 55, per: 5 },
+];
+function pilotBase(name, occBonus) {
+  for (const p of PILOT_BASES) {
+    if (p.match.test(name ?? "")) return { base: p.base + occBonus, per: p.per, note: `Base ${p.base}% +${occBonus}% OCC bonus — VERIFY base vs RUE p.302-303` };
+  }
+  return { base: 0, per: 0, note: `Vehicle not recognized — enter its base % +${occBonus}% OCC bonus manually` };
+}
+
 // Base % = RUE base + OCC bonus already applied. VERIFY base values vs book.
 const named = (s, fallback) => s || fallback;
 const occSkills = [
@@ -183,7 +206,7 @@ const occSkills = [
   { name: "General Repair & Maintenance",           category: "mechanical",     basePercent: 50, perLevelBonus: 5, notes: "Base 35% +15% OCC bonus" },
   { name: "Land Navigation",                        category: "wilderness",     basePercent: 51, perLevelBonus: 4, notes: "Base 36% +15% OCC bonus" },
   { name: "Pilot: Tanks & APCs",                    category: "pilot",          basePercent: 61, perLevelBonus: 3, notes: "Base 56% +5% OCC bonus" },
-  { name: named(choices.pilotChoice, "Pilot: One of choice"), category: "pilot", basePercent: 0, perLevelBonus: 0, notes: "Enter chosen vehicle's base % +10% OCC bonus (no Robot/Power Armor skills)" },
+  (() => { const p = pilotBase(choices.pilotChoice, 10); return { name: named(choices.pilotChoice, "Pilot: One of choice"), category: "pilot", basePercent: p.base, perLevelBonus: p.per, notes: p.note + " (no Robot/Power Armor skills)" }; })(),
   { name: "Radio: Basic",                           category: "communications", basePercent: 55, perLevelBonus: 5, notes: "Base 45% +10% OCC bonus" },
   { name: "Read Sensory Equipment",                 category: "pilotRelated",   basePercent: 40, perLevelBonus: 5, notes: "Base 30% +10% OCC bonus" },
   { name: "Weapon Systems",                         category: "military",       basePercent: 45, perLevelBonus: 5, notes: "Base 40% +5% OCC bonus" },

@@ -19,6 +19,23 @@
     </div>
   </div>
 
+  {{!-- ── MONEY ───────────────────────────────────────────── --}}
+  <div class="gear-section">
+    <h2 class="section-title">
+      <i class="fas fa-coins"></i> Money
+    </h2>
+    <div class="damage-grid">
+      <div class="damage-field">
+        <label>Black Market Credits</label>
+        <input type="number" data-path-number="system.money.blackMarket" value="{{system.money.blackMarket}}" min="0" />
+      </div>
+      <div class="damage-field">
+        <label>Salary (per month)</label>
+        <input type="number" data-path-number="system.money.salary" value="{{system.money.salary}}" min="0" />
+      </div>
+    </div>
+  </div>
+
   {{!-- ── WEAPONS ─────────────────────────────────────────── --}}
   <div class="gear-section">
     <h2 class="section-title">

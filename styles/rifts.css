@@ -1957,3 +1957,25 @@
 }
 .rifts .npc-notes-grid .is-field { display: flex; flex-direction: column; gap: 3px; }
 .rifts .npc-notes-grid textarea { resize: vertical; font-size: 12px; }
+
+/* ═══════════════════════════════════════════════════════════
+   O.C.C. ABILITIES TAB + ATTRIBUTES/COMBAT SEPARATOR
+   ═══════════════════════════════════════════════════════════ */
+.rifts .abilities-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  align-items: start;
+}
+.rifts .abilities-grid .occ-ability-card { margin: 0; }
+@media (max-width: 700px) {
+  .rifts .abilities-grid { grid-template-columns: 1fr; }
+}
+
+.rifts .attr-combat-separator {
+  margin: 18px 0 12px;
+  border: none;
+  border-top: 2px solid #e8751a;
+  position: relative;
+  opacity: 0.85;
+}

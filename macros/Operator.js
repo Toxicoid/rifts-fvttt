@@ -179,6 +179,29 @@ await actor.update({
 });
 
 // ── 4. OCC SKILLS ─────────────────────────────────────────
+// Common RUE pilot skill bases — fuzzy-matched against the typed name.
+// VERIFY these bases vs RUE p.302-303; unmatched names fall back to 0.
+const PILOT_BASES = [
+  { match: /hovercycle|skycycle|rocket ?bike/i, base: 70, per: 3 },
+  { match: /hover ?craft/i,                     base: 50, per: 5 },
+  { match: /automobile|(^|\s)car(\s|$)/i,       base: 60, per: 2 },
+  { match: /motorcycle|snowmobile/i,            base: 60, per: 4 },
+  { match: /truck/i,                            base: 40, per: 4 },
+  { match: /tank|apc/i,                         base: 56, per: 3 },
+  { match: /jet ?pack/i,                        base: 42, per: 4 },
+  { match: /jet/i,                              base: 40, per: 4 },
+  { match: /helicopter/i,                       base: 35, per: 5 },
+  { match: /airplane|plane/i,                   base: 50, per: 4 },
+  { match: /sail/i,                             base: 60, per: 5 },
+  { match: /boat|ship/i,                        base: 55, per: 5 },
+];
+function pilotBase(name, occBonus) {
+  for (const p of PILOT_BASES) {
+    if (p.match.test(name ?? "")) return { base: p.base + occBonus, per: p.per, note: `Base ${p.base}% +${occBonus}% OCC bonus — VERIFY base vs RUE p.302-303` };
+  }
+  return { base: 0, per: 0, note: `Vehicle not recognized — enter its base % +${occBonus}% OCC bonus manually` };
+}
+
 // Base % = RUE base + OCC bonus already applied. VERIFY base values vs book.
 const named = (s, fallback) => s || fallback;
 const occSkills = [
@@ -191,9 +214,9 @@ const occSkills = [
   { name: "Find Contraband",                      category: "rogue",          basePercent: 41, perLevelBonus: 4, notes: "Base 26% +15% OCC bonus. +20% more for machine parts/components (see Find Parts ability)" },
   { name: "Jury-Rig",                             category: "technical",      basePercent: 45, perLevelBonus: 5, notes: "Base 25% +20% OCC bonus — VERIFY base. Temporary repairs in half the time, lasting twice as long" },
   { name: "Mechanical Engineer",                  category: "mechanical",     basePercent: 45, perLevelBonus: 5, notes: "Base 25% +20% OCC bonus" },
-  { name: named(choices.pilots[0], "Pilot: Choice #1"), category: "pilot",    basePercent: 0, perLevelBonus: 0, notes: "Enter chosen vehicle's base % +15% OCC bonus" },
-  { name: named(choices.pilots[1], "Pilot: Choice #2"), category: "pilot",    basePercent: 0, perLevelBonus: 0, notes: "Enter chosen vehicle's base % +15% OCC bonus" },
-  { name: named(choices.pilots[2], "Pilot: Choice #3"), category: "pilot",    basePercent: 0, perLevelBonus: 0, notes: "Enter chosen vehicle's base % +15% OCC bonus" },
+  (() => { const p = pilotBase(choices.pilots[0], 15); return { name: named(choices.pilots[0], "Pilot: Choice #1"), category: "pilot", basePercent: p.base, perLevelBonus: p.per, notes: p.note }; })(),
+  (() => { const p = pilotBase(choices.pilots[1], 15); return { name: named(choices.pilots[1], "Pilot: Choice #2"), category: "pilot", basePercent: p.base, perLevelBonus: p.per, notes: p.note }; })(),
+  (() => { const p = pilotBase(choices.pilots[2], 15); return { name: named(choices.pilots[2], "Pilot: Choice #3"), category: "pilot", basePercent: p.base, perLevelBonus: p.per, notes: p.note }; })(),
   { name: "Radio: Basic",                         category: "communications", basePercent: 60, perLevelBonus: 5, notes: "Base 45% +15% OCC bonus" },
   { name: "Sensory Equipment",                    category: "pilotRelated",   basePercent: 50, perLevelBonus: 5, notes: "Base 30% +20% OCC bonus" },
   { name: "Weapons Engineer",                     category: "military",       basePercent: 40, perLevelBonus: 5, notes: "Base 25% +15% OCC bonus" },

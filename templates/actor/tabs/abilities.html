@@ -1,0 +1,41 @@
+{{!-- ============================================================
+  RIFTS RPG - tabs/abilities.html
+  O.C.C. Abilities tab: ability cards in a two-column grid
+============================================================ --}}
+
+<div class="tab-content abilities-tab">
+
+  <h2 class="section-title">
+    <i class="fas fa-star"></i> O.C.C. Abilities
+    <button type="button" class="item-add add-btn" data-type="occ_ability">
+      <i class="fas fa-plus"></i>
+    </button>
+  </h2>
+
+  {{#if occAbilities.length}}
+    <div class="abilities-grid">
+      {{#each occAbilities}}
+        <div class="occ-ability-card item-row" data-item-id="{{this.id}}">
+          <div class="ability-header">
+            <span class="ability-name">{{this.name}}</span>
+            <span class="ability-level">Lvl {{this.system.level}}</span>
+            <div class="ability-controls">
+              <button type="button" class="item-edit icon-btn" title="Edit">
+                <i class="fas fa-edit"></i>
+              </button>
+              <button type="button" class="item-delete icon-btn" title="Delete">
+                <i class="fas fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          {{#if this.system.description}}
+            <p class="ability-desc">{{this.system.description}}</p>
+          {{/if}}
+        </div>
+      {{/each}}
+    </div>
+  {{else}}
+    <p class="empty-state">No O.C.C. abilities yet. Click + to add one.</p>
+  {{/if}}
+
+</div>

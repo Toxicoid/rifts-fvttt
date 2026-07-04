@@ -181,7 +181,17 @@
                  placeholder="e.g. Phobia: Darkness, Obsession..." />
         </div>
 
-        <div class="identity-field full">
+                <div class="desc-field-row" style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+          <div class="desc-field"><label>Age</label>
+            <input type="text" data-path="system.identity.age" value="{{system.identity.age}}" placeholder="e.g. 24" /></div>
+          <div class="desc-field"><label>Sex</label>
+            <input type="text" data-path="system.identity.sex" value="{{system.identity.sex}}" placeholder="e.g. Male" /></div>
+          <div class="desc-field"><label>Height</label>
+            <input type="text" data-path="system.identity.height" value="{{system.identity.height}}" placeholder="e.g. 5'11&quot;" /></div>
+          <div class="desc-field"><label>Weight</label>
+            <input type="text" data-path="system.identity.weight" value="{{system.identity.weight}}" placeholder="e.g. 180 lbs" /></div>
+        </div>
+        <div class="desc-field full-width">
           <label>Physical Description</label>
           <textarea data-path="system.identity.description"
                     rows="4"
