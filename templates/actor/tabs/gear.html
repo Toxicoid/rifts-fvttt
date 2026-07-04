@@ -215,6 +215,39 @@
                 <input type="number" data-item-id="{{this.id}}" data-item-path="system.legs.max" value="{{this.system.legs.max}}" min="0" />
               </div>
             </div>
+
+            {{#if (gt this.system.hands.max 0)}}
+            <div class="ac-field">
+              <label>Hands (ea)</label>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.hands.value" value="{{this.system.hands.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.hands.max" value="{{this.system.hands.max}}" min="0" />
+              </div>
+            </div>
+            {{/if}}
+
+            {{#if (gt this.system.forearms.max 0)}}
+            <div class="ac-field">
+              <label>Forearms (ea)</label>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.forearms.value" value="{{this.system.forearms.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.forearms.max" value="{{this.system.forearms.max}}" min="0" />
+              </div>
+            </div>
+            {{/if}}
+
+            {{#if (gt this.system.feet.max 0)}}
+            <div class="ac-field">
+              <label>Feet (ea)</label>
+              <div class="ac-pair">
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.feet.value" value="{{this.system.feet.value}}" min="0" />
+                <span>/</span>
+                <input type="number" data-item-id="{{this.id}}" data-item-path="system.feet.max" value="{{this.system.feet.max}}" min="0" />
+              </div>
+            </div>
+            {{/if}}
           </div>
         </div>
       {{/each}}
