@@ -129,6 +129,7 @@ Hooks.once("ready", async () => {
     { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",    img: "icons/svg/mystery-man.svg" },
     { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",       img: "icons/svg/target.svg" },
     { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/svg/tower.svg" },
+    { name: "OCC Setup: Operator", file: "Operator.js", img: "icons/svg/anvil.svg" },
     { name: "Create Rifts Armory",        file: "CreateRiftsArmory.js", img: "icons/svg/chest.svg" },
     { name: "Armory: Cyborg Bionics",     file: "CreateCyborgBionics.js", img: "icons/svg/pawprint.svg" },
     { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",    img: "icons/svg/beast.svg" },
