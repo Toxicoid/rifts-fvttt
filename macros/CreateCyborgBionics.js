@@ -26,11 +26,30 @@ if (!pack) {
   ui.notifications.info(`Created compendium: ${PACK_LABEL}`);
 }
 
+// ── Compendium folders ─────────────────────────────────────
+async function getOrCreateFolder(name, parent = null) {
+  let f = pack.folders.find(
+    (x) => x.name === name && (x.folder?.id ?? null) === (parent?.id ?? null)
+  );
+  if (!f) {
+    f = await Folder.create(
+      { name, type: "Item", folder: parent?.id ?? null },
+      { pack: pack.collection }
+    );
+  }
+  return f;
+}
+
+const cyborgFolder = await getOrCreateFolder("Cyborg");
+const armorFolder = await getOrCreateFolder("Armor", cyborgFolder);
+const bionicsFolder = await getOrCreateFolder("Bionics", cyborgFolder);
+
 // ── Helpers ────────────────────────────────────────────────
 const cyborgArmor = (name, main, arm, leg, head, cost, prowl, notes) => ({
   name,
   type: "armor",
   img: "icons/svg/shield.svg",
+  folder: armorFolder.id,
   system: {
     dcType: "MDC", ar: 0,
     main: { value: main, max: main },
@@ -48,6 +67,7 @@ const bionic = (name, cost, description, notes = "") => ({
   name,
   type: "equipment",
   img: "icons/svg/upgrade.svg",
+  folder: bionicsFolder.id,
   system: { quantity: 1, weight: "", cost, description, notes },
 });
 
@@ -173,15 +193,27 @@ const items = [
 
 ];
 
-// ── Create items, skipping existing by name ───────────────
+// ── Create items; move existing ones into their folders ───
 const index = await pack.getIndex();
-const existing = new Set(index.map((e) => e.name));
+const byName = new Map(index.map((e) => [e.name, e]));
 
 let created = 0;
+let moved = 0;
 for (const itemData of items) {
-  if (existing.has(itemData.name)) continue;
+  const entry = byName.get(itemData.name);
+  if (entry) {
+    // Already exists — make sure it lives in the right folder.
+    if ((entry.folder ?? null) !== itemData.folder) {
+      const doc = await pack.getDocument(entry._id);
+      await doc.update({ folder: itemData.folder });
+      moved++;
+    }
+    continue;
+  }
   await Item.create(itemData, { pack: `world.${PACK_NAME}` });
   created++;
 }
 
-ui.notifications.info(`${PACK_LABEL}: ${created} cyborg item(s) added, ${items.length - created} already present.`);
+ui.notifications.info(
+  `${PACK_LABEL}: ${created} cyborg item(s) added, ${moved} moved into folders, ${items.length - created - moved} already in place.`
+);

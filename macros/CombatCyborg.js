@@ -41,8 +41,12 @@ const choices = await new Promise((resolve) => {
         .cyborg-form .cf-row { display: flex; align-items: center; gap: 6px; margin: 3px 0; }
         .cyborg-form .cf-row label { flex: 0 0 46%; font-size: 12px; }
         .cyborg-form .cf-row input, .cyborg-form .cf-row select { flex: 1; }
+        .cyborg-form input.cf-drop { border-style: dashed; }
+        .cyborg-form input.cf-drop.cf-dropped { border-style: solid; border-color: #e8751a; }
+        .cyborg-form .cf-hint { font-size: 11px; font-style: italic; opacity: 0.8; margin: 2px 0; }
       </style>
       <form class="cyborg-form">
+        <p class="cf-hint">Dashed fields accept drag &amp; drop from a compendium or the Items sidebar — dropped items are copied with full stats. Typing a name still works.</p>
         <div class="cf-section">Skills</div>
         <div class="cf-row"><label>Language: Other (+20%)</label><input type="text" name="lang" placeholder="e.g. Spanish, Dragonese"/></div>
         <div class="cf-row"><label>Technical skill (+10%)</label>
@@ -57,42 +61,70 @@ const choices = await new Promise((resolve) => {
         <div class="cf-row"><label>W.P. Modern #2</label><input type="text" name="wpModern2" placeholder="e.g. W.P. Rifles"/></div>
 
         <div class="cf-section">Sensory Systems (2 of choice; Mech. Eyes w/ Polarized Filters + Clock Calendar included)</div>
-        <div class="cf-row"><label>Sensor #1</label><input type="text" name="sensor1" placeholder="e.g. Amplified Hearing"/></div>
-        <div class="cf-row"><label>Sensor #2</label><input type="text" name="sensor2" placeholder="e.g. Eye: Multi-Optics"/></div>
+        <div class="cf-row"><label>Sensor #1</label><input type="text" name="sensor1" class="cf-drop" placeholder="e.g. Amplified Hearing"/></div>
+        <div class="cf-row"><label>Sensor #2</label><input type="text" name="sensor2" class="cf-drop" placeholder="e.g. Eye: Multi-Optics"/></div>
 
         <div class="cf-section">Bionic Features &amp; Accessories (4 to start)</div>
-        <div class="cf-row"><label>Feature #1</label><input type="text" name="feat1" placeholder="e.g. E-Clip Port"/></div>
-        <div class="cf-row"><label>Feature #2</label><input type="text" name="feat2" placeholder="e.g. Secret Compartment (leg)"/></div>
-        <div class="cf-row"><label>Feature #3</label><input type="text" name="feat3" placeholder="e.g. Headjack Radio"/></div>
-        <div class="cf-row"><label>Feature #4</label><input type="text" name="feat4" placeholder="e.g. Finger Camera"/></div>
+        <div class="cf-row"><label>Feature #1</label><input type="text" name="feat1" class="cf-drop" placeholder="e.g. E-Clip Port"/></div>
+        <div class="cf-row"><label>Feature #2</label><input type="text" name="feat2" class="cf-drop" placeholder="e.g. Secret Compartment (leg)"/></div>
+        <div class="cf-row"><label>Feature #3</label><input type="text" name="feat3" class="cf-drop" placeholder="e.g. Headjack Radio"/></div>
+        <div class="cf-row"><label>Feature #4</label><input type="text" name="feat4" class="cf-drop" placeholder="e.g. Finger Camera"/></div>
 
         <div class="cf-section">Bionic Weapons / Tools (2 per hand, 1 per arm — see Bionics Sourcebook)</div>
-        <div class="cf-row"><label>Left Hand #1</label><input type="text" name="handL1"/></div>
-        <div class="cf-row"><label>Left Hand #2</label><input type="text" name="handL2"/></div>
-        <div class="cf-row"><label>Right Hand #1</label><input type="text" name="handR1"/></div>
-        <div class="cf-row"><label>Right Hand #2</label><input type="text" name="handR2"/></div>
-        <div class="cf-row"><label>Left Arm</label><input type="text" name="armL"/></div>
-        <div class="cf-row"><label>Right Arm</label><input type="text" name="armR"/></div>
+        <div class="cf-row"><label>Left Hand #1</label><input type="text" name="handL1" class="cf-drop"/></div>
+        <div class="cf-row"><label>Left Hand #2</label><input type="text" name="handL2" class="cf-drop"/></div>
+        <div class="cf-row"><label>Right Hand #1</label><input type="text" name="handR1" class="cf-drop"/></div>
+        <div class="cf-row"><label>Right Hand #2</label><input type="text" name="handR2" class="cf-drop"/></div>
+        <div class="cf-row"><label>Left Arm</label><input type="text" name="armL" class="cf-drop"/></div>
+        <div class="cf-row"><label>Right Arm</label><input type="text" name="armR" class="cf-drop"/></div>
       </form>
     `,
+    render: (html) => {
+      // Enable drag & drop of Items onto the dashed inputs.
+      html.find("input.cf-drop").each((_, el) => {
+        el.addEventListener("dragover", (ev) => ev.preventDefault());
+        el.addEventListener("drop", async (ev) => {
+          ev.preventDefault();
+          let data;
+          try {
+            data = JSON.parse(ev.dataTransfer.getData("text/plain"));
+          } catch {
+            return;
+          }
+          if (data?.type !== "Item" || !data.uuid) return;
+          const item = await fromUuid(data.uuid).catch(() => null);
+          if (!item) return;
+          el.value = item.name;
+          el.dataset.uuid = data.uuid;
+          el.classList.add("cf-dropped");
+        });
+        // Clearing/retyping the field breaks the link to the dropped item.
+        el.addEventListener("input", () => {
+          delete el.dataset.uuid;
+          el.classList.remove("cf-dropped");
+        });
+      });
+    },
     buttons: {
       ok: {
         icon: '<i class="fas fa-check"></i>',
         label: "Apply",
         callback: (html) => {
           const val = (n) => html.find(`[name="${n}"]`).val()?.trim() ?? "";
+          const uid = (n) => html.find(`[name="${n}"]`)[0]?.dataset?.uuid ?? "";
+          const pick = (n) => ({ name: val(n), uuid: uid(n) });
           resolve({
             lang: val("lang"), techSkill: val("techSkill"), pilotChoice: val("pilotChoice"),
             wpAncient: val("wpAncient"), wpModern1: val("wpModern1"), wpModern2: val("wpModern2"),
-            sensor1: val("sensor1"), sensor2: val("sensor2"),
-            feats: [val("feat1"), val("feat2"), val("feat3"), val("feat4")],
+            sensors: [pick("sensor1"), pick("sensor2")],
+            feats: [pick("feat1"), pick("feat2"), pick("feat3"), pick("feat4")],
             weapons: [
-              { loc: "Left Hand",  name: val("handL1") },
-              { loc: "Left Hand",  name: val("handL2") },
-              { loc: "Right Hand", name: val("handR1") },
-              { loc: "Right Hand", name: val("handR2") },
-              { loc: "Left Arm",   name: val("armL") },
-              { loc: "Right Arm",  name: val("armR") },
+              { loc: "Left Hand",  ...pick("handL1") },
+              { loc: "Left Hand",  ...pick("handL2") },
+              { loc: "Right Hand", ...pick("handR1") },
+              { loc: "Right Hand", ...pick("handR2") },
+              { loc: "Left Arm",   ...pick("armL") },
+              { loc: "Right Arm",  ...pick("armR") },
             ],
           });
         }
@@ -209,10 +241,31 @@ const bodyAndArmor = [
 ];
 
 // ── 6. BIONIC WEAPONS, SENSORS & FEATURES ─────────────────
+// Dropped items are cloned with their full stats; typed names get placeholders.
+async function cloneFromUuid(uuid) {
+  const src = await fromUuid(uuid).catch(() => null);
+  if (!src) return null;
+  const obj = src.toObject();
+  delete obj._id;
+  delete obj.folder;
+  delete obj.sort;
+  delete obj.ownership;
+  return obj;
+}
+
 const bionicItems = [];
 
 for (const w of choices.weapons) {
-  if (!w.name) continue;
+  if (!w.name && !w.uuid) continue;
+  if (w.uuid) {
+    const obj = await cloneFromUuid(w.uuid);
+    if (obj) {
+      obj.name = `${obj.name} (${w.loc})`;
+      obj.system.notes = [`Built into ${w.loc}.`, obj.system.notes].filter(Boolean).join(" ");
+      bionicItems.push(obj);
+      continue;
+    }
+  }
   bionicItems.push({
     name: `${w.name} (${w.loc})`,
     type: "weapon",
@@ -224,13 +277,8 @@ for (const w of choices.weapons) {
   });
 }
 
-const sensorNames = [
-  "Mechanical Eyes w/ Polarized Filters",
-  "Clock Calendar",
-  choices.sensor1 || "Sensory System #1 (choice)",
-  choices.sensor2 || "Sensory System #2 (choice)",
-];
-for (const n of sensorNames) {
+// Included sensory systems (always placeholders — part of the base package).
+for (const n of ["Mechanical Eyes w/ Polarized Filters", "Clock Calendar"]) {
   bionicItems.push({
     name: n,
     type: "equipment",
@@ -238,13 +286,26 @@ for (const n of sensorNames) {
   });
 }
 
-for (const [i, f] of choices.feats.entries()) {
-  bionicItems.push({
-    name: f || `Bionic Feature #${i + 1} (choice)`,
-    type: "equipment",
-    system: { quantity: 1, weight: "", cost: 0, notes: "Bionic feature/accessory (4 at creation)" },
-  });
+// Chosen sensors and features.
+async function pushChosen(pickList, fallbackName, fallbackNotes) {
+  for (const [i, p] of pickList.entries()) {
+    if (p.uuid) {
+      const obj = await cloneFromUuid(p.uuid);
+      if (obj) {
+        bionicItems.push(obj);
+        continue;
+      }
+    }
+    bionicItems.push({
+      name: p.name || `${fallbackName} #${i + 1} (choice)`,
+      type: "equipment",
+      system: { quantity: 1, weight: "", cost: 0, notes: fallbackNotes },
+    });
+  }
 }
+
+await pushChosen(choices.sensors, "Sensory System", "Built-in bionic sensory system");
+await pushChosen(choices.feats, "Bionic Feature", "Bionic feature/accessory (4 at creation)");
 
 bionicItems.push({
   name: "Bionics Upgrade Fund",
