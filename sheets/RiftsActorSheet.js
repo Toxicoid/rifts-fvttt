@@ -18,6 +18,7 @@ export class RiftsActorSheet extends ActorSheet {
           initial: "attributes",
         },
       ],
+      scrollY: [".sheet-body"],
       resizable: true,
     });
   }
@@ -94,7 +95,7 @@ export class RiftsActorSheet extends ActorSheet {
       wilderness: "Wilderness",
     };
 
-    const attrs = systemData.attributes;
+    const attrs = systemData.attributes ?? {};
     context.derived = {
       trustPercent: attrs.ma?.trustPercent ?? 0,
       charmPercent: attrs.pb?.charmPercent ?? 0,
@@ -110,7 +111,7 @@ export class RiftsActorSheet extends ActorSheet {
     );
 
     // ── Encumbrance calculation ──────────────────────────
-    const ps = actor.system.attributes.ps?.value ?? 10;
+    const ps = actor.system.attributes?.ps?.value ?? 10;
     context.carryLimit = ps * 10;   // P.S. x 10 lbs
     context.liftLimit = ps * 20;    // P.S. x 20 lbs
 
@@ -181,27 +182,33 @@ export class RiftsActorSheet extends ActorSheet {
     // ── Gear accordion ────────────────────────────────────
     // Click a gear row's chevron to unfold its description /
     // special rules; opening one folds up the previous one.
-    html.find(".gear-expand-toggle").click((event) => {
-      event.preventDefault();
-      const itemId = event.currentTarget.dataset.itemId;
-      const detail = html.find(`.gear-detail[data-detail-for="${itemId}"]`)[0];
-      if (!detail) return;
-      const wasOpen = detail.classList.contains("open");
-
+    const openGearDetail = (itemId) => {
       // Fold everything, reset all chevrons.
       html.find(".gear-detail.open").removeClass("open");
       html.find(".gear-expand-toggle i.fa-chevron-up")
         .removeClass("fa-chevron-up")
         .addClass("fa-chevron-down");
-
-      // Unfold the clicked one (unless it was the open one — then it just closes).
-      if (!wasOpen) {
-        detail.classList.add("open");
-        const icon = event.currentTarget.querySelector("i");
-        icon.classList.remove("fa-chevron-down");
-        icon.classList.add("fa-chevron-up");
+      this._openGearDetail = null;
+      if (!itemId) return;
+      const detail = html.find(`.gear-detail[data-detail-for="${itemId}"]`)[0];
+      const toggle = html.find(`.gear-expand-toggle[data-item-id="${itemId}"] i`)[0];
+      if (!detail) return;
+      detail.classList.add("open");
+      if (toggle) {
+        toggle.classList.remove("fa-chevron-down");
+        toggle.classList.add("fa-chevron-up");
       }
+      this._openGearDetail = itemId;
+    };
+
+    html.find(".gear-expand-toggle").click((event) => {
+      event.preventDefault();
+      const itemId = event.currentTarget.dataset.itemId;
+      openGearDetail(this._openGearDetail === itemId ? null : itemId);
     });
+
+    // Re-open the panel that was open before this re-render (if its item still exists).
+    if (this._openGearDetail) openGearDetail(this._openGearDetail);
 
     // Weapon equip toggle
     html.find(".weapon-equip-toggle").click(async (event) => {
@@ -222,13 +229,16 @@ export class RiftsActorSheet extends ActorSheet {
     // ── Character name ────────────────────────────────────
     html.find(".char-name").off("change input keyup");
     html.find(".char-name").on("blur", async (event) => {
-      await this.actor.update({ name: event.currentTarget.value.trim() });
+      const name = event.currentTarget.value.trim();
+      if (name === this.actor.name || !name) return;
+      await this.actor.update({ name });
     });
 
     // ── Actor text inputs and textareas ───────────────────
     html.find("input[data-path], textarea[data-path]").on("blur", async (event) => {
       const path = event.currentTarget.dataset.path;
       const value = event.currentTarget.value;
+      if (String(foundry.utils.getProperty(this.actor, path) ?? "") === value) return;
       await this.actor.update({ [path]: value });
     });
 
@@ -236,6 +246,7 @@ export class RiftsActorSheet extends ActorSheet {
     html.find("input[data-path-number]").on("blur", async (event) => {
       const path = event.currentTarget.dataset.pathNumber;
       const value = Number(event.currentTarget.value) || 0;
+      if (Number(foundry.utils.getProperty(this.actor, path) ?? 0) === value) return;
       await this.actor.update({ [path]: value });
     });
 
@@ -250,16 +261,19 @@ export class RiftsActorSheet extends ActorSheet {
     html.find(".health-input").on("blur", async (event) => {
       const field = event.currentTarget.dataset.field;
       const value = Number(event.currentTarget.value) || 0;
+      if (Number(foundry.utils.getProperty(this.actor, field) ?? 0) === value) return;
       await this.actor.update({ [field]: value });
     });
 
     // ── Item text/select fields (gear, skills) ────────────
-    html.find("input[data-item-path], textarea[data-item-path]").on("blur", async (event) => {
+    html.find("input[data-item-path]:not([type='number']), textarea[data-item-path]").on("blur", async (event) => {
       const itemId = event.currentTarget.dataset.itemId;
       const path = event.currentTarget.dataset.itemPath;
       const value = event.currentTarget.value;
       const item = this.actor.items.get(itemId);
-      if (item) await item.update({ [path]: value });
+      if (!item) return;
+      if (String(foundry.utils.getProperty(item, path) ?? "") === value) return;
+      await item.update({ [path]: value });
     });
 
     // ── Item number fields ────────────────────────────────
@@ -268,7 +282,9 @@ export class RiftsActorSheet extends ActorSheet {
       const path = event.currentTarget.dataset.itemPath;
       const value = Number(event.currentTarget.value) || 0;
       const item = this.actor.items.get(itemId);
-      if (item) await item.update({ [path]: value });
+      if (!item) return;
+      if (Number(foundry.utils.getProperty(item, path) ?? 0) === value) return;
+      await item.update({ [path]: value });
     });
 
     // ── Item select dropdowns ─────────────────────────────
@@ -368,6 +384,7 @@ export class RiftsActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const itemId = element.closest("[data-item-id]").dataset.itemId;
     const item = this.actor.items.get(itemId);
-    if (item) await item.update({ name: element.value });
+    if (!item || item.name === element.value) return;
+    await item.update({ name: element.value });
   }
 }

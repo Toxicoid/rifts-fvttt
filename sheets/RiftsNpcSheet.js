@@ -16,6 +16,7 @@ export class RiftsNpcSheet extends RiftsActorSheet {
       width: 620,
       height: 700,
       tabs: [],
+      scrollY: [".rifts-npc-sheet"],
       resizable: true,
     });
   }

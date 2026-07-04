@@ -16,6 +16,7 @@ export class RiftsVehicleSheet extends RiftsActorSheet {
       width: 620,
       height: 640,
       tabs: [],
+      scrollY: [".rifts-vehicle-sheet"],
       resizable: true,
     });
   }
