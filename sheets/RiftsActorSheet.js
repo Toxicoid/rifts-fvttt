@@ -178,6 +178,31 @@ export class RiftsActorSheet extends ActorSheet {
       icon.classList.toggle("fa-chevron-up");
     });
 
+    // ── Gear accordion ────────────────────────────────────
+    // Click a gear row's chevron to unfold its description /
+    // special rules; opening one folds up the previous one.
+    html.find(".gear-expand-toggle").click((event) => {
+      event.preventDefault();
+      const itemId = event.currentTarget.dataset.itemId;
+      const detail = html.find(`.gear-detail[data-detail-for="${itemId}"]`)[0];
+      if (!detail) return;
+      const wasOpen = detail.classList.contains("open");
+
+      // Fold everything, reset all chevrons.
+      html.find(".gear-detail.open").removeClass("open");
+      html.find(".gear-expand-toggle i.fa-chevron-up")
+        .removeClass("fa-chevron-up")
+        .addClass("fa-chevron-down");
+
+      // Unfold the clicked one (unless it was the open one — then it just closes).
+      if (!wasOpen) {
+        detail.classList.add("open");
+        const icon = event.currentTarget.querySelector("i");
+        icon.classList.remove("fa-chevron-down");
+        icon.classList.add("fa-chevron-up");
+      }
+    });
+
     // Weapon equip toggle
     html.find(".weapon-equip-toggle").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;

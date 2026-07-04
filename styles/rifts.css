@@ -1840,3 +1840,120 @@
   background: var(--rifts-bg, #14161a);
   color: var(--rifts-text, #d8d8d8);
 }
+
+/* ═══════════════════════════════════════════════════════════
+   GEAR ACCORDION — unfolding detail panels
+   ═══════════════════════════════════════════════════════════ */
+.rifts .gear-detail {
+  display: none;
+  margin: -2px 0 6px 0;
+  padding: 8px 12px;
+  background: rgba(232, 117, 26, 0.06);
+  border-left: 3px solid #e8751a;
+  border-radius: 0 4px 4px 0;
+  font-size: 12px;
+  line-height: 1.45;
+}
+.rifts .gear-detail.open { display: block; }
+.rifts .gear-detail p { margin: 0 0 5px 0; white-space: pre-line; }
+.rifts .gear-detail p:last-child { margin-bottom: 0; }
+.rifts .gear-detail-special { color: #e8751a; }
+.rifts .gear-detail-special strong { color: #e8751a; }
+.rifts .gear-detail-notes strong { color: #4db8b0; }
+.rifts .gear-detail-empty { opacity: 0.55; font-style: italic; }
+.rifts .gear-expand-toggle i { transition: transform 0.15s ease; }
+
+/* ═══════════════════════════════════════════════════════════
+   NPC & VEHICLE SHEETS — compact stat blocks
+   ═══════════════════════════════════════════════════════════ */
+.rifts-npc-sheet,
+.rifts-vehicle-sheet {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.rifts .npc-header {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.rifts .npc-header .profile-img {
+  border: 2px solid #e8751a;
+  border-radius: 6px;
+  object-fit: cover;
+  cursor: pointer;
+  flex: 0 0 64px;
+}
+.rifts .npc-header-fields { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+.rifts .npc-name {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 26px;
+  letter-spacing: 1px;
+  border: none;
+  border-bottom: 2px solid #e8751a;
+  background: transparent;
+}
+.rifts .npc-header-row {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.rifts .npc-header-row label {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+.rifts .npc-header-row input { min-width: 0; }
+
+.rifts .npc-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 6px 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(232, 117, 26, 0.35);
+  border-radius: 5px;
+}
+.rifts .npc-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 58px;
+}
+.rifts .npc-stat label {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: #4db8b0;
+  white-space: nowrap;
+}
+.rifts .npc-stat input[type="number"] { width: 58px; text-align: center; }
+.rifts .npc-stat.npc-speed input { width: 120px; text-align: left; }
+.rifts .npc-pair,
+.rifts .npc-roll-pair {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+.rifts .npc-pair input[type="number"] { width: 48px; }
+.rifts .npc-roll-pair input[type="number"] { width: 44px; }
+.rifts .npc-combat .npc-stat label { color: #e8751a; }
+.rifts .npc-attrs .npc-stat { min-width: 50px; }
+.rifts .npc-attrs .npc-stat input { width: 50px; }
+
+.rifts .npc-notes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+.rifts .npc-notes-grid .is-field { display: flex; flex-direction: column; gap: 3px; }
+.rifts .npc-notes-grid textarea { resize: vertical; font-size: 12px; }

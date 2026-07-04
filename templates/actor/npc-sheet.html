@@ -1,0 +1,188 @@
+<form class="{{cssClass}} rifts-npc-sheet" autocomplete="off">
+
+  {{!-- ── HEADER ─────────────────────────────────────────── --}}
+  <header class="npc-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+    <div class="npc-header-fields">
+      <input class="char-name npc-name" type="text" value="{{actor.name}}" placeholder="NPC Name" />
+      <div class="npc-header-row">
+        <input type="text" data-path="system.npcType" value="{{system.npcType}}" placeholder="Type (e.g. CS Grunt, Brodkil)" />
+        <input type="text" data-path="system.alignment" value="{{system.alignment}}" placeholder="Alignment" />
+        <label>Lvl <input type="number" data-path-number="system.level" value="{{system.level}}" min="1" style="width:44px;" /></label>
+        <label>H.F. <input type="number" data-path-number="system.hf" value="{{system.hf}}" min="0" style="width:44px;" /></label>
+        <label>XP <input type="number" data-path-number="system.xpValue" value="{{system.xpValue}}" min="0" style="width:64px;" /></label>
+      </div>
+    </div>
+  </header>
+
+  {{!-- ── HEALTH ─────────────────────────────────────────── --}}
+  <div class="npc-strip">
+    <div class="npc-stat">
+      <label>M.D.C.</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.mdc.value" value="{{system.health.mdc.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.mdc.max" value="{{system.health.mdc.max}}" />
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>H.P.</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.hp.value" value="{{system.health.hp.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.hp.max" value="{{system.health.hp.max}}" />
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>S.D.C.</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.sdc.value" value="{{system.health.sdc.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.sdc.max" value="{{system.health.sdc.max}}" />
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>A.R.</label>
+      <input type="number" data-path-number="system.health.ar.value" value="{{system.health.ar.value}}" min="0" max="20" />
+    </div>
+    <div class="npc-stat">
+      <label>P.P.E.</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.ppe.value" value="{{system.health.ppe.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.ppe.max" value="{{system.health.ppe.max}}" />
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>I.S.P.</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.isp.value" value="{{system.health.isp.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.isp.max" value="{{system.health.isp.max}}" />
+      </div>
+    </div>
+  </div>
+
+  {{!-- ── COMBAT ─────────────────────────────────────────── --}}
+  <div class="npc-strip npc-combat">
+    <div class="npc-stat">
+      <label>A.P.M.</label>
+      <input type="number" data-path-number="system.combat.attacksPerMelee" value="{{system.combat.attacksPerMelee}}" min="0" />
+    </div>
+    <div class="npc-stat">
+      <label>Init</label>
+      <div class="npc-roll-pair">
+        <input type="number" data-path-number="system.combat.initiativeBonus" value="{{system.combat.initiativeBonus}}" />
+        <button type="button" class="combat-roll icon-btn" data-roll="initiative" data-label="Initiative" data-bonus="{{system.combat.initiativeBonus}}" title="Roll Initiative"><i class="fas fa-dice-d20"></i></button>
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>Strike</label>
+      <div class="npc-roll-pair">
+        <input type="number" data-path-number="system.combat.strikeBonus" value="{{system.combat.strikeBonus}}" />
+        <button type="button" class="combat-roll icon-btn" data-roll="strike" data-label="Strike" data-bonus="{{system.combat.strikeBonus}}" title="Roll Strike"><i class="fas fa-crosshairs"></i></button>
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>Parry</label>
+      <div class="npc-roll-pair">
+        <input type="number" data-path-number="system.combat.parryBonus" value="{{system.combat.parryBonus}}" />
+        <button type="button" class="combat-roll icon-btn" data-roll="parry" data-label="Parry" data-bonus="{{system.combat.parryBonus}}" title="Roll Parry"><i class="fas fa-shield"></i></button>
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>Dodge</label>
+      <div class="npc-roll-pair">
+        <input type="number" data-path-number="system.combat.dodgeBonus" value="{{system.combat.dodgeBonus}}" />
+        <button type="button" class="combat-roll icon-btn" data-roll="dodge" data-label="Dodge" data-bonus="{{system.combat.dodgeBonus}}" title="Roll Dodge"><i class="fas fa-person-running"></i></button>
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>Roll w/</label>
+      <div class="npc-roll-pair">
+        <input type="number" data-path-number="system.combat.rollBonus" value="{{system.combat.rollBonus}}" />
+        <button type="button" class="combat-roll icon-btn" data-roll="rollwith" data-label="Roll w/ Punch" data-bonus="{{system.combat.rollBonus}}" title="Roll with Punch/Impact"><i class="fas fa-rotate"></i></button>
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>Dmg Bonus</label>
+      <input type="number" data-path-number="system.combat.damageBonus" value="{{system.combat.damageBonus}}" />
+    </div>
+    <div class="npc-stat">
+      <label>Crit on</label>
+      <input type="number" data-path-number="system.combat.criticalOn" value="{{system.combat.criticalOn}}" min="1" max="20" />
+    </div>
+    <div class="npc-stat npc-speed">
+      <label>Speed</label>
+      <input type="text" data-path="system.speed" value="{{system.speed}}" placeholder="Spd 22 / 15 mph" />
+    </div>
+  </div>
+
+  {{!-- ── ATTRIBUTES ─────────────────────────────────────── --}}
+  <div class="npc-strip npc-attrs">
+    {{#each system.attributes as |attr key|}}
+      <div class="npc-stat">
+        <label>{{attr.label}}</label>
+        <input type="number" data-path-number="system.attributes.{{key}}.value" value="{{attr.value}}" min="0" />
+      </div>
+    {{/each}}
+  </div>
+
+  {{!-- ── ATTACKS / WEAPONS ──────────────────────────────── --}}
+  <div class="gear-section">
+    <h2 class="section-title">
+      <i class="fas fa-gun"></i> Attacks &amp; Weapons
+      <button type="button" class="item-add add-btn" data-type="weapon"><i class="fas fa-plus"></i></button>
+    </h2>
+    {{#if weapons.length}}
+      {{#each weapons}}
+        <div class="gear-row weapon-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 70px 80px 44px 130px;gap:4px;align-items:center;">
+          <input class="item-name-input" type="text" value="{{this.name}}" placeholder="Attack name" />
+          <input type="text" data-item-id="{{this.id}}" data-item-path="system.damage" value="{{this.system.damage}}" placeholder="2d6" />
+          <select data-item-id="{{this.id}}" data-item-path="system.damageType">
+            <option value="MDC" {{#if (eq this.system.damageType "MDC")}}selected{{/if}}>M.D.</option>
+            <option value="SDC" {{#if (eq this.system.damageType "SDC")}}selected{{/if}}>S.D.C.</option>
+          </select>
+          <input type="text" data-item-id="{{this.id}}" data-item-path="system.range" value="{{this.system.range}}" placeholder="melee" />
+          <input type="number" data-item-id="{{this.id}}" data-item-path="system.bonusToStrike" value="{{this.system.bonusToStrike}}" title="Bonus to strike (adds to NPC strike bonus)" />
+          <div class="gear-actions">
+            <button type="button" class="weapon-strike-roll icon-btn" data-item-id="{{this.id}}" title="Roll Strike"><i class="fas fa-crosshairs"></i></button>
+            <button type="button" class="weapon-damage-roll icon-btn" data-item-id="{{this.id}}" title="Roll Damage"><i class="fas fa-burst"></i></button>
+            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show details"><i class="fas fa-chevron-down"></i></button>
+            <button type="button" class="item-edit icon-btn" title="Edit"><i class="fas fa-edit"></i></button>
+            <button type="button" class="item-delete icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="gear-detail" data-detail-for="{{this.id}}">
+          {{#if this.system.description}}<p class="gear-detail-desc">{{this.system.description}}</p>{{/if}}
+          {{#if this.system.special}}<p class="gear-detail-special"><strong>Special:</strong> {{this.system.special}}</p>{{/if}}
+          {{#if this.system.notes}}<p class="gear-detail-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
+          {{#unless this.system.description}}{{#unless this.system.special}}{{#unless this.system.notes}}<p class="gear-detail-empty">No details. Use Edit to add description or special rules.</p>{{/unless}}{{/unless}}{{/unless}}
+        </div>
+      {{/each}}
+    {{else}}
+      <p class="empty-state">No attacks. Click + to add one.</p>
+    {{/if}}
+  </div>
+
+  {{!-- ── NOTES BLOCKS ───────────────────────────────────── --}}
+  <div class="npc-notes-grid">
+    <div class="is-field">
+      <label>Abilities, Bonuses &amp; Saves</label>
+      <textarea data-path="system.abilitiesNote" rows="4" placeholder="Nightvision 90 ft, impervious to fire, +2 vs magic, needs 12+ to save vs psionics...">{{system.abilitiesNote}}</textarea>
+    </div>
+    <div class="is-field">
+      <label>Skills of Note</label>
+      <textarea data-path="system.skillsNote" rows="3" placeholder="Prowl 55%, Radio: Basic 60%, Track 40%...">{{system.skillsNote}}</textarea>
+    </div>
+    <div class="is-field">
+      <label>Tactics &amp; Behavior</label>
+      <textarea data-path="system.tactics" rows="3" placeholder="Opens with suppressing fire, retreats below 30 MDC...">{{system.tactics}}</textarea>
+    </div>
+    <div class="is-field">
+      <label>Description / GM Notes</label>
+      <textarea data-path="system.notes" rows="3">{{system.notes}}</textarea>
+    </div>
+  </div>
+
+</form>

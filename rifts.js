@@ -5,6 +5,8 @@
 
 // ── Imports ─────────────────────────────────────────────────
 import { RiftsActorSheet } from "./sheets/RiftsActorSheet.js";
+import { RiftsNpcSheet } from "./sheets/RiftsNpcSheet.js";
+import { RiftsVehicleSheet } from "./sheets/RiftsVehicleSheet.js";
 import { RiftsItemSheet } from "./sheets/RiftsItemSheet.js";
 import { RiftsActor } from "./documents/RiftsActor.js";
 import { RiftsItem } from "./documents/RiftsItem.js";
@@ -33,6 +35,16 @@ Hooks.once("init", function () {
     makeDefault: true,
     label: "RIFTS.SheetTitle",
   });
+  Actors.registerSheet("rifts", RiftsNpcSheet, {
+    types: ["npc"],
+    makeDefault: true,
+    label: "Rifts NPC Sheet",
+  });
+  Actors.registerSheet("rifts", RiftsVehicleSheet, {
+    types: ["vehicle"],
+    makeDefault: true,
+    label: "Rifts Vehicle Sheet",
+  });
 
   Items.unregisterSheet("core", ItemSheet);
   Items.registerSheet("rifts", RiftsItemSheet, { makeDefault: true });
@@ -50,6 +62,8 @@ async function preloadHandlebarsTemplates() {
   const templatePaths = [
     // Main character sheet
     "systems/rifts/templates/actor/character-sheet.html",
+    "systems/rifts/templates/actor/npc-sheet.html",
+    "systems/rifts/templates/actor/vehicle-sheet.html",
     // Tab partials (we'll add these later as the sheet grows)
     "systems/rifts/templates/actor/tabs/attributes.html",
     "systems/rifts/templates/actor/tabs/combat.html",

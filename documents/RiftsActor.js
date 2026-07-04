@@ -27,6 +27,36 @@ export class RiftsActor extends Actor {
         "prototypeToken.shape": "circle",
       });
     }
+
+    if (this.type === "npc") {
+      this.updateSource({
+        "prototypeToken.bar1": { attribute: "health.mdc" },
+        "prototypeToken.bar2": { attribute: "health.hp" },
+        "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+        "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.HOVER,
+        "prototypeToken.sight.enabled": false,
+        "prototypeToken.actorLink": false,
+        "prototypeToken.disposition": CONST.TOKEN_DISPOSITIONS.HOSTILE,
+        "prototypeToken.texture.src": data.img ?? "icons/svg/mystery-man.svg",
+        "prototypeToken.width": 1,
+        "prototypeToken.height": 1,
+        "prototypeToken.shape": "circle",
+      });
+    }
+
+    if (this.type === "vehicle") {
+      this.updateSource({
+        "prototypeToken.bar1": { attribute: "health.mdc" },
+        "prototypeToken.displayBars": CONST.TOKEN_DISPLAY_MODES.OWNER_HOVER,
+        "prototypeToken.displayName": CONST.TOKEN_DISPLAY_MODES.HOVER,
+        "prototypeToken.sight.enabled": false,
+        "prototypeToken.actorLink": true,
+        "prototypeToken.disposition": CONST.TOKEN_DISPOSITIONS.NEUTRAL,
+        "prototypeToken.texture.src": data.img ?? "icons/svg/anchor.svg",
+        "prototypeToken.width": 2,
+        "prototypeToken.height": 2,
+      });
+    }
   }
 
   // ── prepareDerivedData ─────────────────────────────────────

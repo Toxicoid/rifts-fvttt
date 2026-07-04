@@ -1,0 +1,144 @@
+<form class="{{cssClass}} rifts-vehicle-sheet" autocomplete="off">
+
+  {{!-- ── HEADER ─────────────────────────────────────────── --}}
+  <header class="npc-header">
+    <img class="profile-img" src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="64" width="64" />
+    <div class="npc-header-fields">
+      <input class="char-name npc-name" type="text" value="{{actor.name}}" placeholder="Vehicle Name" />
+      <div class="npc-header-row">
+        <input type="text" data-path="system.vehicleType" value="{{system.vehicleType}}" placeholder="Type (e.g. Jeep, Hovercycle)" />
+        <input type="text" data-path="system.powerSystem" value="{{system.powerSystem}}" placeholder="Power (gas/electric/nuclear)" />
+        <label>Crew <input type="text" data-path="system.crew" value="{{system.crew}}" style="width:44px;" /></label>
+        <label>Pass. <input type="text" data-path="system.passengers" value="{{system.passengers}}" style="width:44px;" /></label>
+      </div>
+    </div>
+  </header>
+
+  {{!-- ── CORE STATS ─────────────────────────────────────── --}}
+  <div class="npc-strip">
+    <div class="npc-stat">
+      <label>M.D.C. (Main)</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.mdc.value" value="{{system.health.mdc.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.mdc.max" value="{{system.health.mdc.max}}" />
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>S.D.C.</label>
+      <div class="npc-pair">
+        <input type="number" data-path-number="system.health.sdc.value" value="{{system.health.sdc.value}}" />
+        <span>/</span>
+        <input type="number" data-path-number="system.health.sdc.max" value="{{system.health.sdc.max}}" />
+      </div>
+    </div>
+    <div class="npc-stat">
+      <label>A.R.</label>
+      <input type="number" data-path-number="system.health.ar.value" value="{{system.health.ar.value}}" min="0" max="20" />
+    </div>
+    <div class="npc-stat">
+      <label>Speed</label>
+      <input type="text" data-path="system.speed" value="{{system.speed}}" placeholder="90 mph" />
+    </div>
+    <div class="npc-stat">
+      <label>Range</label>
+      <input type="text" data-path="system.range" value="{{system.range}}" placeholder="400 miles" />
+    </div>
+    <div class="npc-stat">
+      <label>Weight</label>
+      <input type="text" data-path="system.weight" value="{{system.weight}}" placeholder="2 tons" />
+    </div>
+    <div class="npc-stat">
+      <label>Cargo</label>
+      <input type="text" data-path="system.cargo" value="{{system.cargo}}" placeholder="500 lbs" />
+    </div>
+    <div class="npc-stat">
+      <label>Cost</label>
+      <input type="number" data-path-number="system.cost" value="{{system.cost}}" min="0" />
+    </div>
+  </div>
+
+  {{!-- ── MOUNTED WEAPONS ────────────────────────────────── --}}
+  <div class="gear-section">
+    <h2 class="section-title">
+      <i class="fas fa-gun"></i> Mounted Weapons
+      <button type="button" class="item-add add-btn" data-type="weapon"><i class="fas fa-plus"></i></button>
+    </h2>
+    {{#if weapons.length}}
+      {{#each weapons}}
+        <div class="gear-row weapon-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 70px 80px 44px 44px 130px;gap:4px;align-items:center;">
+          <input class="item-name-input" type="text" value="{{this.name}}" placeholder="Weapon name" />
+          <input type="text" data-item-id="{{this.id}}" data-item-path="system.damage" value="{{this.system.damage}}" placeholder="2d6" />
+          <select data-item-id="{{this.id}}" data-item-path="system.damageType">
+            <option value="MDC" {{#if (eq this.system.damageType "MDC")}}selected{{/if}}>M.D.</option>
+            <option value="SDC" {{#if (eq this.system.damageType "SDC")}}selected{{/if}}>S.D.C.</option>
+          </select>
+          <input type="text" data-item-id="{{this.id}}" data-item-path="system.range" value="{{this.system.range}}" placeholder="2000 ft" />
+          <input type="number" data-item-id="{{this.id}}" data-item-path="system.payload" value="{{this.system.payload}}" min="0" title="Payload" />
+          <input type="number" data-item-id="{{this.id}}" data-item-path="system.bonusToStrike" value="{{this.system.bonusToStrike}}" title="Bonus to strike" />
+          <div class="gear-actions">
+            <button type="button" class="weapon-strike-roll icon-btn" data-item-id="{{this.id}}" title="Roll Strike"><i class="fas fa-crosshairs"></i></button>
+            <button type="button" class="weapon-damage-roll icon-btn" data-item-id="{{this.id}}" title="Roll Damage"><i class="fas fa-burst"></i></button>
+            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show details"><i class="fas fa-chevron-down"></i></button>
+            <button type="button" class="item-edit icon-btn" title="Edit"><i class="fas fa-edit"></i></button>
+            <button type="button" class="item-delete icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="gear-detail" data-detail-for="{{this.id}}">
+          {{#if this.system.description}}<p class="gear-detail-desc">{{this.system.description}}</p>{{/if}}
+          {{#if this.system.special}}<p class="gear-detail-special"><strong>Special:</strong> {{this.system.special}}</p>{{/if}}
+          {{#if this.system.notes}}<p class="gear-detail-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
+          {{#unless this.system.description}}{{#unless this.system.special}}{{#unless this.system.notes}}<p class="gear-detail-empty">No details. Use Edit to add description or special rules.</p>{{/unless}}{{/unless}}{{/unless}}
+        </div>
+      {{/each}}
+    {{else}}
+      <p class="empty-state">No mounted weapons. Click + to add one.</p>
+    {{/if}}
+  </div>
+
+  {{!-- ── CARGO / STOWED GEAR ────────────────────────────── --}}
+  <div class="gear-section">
+    <h2 class="section-title">
+      <i class="fas fa-box"></i> Stowed Gear
+      <button type="button" class="item-add add-btn" data-type="equipment"><i class="fas fa-plus"></i></button>
+    </h2>
+    {{#if equipment.length}}
+      {{#each equipment}}
+        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 44px 70px 90px;gap:4px;align-items:center;">
+          <input class="item-name-input" type="text" value="{{this.name}}" placeholder="Item name" />
+          <input type="number" data-item-id="{{this.id}}" data-item-path="system.quantity" value="{{this.system.quantity}}" min="0" title="Quantity" />
+          <input type="text" data-item-id="{{this.id}}" data-item-path="system.weight" value="{{this.system.weight}}" placeholder="lbs" />
+          <div class="gear-actions">
+            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show details"><i class="fas fa-chevron-down"></i></button>
+            <button type="button" class="item-edit icon-btn" title="Edit"><i class="fas fa-edit"></i></button>
+            <button type="button" class="item-delete icon-btn" title="Delete"><i class="fas fa-trash"></i></button>
+          </div>
+        </div>
+        <div class="gear-detail" data-detail-for="{{this.id}}">
+          {{#if this.system.description}}<p class="gear-detail-desc">{{this.system.description}}</p>{{/if}}
+          {{#if this.system.notes}}<p class="gear-detail-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
+          {{#unless this.system.description}}{{#unless this.system.notes}}<p class="gear-detail-empty">No details. Use Edit to add a description.</p>{{/unless}}{{/unless}}
+        </div>
+      {{/each}}
+    {{else}}
+      <p class="empty-state">Nothing stowed. Click + to add cargo.</p>
+    {{/if}}
+  </div>
+
+  {{!-- ── LOCATIONS & NOTES ──────────────────────────────── --}}
+  <div class="npc-notes-grid">
+    <div class="is-field">
+      <label>M.D.C. by Location</label>
+      <textarea data-path="system.locations" rows="4" placeholder="Wheels (4) — 5 each&#10;Windshield — 10&#10;Mounted rail gun — 50">{{system.locations}}</textarea>
+    </div>
+    <div class="is-field">
+      <label>Handling &amp; Bonuses</label>
+      <textarea data-path="system.bonuses" rows="2" placeholder="+5% to piloting rolls on roads, -10% off-road in mud...">{{system.bonuses}}</textarea>
+    </div>
+    <div class="is-field">
+      <label>Description / Notes</label>
+      <textarea data-path="system.notes" rows="3">{{system.notes}}</textarea>
+    </div>
+  </div>
+
+</form>

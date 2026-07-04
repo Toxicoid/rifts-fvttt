@@ -1,6 +1,79 @@
 {
   "Actor": {
-    "types": ["character"],
+    "types": ["character", "npc", "vehicle"],
+    "npc": {
+      "npcType": "",
+      "alignment": "",
+      "level": 1,
+      "size": "",
+      "hf": 0,
+      "xpValue": 0,
+      "speed": "",
+      "description": "",
+      "tactics": "",
+      "notes": "",
+      "skillsNote": "",
+      "abilitiesNote": "",
+
+      "attributes": {
+        "iq": { "value": 10, "label": "I.Q." },
+        "me": { "value": 10, "label": "M.E." },
+        "ma": { "value": 10, "label": "M.A." },
+        "ps": { "value": 10, "label": "P.S." },
+        "pp": { "value": 10, "label": "P.P." },
+        "pe": { "value": 10, "label": "P.E." },
+        "pb": { "value": 10, "label": "P.B." },
+        "spd": { "value": 10, "label": "Spd" }
+      },
+
+      "health": {
+        "dcType": "MDC",
+        "hp": { "value": 10, "max": 10 },
+        "sdc": { "value": 0, "max": 0 },
+        "mdc": { "value": 0, "max": 0 },
+        "ar": { "value": 0 },
+        "ppe": { "value": 0, "max": 0 },
+        "isp": { "value": 0, "max": 0 }
+      },
+
+      "combat": {
+        "attacksPerMelee": 2,
+        "initiativeBonus": 0,
+        "strikeBonus": 0,
+        "parryBonus": 0,
+        "dodgeBonus": 0,
+        "rollBonus": 0,
+        "damageBonus": 0,
+        "criticalOn": 20
+      }
+    },
+    "vehicle": {
+      "vehicleType": "",
+      "crew": "",
+      "passengers": "",
+      "powerSystem": "",
+      "speed": "",
+      "range": "",
+      "weight": "",
+      "cargo": "",
+      "cost": 0,
+      "locations": "",
+      "bonuses": "",
+      "description": "",
+      "notes": "",
+
+      "health": {
+        "dcType": "MDC",
+        "sdc": { "value": 0, "max": 0 },
+        "mdc": { "value": 0, "max": 0 },
+        "ar": { "value": 0 }
+      },
+
+      "combat": {
+        "initiativeBonus": 0,
+        "strikeBonus": 0
+      }
+    },
     "character": {
       "biography": "",
       "notes": "",
