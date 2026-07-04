@@ -9,11 +9,14 @@
 const PACK_NAME = "rifts-occs";
 const PACK_LABEL = "Rifts O.C.C.s";
 
-// OCC setup macros shipped with the system
+// OCC setup macros shipped with the system, organized by source book
 const OCC_MACROS = [
-  { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/svg/combat.svg" },
-  { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",   img: "icons/svg/mystery-man.svg" },
-  { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/svg/beast.svg" },
+  { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/svg/combat.svg",      book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",   img: "icons/svg/mystery-man.svg", book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Operator",        file: "Operator.js",       img: "icons/svg/anvil.svg",       book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",      img: "icons/svg/target.svg",      book: "Rifts Mercenaries" },
+  { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/svg/tower.svg", book: "Rifts Mercenaries" },
+  { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/svg/beast.svg",       book: "D-Bees of North America" },
 ];
 
 // ── Find or create the compendium ─────────────────────────
@@ -28,13 +31,35 @@ if (!pack) {
   ui.notifications.info(`Created compendium: ${PACK_LABEL}`);
 }
 
-// ── Import macros ─────────────────────────────────────────
+// ── Book folders inside the compendium ────────────────────
+const bookFolders = {};
+async function bookFolder(book) {
+  if (bookFolders[book]) return bookFolders[book];
+  let f = pack.folders.find((x) => x.name === book);
+  if (!f) {
+    f = await Folder.create({ name: book, type: "Macro" }, { pack: pack.collection });
+  }
+  bookFolders[book] = f;
+  return f;
+}
+
+// ── Import macros; move existing into their book folders ──
 const index = await pack.getIndex();
-const existing = new Set(index.map((e) => e.name));
+const byName = new Map(index.map((e) => [e.name, e]));
 
 let created = 0;
+let moved = 0;
 for (const m of OCC_MACROS) {
-  if (existing.has(m.name)) continue;
+  const target = await bookFolder(m.book);
+  const entry = byName.get(m.name);
+  if (entry) {
+    if ((entry.folder ?? null) !== target.id) {
+      const doc = await pack.getDocument(entry._id);
+      await doc.update({ folder: target.id });
+      moved++;
+    }
+    continue;
+  }
   try {
     const resp = await fetch(`systems/rifts/macros/${m.file}`);
     if (!resp.ok) {
@@ -43,7 +68,7 @@ for (const m of OCC_MACROS) {
     }
     const command = await resp.text();
     await Macro.create(
-      { name: m.name, type: "script", scope: "global", command, img: m.img },
+      { name: m.name, type: "script", scope: "global", command, img: m.img, folder: target.id },
       { pack: `world.${PACK_NAME}` }
     );
     created++;
@@ -52,4 +77,4 @@ for (const m of OCC_MACROS) {
   }
 }
 
-ui.notifications.info(`${PACK_LABEL}: ${created} macro(s) added, ${OCC_MACROS.length - created} already present.`);
+ui.notifications.info(`${PACK_LABEL}: ${created} macro(s) added, ${moved} moved into book folders, ${OCC_MACROS.length - created - moved} already in place.`);

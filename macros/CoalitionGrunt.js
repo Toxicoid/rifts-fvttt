@@ -11,6 +11,11 @@ if (!actor) {
   return;
 }
 
+if (actor.type !== "character") {
+  ui.notifications.warn(`${actor.name} is a ${actor.type} actor. OCC/RCC setup macros are built for Character actors — the NPC stat block doesn't display skills, equipment or ability cards. Create major named NPCs as Characters instead.`);
+  return;
+}
+
 const confirmed = await Dialog.confirm({
   title: "Coalition Grunt O.C.C.",
   content: `

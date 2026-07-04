@@ -124,15 +124,16 @@ Hooks.once("init", function () {
 Hooks.once("ready", async () => {
   if (!game.user.isGM) return;
 
+  // "book" files OCC/RCC macros into a subfolder by source book.
   const SYSTEM_MACROS = [
-    { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js",  img: "icons/svg/combat.svg" },
-    { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",    img: "icons/svg/mystery-man.svg" },
-    { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",       img: "icons/svg/target.svg" },
-    { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/svg/tower.svg" },
-    { name: "OCC Setup: Operator", file: "Operator.js", img: "icons/svg/anvil.svg" },
+    { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js",  img: "icons/svg/combat.svg",      book: "Rifts Ultimate Edition" },
+    { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",    img: "icons/svg/mystery-man.svg", book: "Rifts Ultimate Edition" },
+    { name: "OCC Setup: Operator",        file: "Operator.js",        img: "icons/svg/anvil.svg",       book: "Rifts Ultimate Edition" },
+    { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",       img: "icons/svg/target.svg",      book: "Rifts Mercenaries" },
+    { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/svg/tower.svg",  book: "Rifts Mercenaries" },
+    { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",    img: "icons/svg/beast.svg",       book: "D-Bees of North America" },
     { name: "Create Rifts Armory",        file: "CreateRiftsArmory.js", img: "icons/svg/chest.svg" },
     { name: "Armory: Cyborg Bionics",     file: "CreateCyborgBionics.js", img: "icons/svg/pawprint.svg" },
-    { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",    img: "icons/svg/beast.svg" },
     { name: "Create Rifts OCCs Compendium", file: "CreateRiftsOCCs.js",  img: "icons/svg/book.svg" },
   ];
 
@@ -141,8 +142,32 @@ Hooks.once("ready", async () => {
     folder = await Folder.create({ name: "Rifts", type: "Macro", color: "#e8751a" });
   }
 
+  // Book subfolders under "Rifts"
+  const bookFolders = {};
+  async function bookFolder(book) {
+    if (!book) return folder;
+    if (bookFolders[book]) return bookFolders[book];
+    let bf = game.folders.find(
+      (f) => f.type === "Macro" && f.name === book && f.folder?.id === folder.id
+    );
+    if (!bf) {
+      bf = await Folder.create({ name: book, type: "Macro", color: "#4db8b0", folder: folder.id });
+    }
+    bookFolders[book] = bf;
+    return bf;
+  }
+
   for (const m of SYSTEM_MACROS) {
-    if (game.macros.find((x) => x.name === m.name)) continue;
+    const target = await bookFolder(m.book);
+    const existing = game.macros.find((x) => x.name === m.name);
+    if (existing) {
+      // Already imported — just make sure it sits in the right book folder.
+      if (existing.folder?.id !== target.id) {
+        await existing.update({ folder: target.id });
+        console.log(`Rifts | Moved macro into ${m.book ?? "Rifts"}: ${m.name}`);
+      }
+      continue;
+    }
     try {
       const resp = await fetch(`systems/rifts/macros/${m.file}`);
       if (!resp.ok) continue;
@@ -152,7 +177,7 @@ Hooks.once("ready", async () => {
         type: "script",
         scope: "global",
         command,
-        folder: folder.id,
+        folder: target.id,
         img: m.img,
       });
       console.log(`Rifts | Imported macro: ${m.name}`);

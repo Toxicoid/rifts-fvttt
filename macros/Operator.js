@@ -16,6 +16,11 @@ if (!actor) {
   return;
 }
 
+if (actor.type !== "character") {
+  ui.notifications.warn(`${actor.name} is a ${actor.type} actor. OCC/RCC setup macros are built for Character actors — the NPC stat block doesn't display skills, equipment or ability cards. Create major named NPCs as Characters instead.`);
+  return;
+}
+
 const confirmed = await Dialog.confirm({
   title: "Operator O.C.C.",
   content: `
@@ -168,7 +173,7 @@ await actor.update({
   "system.health.sdc.value": (sys.health.sdc.value ?? 0) + sdcBonus,   // +2D6+6 S.D.C.
   "system.health.sdc.max": (sys.health.sdc.max ?? 0) + sdcBonus,
   "system.combat.attacksPerMelee": (sys.combat.attacksPerMelee ?? 2) + 2, // HtH training: +2 over base
-  "system.saves.diseaseBonus": (sys.saves.diseaseBonus ?? 0) + 2,      // +2 vs disease (fatigue: see card)
+  "system.saves.diseaseBonus": (sys.saves?.diseaseBonus ?? 0) + 2,      // +2 vs disease (fatigue: see card)
   "system.money.credits": credits,
   "system.money.blackMarket": blackMarket,
 });
