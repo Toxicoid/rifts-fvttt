@@ -19,6 +19,13 @@ Hooks.once("init", function () {
   CONFIG.Actor.documentClass = RiftsActor;
   CONFIG.Item.documentClass = RiftsItem;
 
+  // ── Combat Tracker Initiative ──────────────────────────────
+  // Palladium: 1d20 + initiative bonus, highest goes first.
+  CONFIG.Combat.initiative = {
+    formula: "1d20 + @combat.initiativeBonus",
+    decimals: 0,
+  };
+
   // ── Register Actor Sheet ───────────────────────────────────
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("rifts", RiftsActorSheet, {
