@@ -45,6 +45,11 @@
         "rollBonus": 0,
         "damageBonus": 0,
         "criticalOn": 20
+      },
+
+      "money": {
+        "credits": 0,
+        "blackMarket": 0
       }
     },
     "vehicle": {
@@ -72,6 +77,11 @@
       "combat": {
         "initiativeBonus": 0,
         "strikeBonus": 0
+      },
+
+      "money": {
+        "credits": 0,
+        "blackMarket": 0
       }
     },
     "character": {

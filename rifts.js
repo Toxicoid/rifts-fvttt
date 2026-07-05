@@ -186,3 +186,61 @@ Hooks.once("ready", async () => {
     }
   }
 });
+
+/* ════════════════════════════════════════════════════════════
+   ITEM PILES INTEGRATION (optional module)
+   Registers Rifts currencies and item config with the Item
+   Piles module for loot piles, chests, merchants and trading.
+   Does nothing if the module is not installed/enabled.
+   ════════════════════════════════════════════════════════════ */
+function riftsItemPilesConfig() {
+  return {
+    VERSION: "1.0.0",
+    // NPC actors represent piles: kill a bandit, loot the token.
+    ACTOR_CLASS_TYPE: "npc",
+    ITEM_PRICE_ATTRIBUTE: "system.cost",
+    ITEM_QUANTITY_ATTRIBUTE: "system.quantity",
+    // Skills and OCC abilities are not lootable or tradeable.
+    ITEM_FILTERS: [{ path: "type", filters: "skill,occ_ability" }],
+    ITEM_SIMILARITIES: ["name", "type"],
+    // Weapons and armor have no quantity field — never stack them.
+    UNSTACKABLE_ITEM_TYPES: ["weapon", "armor"],
+    CURRENCIES: [
+      {
+        type: "attribute",
+        name: "Universal Credits",
+        img: "icons/commodities/currency/coins-plain-stack-gold.webp",
+        abbreviation: "{#} cr",
+        data: { path: "system.money.credits" },
+        primary: true,
+        exchangeRate: 1,
+      },
+      {
+        type: "attribute",
+        name: "Black Market Credits",
+        img: "icons/commodities/currency/coin-embossed-skull-gold.webp",
+        abbreviation: "{#} BM",
+        data: { path: "system.money.blackMarket" },
+        primary: false,
+        exchangeRate: 1,
+      },
+    ],
+  };
+}
+
+let riftsItemPilesRegistered = false;
+function registerItemPiles() {
+  if (riftsItemPilesRegistered) return;
+  if (!game.itempiles?.API?.addSystemIntegration) return;
+  try {
+    game.itempiles.API.addSystemIntegration(riftsItemPilesConfig());
+    riftsItemPilesRegistered = true;
+    console.log("RIFTS | Item Piles integration registered");
+  } catch (err) {
+    console.warn("RIFTS | Item Piles integration failed", err);
+  }
+}
+
+Hooks.once("item-piles-ready", registerItemPiles);
+// Fallback in case the module readied before us or hook timing shifts.
+Hooks.once("ready", () => setTimeout(registerItemPiles, 1000));
