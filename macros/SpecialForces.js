@@ -315,7 +315,7 @@ const occAbilities = [
     type: "occ_ability",
     system: {
       level: 1,
-      description: "PLACEHOLDER — confirm which XP table the book assigns. If it uses the CS Military Specialist table (RUE p.295):\nLevel 1: 0-2,120\nLevel 2: 2,121-4,240\nLevel 3: 4,241-8,480\nLevel 4: 8,481-16,960\nLevel 5: 16,961-24,960\nLevel 6: 24,961-34,960\nLevel 7: 34,961-49,960\nLevel 8: 49,961-69,960\nLevel 9: 69,961-94,960\nLevel 10: 94,961-129,960\nLevel 11: 129,961-179,960\nLevel 12: 179,961-229,960\nLevel 13: 229,961-279,960\nLevel 14: 279,961-329,960\nLevel 15: 329,961-389,961",
+      description: "Uses the CS Technical Officer / CS Military Specialist & Shifter table (RUE p.295 — VERIFIED):\nLevel 1: 0-2,120\nLevel 2: 2,121-4,240\nLevel 3: 4,241-8,480\nLevel 4: 8,481-16,960\nLevel 5: 16,961-24,960\nLevel 6: 24,961-34,960\nLevel 7: 34,961-49,960\nLevel 8: 49,961-69,960\nLevel 9: 69,961-94,960\nLevel 10: 94,961-129,960\nLevel 11: 129,961-179,960\nLevel 12: 179,961-229,960\nLevel 13: 229,961-279,960\nLevel 14: 279,961-329,960\nLevel 15: 329,961-389,961",
     },
   },
 ];
@@ -347,7 +347,6 @@ ChatMessage.create({
       <li>Select 6 Secondary Skills</li>
       <li>Detail the owned ${choices.rideType}${choices.rideType === "Robot Vehicle" ? " (consider a Vehicle actor)" : ""}</li>
       <li>Fill in stats for choice weapon/armor placeholders</li>
-      <li>Confirm the XP table (see ability card)</li>
     </ul>
   `
 });
