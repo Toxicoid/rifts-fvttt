@@ -66,7 +66,7 @@ async function preloadHandlebarsTemplates() {
     "systems/rifts/templates/actor/vehicle-sheet.html",
     // Tab partials (we'll add these later as the sheet grows)
     "systems/rifts/templates/actor/tabs/attributes.html",
-    "systems/rifts/templates/actor/tabs/combat.html",
+    "systems/rifts/templates/actor/tabs/abilities.html",
     "systems/rifts/templates/actor/tabs/skills.html",
     "systems/rifts/templates/actor/tabs/gear.html",
     "systems/rifts/templates/actor/tabs/background.html",
