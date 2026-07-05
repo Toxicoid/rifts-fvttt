@@ -134,6 +134,7 @@ Hooks.once("ready", async () => {
     { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",    img: "icons/svg/beast.svg",       book: "D-Bees of North America" },
     { name: "Create Rifts Armory",        file: "CreateRiftsArmory.js", img: "icons/svg/chest.svg" },
     { name: "Armory: Cyborg Bionics",     file: "CreateCyborgBionics.js", img: "icons/svg/pawprint.svg" },
+    { name: "Armory: Cybernetics",        file: "CreateCybernetics.js", img: "icons/svg/regen.svg" },
     { name: "Create Rifts OCCs Compendium", file: "CreateRiftsOCCs.js",  img: "icons/svg/book.svg" },
   ];
 
