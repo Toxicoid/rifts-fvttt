@@ -44,11 +44,13 @@ async function getOrCreateFolder(name, parent = null) {
 const cyberRoot = await getOrCreateFolder("Cybernetics");
 const medical = await getOrCreateFolder("Medical", cyberRoot);
 const appendages = await getOrCreateFolder("Appendages & Bone", cyberRoot);
+const bioSystems = await getOrCreateFolder("Bio-Systems", cyberRoot);
 
 const loc = {};
 for (const n of ["Hand", "Finger"]) loc[`med:${n}`] = await getOrCreateFolder(n, medical);
 for (const n of ["Finger & Toe", "Hand", "Arm", "Leg & Foot", "Torso & Skeleton", "Head"])
   loc[`app:${n}`] = await getOrCreateFolder(n, appendages);
+for (const n of ["Eyes", "Head"]) loc[`bio:${n}`] = await getOrCreateFolder(n, bioSystems);
 
 // ── Item helper ────────────────────────────────────────────
 const cyber = (name, folderKey, cost, description, notes) => ({
@@ -119,6 +121,49 @@ const items = [
   cyber("Skull Case", "app:Head", 60000,
     "50-100% of the cranium is replaced with a synthetic one, usually to replace a shattered skull, shaped to resemble the original head as closely as possible. May be done for medical reasons or to provide a reinforced skull for combat or hazardous labor personnel. Original skin is put over the skull casing.",
     "Location: Head/Skull. S.D.C. 100, or 1D6+16 M.D.C. Weight ~3-5 lbs (1.35-2.25 kg).\nCost: 60,000 cr S.D.C. / 120,000 cr M.D.C. casing (most of the cost is the long and dangerous brain surgery)."),
+
+  // ═══ BIO-SYSTEM EYES ═════════════════════════════════════
+  cyber("Infrared/Ultra-V Eye (Bio-System)", "bio:Eyes", 70000,
+    "A natural but unusual looking eye — the pupil is noticeably larger than normal and the iris is an unusual violet or alizarin color. Enables sight into the infrared and ultraviolet spectrums: see in the dark equal to an infrared camera (range about half of normal day vision) and see IR/UV light invisible to humans. Color perception changes — sees blue, green and ultraviolet, so everything appears in purple-blues, deep greens, purple and violet, like wearing red or purple tinted sunglasses all the time. 20/20 vision.",
+    "Location: Eye. CANNOT see the invisible nor heat emanations — only red (infrared) and ultraviolet light.\nCost: 70,000 cr single / 125,000 pair. Half cost for a cybernetic version."),
+  cyber("\"Lifelike\" Simulated Eye (Bio-System)", "bio:Eyes", 20000,
+    "A natural, realistic eye that appears and functions exactly like the real thing, created in the laboratory with synthetic tissue and nano-technology. Choice of eye color. Perfect 20/20 vision.",
+    "Location: Eye. Cost: 20,000 cr per eye / 35,000 pair if installed at the same time. Half cost for a cybernetic version."),
+  cyber("Mood or Color-Changing Eyes (Bio-System)", "bio:Eyes", 24000,
+    "No special powers other than the eyes look natural and real, but can change 2-8 different colors to reflect the wearer's moods. 20/20 vision.",
+    "Location: Eyes (pair). Cost: 24,000 cr for a pair of 20/20 Bio-System eyes, plus 800 cr per each color it can change to. Half for a lifelike pair of cybernetic eyes."),
+  cyber("Nightvision Eyes (Bio-System)", "bio:Eyes", 32000,
+    "Perfect 20/20 daytime vision, plus a chip placed in or on the cornea gives the recipient keen nightvision. Not quite as good as mechanical passive nightvision, but close: see clearly at night up to 800 feet (244 m) — roughly equal to normal vision in a dimly lit room. Very popular among guards, police, detectives, thieves, spies, and people who work (or play) at night.",
+    "Location: Eye. Nightvision 800 ft (244 m). Cost: 32,000 cr per eye / 58,000 pair if installed simultaneously."),
+  cyber("Polarized Eye (Bio-System)", "bio:Eyes", 30000,
+    "Looks completely natural, but has light-adjusting polarized filters to reduce glare. Bright light and sunlight are filtered as if wearing the best polarized sunglasses available; can look directly into the sun without being blinded. Engages automatically as needed. Choice of eye color. Perfect 20/20 vision.",
+    "Location: Eye. Cost: 30,000 cr per eye / 53,000 pair if installed at the same time. Half cost for a cybernetic version."),
+  cyber("Underwater Eye (Bio-System)", "bio:Eyes", 35000,
+    "The cornea automatically distorts when submerged, compensating for the watery environment without goggles. Crystal-clear underwater vision in low light to depths of 600 feet (183 m). Contains a self-replicating oil released when water is murky or bright — haze filters that reduce glare and filter reflections and debris haze. The oil also releases above water in bright light, creating an instant filter/sunglasses effect (equal to a cheap pair of sunglasses). 20/20 vision. Choice of eye color.",
+    "Location: Eye. Underwater vision to 600 ft (183 m) depth. Cost: 35,000 cr single / 65,000 pair if purchased together. Half for a mechanical cybernetic version."),
+
+  // ═══ BIO-SYSTEMS FOR THE HEAD ════════════════════════════
+  cyber("Inner Ear (Bio-System)", "bio:Head", 20000,
+    "Completely rebuilds the inner ear and eardrum to create perfect human hearing. No augmentation.",
+    "Location: Ear. Cost: 20,000 cr per ear / 36,000 for the pair if done at the same time."),
+  cyber("Outer Ear (Bio-System)", "bio:Head", 2000,
+    "A cosmetic procedure that replaces a damaged or missing outer ear with a natural living ear. Looks and feels just like the genuine article; no scarring.",
+    "Location: Ear (outer). Cost: 1,500-2,000 cr for a replacement matching the original ear's skin color perfectly; 500 cr for a generic replacement that matches neither skin color nor shape."),
+  cyber("Nasal Passages (Bio-System)", "bio:Head", 5000,
+    "Restores or replaces damaged nasal passages with synthetic skin and olfactory sensors. Duplicates the natural human ability to smell at 75%.",
+    "Location: Nose (internal). Smell at 75%. Cost: 5,000 cr."),
+  cyber("Outer Nose (Bio-System)", "bio:Head", 2000,
+    "A cosmetic procedure that replaces a damaged or missing nose with natural looking living tissue built over a synthetic frame.",
+    "Location: Nose (outer). Cost: 2,000 cr to match the original nose (or a nose structure of choice) and skin color perfectly; 900 cr for a generic replacement that may be a little too big, small, or wide."),
+  cyber("Lips (Bio-System)", "bio:Head", 600,
+    "A cosmetic procedure that replaces damaged or missing lips with natural looking and feeling living tissue; good as new. Now give me a kiss.",
+    "Location: Mouth. Cost: 600 cr."),
+  cyber("Tongue (Bio-System)", "bio:Head", 14000,
+    "Replaces a damaged tongue with a synthetic one composed of living tissue, blood vessels, and taste buds/sensors. Duplicates the natural ability to taste at 63% and offers full speech articulation.",
+    "Location: Mouth. Taste at 63%; full speech. Cost: 14,000 cr."),
+  cyber("Larynx and Voice Box (Bio-System)", "bio:Head", 18000,
+    "Replaces the damaged organ with a synthetic but lifelike Bio-System that simulates human sound/voice. The voice can simulate the original exactly, as long as a quality recording is provided — or the patient may create a new voice by selecting the desired aspects and qualities, all programmed into the replacement unit.",
+    "Location: Throat. Cost: 18,000 cr."),
 
 ];
 
