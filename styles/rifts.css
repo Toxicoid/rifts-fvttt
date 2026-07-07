@@ -1979,3 +1979,12 @@
   position: relative;
   opacity: 0.85;
 }
+
+/* Combat/save bonus totals (stored + attribute-derived) */
+.rifts .bonus-total {
+  font-family: "Share Tech Mono", monospace;
+  font-size: 13px;
+  color: #e8751a;
+  white-space: nowrap;
+  margin: 0 2px;
+}

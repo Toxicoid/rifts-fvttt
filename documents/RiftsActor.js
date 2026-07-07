@@ -92,10 +92,8 @@ export class RiftsActor extends Actor {
     // ── M.E. Bonus ─────────────────────────────────────────
     // ME affects saves vs psionics and insanity
     const me = attrs.me.value;
-    if (me >= 16) {
-      saves.psionicBonus += me - 15;
-      saves.insanityBonus += Math.floor((me - 15) / 2);
-    }
+    saves.attrPsionic = me >= 16 ? me - 15 : 0;
+    saves.attrInsanity = me >= 16 ? Math.floor((me - 15) / 2) : 0;
 
     // ── M.A. Bonus ─────────────────────────────────────────
     // MA determines Trust/Intimidate percentage
@@ -103,29 +101,25 @@ export class RiftsActor extends Actor {
     attrs.ma.trustPercent = ma >= 16 ? 30 + ((ma - 16) * 5) : ma * 2;
 
     // ── P.S. Bonus ─────────────────────────────────────────
-    // PS 16+ adds to damage
+    // PS 16+ adds to damage. Stored in a SEPARATE derived field
+    // so editing the base bonus never compounds.
     const ps = attrs.ps.value;
-    if (ps >= 16) {
-      combat.damageBonus += ps - 15;
-    }
+    combat.attrDamage = ps >= 16 ? ps - 15 : 0;
 
     // ── P.P. Bonus ─────────────────────────────────────────
-    // PP 16+ adds to strike, parry, and dodge
+    // PP 16+ adds to strike, parry, and dodge (separate derived
+    // fields — the stored bonuses hold HtH/misc only).
     const pp = attrs.pp.value;
-    if (pp >= 16) {
-      const ppBonus = pp - 15;
-      combat.strikeBonus += ppBonus;
-      combat.parryBonus += ppBonus;
-      combat.dodgeBonus += ppBonus;
-    }
+    const ppBonus = pp >= 16 ? pp - 15 : 0;
+    combat.attrStrike = ppBonus;
+    combat.attrParry = ppBonus;
+    combat.attrDodge = ppBonus;
 
     // ── P.E. Bonus ─────────────────────────────────────────
     // PE affects saves vs poison/disease and coma/death
     const pe = attrs.pe.value;
-    if (pe >= 16) {
-      saves.poisonBonus += pe - 15;
-      saves.diseaseBonus += pe - 15;
-    }
+    saves.attrPoison = pe >= 16 ? pe - 15 : 0;
+    saves.attrDisease = pe >= 16 ? pe - 15 : 0;
     // Coma/Death % = PE x 2 + 10 (base Palladium formula)
     saves.coma = (pe * 2) + 10;
 
@@ -152,10 +146,17 @@ export class RiftsActor extends Actor {
   // Ensures combat values are sensible integers
   _prepareCombatData(attrs, combat) {
     combat.attacksPerMelee = Math.max(combat.attacksPerMelee, 1);
-    combat.strikeBonus = Math.round(combat.strikeBonus);
-    combat.parryBonus = Math.round(combat.parryBonus);
-    combat.dodgeBonus = Math.round(combat.dodgeBonus);
-    combat.damageBonus = Math.round(combat.damageBonus);
+    // Grand totals = stored (HtH/misc) + attribute-derived. These
+    // are what rolls and displays use; stored fields stay editable.
+    combat.strikeTotal = Math.round((combat.strikeBonus || 0) + (combat.attrStrike || 0));
+    combat.parryTotal = Math.round((combat.parryBonus || 0) + (combat.attrParry || 0));
+    combat.dodgeTotal = Math.round((combat.dodgeBonus || 0) + (combat.attrDodge || 0));
+    combat.damageTotal = Math.round((combat.damageBonus || 0) + (combat.attrDamage || 0));
+    const saves = this.system.saves;
+    saves.psionicTotal = (saves.psionicBonus || 0) + (saves.attrPsionic || 0);
+    saves.insanityTotal = (saves.insanityBonus || 0) + (saves.attrInsanity || 0);
+    saves.poisonTotal = (saves.poisonBonus || 0) + (saves.attrPoison || 0);
+    saves.diseaseTotal = (saves.diseaseBonus || 0) + (saves.attrDisease || 0);
   }
 
   // ── roll ──────────────────────────────────────────────────
@@ -184,7 +185,7 @@ export class RiftsActor extends Actor {
 
   // ── Weapon strike roll ─────────────────────────────────
   async rollWeaponStrike(weapon) {
-    const strikeBonus = this.system.combat.strikeBonus ?? 0;
+    const strikeBonus = this.system.combat.strikeTotal ?? this.system.combat.strikeBonus ?? 0;
     const weaponBonus = weapon.system.bonusToStrike ?? 0;
     const total = strikeBonus + weaponBonus;
 

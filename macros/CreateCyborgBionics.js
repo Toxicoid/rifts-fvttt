@@ -219,9 +219,24 @@ const items = [
     "Accuracy for determining direction of the scan: only 68% (roll percentile)."),
 
   // ═══ BIONIC WEAPONS & TOOLS (verified vs book text) ══════
-  bionicTool("Additional Hand and Arm (Bionic)", 250000,
-    "A pair of additional hands and arms attached to the reinforced rib cage just below the usual pair. The second set of limbs are a bit smaller and lighter than the normal full body replacements, but are still quite formidable additions.",
-    "Maximum P.S. and P.P. attributes: 20 (base is 10). M.D.C.: each hand 5, each arm 25.\nBonuses: a PAIR adds ONE attack per melee and +1 to strike and parry to the character's overall combat skills. The arm's individual attribute bonuses apply only to that arm, not the character's cumulative combat abilities. A SINGLE hand and arm adds only +1 to parry.\nCost: 250,000 cr for a pair; 130,000 cr for one."),
+  {
+    _destPack: "cyb",
+    name: "Additional Hand and Arm (Bionic)",
+    type: "armor",
+    img: "icons/commodities/tech/metal-panel.webp",
+    folder: bionicWeaponsFolder.id,
+    system: {
+      dcType: "MDC", ar: 0,
+      main: { value: 0, max: 0 }, helmet: { value: 0, max: 0 },
+      arms: { value: 25, max: 25 },
+      legs: { value: 0, max: 0 },
+      hands: { value: 5, max: 5 },
+      forearms: { value: 0, max: 0 }, feet: { value: 0, max: 0 },
+      mobility: "—", weight: "", cost: 250000, prowlPenalty: 0,
+      description: "A pair of additional hands and arms attached to the reinforced rib cage just below the usual pair. The second set of limbs are a bit smaller and lighter than the normal full body replacements, but are still quite formidable additions. Maximum P.S. and P.P. attributes: 20 (base is 10).",
+      notes: "M.D.C. per limb tracked above: each hand 5, each arm 25.\nBonuses: a PAIR adds ONE attack per melee and +1 to strike and parry — APPLY TO THE SHEET'S COMBAT STATS MANUALLY (A.P.M. +1, Strike +1, Parry +1). The arm's individual attribute bonuses apply only to that arm. A SINGLE hand and arm adds only +1 to parry.\nCost: 250,000 cr for a pair; 130,000 cr for one. This is ONE item representing the PAIR — do not add it twice. Each new hand/forearm has its own built-in weapon capacity (GM ruling on extra starting picks).",
+    },
+  },
   bionicTool("Legs for Leaping (Bionic)", 30000,
     "Bionic legs specifically designed for leaping and quick movement (dodging).",
     "Leap 15 ft (4.6 m) high and 30 ft (9.1 m) lengthwise; increase by 50% if combined with booster jets in the legs.\nBonus: +1 to dodge and +1 on initiative when attempting a dodge or leap of any kind.\nCost: 30,000 cr IN ADDITION to the usual leg costs."),

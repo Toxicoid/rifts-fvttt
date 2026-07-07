@@ -269,13 +269,15 @@
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.psionicBonus"
-                 value="{{system.saves.psionicBonus}}" />
+                 value="{{system.saves.psionicBonus}}"
+                 title="Misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.psionicTotal}}</span>
           <span class="save-hint">bonus</span>
           <button type="button"
                   class="save-roll roll-btn icon-btn"
                   data-save-label="vs. Psionics"
                   data-save-target="12"
-                  data-save-path="system.saves.psionicBonus"
+                  data-save-path="system.saves.psionicTotal"
                   title="Roll vs. Psionics">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -287,13 +289,15 @@
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.poisonBonus"
-                 value="{{system.saves.poisonBonus}}" />
+                 value="{{system.saves.poisonBonus}}"
+                 title="Misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.poisonTotal}}</span>
           <span class="save-hint">bonus</span>
           <button type="button"
                   class="save-roll roll-btn icon-btn"
                   data-save-label="vs. Poison (lethal)"
                   data-save-target="14"
-                  data-save-path="system.saves.poisonBonus"
+                  data-save-path="system.saves.poisonTotal"
                   title="Roll vs. Poison (lethal)">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -305,13 +309,15 @@
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.diseaseBonus"
-                 value="{{system.saves.diseaseBonus}}" />
+                 value="{{system.saves.diseaseBonus}}"
+                 title="Misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.diseaseTotal}}</span>
           <span class="save-hint">bonus</span>
           <button type="button"
                   class="save-roll roll-btn icon-btn"
                   data-save-label="vs. Disease"
                   data-save-target="14"
-                  data-save-path="system.saves.diseaseBonus"
+                  data-save-path="system.saves.diseaseTotal"
                   title="Roll vs. Disease">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -341,13 +347,15 @@
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.insanityBonus"
-                 value="{{system.saves.insanityBonus}}" />
+                 value="{{system.saves.insanityBonus}}"
+                 title="Misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.insanityTotal}}</span>
           <span class="save-hint">bonus</span>
           <button type="button"
                   class="save-roll roll-btn icon-btn"
                   data-save-label="vs. Insanity"
                   data-save-target="12"
-                  data-save-path="system.saves.insanityBonus"
+                  data-save-path="system.saves.insanityTotal"
                   title="Roll vs. Insanity">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -509,11 +517,13 @@
           <span class="bonus-name">Strike</span>
           <input type="number"
                  data-path-number="system.combat.strikeBonus"
-                 value="{{system.combat.strikeBonus}}" />
+                 value="{{system.combat.strikeBonus}}"
+                 title="HtH/misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.combat.strikeTotal}}</span>
           <button type="button"
                   class="combat-roll roll-btn"
                   data-roll="strike"
-                  data-bonus="{{system.combat.strikeBonus}}"
+                  data-bonus="{{system.combat.strikeTotal}}"
                   data-label="Strike">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -523,11 +533,13 @@
           <span class="bonus-name">Parry</span>
           <input type="number"
                  data-path-number="system.combat.parryBonus"
-                 value="{{system.combat.parryBonus}}" />
+                 value="{{system.combat.parryBonus}}"
+                 title="HtH/misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.combat.parryTotal}}</span>
           <button type="button"
                   class="combat-roll roll-btn"
                   data-roll="parry"
-                  data-bonus="{{system.combat.parryBonus}}"
+                  data-bonus="{{system.combat.parryTotal}}"
                   data-label="Parry">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -537,11 +549,13 @@
           <span class="bonus-name">Dodge</span>
           <input type="number"
                  data-path-number="system.combat.dodgeBonus"
-                 value="{{system.combat.dodgeBonus}}" />
+                 value="{{system.combat.dodgeBonus}}"
+                 title="HtH/misc bonus only — attribute bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. attribute bonus">= {{system.combat.dodgeTotal}}</span>
           <button type="button"
                   class="combat-roll roll-btn"
                   data-roll="dodge"
-                  data-bonus="{{system.combat.dodgeBonus}}"
+                  data-bonus="{{system.combat.dodgeTotal}}"
                   data-label="Dodge">
             <i class="fas fa-dice-d20"></i>
           </button>
@@ -604,7 +618,8 @@
           <input type="number"
                  data-path-number="system.combat.damageBonus"
                  value="{{system.combat.damageBonus}}"
-                 title="Displayed value INCLUDES the automatic P.S. bonus (P.S. 16+). When editing, enter only HtH/misc bonuses — P.S. is re-added on top." />
+                 title="HtH/misc bonus only — P.S. bonus is added automatically" />
+          <span class="bonus-total" title="Total incl. P.S. bonus">= {{system.combat.damageTotal}}</span>
         </div>
         <div class="damage-field">
           <label>Punch Damage</label>
