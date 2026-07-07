@@ -45,6 +45,7 @@ async function getOrCreateFolder(pack, name, parent = null) {
 // in the Cybernetics & Bionics compendium.
 const armorFolder = await getOrCreateFolder(armoryPack, "Cyborg Armor");
 const bionicsFolder = await getOrCreateFolder(cybPack, "Bionics");
+const bionicWeaponsFolder = await getOrCreateFolder(cybPack, "Bionic Weapons & Tools");
 
 // ── Helpers ────────────────────────────────────────────────
 const cyborgArmor = (name, main, arm, leg, head, cost, prowl, notes) => ({
@@ -64,6 +65,28 @@ const cyborgArmor = (name, main, arm, leg, head, cost, prowl, notes) => ({
     description: "External M.D.C. plating designed to snap onto a full conversion cyborg's arms, legs and artificial body. Cheaper than environmental armor (no environmental systems) but superior M.D.C.",
     notes,
   },
+});
+
+const bionicWeapon = (name, cost, damage, range, payload, description, special, notes = "") => ({
+  _destPack: "cyb",
+  name,
+  type: "weapon",
+  img: "icons/weapons/guns/gun-blaster-orange.webp",
+  folder: bionicWeaponsFolder.id,
+  system: {
+    equipped: false, description, damage, damageType: "MDC", range,
+    rateOfFire: "Each blast = 1 melee attack/action", payload, weight: "",
+    cost, bonusToStrike: 0, special, notes,
+  },
+});
+
+const bionicTool = (name, cost, description, notes = "") => ({
+  _destPack: "cyb",
+  name,
+  type: "equipment",
+  img: "icons/svg/upgrade.svg",
+  folder: bionicWeaponsFolder.id,
+  system: { quantity: 1, weight: "", cost, description, notes },
 });
 
 const bionic = (name, cost, description, notes = "") => ({
@@ -194,6 +217,29 @@ const items = [
   bionic("Radar Sensor", 2000,
     "A warning is transmitted whenever the sensor detects it is being scanned by radar.",
     "Accuracy for determining direction of the scan: only 68% (roll percentile)."),
+
+  // ═══ BIONIC WEAPONS & TOOLS (verified vs book text) ══════
+  bionicTool("Additional Hand and Arm (Bionic)", 250000,
+    "A pair of additional hands and arms attached to the reinforced rib cage just below the usual pair. The second set of limbs are a bit smaller and lighter than the normal full body replacements, but are still quite formidable additions.",
+    "Maximum P.S. and P.P. attributes: 20 (base is 10). M.D.C.: each hand 5, each arm 25.\nBonuses: a PAIR adds ONE attack per melee and +1 to strike and parry to the character's overall combat skills. The arm's individual attribute bonuses apply only to that arm, not the character's cumulative combat abilities. A SINGLE hand and arm adds only +1 to parry.\nCost: 250,000 cr for a pair; 130,000 cr for one."),
+  bionicTool("Legs for Leaping (Bionic)", 30000,
+    "Bionic legs specifically designed for leaping and quick movement (dodging).",
+    "Leap 15 ft (4.6 m) high and 30 ft (9.1 m) lengthwise; increase by 50% if combined with booster jets in the legs.\nBonus: +1 to dodge and +1 on initiative when attempting a dodge or leap of any kind.\nCost: 30,000 cr IN ADDITION to the usual leg costs."),
+  bionicTool("Energy-Clip Hand or Arm Port", 3000,
+    "A special connector unit built into the hand or arm, enabling the 'Borg to slap in additional E-Clips to power his bionic energy weapons. A SEPARATE port is needed for each individual energy weapon.",
+    "E-Clips: a typical E-Clip costs 5,000 cr new and fully charged; the energy battery can be recharged hundreds of times at an average cost of 1,000-1,500 cr.\nCost: 3,000 cr per E-Clip port. (Same device as the E-Clip Port in the Bionics folder — this entry adds the per-weapon rule and E-Clip pricing.)"),
+  bionicWeapon("Forearm Light Laser Blaster", 25000, "2d6", "2,000 ft (609 m)", 20,
+    "A light laser blaster built into the forearm.",
+    "Payload: 20 blasts per E-Clip. An E-Clip port is part of the basic system. UNLIMITED payload if tied to a full conversion cyborg's power supply.",
+    "Weapon cost: 25,000 cr."),
+  bionicWeapon("Forearm Medium Laser Blaster", 32000, "3d6", "2,000 ft (609 m)", 15,
+    "A medium laser blaster built into the forearm.",
+    "Payload: 15 blasts per E-Clip. An E-Clip port is part of the basic system. UNLIMITED payload if tied to a full conversion cyborg's power supply.",
+    "Weapon cost: 32,000 cr."),
+  bionicWeapon("Forearm Heavy Laser Blaster", 40000, "4d6", "1,600 ft (488 m)", 12,
+    "A heavy laser blaster built into the forearm.",
+    "Payload: 12 blasts per E-Clip. An E-Clip port is part of the basic system, as backup if nothing else. UNLIMITED payload if tied to a full conversion cyborg's power supply.",
+    "Weapon cost: 40,000 cr."),
 
 ];
 
