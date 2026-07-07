@@ -8,8 +8,8 @@
 // the correct folders.
 // ============================================================
 
-const PACK_NAME = "rifts-armory";
-const PACK_LABEL = "Rifts Armory";
+const PACK_NAME = "rifts-cybernetics";
+const PACK_LABEL = "Rifts Cybernetics & Bionics";
 
 let pack = game.packs.get(`world.${PACK_NAME}`);
 if (!pack) {
@@ -41,21 +41,21 @@ async function getOrCreateFolder(name, parent = null) {
   return f;
 }
 
-const cyberRoot = await getOrCreateFolder("Cybernetics");
-const medical = await getOrCreateFolder("Medical", cyberRoot);
-const appendages = await getOrCreateFolder("Appendages & Bone", cyberRoot);
-const bioSystems = await getOrCreateFolder("Bio-Systems", cyberRoot);
+// Dedicated pack — category folders live at the root.
+const medical = await getOrCreateFolder("Medical");
+const appendages = await getOrCreateFolder("Appendages & Bone");
+const bioSystems = await getOrCreateFolder("Bio-Systems");
 
 const loc = {};
 for (const n of ["Hand", "Finger"]) loc[`med:${n}`] = await getOrCreateFolder(n, medical);
 for (const n of ["Finger & Toe", "Hand", "Arm", "Leg & Foot", "Torso & Skeleton", "Head"])
   loc[`app:${n}`] = await getOrCreateFolder(n, appendages);
 for (const n of ["Eyes", "Head", "Internal Organs"]) loc[`bio:${n}`] = await getOrCreateFolder(n, bioSystems);
-const lungImplants = await getOrCreateFolder("Lung Implants", cyberRoot);
+const lungImplants = await getOrCreateFolder("Lung Implants");
 loc["lung"] = lungImplants;
-const blackMarket = await getOrCreateFolder("Black Market", cyberRoot);
+const blackMarket = await getOrCreateFolder("Black Market");
 loc["bm"] = blackMarket;
-const commercial = await getOrCreateFolder("Commercial", cyberRoot);
+const commercial = await getOrCreateFolder("Commercial");
 for (const n of ["Eyes", "Sensors & Implants", "Audio & Ear", "Cosmetic", "Head Shaping & Body Mods"])
   loc[`com:${n}`] = await getOrCreateFolder(n, commercial);
 

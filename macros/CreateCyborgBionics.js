@@ -6,28 +6,29 @@
 // Safe to re-run: skips items that already exist by name.
 // ============================================================
 
-const PACK_NAME = "rifts-armory";
-const PACK_LABEL = "Rifts Armory";
+const ARMORY_NAME = "rifts-armory";
+const ARMORY_LABEL = "Rifts Armory";
+const CYB_NAME = "rifts-cybernetics";
+const CYB_LABEL = "Rifts Cybernetics & Bionics";
 
-// ── Find or create the compendium ─────────────────────────
-let pack = game.packs.get(`world.${PACK_NAME}`);
-if (!pack) {
-  pack = await foundry.documents.collections.CompendiumCollection.createCompendium({
-    label: PACK_LABEL,
-    name: PACK_NAME,
-    type: "Item",
-  }).catch(async () => {
-    return await CompendiumCollection.createCompendium({
-      label: PACK_LABEL,
-      name: PACK_NAME,
-      type: "Item",
+async function getPack(name, label) {
+  let pack = game.packs.get(`world.${name}`);
+  if (!pack) {
+    pack = await foundry.documents.collections.CompendiumCollection.createCompendium({
+      label, name, type: "Item",
+    }).catch(async () => {
+      return await CompendiumCollection.createCompendium({ label, name, type: "Item" });
     });
-  });
-  ui.notifications.info(`Created compendium: ${PACK_LABEL}`);
+    ui.notifications.info(`Created compendium: ${label}`);
+  }
+  return pack;
 }
 
-// ── Compendium folders ─────────────────────────────────────
-async function getOrCreateFolder(name, parent = null) {
+const armoryPack = await getPack(ARMORY_NAME, ARMORY_LABEL);
+const cybPack = await getPack(CYB_NAME, CYB_LABEL);
+
+// ── Folder helper (per pack) ───────────────────────────────
+async function getOrCreateFolder(pack, name, parent = null) {
   let f = pack.folders.find(
     (x) => x.name === name && (x.folder?.id ?? null) === (parent?.id ?? null)
   );
@@ -40,12 +41,14 @@ async function getOrCreateFolder(name, parent = null) {
   return f;
 }
 
-const cyborgFolder = await getOrCreateFolder("Cyborg");
-const armorFolder = await getOrCreateFolder("Armor", cyborgFolder);
-const bionicsFolder = await getOrCreateFolder("Bionics", cyborgFolder);
+// Cyborg external armor stays in the Armory; bionic systems live
+// in the Cybernetics & Bionics compendium.
+const armorFolder = await getOrCreateFolder(armoryPack, "Cyborg Armor");
+const bionicsFolder = await getOrCreateFolder(cybPack, "Bionics");
 
 // ── Helpers ────────────────────────────────────────────────
 const cyborgArmor = (name, main, arm, leg, head, cost, prowl, notes) => ({
+  _destPack: "armory",
   name,
   type: "armor",
   img: "icons/svg/shield.svg",
@@ -64,6 +67,7 @@ const cyborgArmor = (name, main, arm, leg, head, cost, prowl, notes) => ({
 });
 
 const bionic = (name, cost, description, notes = "") => ({
+  _destPack: "cyb",
   name,
   type: "equipment",
   img: "icons/svg/upgrade.svg",
@@ -193,27 +197,30 @@ const items = [
 
 ];
 
-// ── Create items; move existing ones into their folders ───
-const index = await pack.getIndex();
-const byName = new Map(index.map((e) => [e.name, e]));
+// ── Create items in their destination packs ───────────────
+const packs = { armory: armoryPack, cyb: cybPack };
+const indexes = {
+  armory: new Map((await armoryPack.getIndex()).map((e) => [e.name, e])),
+  cyb: new Map((await cybPack.getIndex()).map((e) => [e.name, e])),
+};
 
 let created = 0;
 let moved = 0;
 for (const itemData of items) {
-  const entry = byName.get(itemData.name);
+  const dest = itemData._destPack;
+  const pack = packs[dest];
+  const entry = indexes[dest].get(itemData.name);
+  const { _destPack, ...docData } = itemData;
   if (entry) {
-    // Already exists — make sure it lives in the right folder.
-    if ((entry.folder ?? null) !== itemData.folder) {
+    if ((entry.folder ?? null) !== docData.folder) {
       const doc = await pack.getDocument(entry._id);
-      await doc.update({ folder: itemData.folder });
+      await doc.update({ folder: docData.folder });
       moved++;
     }
     continue;
   }
-  await Item.create(itemData, { pack: `world.${PACK_NAME}` });
+  await Item.create(docData, { pack: pack.collection });
   created++;
 }
 
-ui.notifications.info(
-  `${PACK_LABEL}: ${created} cyborg item(s) added, ${moved} moved into folders, ${items.length - created - moved} already in place.`
-);
+ui.notifications.info(`Cyborg gear: ${created} item(s) added, ${moved} moved into folders, ${items.length - created - moved} already in place (armor -> ${ARMORY_LABEL}, bionics -> ${CYB_LABEL}).`);
