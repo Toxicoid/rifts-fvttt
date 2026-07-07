@@ -60,6 +60,18 @@ for (const n of ["Eyes", "Sensors & Implants", "Audio & Ear", "Cosmetic", "Head 
   loc[`com:${n}`] = await getOrCreateFolder(n, commercial);
 
 // ── Item helper ────────────────────────────────────────────
+const bmWeapon = (name, cost, damage, damageType, range, description, special, notes) => ({
+  name,
+  type: "weapon",
+  img: "icons/skills/melee/strike-dagger-arcane-pink.webp",
+  folder: loc["bm"].id,
+  system: {
+    equipped: false, description, damage, damageType, range,
+    rateOfFire: "1", payload: 0, weight: "", cost, bonusToStrike: 0,
+    special, notes,
+  },
+});
+
 const cyber = (name, folderKey, cost, description, notes) => ({
   name,
   type: "equipment",
