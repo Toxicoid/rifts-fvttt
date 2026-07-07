@@ -44,6 +44,8 @@
         "dodgeBonus": 0,
         "rollBonus": 0,
         "damageBonus": 0,
+        "perceptionBonus": 0,
+        "perceptionBonus": 0,
         "criticalOn": 20
       },
 

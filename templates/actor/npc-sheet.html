@@ -81,6 +81,13 @@
       </div>
     </div>
     <div class="npc-stat">
+      <label>Percep.</label>
+      <div class="npc-roll-pair">
+        <input type="number" data-path-number="system.combat.perceptionBonus" value="{{system.combat.perceptionBonus}}" />
+        <button type="button" class="combat-roll icon-btn" data-roll="perception" data-label="Perception" data-bonus="{{system.combat.perceptionBonus}}" title="Roll Perception"><i class="fas fa-eye"></i></button>
+      </div>
+    </div>
+    <div class="npc-stat">
       <label>Strike</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.strikeBonus" value="{{system.combat.strikeBonus}}" />

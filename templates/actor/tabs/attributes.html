@@ -492,6 +492,20 @@
         </div>
 
         <div class="combat-bonus-row">
+          <span class="bonus-name">Perception</span>
+          <input type="number"
+                 data-path-number="system.combat.perceptionBonus"
+                 value="{{system.combat.perceptionBonus}}" />
+          <button type="button"
+                  class="combat-roll roll-btn"
+                  data-roll="perception"
+                  data-bonus="{{system.combat.perceptionBonus}}"
+                  data-label="Perception">
+            <i class="fas fa-eye"></i>
+          </button>
+        </div>
+
+        <div class="combat-bonus-row">
           <span class="bonus-name">Strike</span>
           <input type="number"
                  data-path-number="system.combat.strikeBonus"
@@ -589,7 +603,8 @@
           <label>Damage Bonus</label>
           <input type="number"
                  data-path-number="system.combat.damageBonus"
-                 value="{{system.combat.damageBonus}}" />
+                 value="{{system.combat.damageBonus}}"
+                 title="Displayed value INCLUDES the automatic P.S. bonus (P.S. 16+). When editing, enter only HtH/misc bonuses — P.S. is re-added on top." />
         </div>
         <div class="damage-field">
           <label>Punch Damage</label>

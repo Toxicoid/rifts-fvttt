@@ -174,6 +174,7 @@ await actor.update({
   "system.health.sdc.max": (sys.health.sdc.max ?? 0) + sdcBonus,
   "system.combat.attacksPerMelee": (sys.combat.attacksPerMelee ?? 2) + 2, // HtH training: +2 over base
   "system.saves.diseaseBonus": (sys.saves?.diseaseBonus ?? 0) + 2,      // +2 vs disease (fatigue: see card)
+  "system.combat.perceptionBonus": (sys.combat.perceptionBonus ?? 0) + 2, // +2 on Perception Rolls
   "system.money.credits": credits,
   "system.money.blackMarket": blackMarket,
 });
@@ -334,7 +335,7 @@ const occAbilities = [
     type: "occ_ability",
     system: {
       level: 1,
-      description: `Applied to sheet: +1 I.Q., +2 P.S., +1 P.P., +${sdcBonus} S.D.C. (2D6+6 rolled), +2 save vs disease.\nApply manually when relevant: +2 on Perception Rolls, +2 to save vs fatigue.\n\nLIMITS: None of the special Operator abilities apply to bionics or cybernetics (can't do it). -20% skill penalty when working on robots and power armor (unless the character also has the Robot Mechanics and Electronics skills).\nCybernetics: None to start; most Operators prefer to use machines, not become one.`,
+      description: `Applied to sheet: +1 I.Q., +2 P.S., +1 P.P., +${sdcBonus} S.D.C. (2D6+6 rolled), +2 save vs disease, +2 on Perception Rolls.\nApply manually when relevant: +2 to save vs fatigue.\n\nLIMITS: None of the special Operator abilities apply to bionics or cybernetics (can't do it). -20% skill penalty when working on robots and power armor (unless the character also has the Robot Mechanics and Electronics skills).\nCybernetics: None to start; most Operators prefer to use machines, not become one.`,
     },
   },
   {
