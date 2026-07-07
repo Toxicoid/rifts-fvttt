@@ -17,6 +17,7 @@ const OCC_MACROS = [
   { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",      img: "icons/svg/target.svg",      book: "Rifts Mercenaries" },
   { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/svg/tower.svg", book: "Rifts Mercenaries" },
   { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/svg/beast.svg",       book: "D-Bees of North America" },
+  { name: "Race Setup: Human",          file: "HumanRace.js",      img: "icons/svg/mystery-man.svg", book: "Rifts Ultimate Edition" },
 ];
 
 // ── Find or create the compendium ─────────────────────────
