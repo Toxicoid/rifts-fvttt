@@ -11,13 +11,17 @@ const PACK_LABEL = "Rifts O.C.C.s";
 
 // OCC setup macros shipped with the system, organized by source book
 const OCC_MACROS = [
-  { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/logo-scifi-blank.png",      book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/logo-scifi-blank.png", book: "Rifts Ultimate Edition" },  
   { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",   img: "icons/logo-scifi-blank.png", book: "Rifts Ultimate Edition" },
-  { name: "OCC Setup: Operator",        file: "Operator.js",       img: "icons/logo-scifi-blank.png",       book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Operator",        file: "Operator.js",       img: "icons/logo-scifi-blank.png", book: "Rifts Ultimate Edition" },
   { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",      img: "icons/logo-scifi-blank.png",      book: "Rifts Mercenaries" },
   { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/logo-scifi-blank.png", book: "Rifts Mercenaries" },
   { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/logo-scifi-blank.png",       book: "D-Bees of North America" },
   { name: "Race Setup: Human",          file: "HumanRace.js",      img: "icons/logo-scifi-blank.png", book: "Rifts Ultimate Edition" },
+  { name: "Chassis: Super Slinger (CSLNGR Mk II)", file: "SuperSlinger.js", img: "icons/logo-scifi-blank.png", book: "Rifts New West" },
+  { name: "Chassis: Gringo (CSLNGR Mk III)", file: "Gringo.js", img: "icons/logo-scifi-blank.png", book: "Rifts New West" },
+  { name: "Chassis: The Kid (CSLNGR Mk I)", file: "KidCyborg.js", img: "icons/logo-scifi-blank.png", book: "Rifts New West" },
+  { name: "OCC Setup: Saloon Girl", file: "SaloonGirl.js", img: "icons/logo-scifi-blank.png", book: "Rifts New West" },
 ];
 
 // ── Find or create the compendium ─────────────────────────
