@@ -131,8 +131,9 @@ export class RiftsActor extends Actor {
     // ── Spd ────────────────────────────────────────────────
     // Speed in yards per melee (approx), and mph
     const spd = attrs.spd.value;
-    attrs.spd.yardsPerMelee = spd * 10;
-    attrs.spd.mph = Math.round(spd * 0.68);
+    attrs.spd.yardsPerMelee = spd * 5;            // Spd x 5 = yards per melee (15 s)
+    attrs.spd.feetPerMelee = spd * 15;            // x 15 = feet per melee
+    attrs.spd.mph = Math.round(spd * 0.682);
   }
 
   // ── _prepareHealthData ─────────────────────────────────────
@@ -152,6 +153,11 @@ export class RiftsActor extends Actor {
     combat.parryTotal = Math.round((combat.parryBonus || 0) + (combat.attrParry || 0));
     combat.dodgeTotal = Math.round((combat.dodgeBonus || 0) + (combat.attrDodge || 0));
     combat.damageTotal = Math.round((combat.damageBonus || 0) + (combat.attrDamage || 0));
+    // Movement per action: (Spd x 15 ft per melee) / attacks per melee
+    const spdVal = attrs.spd?.value ?? 0;
+    const apm = Math.max(combat.attacksPerMelee || 1, 1);
+    combat.feetPerAction = Math.round((spdVal * 15) / apm);
+    combat.yardsPerAction = Math.round((spdVal * 5) / apm);
     const saves = this.system.saves;
     saves.psionicTotal = (saves.psionicBonus || 0) + (saves.attrPsionic || 0);
     saves.insanityTotal = (saves.insanityBonus || 0) + (saves.attrInsanity || 0);

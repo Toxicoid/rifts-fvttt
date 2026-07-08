@@ -1998,3 +1998,26 @@
   color: var(--rifts-text-bright);
   text-shadow: 0 0 8px var(--rifts-orange);
 }
+
+/* Auto-calculated movement panel (Physical Capabilities) */
+.rifts .movement-auto {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  margin-bottom: 8px;
+  background: rgba(232, 117, 26, 0.08);
+  border-left: 3px solid #e8751a;
+  border-radius: 3px;
+}
+.rifts .movement-auto .movement-main {
+  color: var(--rifts-text-bright);
+  font-size: 14px;
+}
+.rifts .movement-auto .movement-main i { color: #e8751a; margin-right: 4px; }
+.rifts .movement-auto .movement-detail {
+  font-size: 12px;
+  opacity: 0.85;
+  font-family: "Share Tech Mono", monospace;
+}

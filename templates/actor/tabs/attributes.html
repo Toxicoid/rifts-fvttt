@@ -530,6 +530,13 @@
         <i class="fas fa-running"></i> Physical Capabilities
       </h2>
 
+      <div class="movement-auto" title="Auto-calculated: Spd x 15 ft per melee round (15 s); per action = divided by Attacks per Melee">
+        <span class="movement-main"><i class="fas fa-shoe-prints"></i>
+          <strong>{{system.combat.feetPerAction}} ft per action</strong>
+        </span>
+        <span class="movement-detail">{{system.attributes.spd.feetPerMelee}} ft / melee ({{system.attributes.spd.yardsPerMelee}} yds) &middot; {{system.attributes.spd.mph}} mph &middot; A.P.M. {{system.combat.attacksPerMelee}}</span>
+      </div>
+
       <div class="damage-grid">
         <div class="damage-field">
           <label>Run Speed (mph)</label>
