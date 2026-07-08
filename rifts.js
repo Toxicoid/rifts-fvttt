@@ -28,6 +28,20 @@ Hooks.once("init", function () {
     decimals: 0,
   };
 
+  // ── Palladium per-round initiative ──────────────────────────
+  // Advancing to a new round clears everyone's initiative so
+  // players can roll fresh from their sheets. Forward only —
+  // rewinding a round does not wipe rolls.
+  Hooks.on("combatRound", async (combat, updateData, updateOptions) => {
+    if (!game.user.isGM) return;
+    if (updateOptions?.direction !== 1) return;
+    await combat.resetAll();
+    ChatMessage.create({
+      speaker: { alias: "Combat" },
+      content: `<h3>⚔️ Round ${combat.round}</h3><p>Initiative reset — roll from your sheets!</p>`,
+    });
+  });
+
   // ── Register Actor Sheet ───────────────────────────────────
   Actors.unregisterSheet("core", ActorSheet);
   Actors.registerSheet("rifts", RiftsActorSheet, {

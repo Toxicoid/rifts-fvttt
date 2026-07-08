@@ -336,6 +336,21 @@ export class RiftsActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const bonus = parseInt(element.dataset.bonus) || 0;
     const label = element.dataset.label ?? element.dataset.roll;
+
+    // Initiative: if this actor is in the active encounter, roll INTO
+    // the Combat Tracker (uses CONFIG.Combat.initiative formula).
+    if (element.dataset.roll === "initiative" && game.combat) {
+      const combatant = game.combat.combatants.find((c) =>
+        this.actor.isToken
+          ? c.tokenId === this.actor.token?.id
+          : c.actor?.id === this.actor.id
+      );
+      if (combatant) {
+        await game.combat.rollInitiative([combatant.id]);
+        return;
+      }
+    }
+
     await this.actor.rollD20(label, bonus);
   }
 
