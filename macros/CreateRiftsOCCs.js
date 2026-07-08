@@ -11,13 +11,13 @@ const PACK_LABEL = "Rifts O.C.C.s";
 
 // OCC setup macros shipped with the system, organized by source book
 const OCC_MACROS = [
-  { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/svg/combat.svg",      book: "Rifts Ultimate Edition" },
-  { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",   img: "icons/svg/mystery-man.svg", book: "Rifts Ultimate Edition" },
-  { name: "OCC Setup: Operator",        file: "Operator.js",       img: "icons/svg/anvil.svg",       book: "Rifts Ultimate Edition" },
-  { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",      img: "icons/svg/target.svg",      book: "Rifts Mercenaries" },
-  { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/svg/tower.svg", book: "Rifts Mercenaries" },
-  { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/svg/beast.svg",       book: "D-Bees of North America" },
-  { name: "Race Setup: Human",          file: "HumanRace.js",      img: "icons/svg/mystery-man.svg", book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Coalition Grunt", file: "CoalitionGrunt.js", img: "icons/logo-scifi-blank.png",      book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Combat Cyborg",   file: "CombatCyborg.js",   img: "icons/logo-scifi-blank.png", book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Operator",        file: "Operator.js",       img: "icons/logo-scifi-blank.png",       book: "Rifts Ultimate Edition" },
+  { name: "OCC Setup: Assassin (Mercs)", file: "Assassin.js",      img: "icons/logo-scifi-blank.png",      book: "Rifts Mercenaries" },
+  { name: "OCC Setup: Special Forces (Mercs)", file: "SpecialForces.js", img: "icons/logo-scifi-blank.png", book: "Rifts Mercenaries" },
+  { name: "RCC Setup: Grackle Tooth",   file: "GrackleTooth.js",   img: "icons/logo-scifi-blank.png",       book: "D-Bees of North America" },
+  { name: "Race Setup: Human",          file: "HumanRace.js",      img: "icons/logo-scifi-blank.png", book: "Rifts Ultimate Edition" },
 ];
 
 // ── Find or create the compendium ─────────────────────────

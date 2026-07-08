@@ -198,6 +198,7 @@
     "types": ["skill", "weapon", "armor", "equipment", "occ_ability"],
     "skill": {
       "category": "",
+      "description": "",
       "isSecondary": false,
       "basePercent": 0,
       "bonusPercent": 0,
