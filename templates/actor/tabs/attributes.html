@@ -246,25 +246,18 @@
       <div class="saves-grid">
 
         <div class="save-row">
-          <span class="save-label">vs. Magic</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Magic" data-save-target="12" data-save-path="system.saves.magicBonus" title="Click to roll vs. Magic">vs. Magic</span>
           <span class="save-target">12+</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.magicBonus"
                  value="{{system.saves.magicBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Magic"
-                  data-save-target="12"
-                  data-save-path="system.saves.magicBonus"
-                  title="Roll vs. Magic">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Psionics</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Psionics" data-save-target="12" data-save-path="system.saves.psionicTotal" title="Click to roll vs. Psionics">vs. Psionics</span>
           <span class="save-target">12+</span>
           <input class="save-bonus"
                  type="number"
@@ -273,18 +266,11 @@
                  title="Misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.psionicTotal}}</span>
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Psionics"
-                  data-save-target="12"
-                  data-save-path="system.saves.psionicTotal"
-                  title="Roll vs. Psionics">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Poison (lethal)</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Poison (lethal)" data-save-target="14" data-save-path="system.saves.poisonTotal" title="Click to roll vs. Poison (lethal)">vs. Poison (lethal)</span>
           <span class="save-target">14+</span>
           <input class="save-bonus"
                  type="number"
@@ -293,18 +279,11 @@
                  title="Misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.poisonTotal}}</span>
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Poison (lethal)"
-                  data-save-target="14"
-                  data-save-path="system.saves.poisonTotal"
-                  title="Roll vs. Poison (lethal)">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Disease</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Disease" data-save-target="14" data-save-path="system.saves.diseaseTotal" title="Click to roll vs. Disease">vs. Disease</span>
           <span class="save-target">14+</span>
           <input class="save-bonus"
                  type="number"
@@ -313,36 +292,22 @@
                  title="Misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.diseaseTotal}}</span>
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Disease"
-                  data-save-target="14"
-                  data-save-path="system.saves.diseaseTotal"
-                  title="Roll vs. Disease">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Horror Factor</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Horror Factor" data-save-target="0" data-save-path="system.saves.horrorBonus" title="Click to roll vs. Horror Factor">vs. Horror Factor</span>
           <span class="save-target">Varies</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.horrorBonus"
                  value="{{system.saves.horrorBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Horror Factor"
-                  data-save-target="0"
-                  data-save-path="system.saves.horrorBonus"
-                  title="Roll vs. Horror Factor">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Insanity</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Insanity" data-save-target="12" data-save-path="system.saves.insanityTotal" title="Click to roll vs. Insanity">vs. Insanity</span>
           <span class="save-target">12+</span>
           <input class="save-bonus"
                  type="number"
@@ -351,104 +316,62 @@
                  title="Misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.saves.insanityTotal}}</span>
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Insanity"
-                  data-save-target="12"
-                  data-save-path="system.saves.insanityTotal"
-                  title="Roll vs. Insanity">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Death</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Death" data-save-target="16" data-save-path="system.saves.deathBonus" title="Click to roll vs. Death">vs. Death</span>
           <span class="save-target">16+</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.deathBonus"
                  value="{{system.saves.deathBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Death"
-                  data-save-target="16"
-                  data-save-path="system.saves.deathBonus"
-                  title="Roll vs. Death">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Ritual Magic</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Ritual Magic" data-save-target="16" data-save-path="system.saves.ritualMagicBonus" title="Click to roll vs. Ritual Magic">vs. Ritual Magic</span>
           <span class="save-target">16+</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.ritualMagicBonus"
                  value="{{system.saves.ritualMagicBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Ritual Magic"
-                  data-save-target="16"
-                  data-save-path="system.saves.ritualMagicBonus"
-                  title="Roll vs. Ritual Magic">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Harmful Drugs</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Harmful Drugs" data-save-target="15" data-save-path="system.saves.drugBonus" title="Click to roll vs. Harmful Drugs">vs. Harmful Drugs</span>
           <span class="save-target">15+</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.drugBonus"
                  value="{{system.saves.drugBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Harmful Drugs"
-                  data-save-target="15"
-                  data-save-path="system.saves.drugBonus"
-                  title="Roll vs. Harmful Drugs">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Possession</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Possession" data-save-target="15" data-save-path="system.saves.possessionBonus" title="Click to roll vs. Possession">vs. Possession</span>
           <span class="save-target">15+</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.possessionBonus"
                  value="{{system.saves.possessionBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Possession"
-                  data-save-target="15"
-                  data-save-path="system.saves.possessionBonus"
-                  title="Roll vs. Possession">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row">
-          <span class="save-label">vs. Pain</span>
+          <span class="save-label save-roll rollable" data-save-label="vs. Pain" data-save-target="16" data-save-path="system.saves.painBonus" title="Click to roll vs. Pain">vs. Pain</span>
           <span class="save-target">16+</span>
           <input class="save-bonus"
                  type="number"
                  data-path-number="system.saves.painBonus"
                  value="{{system.saves.painBonus}}" />
           <span class="save-hint">bonus</span>
-          <button type="button"
-                  class="save-roll roll-btn icon-btn"
-                  data-save-label="vs. Pain"
-                  data-save-target="16"
-                  data-save-path="system.saves.painBonus"
-                  title="Roll vs. Pain">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="save-row coma-row">
@@ -486,121 +409,73 @@
       <div class="combat-bonuses">
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Initiative</span>
+          <span class="bonus-name combat-roll rollable" data-roll="initiative" data-bonus="{{system.combat.initiativeBonus}}" data-label="Initiative" title="Click to roll Initiative">Initiative</span>
           <input type="number"
                  data-path-number="system.combat.initiativeBonus"
                  value="{{system.combat.initiativeBonus}}" />
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="initiative"
-                  data-bonus="{{system.combat.initiativeBonus}}"
-                  data-label="Initiative">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Perception</span>
+          <span class="bonus-name combat-roll rollable" data-roll="perception" data-bonus="{{system.combat.perceptionBonus}}" data-label="Perception" title="Click to roll Perception">Perception</span>
           <input type="number"
                  data-path-number="system.combat.perceptionBonus"
                  value="{{system.combat.perceptionBonus}}" />
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="perception"
-                  data-bonus="{{system.combat.perceptionBonus}}"
-                  data-label="Perception">
-            <i class="fas fa-eye"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Strike</span>
+          <span class="bonus-name combat-roll rollable" data-roll="strike" data-bonus="{{system.combat.strikeTotal}}" data-label="Strike" title="Click to roll Strike">Strike</span>
           <input type="number"
                  data-path-number="system.combat.strikeBonus"
                  value="{{system.combat.strikeBonus}}"
                  title="HtH/misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.combat.strikeTotal}}</span>
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="strike"
-                  data-bonus="{{system.combat.strikeTotal}}"
-                  data-label="Strike">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Parry</span>
+          <span class="bonus-name combat-roll rollable" data-roll="parry" data-bonus="{{system.combat.parryTotal}}" data-label="Parry" title="Click to roll Parry">Parry</span>
           <input type="number"
                  data-path-number="system.combat.parryBonus"
                  value="{{system.combat.parryBonus}}"
                  title="HtH/misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.combat.parryTotal}}</span>
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="parry"
-                  data-bonus="{{system.combat.parryTotal}}"
-                  data-label="Parry">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Dodge</span>
+          <span class="bonus-name combat-roll rollable" data-roll="dodge" data-bonus="{{system.combat.dodgeTotal}}" data-label="Dodge" title="Click to roll Dodge">Dodge</span>
           <input type="number"
                  data-path-number="system.combat.dodgeBonus"
                  value="{{system.combat.dodgeBonus}}"
                  title="HtH/misc bonus only — attribute bonus is added automatically" />
           <span class="bonus-total" title="Total incl. attribute bonus">= {{system.combat.dodgeTotal}}</span>
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="dodge"
-                  data-bonus="{{system.combat.dodgeTotal}}"
-                  data-label="Dodge">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Roll w/ Punch</span>
+          <span class="bonus-name combat-roll rollable" data-roll="roll" data-bonus="{{system.combat.rollBonus}}" data-label="Roll w/ Punch" title="Click to roll Roll w/ Punch">Roll w/ Punch</span>
           <input type="number"
                  data-path-number="system.combat.rollBonus"
                  value="{{system.combat.rollBonus}}" />
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="roll"
-                  data-bonus="{{system.combat.rollBonus}}"
-                  data-label="Roll w/ Punch">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Pull Punch</span>
+          <span class="bonus-name combat-roll rollable" data-roll="pullpunch" data-bonus="{{system.combat.pullPunchBonus}}" data-label="Pull Punch" title="Click to roll Pull Punch">Pull Punch</span>
           <input type="number"
                  data-path-number="system.combat.pullPunchBonus"
                  value="{{system.combat.pullPunchBonus}}" />
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="pullpunch"
-                  data-bonus="{{system.combat.pullPunchBonus}}"
-                  data-label="Pull Punch">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name">Disarm</span>
+          <span class="bonus-name combat-roll rollable" data-roll="disarm" data-bonus="{{system.combat.disarmBonus}}" data-label="Disarm" title="Click to roll Disarm">Disarm</span>
           <input type="number"
                  data-path-number="system.combat.disarmBonus"
                  value="{{system.combat.disarmBonus}}" />
-          <button type="button"
-                  class="combat-roll roll-btn"
-                  data-roll="disarm"
-                  data-bonus="{{system.combat.disarmBonus}}"
-                  data-label="Disarm">
-            <i class="fas fa-dice-d20"></i>
-          </button>
+          
         </div>
 
       </div>

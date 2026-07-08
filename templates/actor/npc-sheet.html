@@ -74,45 +74,39 @@
       <input type="number" data-path-number="system.combat.attacksPerMelee" value="{{system.combat.attacksPerMelee}}" min="0" />
     </div>
     <div class="npc-stat">
-      <label>Init</label>
+      <label class="combat-roll rollable" data-roll="initiative" data-label="Initiative" data-bonus="{{system.combat.initiativeBonus}}" title="Click to roll Initiative">Init</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.initiativeBonus" value="{{system.combat.initiativeBonus}}" />
-        <button type="button" class="combat-roll icon-btn" data-roll="initiative" data-label="Initiative" data-bonus="{{system.combat.initiativeBonus}}" title="Roll Initiative"><i class="fas fa-dice-d20"></i></button>
       </div>
     </div>
     <div class="npc-stat">
-      <label>Percep.</label>
+      <label class="combat-roll rollable" data-roll="perception" data-label="Perception" data-bonus="{{system.combat.perceptionBonus}}" title="Click to roll Perception">Percep.</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.perceptionBonus" value="{{system.combat.perceptionBonus}}" />
-        <button type="button" class="combat-roll icon-btn" data-roll="perception" data-label="Perception" data-bonus="{{system.combat.perceptionBonus}}" title="Roll Perception"><i class="fas fa-eye"></i></button>
       </div>
     </div>
     <div class="npc-stat">
-      <label>Strike</label>
+      <label class="combat-roll rollable" data-roll="strike" data-label="Strike" data-bonus="{{system.combat.strikeBonus}}" title="Click to roll Strike">Strike</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.strikeBonus" value="{{system.combat.strikeBonus}}" />
-        <button type="button" class="combat-roll icon-btn" data-roll="strike" data-label="Strike" data-bonus="{{system.combat.strikeBonus}}" title="Roll Strike"><i class="fas fa-crosshairs"></i></button>
       </div>
     </div>
     <div class="npc-stat">
-      <label>Parry</label>
+      <label class="combat-roll rollable" data-roll="parry" data-label="Parry" data-bonus="{{system.combat.parryBonus}}" title="Click to roll Parry">Parry</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.parryBonus" value="{{system.combat.parryBonus}}" />
-        <button type="button" class="combat-roll icon-btn" data-roll="parry" data-label="Parry" data-bonus="{{system.combat.parryBonus}}" title="Roll Parry"><i class="fas fa-shield"></i></button>
       </div>
     </div>
     <div class="npc-stat">
-      <label>Dodge</label>
+      <label class="combat-roll rollable" data-roll="dodge" data-label="Dodge" data-bonus="{{system.combat.dodgeBonus}}" title="Click to roll Dodge">Dodge</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.dodgeBonus" value="{{system.combat.dodgeBonus}}" />
-        <button type="button" class="combat-roll icon-btn" data-roll="dodge" data-label="Dodge" data-bonus="{{system.combat.dodgeBonus}}" title="Roll Dodge"><i class="fas fa-person-running"></i></button>
       </div>
     </div>
     <div class="npc-stat">
-      <label>Roll w/</label>
+      <label class="combat-roll rollable" data-roll="rollwith" data-label="Roll w/ Punch" data-bonus="{{system.combat.rollBonus}}" title="Click to roll Roll w/ Punch">Roll w/</label>
       <div class="npc-roll-pair">
         <input type="number" data-path-number="system.combat.rollBonus" value="{{system.combat.rollBonus}}" />
-        <button type="button" class="combat-roll icon-btn" data-roll="rollwith" data-label="Roll w/ Punch" data-bonus="{{system.combat.rollBonus}}" title="Roll with Punch/Impact"><i class="fas fa-rotate"></i></button>
       </div>
     </div>
     <div class="npc-stat">

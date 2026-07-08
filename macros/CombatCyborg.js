@@ -344,6 +344,32 @@ bionicItems.push({
   },
 });
 
+// ── 6b. NATURAL ATTACKS (Robot P.S.) ──────────────────────
+bionicItems.push(
+  {
+    name: "Punch (Robot P.S.)",
+    type: "weapon",
+    system: {
+      equipped: true, damage: "varies", damageType: "MDC", range: "melee",
+      rateOfFire: "1 melee attack", payload: 0, weight: "", cost: 0, bonusToStrike: 0,
+      special: "Robot Strength: inflicts Mega-Damage with an ordinary punch. Damage per the Robot P.S. damage table (RUE Strength Tables) for the character's P.S. — fill in the dice once verified.",
+      notes: "Natural attack. Kicks and other strikes use the same table.",
+      description: "A bare-handed strike from the cyborg's bionic arms.",
+    },
+  },
+  {
+    name: "POWER PUNCH (Robot P.S.)",
+    type: "weapon",
+    system: {
+      equipped: true, damage: "varies", damageType: "MDC", range: "melee",
+      rateOfFire: "Counts as TWO melee attacks", payload: 0, weight: "", cost: 0, bonusToStrike: 0,
+      special: "POWER PUNCH: the character winds up and delivers DOUBLE the normal Robot P.S. punch damage — and it COUNTS AS TWO MELEE ATTACKS/ACTIONS. Announce before rolling; mark off two attacks from A.P.M.",
+      notes: "Fill damage with double the Punch dice once the Robot P.S. table is verified (e.g. Punch 1d6 -> Power Punch 2d6).",
+      description: "A full wind-up strike putting the machine body's entire power behind the blow.",
+    },
+  },
+);
+
 // ── 7. STANDARD EQUIPMENT & WEAPONS ───────────────────────
 const largeSacks = await rollAttr("1d4");
 const equipmentItems = [

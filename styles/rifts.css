@@ -1988,3 +1988,13 @@
   white-space: nowrap;
   margin: 0 2px;
 }
+
+/* ═══ Clickable roll labels (matches attribute-roll interaction) ═══ */
+.rifts .rollable {
+  cursor: pointer;
+  transition: color 0.15s ease, text-shadow 0.15s ease;
+}
+.rifts .rollable:hover {
+  color: var(--rifts-text-bright);
+  text-shadow: 0 0 8px var(--rifts-orange);
+}
