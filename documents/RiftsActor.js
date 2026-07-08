@@ -168,8 +168,41 @@ export class RiftsActor extends Actor {
   // ── roll ──────────────────────────────────────────────────
   // Generic d20 roll with a bonus — used for strike/parry/dodge
   // ── Saving throw roll ──────────────────────────────────
-  async rollSave(label, bonus, target) {
-    const roll = new Roll(`1d20 + ${bonus}`);
+  // ── promptRollModifier ─────────────────────────────────────
+  // Quick situational-modifier dialog. Enter = roll (default 0),
+  // Cancel/Escape = abort. Returns a number or null.
+  async promptRollModifier({ title = "Situational Modifier", percent = false } = {}) {
+    return new Promise((resolve) => {
+      new Dialog({
+        title,
+        content: `
+          <form>
+            <div class="form-group">
+              <label>${percent ? "Modifier (%)" : "Modifier (±)"}</label>
+              <input type="number" name="mod" value="0" step="1" autofocus />
+            </div>
+            <p class="notes" style="font-size:11px;">${percent
+              ? "GM-set bonus/penalty, e.g. -20 for darkness, +10 for easy conditions."
+              : "e.g. -2 called shot / aiming penalties, +1 high ground."} Tip: Shift-click a roll to skip this dialog.</p>
+          </form>`,
+        buttons: {
+          roll: {
+            icon: '<i class="fas fa-dice-d20"></i>',
+            label: "Roll",
+            callback: (html) => resolve(Number(html.find('[name="mod"]').val()) || 0),
+          },
+          cancel: { icon: '<i class="fas fa-times"></i>', label: "Cancel", callback: () => resolve(null) },
+        },
+        default: "roll",
+        close: () => resolve(null),
+      }, { width: 320 }).render(true);
+    });
+  }
+
+  async rollSave(label, bonus, target, { skipDialog = false } = {}) {
+    const mod = skipDialog ? 0 : await this.promptRollModifier({ title: `Save ${label} — Modifier` });
+    if (mod === null) return;
+    const roll = new Roll(`1d20 + ${bonus} + ${mod}`);
     await roll.evaluate();
 
     const natural = roll.dice[0].total;
@@ -185,15 +218,17 @@ export class RiftsActor extends Actor {
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: `<strong>Save ${label}</strong>${resultText}<br>
-               <span style="font-size:11px;">d20 ${natural} + ${bonus} bonus</span>`,
+               <span style="font-size:11px;">d20 ${natural} + ${bonus} bonus${mod ? ` ${mod > 0 ? "+" : ""}${mod} mod` : ""}</span>`,
     });
   }
 
   // ── Weapon strike roll ─────────────────────────────────
-  async rollWeaponStrike(weapon) {
+  async rollWeaponStrike(weapon, { skipDialog = false } = {}) {
     const strikeBonus = this.system.combat.strikeTotal ?? this.system.combat.strikeBonus ?? 0;
     const weaponBonus = weapon.system.bonusToStrike ?? 0;
-    const total = strikeBonus + weaponBonus;
+    const mod = skipDialog ? 0 : await this.promptRollModifier({ title: `${weapon.name} — Strike Modifier` });
+    if (mod === null) return;
+    const total = strikeBonus + weaponBonus + mod;
 
     const roll = new Roll(`1d20 + ${total}`);
     await roll.evaluate();
@@ -208,7 +243,7 @@ export class RiftsActor extends Actor {
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: `<strong>${weapon.name}</strong> — Strike Roll${resultText}<br>
-               <span style="font-size:11px;">d20 ${natural} + ${total} bonus (dodge/parry may still apply)</span>`,
+               <span style="font-size:11px;">d20 ${natural} + ${strikeBonus} strike + ${weaponBonus} weapon${mod ? ` ${mod > 0 ? "+" : ""}${mod} mod` : ""} (dodge/parry may still apply)</span>`,
     });
   }
 
@@ -247,22 +282,27 @@ export class RiftsActor extends Actor {
     });
   }
 
-  async rollD20(label, bonus = 0) {
-    const roll = new Roll(`1d20 + ${bonus}`);
+  async rollD20(label, bonus = 0, { skipDialog = false } = {}) {
+    const mod = skipDialog ? 0 : await this.promptRollModifier({ title: `${label} — Modifier` });
+    if (mod === null) return;
+    const roll = new Roll(`1d20 + ${bonus} + ${mod}`);
     await roll.evaluate();
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: `${label} (Bonus: +${bonus})`,
+      flavor: `${label} (Bonus: +${bonus}${mod ? `, Mod: ${mod > 0 ? "+" : ""}${mod}` : ""})`,
     });
     return roll;
   }
 
   // ── rollSkill ─────────────────────────────────────────────
   // Rolls a percentile skill check against the skill's total %
-  async rollSkill(skillName, targetPercent) {
+  async rollSkill(skillName, targetPercent, { skipDialog = false } = {}) {
+    const mod = skipDialog ? 0 : await this.promptRollModifier({ title: `${skillName} — Modifier`, percent: true });
+    if (mod === null) return;
+    const effective = Math.max(targetPercent + mod, 1);
     const roll = new Roll("1d100");
     await roll.evaluate();
-    const success = roll.total <= targetPercent;
+    const success = roll.total <= effective;
     const resultText = success
       ? `<span style="color:green">SUCCESS</span>`
       : `<span style="color:red">FAILURE</span>`;
@@ -270,7 +310,7 @@ export class RiftsActor extends Actor {
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: `
-        <strong>${skillName}</strong> — Target: ${targetPercent}%<br>
+        <strong>${skillName}</strong> — Target: ${effective}%${mod ? ` (${targetPercent}% ${mod > 0 ? "+" : ""}${mod}%)` : ""}<br>
         Rolled: ${roll.total} — ${resultText}
       `,
     });

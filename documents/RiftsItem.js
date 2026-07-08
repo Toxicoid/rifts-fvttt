@@ -16,13 +16,18 @@ export class RiftsItem extends Item {
   }
 
   // ── _prepareSkillData ──────────────────────────────────────
-  // Calculates total skill % from base + bonus
+  // Calculates total skill % from base + misc bonus + automatic
+  // per-level progression: perLevelBonus x (character level - 1).
   _prepareSkillData() {
     const skill = this.system;
 
-    // Total = base + any bonuses (capped at 98%)
+    // Owned skills scale with the owning character's level.
+    const level = Math.max(this.actor?.system?.identity?.level ?? 1, 1);
+    const levelGain = (skill.perLevelBonus || 0) * (level - 1);
+
+    // Total = base + misc bonuses + level progression (capped at 98%)
     skill.totalPercent = Math.min(
-      (skill.basePercent || 0) + (skill.bonusPercent || 0),
+      (skill.basePercent || 0) + (skill.bonusPercent || 0) + levelGain,
       98,
     );
   }
@@ -46,11 +51,11 @@ export class RiftsItem extends Item {
 
   // ── roll ──────────────────────────────────────────────────
   // Called when rolling a skill item directly from the sheet
-  async roll() {
+  async roll(options = {}) {
     if (this.type === "skill") {
       const actor = this.actor;
       if (!actor) return;
-      return actor.rollSkill(this.name, this.system.totalPercent);
+      return actor.rollSkill(this.name, this.system.totalPercent, options);
     }
   }
 }

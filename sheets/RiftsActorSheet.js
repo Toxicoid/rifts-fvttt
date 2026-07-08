@@ -154,14 +154,14 @@ export class RiftsActorSheet extends ActorSheet {
       const target = Number(el.dataset.saveTarget) || 0;
       const path = el.dataset.savePath;
       const bonus = foundry.utils.getProperty(this.actor, path) ?? 0;
-      await this.actor.rollSave(label, bonus, target);
+      await this.actor.rollSave(label, bonus, target, { skipDialog: event.shiftKey });
     });
 
     // Weapon strike & damage rolls
     html.find(".weapon-strike-roll").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;
       const weapon = this.actor.items.get(itemId);
-      if (weapon) await this.actor.rollWeaponStrike(weapon);
+      if (weapon) await this.actor.rollWeaponStrike(weapon, { skipDialog: event.shiftKey });
     });
 
     html.find(".weapon-damage-roll").click(async (event) => {
@@ -351,7 +351,7 @@ export class RiftsActorSheet extends ActorSheet {
       }
     }
 
-    await this.actor.rollD20(label, bonus);
+    await this.actor.rollD20(label, bonus, { skipDialog: event.shiftKey });
   }
 
   async _onSkillRoll(event) {
@@ -359,7 +359,7 @@ export class RiftsActorSheet extends ActorSheet {
     const element = event.currentTarget;
     const itemId = element.closest("[data-item-id]").dataset.itemId;
     const skill = this.actor.items.get(itemId);
-    if (skill) await skill.roll();
+    if (skill) await skill.roll({ skipDialog: event.shiftKey });
   }
 
   async _onItemAdd(event) {
