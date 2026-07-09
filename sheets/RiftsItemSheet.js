@@ -26,6 +26,17 @@ export class RiftsItemSheet extends ItemSheet {
   activateListeners(html) {
     super.activateListeners(html);
 
+    // Read-only display blocks with an edit toggle (skills).
+    html.find(".is-edit-toggle").on("click", (event) => {
+      event.preventDefault();
+      const field = event.currentTarget.closest(".is-field");
+      field.classList.toggle("editing");
+      if (field.classList.contains("editing")) {
+        const ta = field.querySelector(".is-editbox");
+        if (ta) { ta.focus(); }
+      }
+    });
+
     // Name field
     html.find(".item-sheet-name").on("blur", async (event) => {
       const name = event.currentTarget.value;

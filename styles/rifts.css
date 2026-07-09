@@ -2021,3 +2021,40 @@
   opacity: 0.85;
   font-family: "Share Tech Mono", monospace;
 }
+
+/* ═══ Read-only display blocks for skill text (edit-toggle) ═══ */
+.rifts .is-display-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.rifts .is-edit-toggle {
+  flex: 0 0 auto;
+  width: 24px; height: 22px;
+  padding: 0;
+  background: transparent;
+  border: 1px solid var(--rifts-border, #555);
+  border-radius: 3px;
+  color: var(--rifts-orange, #e8751a);
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+.rifts .is-edit-toggle:hover { opacity: 1; }
+.rifts .is-readonly {
+  font-size: 13.5px;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  padding: 8px 10px;
+  margin-top: 3px;
+  background: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+  border-left: 2px solid rgba(232, 117, 26, 0.4);
+  max-height: 320px;
+  overflow-y: auto;
+}
+.rifts .is-readonly .is-empty { opacity: 0.5; font-style: italic; }
+/* Toggle: show textarea only while editing, hide the display block */
+.rifts .is-editbox { display: none; }
+.rifts .is-field.editing .is-editbox { display: block; }
+.rifts .is-field.editing .is-readonly { display: none; }

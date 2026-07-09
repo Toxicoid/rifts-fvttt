@@ -185,8 +185,12 @@
         </div>
       </div>
       <div class="is-field is-full">
-        <label>Description (book rules)</label>
-        <textarea data-path="system.description" rows="6" placeholder="What the skill does, how it's rolled, special mechanics...">{{system.description}}</textarea>
+        <div class="is-display-head">
+          <label>Description (book rules)</label>
+          <button type="button" class="is-edit-toggle" title="Edit this skill's text"><i class="fas fa-pen"></i></button>
+        </div>
+        <div class="is-readonly">{{#if system.description}}{{system.description}}{{else}}<span class="is-empty">No description.</span>{{/if}}</div>
+        <textarea class="is-editbox" data-path="system.description" rows="7" placeholder="What the skill does, how it's rolled, special mechanics...">{{system.description}}</textarea>
       </div>
     {{/if}}
 
@@ -209,10 +213,21 @@
     {{/unless}}
 
     {{!-- ── NOTES (all types) ────────────────────────────── --}}
-    <div class="is-field is-full">
-      <label>Notes</label>
-      <textarea data-path="system.notes" rows="3" placeholder="Table notes, house rules...">{{system.notes}}</textarea>
-    </div>
+    {{#if (eq itemType "skill")}}
+      <div class="is-field is-full">
+        <div class="is-display-head">
+          <label>Restrictions &amp; Notes</label>
+          <button type="button" class="is-edit-toggle" title="Edit notes"><i class="fas fa-pen"></i></button>
+        </div>
+        <div class="is-readonly">{{#if system.notes}}{{system.notes}}{{else}}<span class="is-empty">No notes.</span>{{/if}}</div>
+        <textarea class="is-editbox" data-path="system.notes" rows="4" placeholder="Restrictions, requirements, synergies...">{{system.notes}}</textarea>
+      </div>
+    {{else}}
+      <div class="is-field is-full">
+        <label>Notes</label>
+        <textarea data-path="system.notes" rows="3" placeholder="Table notes, house rules...">{{system.notes}}</textarea>
+      </div>
+    {{/if}}
 
   </section>
 </form>
