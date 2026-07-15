@@ -45,6 +45,15 @@ const skillDefs = [];
 const skill = (name, folderName, categoryKey, base, perLevel, description, notes = "") =>
   skillDefs.push({ name, folderName, categoryKey, base, perLevel, description, notes });
 
+// Horsemanship variants carry a structured `horsemanship` block
+// (sub-skills, mounted bonuses, charge data) consumed by the
+// character sheet's MOUNTED toggle and CHARGE button.
+const horseSkill = (name, base, perLevel, description, notes, hm) =>
+  skillDefs.push({
+    name, folderName: "Horsemanship", categoryKey: "horsemanship",
+    base, perLevel, description, notes, horsemanship: hm,
+  });
+
 // ═══ COMMUNICATIONS ════════════════════════════════════════
 skill("Barter", "Communications", "communications", 30, 4,
   "A skill at bargaining with merchants, businessmen, thieves, traders and other characters to get a fair price or fair exchange of trade goods or services. Depending on the character's point of view and effort at bartering, he can raise the amount he gets or lower the price he pays by 3D6+2% — not applicable to rare items and alien technology. Generally, if the haggler rolls under his Bartering skill percentage, he gets the discount when buying, or the better price when he is the one doing the selling or trading. If the price is disputed, the two bartering characters can each make rolls on percentile dice: the highest roll wins and gets their price — and not a penny less or nickel more.",
@@ -123,6 +132,109 @@ skill("Tailoring", "Domestic", "domestic", 40, 5,
   "Tailoring skills combine precise technical abilities—such as pattern drafting, accurate measuring, and garment construction—with creative design principles. Mastering this craft requires a deep understanding of fabric behavior, proper needle techniques, and meticulous attention to detail to achieve a custom, long-lasting fit.",
   "Base Skill: 40% +5% per level.\nREQUIRES: Requires Sewing skill as well.");
 
+// ═══ HORSEMANSHIP ═════════════════════════════════════════
+horseSkill("Horsemanship: General", 40, 4,
+  "Basic riding skill, not trained for combat.",
+  "Base Skill: 40% +4% per level. Source: RUE p. 311.",
+  {
+    recognizeBreed: 40, breedHorses: 40, hitchWagon: 40,
+    jumpingTricksCombat: 20, controlPanicked: 20, racing: 20,
+    recognizeBreedPer: 4, breedHorsesPer: 4, hitchWagonPer: 4,
+    jumpingTricksCombatPer: 4, controlPanickedPer: 4, racingPer: 4,
+    parry: 1, dodge: 1,
+    initiative: 0, initiativeSchedule: "", initiativePerLevel: 0,
+    rollFall: 0, rollFallCond: "",
+    rope: 0, ensnare: 0, entangle: 0,
+    kickDamage: "+1D4",
+    chargeDamage: "+1D6", chargeActions: 2, chargeNotes: "e.g. 'counts as 2 attacks; horse must move 60+ ft'",
+    horseAttackBonus: ""
+  });
+
+horseSkill("Horsemanship: Cowboy", 66, 3,
+  "Not available to most O.C.C.s. Most skilled and versatile horseman; pairs with Roping/Herding cowboy skills.",
+  "Base Skill: 66% +3% per level. Source: RUE p. 311.",
+  {
+    recognizeBreed: 66, breedHorses: 66, hitchWagon: 66,
+    jumpingTricksCombat: 50, controlPanicked: 50, racing: 50,
+    recognizeBreedPer: 3, breedHorsesPer: 3, hitchWagonPer: 3,
+    jumpingTricksCombatPer: 3, controlPanickedPer: 3, racingPer: 3,
+    parry: 2, dodge: 2,
+    initiative: 0, initiativeSchedule: "2,5,10,15", initiativePerLevel: 1,
+    rollFall: 2, rollFallCond: "unhorsed",
+    rope: 2, ensnare: 2, entangle: 2,
+    kickDamage: "+1D4",
+    chargeDamage: "+2D6", chargeActions: 2, chargeNotes: "e.g. 'counts as 2 attacks; horse must move 60+ ft'",
+    horseAttackBonus: "+4"
+  });
+
+horseSkill("Horsemanship: Cossack (Russia)", 55, 5,
+  "Exclusive to the Cossack O.C.C. in World Book 17: Warlords of Russia.",
+  "Base Skill: 55% +5% per level. Source: RUE p. 311.",
+  {
+    recognizeBreed: 55, breedHorses: 55, hitchWagon: 55,
+    jumpingTricksCombat: 45, controlPanicked: 45, racing: 45,
+    recognizeBreedPer: 5, breedHorsesPer: 5, hitchWagonPer: 5,
+    jumpingTricksCombatPer: 5, controlPanickedPer: 5, racingPer: 5,
+    parry: 2, dodge: 2,
+    initiative: 0, initiativeSchedule: "1,4,8,12,15", initiativePerLevel: 1,
+    rollFall: 2, rollFallCond: "unhorsed",
+    rope: 0, ensnare: 0, entangle: 0,
+    kickDamage: "+6",
+    chargeDamage: "+2D6", chargeActions: 2, chargeNotes: "e.g. 'counts as 2 attacks; horse must move 60+ ft'",
+    horseAttackBonus: "+3"
+  });
+
+horseSkill("Horsemanship: Cyber-Knight", 70, 5,
+  "Exclusive to the Cyber-Knight O.C.C.",
+  "Base Skill: 70% +5% per level. Source: RUE p. 311.",
+  {
+    recognizeBreed: 70, breedHorses: 70, hitchWagon: 70,
+    jumpingTricksCombat: 50, controlPanicked: 50, racing: 50,
+    recognizeBreedPer: 5, breedHorsesPer: 5, hitchWagonPer: 5,
+    jumpingTricksCombatPer: 5, controlPanickedPer: 5, racingPer: 5,
+    parry: 2, dodge: 2,
+    initiative: 0, initiativeSchedule: "1,5,9,14", initiativePerLevel: 1,
+    rollFall: 2, rollFallCond: "unhorsed",
+    rope: 0, ensnare: 0, entangle: 0,
+    kickDamage: "+6",
+    chargeDamage: "+3D6", chargeActions: 2, chargeNotes: "e.g. 'counts as 2 attacks; horse must move 60+ ft'",
+    horseAttackBonus: "+2"
+  });
+
+horseSkill("Horsemanship: Equestrian", 40, 5,
+  "Knight/paladin combat riding.",
+  "Base Skill: 40% +5% per level. Source: RUE p. 311.",
+  {
+    recognizeBreed: 40, breedHorses: 40, hitchWagon: 40,
+    jumpingTricksCombat: 30, controlPanicked: 30, racing: 30,
+    recognizeBreedPer: 5, breedHorsesPer: 5, hitchWagonPer: 5,
+    jumpingTricksCombatPer: 5, controlPanickedPer: 5, racingPer: 5,
+    parry: 2, dodge: 2,
+    initiative: 1, initiativeSchedule: "", initiativePerLevel: 0,
+    rollFall: 1, rollFallCond: "",
+    rope: 0, ensnare: 0, entangle: 0,
+    kickDamage: "+1D6",
+    chargeDamage: "+2D6", chargeActions: 2, chargeNotes: "e.g. 'counts as 2 attacks; horse must move 60+ ft'",
+    horseAttackBonus: "+1"
+  });
+
+horseSkill("Horsemanship: Exotic Animals", 30, 5,
+  "Riding unusual mounts (Fury Beetles, Ostrosaurus, etc.)",
+  "Base Skill: 30% +5% per level. Source: RUE p. 311-312.",
+  {
+    recognizeBreed: 30, breedHorses: 30, hitchWagon: 30,
+    jumpingTricksCombat: 20, controlPanicked: 20, racing: 20,
+    recognizeBreedPer: 5, breedHorsesPer: 5, hitchWagonPer: 5,
+    jumpingTricksCombatPer: 5, controlPanickedPer: 5, racingPer: 5,
+    parry: 1, dodge: 1,
+    initiative: 0, initiativeSchedule: "", initiativePerLevel: 0,
+    rollFall: 0, rollFallCond: "",
+    rope: 0, ensnare: 0, entangle: 0,
+    kickDamage: "+1D4",
+    chargeDamage: "+1D6", chargeActions: 2, chargeNotes: "e.g. 'counts as 2 attacks; horse must move 60+ ft'",
+    horseAttackBonus: ""
+  });
+
 // ── Build items and create ─────────────────────────────────
 const index = await pack.getIndex();
 const byName = new Map(index.map((e) => [e.name, e]));
@@ -150,12 +262,14 @@ for (const def of skillDefs) {
         category: def.categoryKey,
         description: def.description,
         isSecondary: false,
+        isHorsemanship: !!def.horsemanship,
         basePercent: def.base,
         bonusPercent: 0,
         totalPercent: def.base,
         perLevelBonus: def.perLevel,
         relatedAttribute: "",
         notes: def.notes,
+        ...(def.horsemanship ? { horsemanship: def.horsemanship } : {}),
       },
     },
     { pack: pack.collection }

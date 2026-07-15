@@ -27,6 +27,18 @@ export class RiftsItemSheet extends ItemSheet {
     super.activateListeners(html);
 
     // Read-only display blocks with an edit toggle (skills).
+    // Horsemanship sub-skill rolls (delegate to the owning actor)
+    html.find(".hm-sub").on("click", async (event) => {
+      event.preventDefault();
+      const actor = this.item.actor;
+      if (!actor) {
+        ui.notifications.info("Drag this skill onto a character to roll its sub-skills.");
+        return;
+      }
+      const el = event.currentTarget;
+      await actor.rollHorseSub(this.item.id, el.dataset.sub, el.dataset.subLabel, { skipDialog: event.shiftKey });
+    });
+
     html.find(".is-edit-toggle").on("click", (event) => {
       event.preventDefault();
       const field = event.currentTarget.closest(".is-field");

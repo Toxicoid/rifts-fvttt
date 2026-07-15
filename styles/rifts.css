@@ -2058,3 +2058,52 @@
 .rifts .is-editbox { display: none; }
 .rifts .is-field.editing .is-editbox { display: block; }
 .rifts .is-field.editing .is-readonly { display: none; }
+
+/* ═══ Mounted combat bar (Horsemanship) ═══ */
+.rifts .mounted-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  padding: 6px 10px;
+  margin: 6px 0 10px;
+  background: rgba(90, 60, 30, 0.15);
+  border: 1px solid rgba(232, 117, 26, 0.3);
+  border-radius: 4px;
+}
+.rifts .mounted-bar.is-mounted {
+  background: rgba(232, 117, 26, 0.14);
+  border-color: var(--rifts-orange, #e8751a);
+}
+.rifts .mounted-toggle {
+  display: flex; align-items: center; gap: 5px;
+  cursor: pointer; font-weight: bold; white-space: nowrap;
+}
+.rifts .mounted-toggle i { color: var(--rifts-orange, #e8751a); }
+.rifts .mounted-skill-select { max-width: 180px; font-size: 12px; }
+.rifts .mounted-summary { font-size: 12px; opacity: 0.9; font-family: "Share Tech Mono", monospace; }
+.rifts .charge-roll {
+  margin-left: auto;
+  padding: 3px 12px;
+  background: var(--rifts-orange, #e8751a);
+  color: #1a1a1a; font-weight: bold; border: none; border-radius: 3px;
+  cursor: pointer; white-space: nowrap;
+}
+.rifts .charge-roll:hover { filter: brightness(1.15); }
+
+/* ═══ Horsemanship sub-skill + stat panel (item sheet) ═══ */
+.rifts .hm-panel { background: rgba(90,60,30,0.1); border-radius:4px; padding:8px; }
+.rifts .hm-hint { font-size:11px; opacity:0.7; font-weight:normal; font-style:italic; }
+.rifts .hm-subgrid { display:grid; grid-template-columns:1fr 1fr; gap:5px; margin-top:4px; }
+.rifts .hm-sub {
+  text-align:left; padding:5px 8px; font-size:12px;
+  background:rgba(0,0,0,0.15); border:1px solid rgba(232,117,26,0.35);
+  border-radius:3px; color:var(--rifts-text,#ddd); cursor:pointer;
+  transition:background 0.15s, border-color 0.15s;
+}
+.rifts .hm-sub:hover { background:rgba(232,117,26,0.2); border-color:var(--rifts-orange,#e8751a); }
+.rifts .hm-sub b { color:var(--rifts-orange,#e8751a); float:right; }
+.rifts .hm-statgrid { display:grid; grid-template-columns:repeat(4,1fr); gap:4px; font-size:11px; margin-top:4px; }
+.rifts .hm-statgrid span { padding:3px 5px; background:rgba(0,0,0,0.12); border-radius:2px; }
+.rifts .hm-statgrid b { color:var(--rifts-orange,#e8751a); }
+@media (max-width:520px){ .rifts .hm-subgrid{grid-template-columns:1fr;} .rifts .hm-statgrid{grid-template-columns:repeat(2,1fr);} }

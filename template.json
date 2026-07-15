@@ -200,6 +200,24 @@
       "category": "",
       "description": "",
       "isSecondary": false,
+      "isHorsemanship": false,
+      "horsemanship": {
+        "sub": {
+          "recognizeBreed": 0, "breedHorses": 0, "hitchWagon": 0,
+          "jumpingTricksCombat": 0, "controlPanicked": 0, "racing": 0
+        },
+        "subPer": {
+          "recognizeBreed": 0, "breedHorses": 0, "hitchWagon": 0,
+          "jumpingTricksCombat": 0, "controlPanicked": 0, "racing": 0
+        },
+        "mounted": {
+          "parry": 0, "dodge": 0, "initiative": 0, "initiativeSchedule": "",
+          "rollFall": 0, "rollFallCond": "", "rope": 0, "ensnare": 0, "entangle": 0,
+          "kickDamage": ""
+        },
+        "charge": { "damage": "", "actions": 0, "notes": "" },
+        "horseAttackBonus": ""
+      },
       "basePercent": 0,
       "bonusPercent": 0,
       "totalPercent": 0,

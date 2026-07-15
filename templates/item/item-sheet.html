@@ -184,6 +184,36 @@
           <input type="number" data-path-number="system.perLevelBonus" value="{{system.perLevelBonus}}" min="0" />
         </div>
       </div>
+      {{#if system.isHorsemanship}}
+      <div class="is-field is-full hm-panel">
+        <label>Sub-Skills <span class="hm-hint">(click to roll — scales with your Level)</span></label>
+        <div class="hm-subgrid">
+          <button type="button" class="hm-sub" data-sub="recognizeBreed" data-sub-label="Recognize Breed &amp; Quality">Recognize Breed <b>{{system.horsemanship.recognizeBreed}}%</b></button>
+          <button type="button" class="hm-sub" data-sub="breedHorses" data-sub-label="Breed Horses">Breed Horses <b>{{system.horsemanship.breedHorses}}%</b></button>
+          <button type="button" class="hm-sub" data-sub="hitchWagon" data-sub-label="Hitch &amp; Wagon">Hitch &amp; Wagon <b>{{system.horsemanship.hitchWagon}}%</b></button>
+          <button type="button" class="hm-sub" data-sub="jumpingTricksCombat" data-sub-label="Jumping, Tricks &amp; Combat">Jumping/Tricks/Combat <b>{{system.horsemanship.jumpingTricksCombat}}%</b></button>
+          <button type="button" class="hm-sub" data-sub="controlPanicked" data-sub-label="Control Panicked Horse">Control Panicked <b>{{system.horsemanship.controlPanicked}}%</b></button>
+          <button type="button" class="hm-sub" data-sub="racing" data-sub-label="Racing">Racing <b>{{system.horsemanship.racing}}%</b></button>
+        </div>
+        <label style="margin-top:8px;">Mounted Combat <span class="hm-hint">(auto-applies via the sheet's Mounted toggle)</span></label>
+        <div class="hm-statgrid">
+          <span>Parry <b>+{{system.horsemanship.parry}}</b></span>
+          <span>Dodge <b>+{{system.horsemanship.dodge}}</b></span>
+          <span>Init <b>{{#if system.horsemanship.initiativeSchedule}}{{system.horsemanship.initiativeSchedule}}: +{{system.horsemanship.initiativePerLevel}}{{else}}+{{system.horsemanship.initiative}}{{/if}}</b></span>
+          <span>Roll w/Fall <b>+{{system.horsemanship.rollFall}}</b>{{#if system.horsemanship.rollFallCond}} <em>({{system.horsemanship.rollFallCond}})</em>{{/if}}</span>
+          <span>Kick <b>{{system.horsemanship.kickDamage}}</b></span>
+          <span>Rope <b>+{{system.horsemanship.rope}}</b></span>
+          <span>Ensnare <b>+{{system.horsemanship.ensnare}}</b></span>
+          <span>Entangle <b>+{{system.horsemanship.entangle}}</b></span>
+        </div>
+        <div class="hm-statgrid" style="margin-top:6px;">
+          <span>Charge Dmg <b>{{system.horsemanship.chargeDamage}}</b></span>
+          <span>Charge Actions <b>{{system.horsemanship.chargeActions}}</b></span>
+          <span title="Applies to the MOUNT's strike, not the rider">Horse Atk <b>{{system.horsemanship.horseAttackBonus}}</b></span>
+        </div>
+      </div>
+      {{/if}}
+
       <div class="is-field is-full">
         <div class="is-display-head">
           <label>Description (book rules)</label>

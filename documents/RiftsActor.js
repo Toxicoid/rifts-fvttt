@@ -163,6 +163,58 @@ export class RiftsActor extends Actor {
     saves.insanityTotal = (saves.insanityBonus || 0) + (saves.attrInsanity || 0);
     saves.poisonTotal = (saves.poisonBonus || 0) + (saves.attrPoison || 0);
     saves.diseaseTotal = (saves.diseaseBonus || 0) + (saves.attrDisease || 0);
+
+    // ── Mounted combat (Horsemanship) ──────────────────────
+    // When mounted, the equipped/selected horsemanship variant
+    // adds its rider bonuses on top. Kept in derived fields so
+    // toggling never mutates stored bonuses.
+    combat.mountedActive = false;
+    if (combat.mounted) {
+      const hs = this._activeHorsemanship();
+      if (hs) {
+        const level = Math.max(this.system.identity?.level ?? 1, 1);
+        const sched = (flat, schedule, per) => {
+          // flat bonus, OR (per-threshold points x thresholds reached)
+          let v = flat || 0;
+          if (schedule) {
+            const levels = String(schedule).split(",").map((n) => parseInt(n.trim(), 10)).filter(Boolean);
+            v += (per || 1) * levels.filter((l) => level >= l).length;
+          }
+          return v;
+        };
+        combat.parryTotal += hs.parry || 0;
+        combat.dodgeTotal += hs.dodge || 0;
+        combat.mountedInit = sched(hs.initiative, hs.initiativeSchedule, hs.initiativePerLevel);
+        combat.mountedActive = true;
+        combat.mountedName = this._activeHorsemanshipName;
+        combat.mountedRollFall = hs.rollFall || 0;
+        combat.mountedRollFallCond = hs.rollFallCond || "";
+        combat.mountedKick = hs.kickDamage || "";
+        combat.mountedRope = hs.rope || 0;
+        combat.mountedEnsnare = hs.ensnare || 0;
+        combat.mountedEntangle = hs.entangle || 0;
+        combat.mountedChargeDamage = hs.chargeDamage || "";
+        combat.mountedChargeActions = hs.chargeActions || 0;
+        combat.mountedChargeNotes = hs.chargeNotes || "";
+        combat.mountedHorseAttack = hs.horseAttackBonus || "";
+        // Initiative folds into the init total the tracker/roll uses.
+        combat.initiativeBonus = (combat.initiativeBonus || 0); // stored untouched
+        combat.mountedInitTotal = (combat.initiativeBonus || 0) + combat.mountedInit;
+      }
+    }
+  }
+
+  // Returns the horsemanship data block currently driving mounted
+  // combat: the one named in combat.mountedSkillId, else the first
+  // equipped horsemanship skill, else the first one owned.
+  _activeHorsemanship() {
+    const skills = this.items.filter((i) => i.type === "skill" && i.system?.isHorsemanship);
+    if (!skills.length) return null;
+    const id = this.system.combat?.mountedSkillId;
+    let chosen = id ? skills.find((s) => s.id === id) : null;
+    if (!chosen) chosen = skills.find((s) => s.system.equipped) ?? skills[0];
+    this._activeHorsemanshipName = chosen?.name ?? "";
+    return chosen?.system?.horsemanship ?? null;
   }
 
   // ── roll ──────────────────────────────────────────────────
@@ -223,6 +275,59 @@ export class RiftsActor extends Actor {
   }
 
   // ── Weapon strike roll ─────────────────────────────────
+  // ── Horsemanship sub-skill roll ────────────────────────────
+  // Rolls one of the six sub-skills at base + per-level*(lvl-1),
+  // capped 98, with the standard modifier dialog.
+  async rollHorseSub(skillId, subKey, subLabel, { skipDialog = false } = {}) {
+    const item = this.items.get(skillId);
+    const hm = item?.system?.horsemanship;
+    if (!hm) return;
+    const level = Math.max(this.system.identity?.level ?? 1, 1);
+    const base = hm[subKey] || 0;
+    const per = hm[`${subKey}Per`] || 0;
+    const target = Math.min(base + per * (level - 1), 98);
+    const mod = skipDialog ? 0 : await this.promptRollModifier({ title: `${subLabel} — Modifier`, percent: true });
+    if (mod === null) return;
+    const effective = Math.max(target + mod, 1);
+    const roll = new Roll("1d100");
+    await roll.evaluate();
+    const success = roll.total <= effective;
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `<strong>${item.name}: ${subLabel}</strong> — Target: ${effective}%${mod ? ` (${target}% ${mod > 0 ? "+" : ""}${mod}%)` : ""}<br>Rolled: ${roll.total} — ${success ? '<span style="color:green">SUCCESS</span>' : '<span style="color:red">FAILURE</span>'}`,
+    });
+    return roll;
+  }
+
+  // ── Charge attack (mounted) ────────────────────────────────
+  async rollCharge({ skipDialog = false } = {}) {
+    const c = this.system.combat;
+    if (!c.mountedActive) {
+      ui.notifications.warn("Not mounted — enable Mounted to charge.");
+      return;
+    }
+    const strikeBonus = c.strikeTotal ?? c.strikeBonus ?? 0;
+    const mod = skipDialog ? 0 : await this.promptRollModifier({ title: "Charge — Strike Modifier" });
+    if (mod === null) return;
+    const total = strikeBonus + mod;
+    const roll = new Roll(`1d20 + ${total}`);
+    await roll.evaluate();
+    const natural = roll.dice[0]?.results?.[0]?.result ?? "?";
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `
+        <div style="border-left:3px solid #e8751a;padding-left:6px;">
+        <strong>⚡ Charge Attack — ${c.mountedName}</strong><br>
+        <span style="font-size:11px;">d20 ${natural} + ${strikeBonus} strike${mod ? ` ${mod > 0 ? "+" : ""}${mod} mod` : ""} to strike</span><br>
+        <strong>Charge Damage:</strong> ${c.mountedChargeDamage || "(see weapon)"} &nbsp;|&nbsp;
+        <strong>Costs:</strong> ${c.mountedChargeActions || 2} melee actions<br>
+        <em style="font-size:11px;">${c.mountedChargeNotes || "Horse must move 60+ ft for a full charge."}</em>
+        </div>
+      `,
+    });
+    return roll;
+  }
+
   async rollWeaponStrike(weapon, { skipDialog = false } = {}) {
     const strikeBonus = this.system.combat.strikeTotal ?? this.system.combat.strikeBonus ?? 0;
     const weaponBonus = weapon.system.bonusToStrike ?? 0;
