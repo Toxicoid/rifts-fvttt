@@ -2107,3 +2107,16 @@
 .rifts .hm-statgrid span { padding:3px 5px; background:rgba(0,0,0,0.12); border-radius:2px; }
 .rifts .hm-statgrid b { color:var(--rifts-orange,#e8751a); }
 @media (max-width:520px){ .rifts .hm-subgrid{grid-template-columns:1fr;} .rifts .hm-statgrid{grid-template-columns:repeat(2,1fr);} }
+
+/* ═══ Horsemanship inline panel on the character skills tab ═══ */
+.rifts .hm-expand-toggle.active { color: var(--rifts-orange, #e8751a); }
+.rifts .hm-inline-panel {
+  display: none;
+  padding: 8px 10px;
+  margin: 2px 0 8px 12px;
+  background: rgba(90, 60, 30, 0.12);
+  border-left: 2px solid var(--rifts-orange, #e8751a);
+  border-radius: 3px;
+}
+.rifts .hm-inline-panel.open { display: block; }
+.rifts .hm-inline-note { font-size: 11px; opacity: 0.75; font-style: italic; margin: 6px 0 0; }

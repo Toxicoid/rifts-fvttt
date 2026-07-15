@@ -32,7 +32,7 @@
         Base %
         <span class="sh-sub">starting %</span>
       </span>
-      <span class="sh-bonus" title="Add per-level bonus each time you level up">
+      <span class="sh-bonus" title="Misc/situational bonus only — per-level gains are applied AUTOMATICALLY from your character Level">
         Bonus %
         <span class="sh-sub">+% per lvl</span>
       </span>
@@ -103,6 +103,14 @@
             </span>
 
             <div class="skill-actions">
+              {{#if this.system.isHorsemanship}}
+              <button type="button"
+                      class="hm-expand-toggle icon-btn"
+                      data-item-id="{{this.id}}"
+                      title="Show mounted sub-skills &amp; combat">
+                <i class="fas fa-horse"></i>
+              </button>
+              {{/if}}
               <button type="button"
                       class="skill-roll roll-btn"
                       title="Roll {{this.name}}">
@@ -122,6 +130,33 @@
             </div>
 
           </div>
+
+          {{#if this.system.isHorsemanship}}
+          <div class="hm-inline-panel" data-hm-for="{{this.id}}">
+            <div class="hm-subgrid">
+              <button type="button" class="hm-sub" data-item-id="{{this.id}}" data-sub="recognizeBreed" data-sub-label="Recognize Breed &amp; Quality">Recognize Breed <b>{{this.system.horsemanship.recognizeBreed}}%</b></button>
+              <button type="button" class="hm-sub" data-item-id="{{this.id}}" data-sub="breedHorses" data-sub-label="Breed Horses">Breed Horses <b>{{this.system.horsemanship.breedHorses}}%</b></button>
+              <button type="button" class="hm-sub" data-item-id="{{this.id}}" data-sub="hitchWagon" data-sub-label="Hitch &amp; Wagon">Hitch &amp; Wagon <b>{{this.system.horsemanship.hitchWagon}}%</b></button>
+              <button type="button" class="hm-sub" data-item-id="{{this.id}}" data-sub="jumpingTricksCombat" data-sub-label="Jumping, Tricks &amp; Combat">Jumping/Tricks/Combat <b>{{this.system.horsemanship.jumpingTricksCombat}}%</b></button>
+              <button type="button" class="hm-sub" data-item-id="{{this.id}}" data-sub="controlPanicked" data-sub-label="Control Panicked Horse">Control Panicked <b>{{this.system.horsemanship.controlPanicked}}%</b></button>
+              <button type="button" class="hm-sub" data-item-id="{{this.id}}" data-sub="racing" data-sub-label="Racing">Racing <b>{{this.system.horsemanship.racing}}%</b></button>
+            </div>
+            <div class="hm-statgrid">
+              <span>Parry <b>+{{this.system.horsemanship.parry}}</b></span>
+              <span>Dodge <b>+{{this.system.horsemanship.dodge}}</b></span>
+              <span>Init <b>{{#if this.system.horsemanship.initiativeSchedule}}{{this.system.horsemanship.initiativeSchedule}}:+{{this.system.horsemanship.initiativePerLevel}}{{else}}+{{this.system.horsemanship.initiative}}{{/if}}</b></span>
+              <span>Roll/Fall <b>+{{this.system.horsemanship.rollFall}}</b></span>
+              <span>Kick <b>{{this.system.horsemanship.kickDamage}}</b></span>
+              <span>Rope <b>+{{this.system.horsemanship.rope}}</b></span>
+              <span>Ensnare <b>+{{this.system.horsemanship.ensnare}}</b></span>
+              <span>Entangle <b>+{{this.system.horsemanship.entangle}}</b></span>
+              <span>Charge <b>{{this.system.horsemanship.chargeDamage}}</b></span>
+              <span>Chg Act <b>{{this.system.horsemanship.chargeActions}}</b></span>
+              <span title="Applies to the mount's strike">Horse Atk <b>{{this.system.horsemanship.horseAttackBonus}}</b></span>
+            </div>
+            <p class="hm-inline-note">Mounted parry/dodge/init auto-apply via the <strong>Mounted</strong> toggle on the Attributes tab.</p>
+          </div>
+          {{/if}}
         {{/each}}
       </div>
     {{/each}}

@@ -132,6 +132,19 @@ export class RiftsActorSheet extends ActorSheet {
       .map(([key, label]) => `<option value="${key}">${label}</option>`)
       .join('');
 
+    // Horsemanship / mounted combat context
+    const horseSkills = actor.items.filter((i) => i.type === "skill" && i.system?.isHorsemanship);
+    context.hasHorsemanship = horseSkills.length > 0;
+    const activeId = systemData.combat?.mountedSkillId;
+    context.horsemanshipSkills = horseSkills.map((s) => ({
+      id: s.id, name: s.name,
+      selected: activeId ? s.id === activeId : (s.system.equipped || false),
+    }));
+    // ensure exactly one shows selected if none chosen
+    if (context.horsemanshipSkills.length && !context.horsemanshipSkills.some((s) => s.selected)) {
+      context.horsemanshipSkills[0].selected = true;
+    }
+
     return context;
   }
 
@@ -146,6 +159,45 @@ export class RiftsActorSheet extends ActorSheet {
 
     // ── Skill rolls ───────────────────────────────────────
     html.find(".skill-roll").click(this._onSkillRoll.bind(this));
+
+    // Horsemanship inline panel: toggle open/closed (persists via _openHmPanel)
+    const openHmPanel = (itemId) => {
+      html.find(".hm-inline-panel").removeClass("open");
+      html.find(".hm-expand-toggle").removeClass("active");
+      this._openHmPanel = null;
+      if (!itemId) return;
+      const panel = html.find(`.hm-inline-panel[data-hm-for="${itemId}"]`)[0];
+      const toggle = html.find(`.hm-expand-toggle[data-item-id="${itemId}"]`)[0];
+      if (!panel) return;
+      panel.classList.add("open");
+      if (toggle) toggle.classList.add("active");
+      this._openHmPanel = itemId;
+    };
+    html.find(".hm-expand-toggle").click((event) => {
+      event.preventDefault();
+      const itemId = event.currentTarget.dataset.itemId;
+      openHmPanel(this._openHmPanel === itemId ? null : itemId);
+    });
+    if (this._openHmPanel) openHmPanel(this._openHmPanel);
+
+    // Sub-skill rolls from the inline panel
+    html.find(".hm-sub").click(async (event) => {
+      event.preventDefault();
+      const el = event.currentTarget;
+      await this.actor.rollHorseSub(el.dataset.itemId, el.dataset.sub, el.dataset.subLabel, { skipDialog: event.shiftKey });
+    });
+
+    // ── Mounted combat (Horsemanship) ──────────────────────
+    html.find(".mounted-check").on("change", async (event) => {
+      await this.actor.update({ "system.combat.mounted": event.currentTarget.checked });
+    });
+    html.find(".mounted-skill-select").on("change", async (event) => {
+      await this.actor.update({ "system.combat.mountedSkillId": event.currentTarget.value });
+    });
+    html.find(".charge-roll").click(async (event) => {
+      event.preventDefault();
+      await this.actor.rollCharge({ skipDialog: event.shiftKey });
+    });
 
     // Saving throw rolls
     html.find(".save-roll").click(async (event) => {
