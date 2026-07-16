@@ -2151,3 +2151,29 @@
 .rifts .hth-move-text { font-size: 12px; }
 .rifts .hth-apm-extra { width: 38px; text-align: center; font-size: 11px; padding: 0 2px; }
 .rifts .hth-extra-wrap { font-size: 11px; opacity: 0.85; }
+
+/* ═══ #1 fixes: compact APM-extra input and inline move buttons ═══ */
+.rifts .hth-summary { display: inline-flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.rifts .hth-extra-wrap { display: inline-flex; align-items: center; gap: 2px; font-size: 11px; opacity: 0.9; }
+.rifts .hth-bar input.hth-apm-extra,
+.rifts input.hth-apm-extra {
+  width: 40px !important;
+  min-width: 40px;
+  max-width: 40px;
+  flex: 0 0 auto;
+  display: inline-block;
+  text-align: center;
+  padding: 1px 2px;
+  font-size: 12px;
+}
+.rifts .hth-moves-list li { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+.rifts button.hth-move-roll {
+  width: auto !important;
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+.rifts .hth-move-text { flex: 1 1 auto; min-width: 200px; }
+.rifts-sheet input.hth-apm-extra { width: 40px !important; min-width: 40px; max-width: 40px; flex: 0 0 auto; text-align: center; }
+.rifts-sheet button.hth-move-roll { width: auto !important; flex: 0 0 auto; }

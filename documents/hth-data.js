@@ -614,13 +614,13 @@ export const MOVE_DEFS = {
   "name": "Body Block/Tackle",
   "damage": "1D4",
   "addPS": true,
-  "text": "This is a combination of moves that involves a body block and a knockdown attack (counts as two melee attacks). A successful strike always inflicts damage from a shoulder, elbow, or tucked head, unless his opponent dodges (no damage and no knockdown). The victim who is hit can avoid being knocked do"
+  "text": "This is a combination of moves that involves a body block and a knockdown attack (counts as two melee attacks). A successful strike always inflicts damage from a shoulder, elbow, or tucked head, unless his opponent dodges (no damage and no knockdown). The victim who is hit can avoid being knocked down only by trying to maintain his balance and must roll percentile dice. A typical Body Block ram has a 01 -50% chance of knocking an opponent down and characters with no special balancing ability must roll above that number or fall."
  },
  "Body Flip/Throw": {
   "name": "Body Flip/Throw",
   "damage": "1D6",
   "addPS": true,
-  "text": "A Judo style throw or flip that uses an attacker's own momentum and leverage to \"flip\" or \"throw\" him off his feet and onto the ground. victim also loses initiative (if he had it) and one melee attack. A body flip counts as one melee attack. A victim of a throw can try to roll with impact/fall to di"
+  "text": "A Judo style throw or flip that uses an attacker's own momentum and leverage to \"flip\" or \"throw\" him off his feet and onto the ground. victim also loses initiative (if he had it) and one melee attack. A body flip counts as one melee attack. A victim of a throw can try to roll with impact/fall to diminish the damage (half if successful), but other penalties are unchanged."
  },
  "Backhand Strike (average)": {
   "name": "Backhand Strike (average)",
@@ -667,14 +667,14 @@ export const MOVE_DEFS = {
  "Karate Kick Attack": {
   "name": "Karate Kick Attack",
   "damage": "2D6",
-  "addPS": true,
-  "text": "A special move and type of kick attack that is designed to do more damage than an ordinary kick."
+  "addPS": false,
+  "text": ""
  },
  "Leap Kick": {
   "name": "Leap Kick",
   "damage": "3D8",
-  "addPS": true,
-  "text": "A Leap Kick is performed by the character putting all of his energy into what is in effect a power kick by leaping completely off the ground and attempting to kick an opponent with everything he can muster but counts as two melee attacks/actions."
+  "addPS": false,
+  "text": "But counts as two melee attacks/actions."
  },
  "Knee": {
   "name": "Knee",
@@ -728,7 +728,7 @@ export const MOVE_DEFS = {
   "name": "Mega-Damage Knockdown",
   "damage": "1D6",
   "addPS": false,
-  "text": "+1D6 M.D. additional for every 30 mph (48 km) of speed at the time of impact. Furthermore, there is a base chance of 01-60% (or whatever the robot combat or a specific description of a knockdown/ramlbody block attack might indicate for that creature) that the victim is knocked off its feet and loses"
+  "text": "+1D6 M.D. additional for every 30 mph (48 km) of speed at the time of impact. Furthermore, there is a base chance of 01-60% (or whatever the robot combat or a specific description of a knockdown/ramlbody block attack might indicate for that creature) that the victim is knocked off its feet and loses initiative and two melee attacks/actions for that round. The attacker suffers the equivalent of 25% of the victim's damage, especially from high-speed ram attacks."
  },
  "Punch": {
   "name": "Punch",
@@ -740,13 +740,13 @@ export const MOVE_DEFS = {
   "name": "Attacks per Melee",
   "damage": "",
   "addPS": false,
-  "text": "Characters with no hand to hand combat training get only one attack/action per melee. No automatic parry or dodge, and each attempt counts as one melee action. P.P. and W.P. bonuses apply to combat moves. Characters with any kind of formal hand to hand combat training (Hand to Hand: Basic, Expert, e"
+  "text": "Characters with no hand to hand combat training get only one attack/action per melee. No automatic parry or dodge, and each attempt counts as one melee action. P.P. and W.P. bonuses apply to combat moves. Characters with any kind of formal hand to hand combat training (Hand to Hand: Basic, Expert, etc.) usually start off with four attacks/\nactions per melee round. Each specific Hand to Hand Combat skill will indicate how many attacks the character starts with. This number grows with experience."
  },
  "Automatic Dodge": {
   "name": "Automatic Dodge",
   "damage": "",
   "addPS": false,
-  "text": "Certain characters and creatures are able to automatically dodge an attack without using up a melee attack/action. It is purely a defensive move in which the dodger bobs, weaves, bends or twists his body out of harm's way. Roll for a dodge as normal (the automatic dodge is not an \"automatic\" success"
+  "text": "Certain characters and creatures are able to automatically dodge an attack without using up a melee attack/action. It is purely a defensive move in which the dodger bobs, weaves, bends or twists his body out of harm's way. Roll for a dodge as normal (the automatic dodge is not an \"automatic\" success). An automatic dodge works just like a (automatic) parry in that the act of dodging does not use up any attacks to perform. Bonuses to auto-dodge come from the character' s P.P. attribute and any special bonus specifically for it (the bonus, skill or enhancement will say \"automatic dodge\"). Unless it specifically says a character has an Automatic Dodge, he does NOT."
  },
  "Attribute Bonuses": {
   "name": "Attribute Bonuses",
@@ -758,43 +758,43 @@ export const MOVE_DEFS = {
   "name": "Back Flip",
   "damage": "",
   "addPS": false,
-  "text": "The back flip involves throwing oneself backwards with the arms and shoulders, flipping the legs completely up, over, and back down on the ground into a standing position. The result is that one quickly moves backwards by a full body length. Doing a back flip counts as one melee attack/action and ca"
+  "text": "The back flip involves throwing oneself backwards with the arms and shoulders, flipping the legs completely up, over, and back down on the ground into a standing position. The result is that one quickly moves backwards by a full body length. Doing a back flip counts as one melee attack/action and can be used as a dodge or for entertainment. If used in place of a dodge, the character must roll higher than his opponent's strike roll using only the natural die roll (do not include any dodge bonuses). Failure to beat the strike means taking full damage without a chance to Roll with Punch. Success means avoiding the attack like a dodge."
  },
  "Back Flip: Escape": {
   "name": "Back Flip: Escape",
   "damage": "",
   "addPS": false,
-  "text": "If used in place of a strike (when it's the back flipping character' s turn to strike) this removes the character from combat and counts as one melee attack/action. To get within striking range, he or his opponent must close ranks (move closer) and whoever does so spends one melee action/attack doin"
+  "text": "If used in place of a strike (when it's the back flipping character' s turn to strike) this removes the character from combat and counts as one melee attack/action. To get within striking range, he or his opponent must close ranks (move closer) and whoever does so spends one melee action/attack doing so. A Back Flip Escape also gives the back-flipping character the initiative."
  },
  "Back Flip: Attack": {
   "name": "Back Flip: Attack",
   "damage": "",
   "addPS": false,
-  "text": "This is especially useful against someone attempting some kind of back strike. Once the opponent is detected in the rear, the back flip moves one back into combat range. A back flip can also be used as a combined strike against an opponent to the rear of the character. If striking with a back flip u"
+  "text": "This is especially useful against someone attempting some kind of back strike. Once the opponent is detected in the rear, the back flip moves one back into combat range. A back flip can also be used as a combined strike against an opponent to the rear of the character. If striking with a back flip use only the bonus to back flip (not strike). Cannot be used with death blow or knockout/stun. This combat maneuver uses up one melee attack/action."
  },
  "Blind or Being Blinded": {
   "name": "Blind or Being Blinded",
   "damage": "",
   "addPS": false,
-  "text": "Here are the definitive penalties and conditions for humans being blinded or fighting in absolute darkness with out optical systems to see. Penalties : Ignore all of the character's normal combat bonuses (they don 't count; natural rolls only, minus the penalties) and the blind character is - 10 to "
+  "text": "Here are the definitive penalties and conditions for humans being blinded or fighting in absolute darkness with out optical systems to see. Penalties : Ignore all of the character's normal combat bonuses (they don 't count; natural rolls only, minus the penalties) and the blind character is - 10 to strike, parry and dodge, disarm, pull punch and similar combat moves! Speed is reduced by 30-50% (or should be) only because the blind character is unsure of himself and running or moving quickly is likely to cause him to stumble or trip into something and fall down (lose initiative and one melee attack/action), slam into a wall (1D6 S.D.C. damage, triple that if running) or run right into the arms of his opponent or some other danger. Obviously, any skills requiring vision are impossible to perform."
  },
  "Knockdown Modifier": {
   "name": "Knockdown Modifier",
   "damage": "",
   "addPS": false,
-  "text": "Add 5% to the roll the victim needs to exceed for every five points of P.S. above 20. So an attacker with a P.S. of 30 requires his opponent to roll 60% to save vs getting bowled over. Characters with a special balancing ability from a skill such as Acrobatics or Gymnastics must roll under their cur"
+  "text": "Add 5% to the roll the victim needs to exceed for every five points of P.S. above 20. So an attacker with a P.S. of 30 requires his opponent to roll 60% to save vs getting bowled over. Characters with a special balancing ability from a skill such as Acrobatics or Gymnastics must roll under their current skill level to keep their balance (if 45% they must roll under 45, if 80% they must roll under 80). A successful maintain balance means the victim is not knocked down but loses one melee attack, and takes full damage. Note: Characters and creatures with Supernatural P.S. and/or greater bulk/weight, or size or speed have an increased likelihood of knocking an opponent down and inflicting greater damage. These special instances are noted under each character description."
  },
  "Knockdown Penalties": {
   "name": "Knockdown Penalties",
   "damage": "",
   "addPS": false,
-  "text": "Being knocked down causes the character struck to lose initiative (if he had it) and one attack/action for that melee round, plus he is knocked 1D6 feet (0.3 to 1.8m) away from where he was standing at the moment of the attack. A roll with impact can reduce damage by half, but counts as one melee ac"
+  "text": "Being knocked down causes the character struck to lose initiative (if he had it) and one attack/action for that melee round, plus he is knocked 1D6 feet (0.3 to 1.8m) away from where he was standing at the moment of the attack. A roll with impact can reduce damage by half, but counts as one melee action."
  },
  "Combat Bonuses": {
   "name": "Combat Bonuses",
   "damage": "",
   "addPS": false,
-  "text": "All appropriate bonuses available to the character are added to the various fighting abilities such as strike, parry or dodge, as well as initiative and saving throws. High physical attributes, certain Physical skills, Weapon Proficiencies (W.P.), the occasional O.C.C. bonus, racial bonus, and genet"
+  "text": "All appropriate bonuses available to the character are added to the various fighting abilities such as strike, parry or dodge, as well as initiative and saving throws. High physical attributes, certain Physical skills, Weapon Proficiencies (W.P.), the occasional O.C.C. bonus, racial bonus, and genetic enhancement may provide one or more combat bonuses. All applicable bonuses are combined and added to the character' s dice rolls. Do not combine the strike bonus with the parry bonus, and so on; each combat maneuver is considered a separate category, so only the various bonuses to strike are added to the strike roll, bonuses to parry added to the parry roll and so forth."
  },
  "Critical Strike": {
   "name": "Critical Strike",
@@ -830,25 +830,25 @@ export const MOVE_DEFS = {
   "name": "Death Blow",
   "damage": "",
   "addPS": false,
-  "text": "A special attack designed to kill an opponent in one or two strikes! This attack is often limited in hand to hand combat to the roll of a \"Natural\" (no bonuses apply) high strike number; i.e. death blow on a Natural 18-20. Whenever the words \"death blow\" are presented without limitation, the charact"
+  "text": "A special attack designed to kill an opponent in one or two strikes! This attack is often limited in hand to hand combat to the roll of a \"Natural\" (no bonuses apply) high strike number; i.e. death blow on a Natural 18-20. Whenever the words \"death blow\" are presented without limitation, the character can use a death strike whenever he desires, however, such a devastating attack counts as two melee attacks/actions"
  },
  "Human vs Human": {
   "name": "Human vs Human",
   "damage": "",
   "addPS": false,
-  "text": "Against humans and natural creatures, the deathblow attack does double the normal damage, including P.S. bonuses, direct to Hit Points. This attack can be used with punches and kicks or handheld weapons such as swords, clubs, etc. It is not applicable to guns and does not work through armor; the arm"
+  "text": "Against humans and natural creatures, the deathblow attack does double the normal damage, including P.S. bonuses, direct to Hit Points. This attack can be used with punches and kicks or handheld weapons such as swords, clubs, etc. It is not applicable to guns and does not work through armor; the armor must be removed or penetrated. Note: Does not work on ghosts, spirits, ethereal beings, energy beings or Astral Travelers/Beings, nor robots and other machines."
  },
  "Human vs Supernatural Beings": {
   "name": "Human vs Supernatural Beings",
   "damage": "",
   "addPS": false,
-  "text": "Not applicable unless the character is a Mega-Damage being himself (dragon, demon, etc.) or a Demon Slayer (as found in various sourcebooks like Rifts® China 2) fighting another Mega-Damage being. Pretty much the same as above, only a successful \"death blow\" is so devastating to the creature's body "
+  "text": "Not applicable unless the character is a Mega-Damage being himself (dragon, demon, etc.) or a Demon Slayer (as found in various sourcebooks like Rifts® China 2) fighting another Mega-Damage being. Pretty much the same as above, only a successful \"death blow\" is so devastating to the creature's body that it cannot bio-regenerate injury from a death blow for 1D4 hours!"
  },
  "Disarm": {
   "name": "Disarm",
   "damage": "",
   "addPS": false,
-  "text": "The act of disarming is simply getting rid of the opponent's weapon; it does no damage. It can be used as a defensive move in place of a dodge or parry, or can be done as an attack/strike. The disarm move is a strike, hold or grappling maneuver that causes an opponent to drop his weapon or whatever "
+  "text": "The act of disarming is simply getting rid of the opponent's weapon; it does no damage. It can be used as a defensive move in place of a dodge or parry, or can be done as an attack/strike. The disarm move is a strike, hold or grappling maneuver that causes an opponent to drop his weapon or whatever he's holding. Counts as one melee attack/action. Disarm does not give the weapon to the character making the disarm move. True, the item is forced out of the victim's grasp, but it is either knocked away or falls to the ground. Typically an opponent is disarmed on a roll of a Natural 19 or 20 when used as a defensive move. Roll a disarming strike to attack as usual - high roll wins. A failed disarming attack does no damage and means one's opponent remains armed, is probably mad, and ready to strike"
  },
  "Dodge": {
   "name": "Dodge",
@@ -860,19 +860,19 @@ export const MOVE_DEFS = {
   "name": "Entangle",
   "damage": "",
   "addPS": false,
-  "text": "A defender can attempt to trap the weapon or arm of an attacker. This is done instead of parrying or dodging, and takes up one attack per melee. An entangle is successful if the defender rolls above the attacker's strike roll. It takes one attack and a roll to entangle to keep an opponent' s arm or "
+  "text": "A defender can attempt to trap the weapon or arm of an attacker. This is done instead of parrying or dodging, and takes up one attack per melee. An entangle is successful if the defender rolls above the attacker's strike roll. It takes one attack and a roll to entangle to keep an opponent' s arm or weapon entangled every melee round. In order to get free, the entangled opponent must roll a dodge against the entangle roll."
  },
  "Hand to Hand Combat": {
   "name": "Hand to Hand Combat",
   "damage": "",
   "addPS": false,
-  "text": "Fighting skills that provide the character with attacks per melee, bonuses, and techniques. Characters without combat training have only one attack per melee and have no automatic chance to parry. Specific combat moves and bonuses are all laid out in the Hand to Hand Combat skills that follow these "
+  "text": "Fighting skills that provide the character with attacks per melee, bonuses, and techniques. Characters without combat training have only one attack per melee and have no automatic chance to parry. Specific combat moves and bonuses are all laid out in the Hand to Hand Combat skills that follow these Combat Terms."
  },
  "Hit Points": {
   "name": "Hit Points",
   "damage": "",
   "addPS": false,
-  "text": "This is the number of points of damage a character can take before dying. Characters don't lose Hit Points until their S.D.C. is\ndown to zero. A character's base Hit Points is the P.E. attribute plus 1D6. Another 1D6 Hit Points are gained every time the character advances an experience level. Lost H"
+  "text": "This is the number of points of damage a character can take before dying. Characters don't lose Hit Points until their S.D.C. is\ndown to zero. A character's base Hit Points is the P.E. attribute plus 1D6. Another 1D6 Hit Points are gained every time the character advances an experience level. Lost Hit Points are not recovered without medical attention and recuperation."
  },
  "Arm Hold": {
   "name": "Arm Hold",
@@ -908,13 +908,13 @@ export const MOVE_DEFS = {
   "name": "Initiative",
   "damage": "",
   "addPS": false,
-  "text": "Whoever gets to attack first is considered to have the initiative and is the \"attacker.\" Initiative is automatic in sneak attacks and long-range attacks. In most other cases, each opponent rolls a twenty-sided, highest roll gets the initiative. Rolling for initiative takes place at the beginning of "
+  "text": "Whoever gets to attack first is considered to have the initiative and is the \"attacker.\" Initiative is automatic in sneak attacks and long-range attacks. In most other cases, each opponent rolls a twenty-sided, highest roll gets the initiative. Rolling for initiative takes place at the beginning of each melee round of combat."
  },
  "Penalties": {
   "name": "Penalties",
   "damage": "",
   "addPS": false,
-  "text": "In ALL cases, when a character is knocked down or off his feet he automatically loses initiative and one melee attack/action. If he is knocked several or dozens of yards/meters, the character loses two melee attacks. This is true even if the character is knocked down right where he was standing or o"
+  "text": "In ALL cases, when a character is knocked down or off his feet he automatically loses initiative and one melee attack/action. If he is knocked several or dozens of yards/meters, the character loses two melee attacks. This is true even if the character is knocked down right where he was standing or only a few feet/meters."
  },
  "Knockout/Stun": {
   "name": "Knockout/Stun",
@@ -944,19 +944,19 @@ export const MOVE_DEFS = {
   "name": "Multiple Attackers",
   "damage": "",
   "addPS": false,
-  "text": "Takes place when an opponent is faced by more than one attacker. Characters with hand to hand combat skills can attempt to parry any attacks within their line of sight, from up to three attackers. The defender from multiple attackers can strike at only one target at a time (see Paired Weapons for a "
+  "text": "Takes place when an opponent is faced by more than one attacker. Characters with hand to hand combat skills can attempt to parry any attacks within their line of sight, from up to three attackers. The defender from multiple attackers can strike at only one target at a time (see Paired Weapons for a rare exception)."
  },
  "Pull Punch": {
   "name": "Pull Punch",
   "damage": "",
   "addPS": false,
-  "text": "The abil ity to control the force of a hand to hand attack, whether it be a punch, kick or with a hand weapon. Usually used to reduce the blow to less than killing force. The character can choose to do half damage, quarter damage, a single point or no damage at all. A character must declare a pulled"
+  "text": "The abil ity to control the force of a hand to hand attack, whether it be a punch, kick or with a hand weapon. Usually used to reduce the blow to less than killing force. The character can choose to do half damage, quarter damage, a single point or no damage at all. A character must declare a pulled punch, and the player must roll 11 or better on a twenty-sided die (1D20) to successfully pull his punch. A failed roll to pull means full damage is accidentally inflicted."
  },
  "Roll with Impact": {
   "name": "Roll with Impact",
   "damage": "",
   "addPS": false,
-  "text": "Hand to hand combat fighters can reduce the damage from physical blows and falls by rolling with the force of the impact. If the defender is successful, then only half damage is taken from the attack. Roll with punch/fall does not work against energy blasts, bullets, fire, blade weapons, psionics, m"
+  "text": "Hand to hand combat fighters can reduce the damage from physical blows and falls by rolling with the force of the impact. If the defender is successful, then only half damage is taken from the attack. Roll with punch/fall does not work against energy blasts, bullets, fire, blade weapons, psionics, magic or radiation. Victims must roll higher than the attacker's roll. Falling characters must roll a 14 or higher, on a twenty-sided die, to roll with the fall."
  },
  "Curses:": {
   "name": "Curses:",
@@ -1016,7 +1016,7 @@ export const MOVE_DEFS = {
   "name": "Simultaneous Attack",
   "damage": "",
   "addPS": false,
-  "text": "Instead of defending with a parry, dodge or entangle, a character can choose to do a simultaneous attack. In this case, the character does not defend (\"Go ahead, hit me; I can take it! \") and simply attacks in response. The advantage of a simultaneous attack is that neither opponent can parry, dodge"
+  "text": "Instead of defending with a parry, dodge or entangle, a character can choose to do a simultaneous attack. In this case, the character does not defend (\"Go ahead, hit me; I can take it! \") and simply attacks in response. The advantage of a simultaneous attack is that neither opponent can parry, dodge or entangle. In all probability, both will take damage. Exception : An opponent skilled with Paired Weapons can engage in simultaneous attack (with one weapon) AND parry (with the other), OR, both the paired weapons can be used to strike with NO parry"
  },
  "Sneak Attack": {
   "name": "Sneak Attack",

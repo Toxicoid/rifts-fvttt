@@ -401,7 +401,7 @@
       <option value="dragon" {{#if (eq system.combat.hthStyle "dragon")}}selected{{/if}}>Dragon</option>
     </select>
     {{#if system.combat.hthActive}}
-    <span class="hth-summary">APM <b>{{system.combat.attacksPerMelee}}</b> <span class="hth-extra-wrap" title="Extra attacks beyond training (extra arms, chassis, etc.)">(+<input type="number" class="hth-apm-extra" data-path-number="system.combat.apmExtra" value="{{system.combat.apmExtra}}" min="0" /> extra)</span> · crit <b>{{system.combat.criticalOn}}+</b>{{#if system.combat.hthInit}} · init <b>+{{system.combat.hthInit}}</b>{{/if}} · pull <b>+{{system.combat.hthPullPunch}}</b> · rolls <b>+{{system.combat.hthRollImpact}}</b></span>
+    <span class="hth-summary">APM <b>{{system.combat.attacksPerMelee}}</b><span class="hth-extra-wrap" title="Extra attacks beyond training (extra arms, chassis, etc.)">+<input type="number" class="hth-apm-extra" data-path-number="system.combat.apmExtra" value="{{system.combat.apmExtra}}" min="0" /></span> · crit <b>{{system.combat.criticalOn}}+</b>{{#if system.combat.hthInit}} · init <b>+{{system.combat.hthInit}}</b>{{/if}} · pull <b>+{{system.combat.hthPullPunch}}</b> · rolls <b>+{{system.combat.hthRollImpact}}</b></span>
     {{#if system.combat.hthMoves.length}}
     <button type="button" class="hth-moves-toggle icon-btn" title="Show unlocked special moves"><i class="fas fa-scroll"></i> {{system.combat.hthMoves.length}} moves</button>
     {{/if}}

@@ -282,7 +282,7 @@ export class RiftsActor extends Actor {
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: `
         <strong>${moveName}</strong> — damage${addPS ? " (incl. damage bonus)" : ""}<br>
-        <em style="font-size:11px;">${(ruleText || "").slice(0, 220)}</em>
+        <em style="font-size:11px;">${ruleText || ""}</em>
       `,
     });
     return roll;
