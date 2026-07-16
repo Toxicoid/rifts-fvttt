@@ -3,6 +3,8 @@
 // Extends Foundry's Actor class with Rifts-specific logic
 // ============================================================
 
+import { HTH_STYLES, hthBonus, hthCrit, hthMoves, matchMove } from "./hth-data.js";
+
 export class RiftsActor extends Actor {
 
   // ── _preCreate ────────────────────────────────────────────
@@ -167,8 +169,9 @@ export class RiftsActor extends Actor {
       combat.hthActive = true;
       combat.hthName = HTH_STYLES[hthStyle].name;
       const styleApm = hthBonus(hthStyle, "apm", hthLvl);
-      if (styleApm > 0) combat.attacksPerMelee = styleApm;
       combat.hthApm = styleApm;
+      // Trained attacks + extras (extra arms, chassis, etc.)
+      if (styleApm > 0) combat.attacksPerMelee = styleApm + (combat.apmExtra || 0);
       combat.strikeTotal += hthBonus(hthStyle, "strike", hthLvl);
       combat.parryTotal += hthBonus(hthStyle, "parry", hthLvl);
       combat.dodgeTotal += hthBonus(hthStyle, "dodge", hthLvl);
@@ -180,7 +183,16 @@ export class RiftsActor extends Actor {
       combat.hthRollImpact = hthBonus(hthStyle, "rollImpact", hthLvl);
       combat.hthDisarm = hthBonus(hthStyle, "disarm", hthLvl);
       combat.criticalOn = hthCrit(hthStyle, hthLvl);
-      combat.hthMoves = hthMoves(hthStyle, hthLvl);
+      combat.hthMoves = hthMoves(hthStyle, hthLvl).map((m) => {
+        const def = matchMove(m.text);
+        return {
+          ...m,
+          moveName: def?.name ?? "",
+          damage: def?.damage ?? "",
+          addPS: def?.addPS ?? false,
+          ruleText: def?.text ?? "",
+        };
+      });
     }
 
     combat.attacksPerMelee = Math.max(combat.attacksPerMelee, 1);
@@ -233,6 +245,14 @@ export class RiftsActor extends Actor {
         combat.mountedInitTotal = (combat.initiativeBonus || 0) + combat.mountedInit;
       }
     }
+
+    // ── Unified display/roll totals ─────────────────────────
+    combat.initiativeTotal = (combat.initiativeBonus || 0)
+      + (combat.hthInit || 0)
+      + (combat.mountedActive ? (combat.mountedInit || 0) : 0);
+    combat.pullPunchTotal = (combat.pullPunchBonus || 0) + (combat.hthPullPunch || 0);
+    combat.rollTotal = (combat.rollBonus || 0)
+      + Math.max(combat.hthRollPunch || 0, combat.hthRollFall || 0, combat.hthRollImpact || 0);
   }
 
   // Returns the horsemanship data block currently driving mounted
@@ -251,6 +271,41 @@ export class RiftsActor extends Actor {
   // ── roll ──────────────────────────────────────────────────
   // Generic d20 roll with a bonus — used for strike/parry/dodge
   // ── Saving throw roll ──────────────────────────────────
+  // ── rollHthMove ───────────────────────────────────────────
+  async rollHthMove({ moveName, damage, addPS, ruleText }) {
+    const dmgBonus = addPS ? (this.system.combat.damageTotal ?? 0) : 0;
+    const base = String(damage).replace(/D/g, "d").replace(/\s*\(.*\)\s*/, "").trim();
+    const formula = `${base}${dmgBonus ? ` + ${dmgBonus}` : ""}`;
+    const roll = new Roll(formula);
+    await roll.evaluate();
+    roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `
+        <strong>${moveName}</strong> — damage${addPS ? " (incl. damage bonus)" : ""}<br>
+        <em style="font-size:11px;">${(ruleText || "").slice(0, 220)}</em>
+      `,
+    });
+    return roll;
+  }
+
+  // ── HtH skill drag-sync ───────────────────────────────────
+  // Dropping a "Hand to Hand: X" skill onto the sheet also sets
+  // the combat H2H style so the auto-progression engine engages.
+  _onCreateDescendantDocuments(parent, collection, documents, ...rest) {
+    super._onCreateDescendantDocuments(parent, collection, documents, ...rest);
+    if (this.type !== "character") return;
+    for (const doc of documents) {
+      if (doc.type !== "skill") continue;
+      const m = /^hand to hand[:\s]+(.+)$/i.exec(doc.name ?? "");
+      if (!m) continue;
+      const key = {
+        basic: "basic", expert: "expert", "martial arts": "martialArts",
+        assassin: "assassin", commando: "commando", dragon: "dragon",
+      }[m[1].trim().toLowerCase()];
+      if (key) this.update({ "system.combat.hthStyle": key });
+    }
+  }
+
   // ── promptRollModifier ─────────────────────────────────────
   // Quick situational-modifier dialog. Enter = roll (default 0),
   // Cancel/Escape = abort. Returns a number or null.

@@ -192,6 +192,12 @@ export class RiftsActorSheet extends ActorSheet {
     html.find(".hth-style-select").on("change", async (event) => {
       await this.actor.update({ "system.combat.hthStyle": event.currentTarget.value });
     });
+    html.find(".hth-move-roll").click(async (event) => {
+      event.preventDefault();
+      const idx = Number(event.currentTarget.dataset.moveIndex);
+      const move = this.actor.system.combat.hthMoves?.[idx];
+      if (move?.damage) await this.actor.rollHthMove(move);
+    });
     html.find(".hth-moves-toggle").click((event) => {
       event.preventDefault();
       html.find(".hth-moves-panel").toggleClass("open");

@@ -45,7 +45,8 @@ await actor.update({
   "system.attributes.ps.value": 22,      // Robot P.S.
   "system.attributes.pp.value": 24,      // Bionic P.P.
   "system.attributes.spd.value": 132,    // 90 mph
-  "system.combat.attacksPerMelee": 5,    // includes +1 from four arms; adjust for HtH level
+  "system.combat.attacksPerMelee": 5,    // fallback if no HtH style picked
+  "system.combat.apmExtra": 1,           // four arms: +1 attack on top of HtH training
   "system.combat.initiativeBonus": 6,    // amplified hearing +3, quickdraw holsters +1, combat computer +1, special +1
   "system.combat.parryBonus": 3,         // amplified hearing +1, special +2
   "system.combat.dodgeBonus": 3,         // amplified hearing +2, combat computer +1

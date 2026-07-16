@@ -49,7 +49,8 @@
         "criticalOn": 20,
         "mounted": false,
         "mountedSkillId": "",
-        "hthStyle": "none"
+        "hthStyle": "none",
+        "apmExtra": 0
       },
 
       "money": {

@@ -2140,3 +2140,14 @@
 .rifts .hth-moves-list { list-style:none; margin:0; padding:0; font-size:12px; }
 .rifts .hth-moves-list li { padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.06); line-height:1.4; }
 .rifts .hth-move-lvl { display:inline-block; min-width:26px; color:var(--rifts-orange,#e8751a); font-family:"Share Tech Mono",monospace; font-size:11px; }
+
+/* HtH move roll buttons */
+.rifts .hth-move-roll {
+  padding: 1px 8px; margin-right: 6px; font-size: 11px;
+  background: rgba(232,117,26,0.85); color:#1a1a1a; font-weight:bold;
+  border:none; border-radius:3px; cursor:pointer; white-space:nowrap;
+}
+.rifts .hth-move-roll:hover { background: var(--rifts-orange,#e8751a); }
+.rifts .hth-move-text { font-size: 12px; }
+.rifts .hth-apm-extra { width: 38px; text-align: center; font-size: 11px; padding: 0 2px; }
+.rifts .hth-extra-wrap { font-size: 11px; opacity: 0.85; }

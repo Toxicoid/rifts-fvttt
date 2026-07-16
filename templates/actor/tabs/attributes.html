@@ -401,7 +401,7 @@
       <option value="dragon" {{#if (eq system.combat.hthStyle "dragon")}}selected{{/if}}>Dragon</option>
     </select>
     {{#if system.combat.hthActive}}
-    <span class="hth-summary">APM <b>{{system.combat.attacksPerMelee}}</b> · crit <b>{{system.combat.criticalOn}}+</b>{{#if system.combat.hthInit}} · init <b>+{{system.combat.hthInit}}</b>{{/if}} · pull <b>+{{system.combat.hthPullPunch}}</b> · rolls <b>+{{system.combat.hthRollImpact}}</b></span>
+    <span class="hth-summary">APM <b>{{system.combat.attacksPerMelee}}</b> <span class="hth-extra-wrap" title="Extra attacks beyond training (extra arms, chassis, etc.)">(+<input type="number" class="hth-apm-extra" data-path-number="system.combat.apmExtra" value="{{system.combat.apmExtra}}" min="0" /> extra)</span> · crit <b>{{system.combat.criticalOn}}+</b>{{#if system.combat.hthInit}} · init <b>+{{system.combat.hthInit}}</b>{{/if}} · pull <b>+{{system.combat.hthPullPunch}}</b> · rolls <b>+{{system.combat.hthRollImpact}}</b></span>
     {{#if system.combat.hthMoves.length}}
     <button type="button" class="hth-moves-toggle icon-btn" title="Show unlocked special moves"><i class="fas fa-scroll"></i> {{system.combat.hthMoves.length}} moves</button>
     {{/if}}
@@ -412,7 +412,16 @@
     <div class="hth-moves-head">Special Moves &amp; Abilities <span class="hm-hint">(unlocked at your level — invoke in play)</span></div>
     <ul class="hth-moves-list">
       {{#each system.combat.hthMoves}}
-      <li><span class="hth-move-lvl">L{{this.level}}</span> {{this.text}}</li>
+      <li>
+        <span class="hth-move-lvl">L{{this.level}}</span>
+        {{#if this.damage}}
+        <button type="button" class="hth-move-roll" data-move-index="{{@index}}"
+                title="{{this.ruleText}}">
+          <i class="fas fa-dice-d20"></i> {{#if this.moveName}}{{this.moveName}}{{else}}Roll{{/if}} ({{this.damage}})
+        </button>
+        {{/if}}
+        <span class="hth-move-text" {{#if this.ruleText}}title="{{this.ruleText}}"{{/if}}>{{this.text}}</span>
+      </li>
       {{/each}}
     </ul>
   </div>
@@ -462,10 +471,12 @@
       <div class="combat-bonuses">
 
         <div class="combat-bonus-row">
-          <span class="bonus-name combat-roll rollable" data-roll="initiative" data-bonus="{{system.combat.initiativeBonus}}" data-label="Initiative" title="Click to roll Initiative">Initiative</span>
+          <span class="bonus-name combat-roll rollable" data-roll="initiative" data-bonus="{{system.combat.initiativeTotal}}" data-label="Initiative" title="Click to roll Initiative">Initiative</span>
           <input type="number"
                  data-path-number="system.combat.initiativeBonus"
-                 value="{{system.combat.initiativeBonus}}" />
+                 value="{{system.combat.initiativeBonus}}"
+                 title="Misc bonus only — HtH style/mounted bonuses are added automatically" />
+          <span class="bonus-total" title="Total incl. HtH/mounted bonuses">= {{system.combat.initiativeTotal}}</span>
           
         </div>
 
@@ -508,18 +519,22 @@
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name combat-roll rollable" data-roll="roll" data-bonus="{{system.combat.rollBonus}}" data-label="Roll w/ Punch" title="Click to roll Roll w/ Punch">Roll w/ Punch</span>
+          <span class="bonus-name combat-roll rollable" data-roll="roll" data-bonus="{{system.combat.rollTotal}}" data-label="Roll w/ Punch" title="Click to roll Roll w/ Punch">Roll w/ Punch</span>
           <input type="number"
                  data-path-number="system.combat.rollBonus"
-                 value="{{system.combat.rollBonus}}" />
+                 value="{{system.combat.rollBonus}}"
+                 title="Misc bonus only — HtH style bonuses are added automatically" />
+          <span class="bonus-total" title="Total incl. HtH bonuses">= {{system.combat.rollTotal}}</span>
           
         </div>
 
         <div class="combat-bonus-row">
-          <span class="bonus-name combat-roll rollable" data-roll="pullpunch" data-bonus="{{system.combat.pullPunchBonus}}" data-label="Pull Punch" title="Click to roll Pull Punch">Pull Punch</span>
+          <span class="bonus-name combat-roll rollable" data-roll="pullpunch" data-bonus="{{system.combat.pullPunchTotal}}" data-label="Pull Punch" title="Click to roll Pull Punch">Pull Punch</span>
           <input type="number"
                  data-path-number="system.combat.pullPunchBonus"
-                 value="{{system.combat.pullPunchBonus}}" />
+                 value="{{system.combat.pullPunchBonus}}"
+                 title="Misc bonus only — HtH style bonuses are added automatically" />
+          <span class="bonus-total" title="Total incl. HtH bonuses">= {{system.combat.pullPunchTotal}}</span>
           
         </div>
 

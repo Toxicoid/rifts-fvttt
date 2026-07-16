@@ -24,7 +24,7 @@ Hooks.once("init", function () {
   // ── Combat Tracker Initiative ──────────────────────────────
   // Palladium: 1d20 + initiative bonus, highest goes first.
   CONFIG.Combat.initiative = {
-    formula: "1d20 + @combat.initiativeBonus",
+    formula: "1d20 + @combat.initiativeTotal",
     decimals: 0,
   };
 

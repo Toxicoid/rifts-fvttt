@@ -234,7 +234,7 @@ const items = [
       forearms: { value: 0, max: 0 }, feet: { value: 0, max: 0 },
       mobility: "—", weight: "", cost: 250000, prowlPenalty: 0,
       description: "A pair of additional hands and arms attached to the reinforced rib cage just below the usual pair. The second set of limbs are a bit smaller and lighter than the normal full body replacements, but are still quite formidable additions. Maximum P.S. and P.P. attributes: 20 (base is 10).",
-      notes: "M.D.C. per limb tracked above: each hand 5, each arm 25.\nBonuses: a PAIR adds ONE attack per melee and +1 to strike and parry — APPLY TO THE SHEET'S COMBAT STATS MANUALLY (A.P.M. +1, Strike +1, Parry +1). The arm's individual attribute bonuses apply only to that arm. A SINGLE hand and arm adds only +1 to parry.\nCost: 250,000 cr for a pair; 130,000 cr for one. This is ONE item representing the PAIR — do not add it twice. Each new hand/forearm has its own built-in weapon capacity (GM ruling on extra starting picks).",
+      notes: "M.D.C. per limb tracked above: each hand 5, each arm 25.\nBonuses: a PAIR adds ONE attack per melee and +1 to strike and parry — APPLY MANUALLY: set APM Extra +1 in the Hand to Hand bar, Strike +1, Parry +1. The arm's individual attribute bonuses apply only to that arm. A SINGLE hand and arm adds only +1 to parry.\nCost: 250,000 cr for a pair; 130,000 cr for one. This is ONE item representing the PAIR — do not add it twice. Each new hand/forearm has its own built-in weapon capacity (GM ruling on extra starting picks).",
     },
   },
   bionicTool("Legs for Leaping (Bionic)", 30000,
