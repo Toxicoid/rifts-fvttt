@@ -153,6 +153,37 @@ export class RiftsActor extends Actor {
     combat.parryTotal = Math.round((combat.parryBonus || 0) + (combat.attrParry || 0));
     combat.dodgeTotal = Math.round((combat.dodgeBonus || 0) + (combat.attrDodge || 0));
     combat.damageTotal = Math.round((combat.damageBonus || 0) + (combat.attrDamage || 0));
+
+    // ── Hand to Hand style (auto level progression) ────────
+    // The selected style contributes cumulative bonuses by the
+    // character's level, landing in derived totals only. The
+    // style's APM value is the TOTAL trained attacks per melee
+    // (book "APM: +4" at L1 = 4 attacks).
+    const hthStyle = combat.hthStyle || "none";
+    const hthLvl = Math.max(this.system.identity?.level ?? 1, 1);
+    combat.hthActive = false;
+    combat.hthMoves = [];
+    if (hthStyle && hthStyle !== "none" && HTH_STYLES[hthStyle]) {
+      combat.hthActive = true;
+      combat.hthName = HTH_STYLES[hthStyle].name;
+      const styleApm = hthBonus(hthStyle, "apm", hthLvl);
+      if (styleApm > 0) combat.attacksPerMelee = styleApm;
+      combat.hthApm = styleApm;
+      combat.strikeTotal += hthBonus(hthStyle, "strike", hthLvl);
+      combat.parryTotal += hthBonus(hthStyle, "parry", hthLvl);
+      combat.dodgeTotal += hthBonus(hthStyle, "dodge", hthLvl);
+      combat.damageTotal += hthBonus(hthStyle, "damage", hthLvl);
+      combat.hthInit = hthBonus(hthStyle, "initiative", hthLvl);
+      combat.hthPullPunch = hthBonus(hthStyle, "pullPunch", hthLvl);
+      combat.hthRollPunch = hthBonus(hthStyle, "rollPunch", hthLvl);
+      combat.hthRollFall = hthBonus(hthStyle, "rollFall", hthLvl);
+      combat.hthRollImpact = hthBonus(hthStyle, "rollImpact", hthLvl);
+      combat.hthDisarm = hthBonus(hthStyle, "disarm", hthLvl);
+      combat.criticalOn = hthCrit(hthStyle, hthLvl);
+      combat.hthMoves = hthMoves(hthStyle, hthLvl);
+    }
+
+    combat.attacksPerMelee = Math.max(combat.attacksPerMelee, 1);
     // Movement per action: (Spd x 15 ft per melee) / attacks per melee
     const spdVal = attrs.spd?.value ?? 0;
     const apm = Math.max(combat.attacksPerMelee || 1, 1);

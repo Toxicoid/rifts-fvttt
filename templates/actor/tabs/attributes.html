@@ -389,6 +389,59 @@
   {{!-- ══════════ COMBAT (moved from Combat tab) ══════════ --}}
   <hr class="attr-combat-separator" />
 
+  <div class="hth-bar {{#if system.combat.hthActive}}is-active{{/if}}">
+    <label class="hth-label"><i class="fas fa-hand-fist"></i> Hand to Hand</label>
+    <select class="hth-style-select" title="Selecting a style auto-applies its level-based combat bonuses">
+      <option value="none" {{#if (eq system.combat.hthStyle "none")}}selected{{/if}}>None / No Combat Training</option>
+      <option value="basic" {{#if (eq system.combat.hthStyle "basic")}}selected{{/if}}>Basic</option>
+      <option value="expert" {{#if (eq system.combat.hthStyle "expert")}}selected{{/if}}>Expert</option>
+      <option value="martialArts" {{#if (eq system.combat.hthStyle "martialArts")}}selected{{/if}}>Martial Arts</option>
+      <option value="assassin" {{#if (eq system.combat.hthStyle "assassin")}}selected{{/if}}>Assassin</option>
+      <option value="commando" {{#if (eq system.combat.hthStyle "commando")}}selected{{/if}}>Commando</option>
+      <option value="dragon" {{#if (eq system.combat.hthStyle "dragon")}}selected{{/if}}>Dragon</option>
+    </select>
+    {{#if system.combat.hthActive}}
+    <span class="hth-summary">APM <b>{{system.combat.attacksPerMelee}}</b> · crit <b>{{system.combat.criticalOn}}+</b>{{#if system.combat.hthInit}} · init <b>+{{system.combat.hthInit}}</b>{{/if}} · pull <b>+{{system.combat.hthPullPunch}}</b> · rolls <b>+{{system.combat.hthRollImpact}}</b></span>
+    {{#if system.combat.hthMoves.length}}
+    <button type="button" class="hth-moves-toggle icon-btn" title="Show unlocked special moves"><i class="fas fa-scroll"></i> {{system.combat.hthMoves.length}} moves</button>
+    {{/if}}
+    {{/if}}
+  </div>
+  {{#if system.combat.hthActive}}
+  <div class="hth-moves-panel">
+    <div class="hth-moves-head">Special Moves &amp; Abilities <span class="hm-hint">(unlocked at your level — invoke in play)</span></div>
+    <ul class="hth-moves-list">
+      {{#each system.combat.hthMoves}}
+      <li><span class="hth-move-lvl">L{{this.level}}</span> {{this.text}}</li>
+      {{/each}}
+    </ul>
+  </div>
+  {{/if}}
+
+  {{#if hasHorsemanship}}
+  <div class="mounted-bar {{#if system.combat.mounted}}is-mounted{{/if}}">
+    <label class="mounted-toggle" title="Toggle mounted combat — applies the selected Horsemanship variant's rider bonuses">
+      <input type="checkbox" class="mounted-check" {{#if system.combat.mounted}}checked{{/if}} />
+      <i class="fas fa-horse"></i> Mounted
+    </label>
+    {{#if (gt horsemanshipSkills.length 1)}}
+    <select class="mounted-skill-select" title="Which Horsemanship variant is active">
+      {{#each horsemanshipSkills}}
+      <option value="{{this.id}}" {{#if this.selected}}selected{{/if}}>{{this.name}}</option>
+      {{/each}}
+    </select>
+    {{/if}}
+    {{#if system.combat.mountedActive}}
+    <span class="mounted-summary">
+      <strong>{{system.combat.mountedName}}</strong> · init +{{system.combat.mountedInitTotal}} · kick {{system.combat.mountedKick}}{{#if system.combat.mountedHorseAttack}} · <em title="Applies to the mount's strike, not the rider">mount atk {{system.combat.mountedHorseAttack}}</em>{{/if}}
+    </span>
+    <button type="button" class="charge-roll" title="Charge attack: {{system.combat.mountedChargeDamage}} damage, {{system.combat.mountedChargeActions}} actions">
+      <i class="fas fa-bolt"></i> Charge
+    </button>
+    {{/if}}
+  </div>
+  {{/if}}
+
   <div class="combat-layout">
     <div class="combat-column">
 

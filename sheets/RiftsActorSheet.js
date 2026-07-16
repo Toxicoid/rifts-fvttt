@@ -188,6 +188,15 @@ export class RiftsActorSheet extends ActorSheet {
     });
 
     // ── Mounted combat (Horsemanship) ──────────────────────
+    // Hand to Hand style picker
+    html.find(".hth-style-select").on("change", async (event) => {
+      await this.actor.update({ "system.combat.hthStyle": event.currentTarget.value });
+    });
+    html.find(".hth-moves-toggle").click((event) => {
+      event.preventDefault();
+      html.find(".hth-moves-panel").toggleClass("open");
+    });
+
     html.find(".mounted-check").on("change", async (event) => {
       await this.actor.update({ "system.combat.mounted": event.currentTarget.checked });
     });

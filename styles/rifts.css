@@ -2120,3 +2120,23 @@
 }
 .rifts .hm-inline-panel.open { display: block; }
 .rifts .hm-inline-note { font-size: 11px; opacity: 0.75; font-style: italic; margin: 6px 0 0; }
+
+/* ═══ Hand to Hand style picker + moves panel ═══ */
+.rifts .hth-bar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 6px 10px; margin: 6px 0;
+  background: rgba(60,70,90,0.15); border: 1px solid rgba(232,117,26,0.25); border-radius: 4px;
+}
+.rifts .hth-bar.is-active { background: rgba(232,117,26,0.12); border-color: var(--rifts-orange,#e8751a); }
+.rifts .hth-label { display:flex; align-items:center; gap:5px; font-weight:bold; white-space:nowrap; }
+.rifts .hth-label i { color: var(--rifts-orange,#e8751a); }
+.rifts .hth-style-select { max-width: 220px; }
+.rifts .hth-summary { font-size:12px; font-family:"Share Tech Mono",monospace; opacity:0.9; }
+.rifts .hth-summary b { color: var(--rifts-orange,#e8751a); }
+.rifts .hth-moves-toggle { margin-left:auto; white-space:nowrap; }
+.rifts .hth-moves-panel { display:none; padding:8px 12px; margin:2px 0 8px; background:rgba(0,0,0,0.15); border-left:2px solid var(--rifts-orange,#e8751a); border-radius:3px; }
+.rifts .hth-moves-panel.open { display:block; }
+.rifts .hth-moves-head { font-weight:bold; font-size:12px; margin-bottom:5px; }
+.rifts .hth-moves-list { list-style:none; margin:0; padding:0; font-size:12px; }
+.rifts .hth-moves-list li { padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.06); line-height:1.4; }
+.rifts .hth-move-lvl { display:inline-block; min-width:26px; color:var(--rifts-orange,#e8751a); font-family:"Share Tech Mono",monospace; font-size:11px; }

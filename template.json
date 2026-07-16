@@ -46,7 +46,10 @@
         "damageBonus": 0,
         "perceptionBonus": 0,
         "perceptionBonus": 0,
-        "criticalOn": 20
+        "criticalOn": 20,
+        "mounted": false,
+        "mountedSkillId": "",
+        "hthStyle": "none"
       },
 
       "money": {
