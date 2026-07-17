@@ -608,39 +608,42 @@
       <div class="damage-grid">
         <div class="damage-field">
           <label>Run Speed (mph)</label>
-          <input type="text" data-path="system.combat.runSpeed" value="{{system.combat.runSpeed}}" placeholder="e.g. 15 mph" />
+          <input type="text" data-path="system.combat.runSpeed" value="{{system.combat.runSpeed}}" placeholder="e.g. 15 mph" title="Auto value = Spd x 0.682 mph. Enter to override (e.g. chassis top speed)." />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoRunMph}} mph</span>
         </div>
         <div class="damage-field">
           <label>Run (max melees)</label>
-          <input type="text" data-path="system.combat.runMelees" value="{{system.combat.runMelees}}" placeholder="e.g. 10" />
+          <input type="text" data-path="system.combat.runMelees" title="How long full speed can be maintained (P.E.-based). Paste the RUE endurance text to Claude to auto-calc." value="{{system.combat.runMelees}}" placeholder="e.g. 10" />
         </div>
         <div class="damage-field">
           <label>Swim Speed (mph)</label>
-          <input type="text" data-path="system.combat.swimSpeed" value="{{system.combat.swimSpeed}}" placeholder="e.g. 5 mph" />
+          <input type="text" data-path="system.combat.swimSpeed" title="Requires the Swimming skill. Paste the RUE Swimming text to auto-calc." value="{{system.combat.swimSpeed}}" placeholder="e.g. 5 mph" />
         </div>
         <div class="damage-field">
           <label>Swim (max melees)</label>
-          <input type="text" data-path="system.combat.swimMelees" value="{{system.combat.swimMelees}}" placeholder="e.g. 8" />
+          <input type="text" data-path="system.combat.swimMelees" title="Swimming endurance (P.E.-based). Paste the RUE text to auto-calc." value="{{system.combat.swimMelees}}" placeholder="e.g. 8" />
         </div>
         <div class="damage-field">
           <label>Leap (running)</label>
-          <input type="text" data-path="system.combat.leapLengthRunning" value="{{system.combat.leapLengthRunning}}" placeholder="e.g. 5 ft" />
+          <input type="text" data-path="system.combat.leapLengthRunning" title="Paste the RUE leaping rules to auto-calc from attributes." value="{{system.combat.leapLengthRunning}}" placeholder="e.g. 5 ft" />
         </div>
         <div class="damage-field">
           <label>Leap (standing)</label>
-          <input type="text" data-path="system.combat.leapLengthStanding" value="{{system.combat.leapLengthStanding}}" placeholder="e.g. 3 ft" />
+          <input type="text" data-path="system.combat.leapLengthStanding" title="Paste the RUE leaping rules to auto-calc from attributes." value="{{system.combat.leapLengthStanding}}" placeholder="e.g. 3 ft" />
         </div>
         <div class="damage-field">
           <label>Leap (height)</label>
-          <input type="text" data-path="system.combat.leapHeight" value="{{system.combat.leapHeight}}" placeholder="e.g. 4 ft" />
+          <input type="text" data-path="system.combat.leapHeight" title="Paste the RUE leaping rules to auto-calc from attributes." value="{{system.combat.leapHeight}}" placeholder="e.g. 4 ft" />
         </div>
         <div class="damage-field">
           <label>Lift (lbs)</label>
-          <input type="text" data-path="system.combat.liftCapacity" value="{{system.combat.liftCapacity}}" placeholder="e.g. 200 lbs" />
+          <input type="text" data-path="system.combat.liftCapacity" value="{{system.combat.liftCapacity}}" placeholder="e.g. 200 lbs" title="Auto value = P.S. x 20 lbs (normal human). Augmented/Robot P.S. use the Strength Tables — enter manually." />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoLiftLbs}} lbs</span>
         </div>
         <div class="damage-field">
           <label>Carry (lbs)</label>
-          <input type="text" data-path="system.combat.carryCapacity" value="{{system.combat.carryCapacity}}" placeholder="e.g. 100 lbs" />
+          <input type="text" data-path="system.combat.carryCapacity" value="{{system.combat.carryCapacity}}" placeholder="e.g. 100 lbs" title="Auto value = P.S. x 10 lbs (normal human). Augmented/Robot P.S. use the Strength Tables — enter manually." />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoCarryLbs}} lbs</span>
         </div>
         <div class="damage-field">
           <label>Throw (max lbs)</label>

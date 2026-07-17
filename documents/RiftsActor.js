@@ -246,6 +246,14 @@ export class RiftsActor extends Actor {
       }
     }
 
+    // ── Physical capability auto-values (verified formulas) ──
+    // Normal-human RUE formulas. Augmented/Robot P.S. use the
+    // Strength Tables (pending upload) — enter those manually.
+    const psVal = attrs.ps?.value ?? 0;
+    combat.autoRunMph = attrs.spd?.mph ?? 0;          // Spd x 0.682
+    combat.autoCarryLbs = psVal * 10;                 // P.S. x 10 lbs
+    combat.autoLiftLbs = psVal * 20;                  // P.S. x 20 lbs
+
     // ── Unified display/roll totals ─────────────────────────
     combat.initiativeTotal = (combat.initiativeBonus || 0)
       + (combat.hthInit || 0)
