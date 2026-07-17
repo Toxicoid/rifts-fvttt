@@ -302,7 +302,7 @@
     </h2>
 
     {{#if equipment.length}}
-      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 72px;gap:4px;align-items:end;">
+      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 96px;gap:4px;align-items:end;">
         <span>Name</span>
         <span>Qty</span>
         <span>Weight</span>
@@ -312,7 +312,7 @@
       </div>
 
       {{#each equipment}}
-        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 72px;gap:4px;align-items:center;">
+        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 96px;gap:4px;align-items:center;">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -332,14 +332,13 @@
                  data-item-path="system.cost"
                  value="{{this.system.cost}}"
                  min="0" />
-          <input type="text"
-                 data-item-id="{{this.id}}"
-                 data-item-path="system.notes"
-                 value="{{this.system.notes}}"
-                 placeholder="Notes..." />
+          <span class="notes-preview" {{#if this.system.notes}}title="{{this.system.notes}}"{{/if}}>{{#if this.system.notes}}{{this.system.notes}}{{else}}<em>—</em>{{/if}}</span>
           <div class="gear-actions">
-            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show details">
+            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show full notes &amp; description">
               <i class="fas fa-chevron-down"></i>
+            </button>
+            <button type="button" class="item-edit icon-btn" title="Edit (description &amp; notes)">
+              <i class="fas fa-edit"></i>
             </button>
             <button type="button" class="item-delete icon-btn" title="Delete">
               <i class="fas fa-trash"></i>
@@ -356,6 +355,4 @@
       <p class="empty-state">No equipment. Click + to add some.</p>
     {{/if}}
   </div>
-
-<
 </div>

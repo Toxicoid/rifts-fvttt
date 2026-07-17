@@ -2189,3 +2189,16 @@
   white-space: nowrap;
   text-overflow: ellipsis;
 }
+
+/* Read-only notes preview in equipment rows */
+.rifts .notes-preview,
+.rifts-sheet .notes-preview {
+  font-size: 12px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  opacity: 0.85;
+  padding: 3px 6px;
+  cursor: default;
+}
+.rifts .notes-preview em { opacity: 0.4; }
