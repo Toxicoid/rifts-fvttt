@@ -2177,3 +2177,15 @@
 .rifts .hth-move-text { flex: 1 1 auto; min-width: 200px; }
 .rifts-sheet input.hth-apm-extra { width: 40px !important; min-width: 40px; max-width: 40px; flex: 0 0 auto; text-align: center; }
 .rifts-sheet button.hth-move-roll { width: auto !important; flex: 0 0 auto; }
+
+/* Gear column headers: small, aligned over their columns */
+.rifts .gear-column-headers span,
+.rifts-sheet .gear-column-headers span {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.65;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
