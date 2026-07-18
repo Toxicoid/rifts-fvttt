@@ -28,13 +28,13 @@
     <div class="skills-column-headers">
       <span class="sh-name">Skill</span>
       <span class="sh-category">Category</span>
-      <span class="sh-base" title="Starting skill percentage before bonuses">
+      <span class="sh-base" title="Starting % — per-level gains (shown as +N/lvl) are applied automatically from your character Level">
         Base %
-        <span class="sh-sub">starting %</span>
+        <span class="sh-sub">+ per lvl auto</span>
       </span>
-      <span class="sh-bonus" title="Misc/situational bonus only — per-level gains are applied AUTOMATICALLY from your character Level">
+      <span class="sh-bonus" title="Misc/situational bonus only (O.C.C. bonuses, synergies)">
         Bonus %
-        <span class="sh-sub">+% per lvl</span>
+        <span class="sh-sub">manual</span>
       </span>
       <span class="sh-total" title="Final skill percentage (Base + Bonus, max 98%)">
         Total %
@@ -87,6 +87,7 @@
                    data-item-path="system.basePercent"
                    value="{{this.system.basePercent}}"
                    min="0" max="98" />
+            {{#if this.system.perLevelBonus}}<span class="skill-perlvl" title="Gains +{{this.system.perLevelBonus}}% per level automatically (edit on the skill's sheet)">+{{this.system.perLevelBonus}}/lvl</span>{{else}}<span class="skill-perlvl skill-perlvl-none" title="No per-level gain set — open the skill to add one">+0/lvl</span>{{/if}}
 
             <input class="skill-bonus"
                    type="number"
@@ -103,6 +104,14 @@
             </span>
 
             <div class="skill-actions">
+              {{#if (or this.system.description this.system.notes)}}
+              <button type="button"
+                      class="skill-detail-toggle icon-btn"
+                      data-item-id="{{this.id}}"
+                      title="What does this skill do?">
+                <i class="fas fa-book-open"></i>
+              </button>
+              {{/if}}
               {{#if this.system.isHorsemanship}}
               <button type="button"
                       class="hm-expand-toggle icon-btn"
@@ -129,6 +138,15 @@
               </button>
             </div>
 
+          </div>
+
+          <div class="skill-detail-panel" data-skill-detail-for="{{this.id}}">
+            {{#if this.system.description}}<p class="sdp-desc">{{this.system.description}}</p>{{/if}}
+            {{#if this.system.notes}}<p class="sdp-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
+            {{#if this.system.requiredOCC}}<span class="sdp-req"><strong>O.C.C.:</strong> {{this.system.requiredOCC}}</span>{{/if}}
+            {{#if this.system.requiredSkills}}<span class="sdp-req"><strong>Requires:</strong> {{this.system.requiredSkills}}</span>{{/if}}
+            {{#if this.system.selectModifiers}}<span class="sdp-req"><strong>Modifiers:</strong> {{this.system.selectModifiers}}</span>{{/if}}
+            {{#if this.system.bonusesText}}<span class="sdp-req"><strong>Bonuses:</strong> {{this.system.bonusesText}}</span>{{/if}}
           </div>
 
           {{#if this.system.isHorsemanship}}

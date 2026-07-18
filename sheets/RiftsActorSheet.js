@@ -173,6 +173,26 @@ export class RiftsActorSheet extends ActorSheet {
       if (toggle) toggle.classList.add("active");
       this._openHmPanel = itemId;
     };
+    // Skill description accordion (single-open, persists across renders)
+    const openSkillDetail = (itemId) => {
+      html.find(".skill-detail-panel").removeClass("open");
+      html.find(".skill-detail-toggle").removeClass("active");
+      this._openSkillDetail = null;
+      if (!itemId) return;
+      const panel = html.find(`.skill-detail-panel[data-skill-detail-for="${itemId}"]`)[0];
+      const toggle = html.find(`.skill-detail-toggle[data-item-id="${itemId}"]`)[0];
+      if (!panel) return;
+      panel.classList.add("open");
+      if (toggle) toggle.classList.add("active");
+      this._openSkillDetail = itemId;
+    };
+    html.find(".skill-detail-toggle").click((event) => {
+      event.preventDefault();
+      const itemId = event.currentTarget.dataset.itemId;
+      openSkillDetail(this._openSkillDetail === itemId ? null : itemId);
+    });
+    if (this._openSkillDetail) openSkillDetail(this._openSkillDetail);
+
     html.find(".hm-expand-toggle").click((event) => {
       event.preventDefault();
       const itemId = event.currentTarget.dataset.itemId;
