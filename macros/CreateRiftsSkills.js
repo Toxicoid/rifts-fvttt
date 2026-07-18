@@ -960,74 +960,367 @@ skill("Zoology", "Science", "science", 30, 5,
   "Base Skill: 30% +5% per level.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to Herding, Track & Trap Animals, +10% to Veterinary Science.", bonusesText: "" });
 
-// ═══ DOMESTIC ═════════════════════════════════════════════
+// ═══ TECHNICAL & WILDERNESS ═══════════════════════════════
+skill("Appraise Goods", "Technical", "technical", 30, 5,
+  "A trained eye able to assess the quality and true market value of \"ordinary\" commodities, such as tools, household goods, clothing, furniture, jewelry, gems, art, basic vehicles (hovercycles, cars, motorcycles, bicycles, etc.), common pre-Rifts artifacts (books, films, toys, household goods), land, and similar common trade goods. Does not include military goods (weapons, body armor, power armor, combat vehicles), bionics, technology, magic items, livestock, slaves, or rarities, but may include one of these excluded categories only if the skill is taken twice. The character knows how much he can get by pawning the item as well as what he can sell it for wholesale (to a store/business owner for resale; about 20%-50% of its true value) and retail (open market or retail store; 70 - 100% of its true value).",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+15% to the skill when it is taken twice" });
+
+skill("Art", "Technical", "technical", 35, 5,
+  "The ability to draw, paint and/or sculpt or do craft work. Selection as an occupation related skill indicates a professional quality, while selection as a Secondary Skill indicates a talented amateur.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Begging", "Technical", "technical", 30, 3,
+  "Though usually learned out of necessity in the school of hard knocks and poverty, this skill can be particularly useful to collect food, money and clothing when down on one's luck, especially in the 'Burbs, independent kingdoms, trade centers and low-tech communities. It can also enhance characters with the Disguise skill when posing as a beggar or refugee (+5%).",
+  "Base Skill: 30% +3% per level.\nThe amount of money, food or goods depends on the local economy, the generosity of the individual (typically small) and where the begging is taking place, but is typically in the 1D4 credits range.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Breed Dogs", "Technical", "technical", 40, 5,
+  "The art of raising, mating/breeding, taming and training domestic and wild canines, as well as a knowledge about canines in general.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Train Dogs", "Technical", "technical", 20, 5,
+  "To tame a wild canine, teach a dog tricks, or to train the animal for a specific task like tracking, retrieving, pointing, herding animals, attacking on command, and so on. A failed roll means that the animal refuses to learn that particular trick or specialty.",
+  "Base Skill: 20% +5% per level.\nBonuse Skill to Breed Dogs. Add to sheet. These are trained work animals or pets, not familiars.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Breed Dogs", selectModifiers: "", bonusesText: "" });
+
+skill("Calligraphy", "Technical", "technical", 35, 5,
+  "The ability to produce beautiful, fancy, hand drawn letters and script in one ' s native language with great legibility and beauty using a brush or special set of pens, ink and paper. The character can also copy letters and words in any language but may not know what it says. Traditional Calligraphy with a brush is an Asian art and traditionally, any person of culture and education in the Orient, especially a noble, is expected to be able to produce gorgeous ideograms. Calligraphy is a skill almost as necessary as Literacy for traditionalists in Asia.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Computer Operation", "Technical", "technical", 40, 5,
+  "A knowledge of how computers work, along with the skills to operate peripherals like keyboards, printers, and modems. The character can follow computer directions, enter and retrieve information, install programs, games and software, use the web/internet and similar basic computer operations. Does not include Repair, Programming or Hacking.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Computer Programming", "Technical", "technical", 30, 5,
+  "Advanced computer knowledge that includes designing, programming, debugging, and testing computer programs and software. Hacking is possible, but at a penalty of -40% unless the character also has the Computer Hacking skill (see Rogue Skills).",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Computer Operation, Literacy.", selectModifiers: "", bonusesText: "" });
+
+skill("Cybernetics Basic", "Technical", "technical", 25, 5,
+  "An understanding of the purpose, capabilities and use of cybernetics and implants (not military grade bionics). Knowledge is sufficient to make minor adjustments and repairs of cybernetic implants and mechanisms before they are implanted in a living being. Cannot perform surgery, implant or remove cybernetics, but knows where they are located in the body, what they do and how they work. Could consult with a surgeon to remove them.",
+  "Base Skill: 25% +5% per level.\nA popular skill among City Rats and Headhunters.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Excavation", "Technical", "technical", 30, 5,
+  "A mixed bag of abilities that includes finding one's direction underground rooms, estimating one's approximate depth, \"digging out\" and identifying relics and evidence from debris, collapsed tunnels and underground, as well as digging out and fording up/repairing collapsed tunnels, underground chambers and caves.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+5% to the Dowsing, +5% to Spelunking" });
+
+skill("Firefighting", "Technical", "technical", 40, 5,
+  "A basic understanding of fire and how it works, breathes, and travels, as well as fire fighting methods and techniques, rescue procedures, and the practiced use of firefighting tools, equipment and gear.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Gemology", "Technical", "technical", 25, 5,
+  "Skill in identifying and appraising the value of precious metals (silver, gold, etc.) and stones Jade, emerald, ruby, sapphire, diamond, etc.). This ability also enables the person to identify fakes, but at a penalty of -10%. A failed roll means the character cannot tell whether the item is genuine or not, or its value is grossly under or overestimated",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+5% to Prospecting." });
+
+skill("General Repair & Maintenance", "Technical", "technical", 35, 5,
+  "Not everyone can be a mechanic, blacksmith or carpenter, but many are good with their hands and capable of doing satisfactory repairs on simple mechanisms, gears, pulleys, wheels, and so on. The General RepairlMaintenance skill includes: sharpening blades, minor repairs on weapons, packing their own S.D.C. bullets, sewing tears in clothes (it may not look pretty, but does the job), changing a tire, shoeing a horse, repairing furniture, painting, varnishing, nailing and assisting in basic woodworking, and even doing minor patchwork on armor (restores 1D6 M.D.C.).",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("History Pre-Rifts", "Technical", "technical", 32, 4,
+  "The History skill may be taken repeatedly to cover multiple regions of the world or various subj ects. Thus, a character who takes this skill three times might apply it to North America, Western Europe, and Russia.",
+  "Base Skill: 32% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("History Pre-Rifts (Specific)", "Technical", "technical", 24, 4,
+  "Rather than a place, might include American military history, industry, science, music, art, and so on.",
+  "Base Skill: 24% +4% per level.\nBonuse skill to History Pre-Rifts. Add to sheet.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("History Post-Apocalypse", "Technical", "technical", 35, 5,
+  "Very general historical knowledge of the character's native continent after the Great Cataclysm, as well as some of the most famous myths, legends, and rumors about people, places and events around the world starting with the Two Hundred Year Dark Age (mostly folklore) and historical events in the first year of the Post-Apocalyptic Calendar ( 1 P.A.).",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("History Post-Apocalypse (Specific)", "Technical", "technical", 30, 5,
+  "A more in depth knowledge of a particular subject or region in the world (pick by nation or continent). For example: History of the Coalition or Federation of Magic, or Northern Gun, or the Vampire Kingdoms, provides a deep knowledge about the history of that organization/nation and their people, culture, origin, key figures in history and science, lore, religion, traditions, leaders, famous individuals, and so on, as well as the myths and legends of that land and culture.",
+  "Base Skill: 30% +5% per level.\nBonuse skill to History Post-Apocalypse. Add to sheet.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Jury-Rig", "Technical", "technical", 25, 5,
+  "A character with this skill can repair almost anything, and even build something out of scrap components. There is no guarantee that the jury-rig will hold for very long (4D6 hours or 2D4 days, whichever is most appropriate), or will even work in the way intended (roll again, a failed roll means the system is only 50% functional/works at half its normal speed or power level), but it may well save a character's life until they can acquire the proper parts, buy a new unit or get a skilled mechanic to do the job right.",
+  "Base Skill: 25% +5% per level.\nAdd an extra + 10% bonus if the character is an Electrical or Mechanical Engineer or Field Armorer).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Mechanics, Basic Electronics", selectModifiers: "", bonusesText: "" });
+
+skill("Law (General)", "Technical", "technical", 35, 5,
+  "The character knows what constitutes a criminal act, the typical punishment and many legal precedents, procedures and decisions common throughout a particular nation or region (e.g. North America, including the CS and all major kingdoms, but not each specific, smal l independent kingdom or town, nor tribal law). This can be an invaluable skill when trying to determine if someone is breaking the law, how grave or petty the criminal act is, as well as determining the likely punishment. The skill is also important for making a criminal charge stick, setting bail, using legal protocol, and defending those unjustly accused. The character also knows the legal protocol and proper conduct for conducting searches, police investigations and other aspects of law enforcement.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Leather Working", "Technical", "technical", 40, 5,
+  "Skilled at tanning, preserving and working with animal hides, fur and leather to make leather goods such as clothing, capes, caps, bags, purses, boots, shoes, belts, and even S.D.C. leather armor (the character can repair leather armor too). A failed roll indicates that the hide is ruined and the leather is wasted.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore American Indians", "Technical", "technical", 25, 5,
+  "Characters with this skill can recognize the different tribes and nations, warriors and shamans, totems, fetishes, charms and weapons, identify the people by their housing, clothing and weapons, and has a fundamental understanding about the Native Americans' history, society, traditional beliefs, customs and laws (at least the most notable). They also know about Indian gods, spirits, and magic.",
+  "Base Skill: 25% +5% per level.\nCharacters of Native American descent get a + 10% bonus",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore Cattle & Animals", "Technical", "technical", 30, 5,
+  "General knowledge about cattle, horses, livestock, and wild animals, including what they eat, where they live in the wild, means of defense, the value of their meat, fur, hides and horns, and their natural predators, as well as the most notable tales about supernatural animals, spirits, gods and magic attributed to or involving animals and animal spirits. This skill is practiced most widely in the New West of North America, but it is also known throughout parts of South America, Europe, Africa, Asia, and Australia.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore D-Bee", "Technical", "technical", 25, 5,
+  "D-Bee Lore is the general study of common alien humanoids, their most notable beliefs, customs, habits, inhuman abilities, and the rumors, myths and legends about how they came to Earth, their home world, secret agendas, etc. The skill is often limited to D-Bees living in a specific geographic region where the character originates, i.e. D-Bees known to live in North America are known by characters living in North America.",
+  "Base Skill: 25% +5% per level.\nSee the Anthropology skill for an in depth approach to behavioral science.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore Demons & Monsters", "Technical", "technical", 25, 5,
+  "This is the study of demonic creatures and supernatural monsters common to Rifts Earth throughout the ages and around the world. General knowledge includes legends of ancient and primitive cultures, Dark Age tales, and the myths and legends of vampires and the most infamous demons and monsters, including the dark gods they serve.",
+  "Base Skill: 25% +5% per level.\nThis skill can be taken repeatedly to know about demons common to other lands (England, Europe, Asia, South America, etc.), but each geographic location counts as one of the character's skill selections.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore Faeries & Creatures of Magic", "Technical", "technical", 25, 5,
+  "The study of Faeries, Goblins, shape changers, giants, dragons, the sphinx, and creatures of magic throughout the ages, via lore, myths, legends, and first-hand accounts. This skill is effectively the same as the previous Lore skills except that the emphasis of the lore is on Faerie Folk, dragons and other magical creatures and beings - creatures that are neither demonic nor supernatural, but long-lived and attributed with magical powers. The Faeries of ancient myths include Faeries, Sprites, Pixies, Brownies, Leprechauns, Bogies, Toad Stools, Pucks, Kelpies, Gnomes, Goblins, Tengu, Fox Faeries, and a host of other creatures of magic.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore Juicer", "Technical", "technical", 30, 5,
+  "All there is to know about the Juicer culture, different Juicer variants, what powers they possess, Juicer lore and myths, drug side effects, last call, Juicer Wannabes/cults, infamous Juicers in history, current famous Juicer leaders, notorious Juicer gangs, and similar facts. The character can recognize Juicers by their armor and abilities.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore Magic", "Technical", "technical", 25, 5,
+  "This area of study does not give the character any magic powers, or the ability to use Techno-Wizard devices, or the ability to read magic symbols. This area of study provides general knowledge, theories and historical reference on how magic works, common magical powers and spells, their effects, who possesses such magic, notable creatures of magic, and the various types of practitioners of magic (Ley Line Walker, Elemental Fusionist, Techno-Wizard, Conjurer, Necromancer, etc.), places of reputed magical significance and power (the Magic Zone, Tolkeen, etc.), and myths and legends about magic and the most famous magic items and notorious sorcerers. Although the character cannot read runes or mystic symbols, he is likely to be able to recognize whether the symbol is a real magic ward, rune, warning, part of an inscription or spell, or a fake.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Recognize Magic Symbols, Runes and Circles", "Technical", "technical", 15, 5,
+  "",
+  "Base Skill: 15% +5% per level.\nBonuse skill to Lore Magic. Add to sheet.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Recognize Enchantment", "Technical", "technical", 10, 5,
+  "People under the influence of magic charms, possession, curses, mind control, and similar.",
+  "Base Skill: 10% +5% per level.\nBonuse skill to Lore Magic. Add to sheet.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Identify Magic Artifact", "Technical", "technical", 25, 5,
+  "This skill will impart general information about a magical artifact. How much information will depend upon the specific item (i.e. How famous/notorious is it? How recognizable is it? And so on); -15% to identify an unknown or alien magic item.",
+  "Base Skill: 25% +5% per level.\nBonuse skill to Lore Magic. Add to sheet.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Lore: Psychics & Psionics", "Technical", "technical", 25, 5,
+  "General knowledge about psionic powers, how they are believed to work, how they affect people, who possesses them and the different types of psychics in the world (Psi-Stalkers, Simvan, Mind Melters, Bursters, Mind Bleeders, Zappers, Psi-Ghosts, Cyber-Knights, etc.). May also know something about the most infamous supernatural creatures who possess powers of mindcontrol and psychic ability (Vampires, Possessing Entities, Mindolars, Raksashas, etc.), as well as some of the notable psionic weapons and symbiotes of Atlantis, and/or mind control in all its forms : drugs, brainwashing, hypnosis, magic, psionics, the vampire, etc., as well as myths and legends about such places as the Astral Plane, Dreamstream, and Psyscape. The character does not have to be a psychic himself to know about psychic abilities and the beings who possess them.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Masonry", "Technical", "technical", 40, 5,
+  "A rudimentary understanding of the principles of brick laying and stone construction. The percentile number indicates the success ratio of recognizing deterioration, improper construction, the intended purpose of construction, styles of masonry, approximate age or period of construction, and general data about mason guilds. The character can also mend masonry and assist in construction and demolition.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Mining", "Technical", "technical", 35, 5,
+  "Methods and practices used in prospecting, panning for gold, identifying minerals, digging mine shafts and finding and pumping water from underground sources. Includes the use of mining equipment, refining gear, and explosives. The use of explosives is a very basic use for the purpose of blasting (same as Demolitions but with a -20% penalty). A character with the Mining skill can also tell the quality of refined mineral products, and will know about many of the current mining operations in the area.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Mythology", "Technical", "technical", 30, 5,
+  "Includes a general knowledge of the most well known world myths, including Greek, Roman and Egyptian, plus extensive knowledge of a particular country's or culture's myths relating to ghosts, spirits, demons, Goblins, Faerie Folk, monsters, dragons, immortals, undead, Elemental forces, supernatural animals, gods and magic. All countries have their share of unique myths. In North America of Rifts Earth that includes myths about the Glitter Boy, Cyber-Knights, the Vampire Kingdoms of Mexico and the Two Hundred Years Dark Age.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+5% bonus to Lore : Magic, +5% to Lore: Demons & Monsters." });
+
+skill("Philosophy", "Technical", "technical", 30, 5,
+  "The principles of philosophy, ethics and morals, methods for effective debating and examining a subject from a wide perspective, and touching upon aspects of sociology and social consciousness.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Photography", "Technical", "technical", 35, 5,
+  "Training in the art of still photography using the traditional 35 mm camera and digital cameras. Also teaches the use of lighting, camera tricks, lenses, filters, and other camera equipment, as well as storage, development/printing, enlargement, duplication of film/photos, computer scanning and computer enhancements, alterations, and printing (computer abilities require the Computer Operation skill).",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Research", "Technical", "technical", 40, 5,
+  "Training in the use of methods, techniques, and means of finding information, including public records, libraries, interviews, surveys, demographics, trade journals, the computer networks and legal searches. This skill is helpful in locating information about people, places and things.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+5% bonus to Law, Impersonation, History" });
+
+skill("Rope Works", "Technical", "technical", 30, 5,
+  "This is a skill that takes into account the various needs and uses of rope. The character knows a variety of ways to tie knots, the advantages to various types of ropes and cords, their tensile strength and how to weave/make rope. A failed roll to tie a knot means that it is loose and sloppy and easy to untie, slip out of, or likely to unravel or snap when strained.",
+  "Base Skill: 30% +5% per level.\nCharacters bound/tied by this character are -10% to escape/slipknots.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Salvage", "Technical", "technical", 35, 5,
+  "This skill allows characters to find, identify, pick up, strip down, evaluate and possibly sell, any debris, wreckage and junk that they can locate. They can also strip a piece of wrecked machinery for spare parts and may even be able to make something work again, given time, enough parts and the right skills.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Ventriloquism", "Technical", "technical", 16, 4,
+  "The practiced ability to throw one's voice. This can be used to create the illusion of not speaking while making a voice or verbal noise appear to be coming from someone or something else, such as a puppet, a tree, box, chair, etc. Maximum range is 10 feet (3m) away. A failed roll means the voice is not well thrown or the ventriloquist's mouth is seen moving, so the trick does not work.",
+  "Base Skill: 16% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Whittling & Sculpting", "Technical", "technical", 30, 5,
+  "The art of carving and shaping wood, bone and hom into three dimensional figures/statues/toys, designs, and simple objects like wooden stakes, arrows, fishing hooks, walking sticks, staves, bowls, a simple flute or whistle, and similar. Many characters with this skill simply use it to pass time and don't necessarily make anything from their whittling. The percentile number indicates the quality of technique and the quality of the work/appearance. Taking the skill twice indicates a professional quality and gets a bonus of +10%. Selecting it once indicates a talented amateur.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Boat Building", "Wilderness", "wilderness", 25, 5,
+  "This skill enables the character to build a variety of rafts, small rowboats, large flatbed boats, and canoes. A small raft (two man) can be made within 1D6+ 1 hours if the lumber or other suitable materials and tools are readily avai lable. A large raft will take about 4D6 hours, a canoe, 2D6 days, rowboat, 4D4 days, large flatbed, 1D4x 10 days. Time is doubled or tripled if trees must be cut down and wood prepared. Of course, the time can be reduced if several knowledgeable people are working on the construction. A failed skill roll means the boat has leaks. Trying to patch it will require 4D4 hours.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Carpentry", "Wilderness", "wilderness", 25, 5,
+  "A fundamental knowledge of working with wood. The character knows how to prepare, treat, preserve and cut wood, recognize quality craftsmanship, repair damaged wood and wood items, and build furniture and articles (chests, boxes, chairs, tables, cabinets, houses, fences, frames, staves, utensils, etc.).",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+5% Trap Construction & +10% Boat Building" });
+
+skill("Dowsing", "Wilderness", "wilderness", 20, 5,
+  "The ability to locate fresh water whether it be with a divining rod or by more scientific and logical means. This is done through deductive analysis and knowledge of nature. The percentage number indicates the success ratio of locating fresh water. A person can roll once every melee to sense water, but must roll two consecutive successful rolls to locate the water.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Fasting", "Wilderness", "wilderness", 40, 5,
+  "The ability to go for long periods of time without food. So long as the character has sufficient water, he can easily survive having no food for two weeks without physical penalty. Every day after that, the character must roll under the Fasting skill to avoid becoming weakened or sick. A failed roll means the following attribute penalties: - 1 to I.Q., P. S. and P.P., -2 to P.E., -3 to Spd and -3 to S.D.C.; all are temporary and will return at the same rate they were lost with rest and proper food and water on a daily basis. The character can also go for two days without water and not show any serious effects from dehydration.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Hunting", "Wilderness", "wilderness", 0, 0,
+  "The skill of killing and preparing animals for food. Includes a fair knowledge of animal habits and patterns, hunting techniques for baiting, trapping, and the construction of blinds and tree stands that conceal his presence and increase the chance of getting prey.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; apply manually.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+2% Prowl, +5% Track & Trap Animals, +5% Skin & Prepare Animal Hides, +4% Imitate Voices & Sounds, +10% Cook" });
+
+skill("Identify Plants & Fruit", "Wilderness", "wilderness", 25, 5,
+  "Training in the recognition of the many different types of wild plants and vegetation, and where they grow. The emphasis is on finding and identifying edible berries, fruit, vegetables, mushrooms, roots, bark and plants, as well as plants that have herbal and medicinal qualities (and staying away from poisonous ones). Roll for every 15 minutes of searching to see if the character has located enough edible food for a decent meal. Roll for every 30 minutes to see if the character has located a plant that could be used as a medicine, disinfectant, or herb.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Land Navigation", "Wilderness", "wilderness", 36, 4,
+  "This skill enables the character to stay on course while traveling over land by means of observation and memorization. It includes mentally marking/recognizing geographic landmarks, estimating distance and movement, recognizing sounds, night travel, marking a trail and other navigation tricks. The player should roll once for approximately every three miles (4.8 km) traveled.",
+  "Base Skill: 36% +4% per level.\nA group of average men can cover about five miles (8 km) an hour at a brisk, but relaxed pace through grassland, along dirt roads or pavement.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Preserve Food", "Wilderness", "wilderness", 30, 5,
+  "Knowledge in the preparation of foods for storage and later consumption. Includes canning fresh fruit and vegetables, making jams and honey, drying fruit, vegetables, and herbs, drying meat and fish, plus various smoking, salting, and pickling methods.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Spelunking", "Wilderness", "wilderness", 35, 5,
+  "The art and practice of exploring underground caves. Spelunking is the knowledge of caves and cave types and their individual characteristics. This skill enables the character to navigate a cave or underground cave network, retain a sense of direction (including up and down), have a sense of the cave's depth, know how to make subtle markings and note formations to find his way out and to better navigate the cave(s) at a later date, as well as rock climbing.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "+5 if player has Climbing" });
+
+skill("Track Animals", "Wilderness", "wilderness", 20, 5,
+  "This skill enables the character to identify an animal by its tracks, scent, spore, and habits. The individual can also follow the animal's tracks and other signs. This means he can estimate how fresh the tracks are, what direction they are heading, whether the animal is lame, hurt or sick, guess at its age, and knows animal behavior and the basic habits and habitats of animals.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Trap Animals", "Wilderness", "wilderness", 30, 5,
+  "Ability at trapping animals by using and setting snares, clamp traps (like the iron bear trap), pits, nets and cage traps. Tracking humans with this skill is also possible, but the skill is reduced by half. Disarming any traps meant for use against humans is done at half the character' s normal skill ability for using animal traps.",
+  "Base Skill: 30% +5% per level.\nBonus skill to Track Animals. Add to Sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Wilderness Survival", "Wilderness", "wilderness", 30, 5,
+  "Techniques for living off the land, getting water, food, shelter, and help when stranded in wild forests, deserts, or mountains. Characters without this skill will not be able to stay healthy for more than a few days in the wilderness once their supplies run out.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+// ═══ DOMESTIC (from master list) ══════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
-  "Base Skill: 50% +4% per level.");
+  "Base Skill: 50% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Brewing", "Domestic", "domestic", 25, 5,
   "The understanding and methods of making fermented alcoholic beverages from grains and fruits. This specifically includes wine, mead, ale, beer and moonshine. Stronger alcohol, such as brandy, rum, and whiskey, is not included, nor are champagnes or fine wines.",
-  "Base Skill: 25% +5% per level.");
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Brewing — Quality of Drink", "Domestic", "domestic", 30, 5,
   "Indicates the quality of the brew; the lower the number rolled the tastier the drink.",
-  "Base Skill: 30% +5% per level.");
+  "Base Skill: 30% +5% per level.\nBonus Skill to Brewing. Add to Sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Brewing", selectModifiers: "", bonusesText: "" });
 
 skill("Cook", "Domestic", "domestic", 35, 5,
   "Skill in selecting, planning, and preparing meals. A cooking roll failure means that the cooked food is not properly prepared. It is edible but tastes bad (greasy, too spicy, sour, burnt, leaves a bad after taste in mouth, etc.).",
-  "Base Skill: 35% +5% per level.");
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Corroboree (Australian Dance)", "Domestic", "domestic", 30, 4,
   "This is perhaps the most important skill to any Australian Aboriginal character who believes in his people and his culture. The Corroboree is more than just a dance, it is a way to interact with the spirits and contact the Dreamtime. It requires at least 10 minutes or more of stomping, dancing and singing on a clear patch of earth. Without the Corroboree, Aboriginal society would crumble.",
-  "Base Skill: 30% +4% per level.\nREQUIRES: Available ONLY to Aboriginal characters in Australia. Nowhere else.\nWhen performed on a Songline (the Aboriginal name for ley lines), the Corroboree provides all sorts of mystical knowledge about the land and the line; see Use Songlines in the Wilderness Skill Category for details.");
+  "Base Skill: 30% +4% per level.\nWhen performed on a Songline (the Aboriginal name for ley lines), the Corroboree provides all sorts of mystical knowledge about the land and the line; see Use Songlines in the Wilderness Skill Category for details.",
+  { requiredOCC: "Aboriginal", requiredLocation: "Australia", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Dance", "Domestic", "domestic", 30, 5,
   "A practiced skill in the art of dancing. The character is especially smooth and graceful, a joy to dance with. Can learn new dance steps/moves much more quickly than somebody who can not dance.",
-  "Base Skill: 30% +5% per level.");
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Fishing", "Domestic", "domestic", 40, 5,
   "The fundamental methods and enjoyment of the relaxing sport of fishing. Areas of knowledge include the use of lures, bait, poles, hooks, lines, and the cleaning and preparation of fish for eating. Also includes a basic knowledge of freshwater fish, their habits and taste.",
-  "Base Skill: 40% +5% per level.");
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Floral Arrangement (Ikebana)", "Domestic", "domestic", 30, 3,
   "The artful and creative arrangement of flowers appreciated by everyone throughout the orient. A painstakingly difficult art that takes years to really master. The creation of a good floral arrangement is a matter of honor to those who practice Ikebana; a bad job will be scorned even if done by the most heroic of warriors. This \"art\" is appreciated in modem and traditional Japan. It is unlikely to be practiced by anybody outside of the Japanese Islands.",
-  "Base Skill: 30% +3% per level.");
+  "Base Skill: 30% +3% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Gardening", "Domestic", "domestic", 35, 5,
   "This skill offers a basic understanding of plant care and garden design. It can be both the ability to grow enough food to eat well, and/or the skill at creating beautiful, decorative gardens (with flowers, and other plants and rocks). This can be practiced by anyone.",
-  "Base Skill: 35% +5% per level.");
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Zen Gardening", "Domestic", "domestic", 34, 4,
   "The \"art\" of Zen Gardening creates a feeling of tranquility and harmony with nature that is greatly appreciated in modem and traditional Japan and by Druids of all kinds.",
-  "Base Skill: 34% +4% per level.");
+  "Base Skill: 34% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Housekeeping", "Domestic", "domestic", 35, 5,
+  "Techniques and methods of cleaning clothes, bedding, bathrooms, floors, and surfaces, as well as knowledge of the types of cleansers, solvents, soaps and materials for housekeeping. Professional maintenance personnel, maids, and hotel housekeepers will know additional \"tricks of the trade\" to make a room look spotless, sparkling and inviting; everything in its place, folded properly and presented attractively.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Go", "Domestic", "domestic", 30, 5,
   "As chess is the most widely accepted intellectual game of the west, so Go is accepted as the most \"enlightening\" game of the eastern world. In many cases one's skill at Go is seen as much more important than ability in the fighting arts. A victory at the intelligent game of Go easily outweighs any ten wins in single combat. It is unlikely to be practiced by anybody outside of the Japanese Islands. North American characters can substitute Chess.",
-  "Base Skill: 30% +5% per level.");
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Play Musical Instrument", "Domestic", "domestic", 35, 5,
   "The individual has learned to play a particular musical instrument with a fair amount of skill. The sound is generally pleasant (except when a bad roll is made). Note that each specific instrument requires the selection of this skill. For example: A character who can play the guitar, violin, and harmonica must select the play musical instrument skill three different times, once for each instrument.",
-  "Base Skill: 35% +5% per level.\nThere is a -10% modifier (at the G.M.' s discretion) when the character tries to learn a musical instrument indigenous to a particular region and the character himself is not from that region (e.g., somebody from North America trying to learn a uniquely Australian instrument, like the didgeridoo). Likewise, particularly difficult instruments might also get a -10% modifer to play them.");
+  "Base Skill: 35% +5% per level.\nThere is a -10% modifier (at the G.M.' s discretion) when the character tries to learn a musical instrument indigenous to a particular region and the character himself is not from that region (e.g., somebody from North America trying to learn a uniquely Australian instrument, like the didgeridoo). Likewise, particularly difficult instruments might also get a -10% modifer to play them.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Poetry (Haiku)", "Domestic", "domestic", 35, 5,
   "Creating good, and sometimes inspirational, poetry. \"Haiku\" are short, three line, seventeen syllable poems that are the national poetry of Japan but whose style and rhythm is known around the world. Poetry often accompanies important events in Japanese society. For example, a samurai compelled to commit ritual suicide is expected to compose a \"death poem.\" In North America, City Rats have taken to writing Haiku and other forms of poetry.",
-  "Base Skill: 35% +5% per level.");
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Recycle", "Domestic", "domestic", 30, 5,
   "Recycling covers everything. In space that includes oxygen, but more typically includes paper, lumber, scrap metal and plastic. In a post-Apocalyptic world, recycling and rebuilding old and used items and material is commonplace. This is not like the Jury-Rig skill; a character with Recycle cannot make something out of odd components but, given some time and equipment, he can reduce the components to their basic elements for reuse to build something new. Has a rudimentary understanding of metallurgy.",
-  "Base Skill: 30% +5% per level.");
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Rock Painting and Engraving (Australia)", "Domestic", "domestic", 36, 4,
   "Aboriginal art is very unique and special to them. They decorate bark, skins and rocks with pigments. Each painting tells a story and describes a myth in a way that only a character with this skill can interpret or read. Elders and Mabarn are the most common painters, and they take great pleasure in describing their works to those who wish to listen. Outbackers nickname this \"X-ray painting\" because the depictions of people and animals are stylized to show what looks like their bones. This skill is unlikely to be practiced by anybody outside of Australia. Some American Indians also engage in rock painting, but not to the same degree.",
-  "Base Skill: 36% +4% per level.");
+  "Base Skill: 36% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Sewing", "Domestic", "domestic", 40, 5,
   "The practiced skill with the needle and thread to mend clothing, do minor alterations, and layout, cut and sew simple patterns.",
-  "Base Skill: 40% +5% per level.");
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
 skill("Tailoring", "Domestic", "domestic", 40, 5,
   "Tailoring skills combine precise technical abilities—such as pattern drafting, accurate measuring, and garment construction—with creative design principles. Mastering this craft requires a deep understanding of fabric behavior, proper needle techniques, and meticulous attention to detail to achieve a custom, long-lasting fit.",
-  "Base Skill: 40% +5% per level.\nREQUIRES: Requires Sewing skill as well.");
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Sewing", selectModifiers: "", bonusesText: "" });
+
+skill("Wardrobe & Grooming", "Domestic", "domestic", 50, 4,
+  "This skill represents a knowledge of clothing, make-up, hair style, perfume, walking, talking and how one carries him or herself to create a particular \"look\" for himself. In short, this is how to dress to kill or make the right impression. Keeps an eye on fashion and trends.",
+  "Base Skill: 50% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to the P.B. attribute when dressed to impress, as well as +2% bonus to the skills of Disguise, Impersonation. Performance, Undercover Ops and Seduction.", bonusesText: "" });
 
 // ═══ HORSEMANSHIP ═════════════════════════════════════════
 horseSkill("Horsemanship: General", 40, 4,
