@@ -283,6 +283,92 @@ skill("Wilderness Survival", "Espionage", "espionage", 30, 5,
   "Base Skill: 30% +5% per level.\nCharacters without this skill will not be able to stay healthy for more than a few days in the wilderness once their supplies run out.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
+// ═══ MECHANICAL ═══════════════════════════════════════════
+skill("Aircraft Mechanics", "Mechanical", "mechanical", 25, 5,
+  "The understanding of aerodynamics and the training to repair, rebuild, modify and redesign conventional aircraft, including propeller types, jets, helicopters, hovercycles, rocket bikes, and hovercraft. Work on military aircraft is limited to body work unless the character also has the Weapon Systems skill. Experimental aircraft and spacecraft are not included.",
+  "Base Skill: 25% +5% per level.\nWorking on the wings and flight systems of power armor and robots is very different from true aircraft and suffers a -40% skill penalty. However, the character can assist an engineer or robotics specialist by following his instructions with only a -15% skill penalty.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Armorer/Field Armorer", "Mechanical", "mechanical", 40, 5,
+  "This is a somewhat simplistic and basic version of the weapons engineer skill as it applies to infantry weapons. A competent armorer character can maintain, fix, modify, mount, reload/charge ammunition, and figure out most small arms. The armorer can repair all types of pistols and rifles, repair minor damage to body armor (20 M.D. maximum), adjust targeting sights, use and repair optical enhancements, reload missiles and ammo drums, recharge E-Clips, install/mount a rail gun or machine-gun on a vehicle, and even fix most simple robot and bionic weapons like forearm blasters and retractable blades, as well as make arrows and arrowheads, sharpen blades/weapons, make horseshoes and basic metal items (including nails, spikes, and chain links). He can also deactivate, reset and fix simple traps (roll for each attempt).",
+  "Base Skill: 40% +5% per level.\nAutomatically gets the Basic Mechanics skill at 30% +5% per level as part of this package.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Automotive Mechanics", "Mechanical", "mechanical", 25, 5,
+  "The ability to repair, rebuild, modify, and redesign conventional vehicles with internal combustion (gas) engines. It also includes body work, turbine engines, methanol, ethanol and diesel truck engines.",
+  "Base Skill: 25% +5% per level.\nWorking on hover jet systems for ground vehicles is possible, but with a -20% penalty. Working on reactor engines there is a -40% penalty.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Basic Mechanics", "Mechanical", "mechanical", 30, 5,
+  "A general familiarity and understanding of basic mechanics. This character can fix a toaster, repair a bicycle, replace a belt on a motor, repair or replace a switch, handle or knob, replace a spark plug, change oil, assist in automobile repairs, maintain machinery, read a schematic and similar fundamental tasks.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Bioware Mechanics", "Mechanical", "mechanical", 30, 5,
+  "\"Bioware\" is cybernetics. A character with this skill can identify, service and repair all cybernetic and bionic systems, from the simplest data plug to the most sophisticated of the artificial eyes. This, however, is limited to the actual machine and electronics of cybernetics, not designing or building bionic components (unless part of a kit to be assembled). Nor does the skill apply to living Bio-Systems. like artificial skin, organic eyes, and internal organs.",
+  "Base Skill: 30% +5% per level.\nA Bioware Mechanic can fix a cybernetic or bionic machine part-hand, arm, leg, mechanical implant, weapon but cannot install it or attach it to a living body unless he also has the Cyber-Doc skill. -20% when working with sophisticated bionic systems including bionic weaponry or alien cybernetic units.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Mechanical Engineering, Basic Math", selectModifiers: "", bonusesText: "" });
+
+skill("Locksmith", "Mechanical", "mechanical", 25, 5,
+  "The study of lock designs and the ability to repair, build, modify and open locks. The methods, techniques, and tools of lock picking include the old-style key and tumbler, combination, and modem electrical locking systems. Time requirements: 1D4 melees to open an antiquated key type lock or simple tumbler/combination type, 1D4 minutes to open an elaborate tumbler type, 2D4 minutes to open a simple electronic lock (usually by patching in a bypass system), and 1D4 hours to break a complex, state-of-the-art electronic lock system such as those used in high security and restricted areas. Super high-tech systems, such as those used by the Coalition's military and government, will require 3D4 hours and have a skill penalty of -20%.",
+  "Base Skill: 25% +5% per level.\nIf an unsuccessful skill roll is made, the lock is not opened and the process must be repeated. If an attempt to open an electronic lock fails, roll again. A second failed roll means that the lock is irreparably damaged and can not be opened! (-5% penalty when working on complex or high-tech locks)",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Electronics", selectModifiers: "Electrical Engineer (+5% bonus).", bonusesText: "" });
+
+skill("Mechanical Engineer", "Mechanical", "mechanical", 25, 5,
+  "Training, understanding, and knowledge of how machinery is designed, operated, built, and maintained. Characters can attempt to redesign, modify, repair, construct, or sabotage mechanical devices (includes nuclear reactor driven turbines and atomic engines). The player must first roll to see if his character can figure out how to operate, analyze and design a machine. When a successful diagnostic roll has been made, roll again to determine when the charactercan fix/change/build the mechanism.",
+  "Base Skill: 25% +5% per level.\nAdd a one time bonus of 5% to the Locksmith and Surveillance Systems skills if Mechanical Engineering is also known. There is a -30% penalty when working on alien or extremely unfamiliar mechanics. This includes Techno-Wizard mechanics. The mechanic may be able to puzzle out some of the basic aspects of a device created by Techno-Wizardry, and may be able to figure out how to operate the machine, but will not be able to fully fathom how it works nor how to repair it.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Math, Advanced Mathematics, Basic Electronics, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Robot Mechanics", "Mechanical", "mechanical", 20, 5,
+  "This is the specific study of advanced mechanics as it applies to robotics. Those skilled in this discipline can repair, modity, build, and sabotage robots, including the creations of the Coalition, power armor, and exoskeletons. There is a -30% penalty when working with alien or extremely unfamiliar mechanics.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Mechanical Engineer", selectModifiers: "", bonusesText: "" });
+
+skill("Space Drive Repair Ion", "Mechanical", "mechanical", 30, 5,
+  "A space technology not appropriate for 99.9% of those on Rifts Earth. Character has complete knowledge of Ion drives, can tune, repair and build if the character has access to spare parts.",
+  "Base Skill: 30% +5% per level.\nA character can attempt to repair other types of drives, but at a penalty of -40%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Space Drive Repair Plasma", "Mechanical", "mechanical", 30, 5,
+  "A space technology not appropriate for 99.9% of those on Rifts Earth. Character has complete knowledge of Plasma drives, can tune, repair and build if the character has access to spare parts.",
+  "Base Skill: 30% +5% per level.\nA character can attempt to repair other types of drives, but at a penalty of -40%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Space Drive Repair Traction", "Mechanical", "mechanical", 30, 5,
+  "A space technology not appropriate for 99.9% of those on Rifts Earth. Character has complete knowledge of Traction drives, can tune, repair and build if the character has access to spare parts.",
+  "Base Skill: 30% +5% per level.\nA character can attempt to repair other types of drives, but at a penalty of -40%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Space Drive Repair Rift", "Mechanical", "mechanical", 30, 5,
+  "A space technology not appropriate for 99.9% of those on Rifts Earth. Character has complete knowledge of Rift drives, can tune, repair and build if the character has access to spare parts.",
+  "Base Skill: 30% +5% per level.\nA character can attempt to repair other types of drives, but at a penalty of -40%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Space Satellite Systems", "Mechanical", "mechanical", 30, 5,
+  "A space technology not appropriate for 99.9% of those on Rifts Earth, but which is common knowledge on Phase World® and other space settings. Satellites range from communication models to navigation beacons, spy systems, burnt-out husks with salvageable parts and military killer satellites. This skill allows a character to identity, strip down and repair any of them.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Mechanical Engineering, Basic Electronics.", selectModifiers: "", bonusesText: "" });
+
+skill("Spaceship Mechanics", "Mechanical", "mechanical", 22, 5,
+  "A space technology not appropriate for 99.9% of those on Rifts Earth, but which is common knowledge on Phase World® and other space settings. The ability to repair, rebuild, modify and redesign conventional vehicles. This skill covers a basic understanding of gravitonic systems, but only includes the most rudimentary knowledge of Phase technology, and no skills on Rift drives. Conventional ship systems (communications, hull, life support) are pretty much the same everywhere.",
+  "Base Skill: 22% +5% per level.\n-30% penalty on alien systems.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Mechanical Engineer, Basic Electronics", selectModifiers: "", bonusesText: "" });
+
+skill("Submersible Vehicle Mechanics", "Mechanical", "mechanical", 25, 5,
+  "Training in the diagnosis and repair of submersible vehicles, including submarines, underwater robots, probes and stations.",
+  "Base Skill: 25% +5% per level.\nMechanical engineers can also effect repairs but at -15% and aircraft mechanics are at -40%",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Vehicle Armorer", "Mechanical", "mechanical", 30, 5,
+  "A specialized skill in which the character can do more than just tinker with the mechanics of a vehicle. Extra Armor: Replace S.D.C. body with M.D.C. body or add more M.D.C. to M.D.C. armor at 12 M.D.C. per level of experience to military/combat vehicles, full-sized vans and large trucks; 5 M.D.C. per level on commercial (non-combat) vehicles. Add a ram prow: (does an extra 2D6 M.D. damage on ram attacks, plus 1D6 M.D. for every 40 mph/64 km of speed; ram prow has 1D4x 10 M.D.C. +7 M.D.C. per level experience. Custom Body Modifications: Repaint, modify or completely reconfigure the body of a vehicle to change or disguise its original appearance, or to make it look innocent, old, new, scary or sleek. Replace S.D.C. components and parts with M D. C. equivalents.",
+  "Base Skill: 30% +5% per level.\nAutomatically gets the Basic Mechanics skill at +20% as part of this package. Taking this skill in conjunction with Automotive Mechanics provides a +10% bonus to the automotive skill.",
+  { requiredOCC: "Military Technical Officer, Operator, Engineers, Mechanics", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Weapons Engineer", "Mechanical", "mechanical", 25, 5,
+  "The complete understanding of military class weapon systems, cannons, recoilless rifles, launch systems, missiles, rockets, heavy energy weapons, and their incorporation into military vehicles. The character can handle, maintain, repair, unjam, clean, modify, mount, and figure out most weapon systems and power supplies, and recharge batteries and E-Clips. He can repair an assault rifle, handle heavy weapons and install a missile system into a vehicle or a suitcase launcher. The engineer can also add and repair armor and is an expert welder.",
+  "Base Skill: 25% +5% per level.\n-30% when working on TW or very alien weapon systems or vehicles.",
+  { requiredOCC: "Mechanical Engineering", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to strike when using heavy weapons or vehicular weapon systems.", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
