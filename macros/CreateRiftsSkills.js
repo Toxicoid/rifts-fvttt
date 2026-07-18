@@ -181,6 +181,32 @@ skill("Trick Riding", "Cowboy", "cowboy", 0, 0,  // SPECIAL: % comes from Horsem
   "Base Skill: SPECIAL — equal to the FIRST (larger) number of your Horsemanship skill; enter that value in Base % and keep it matched as you level.\nThe first (larger) number of the Horsemanship skill; Characters without this skill can try any of these tricks, but must roll on the second percentage number of their Horsemanship skill after reducing it by half.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "Horsemanship", selectModifiers: "", bonusesText: "" });
 
+// ═══ ELECTRICAL ═══════════════════════════════════════════
+skill("Basic Electronics", "Electrical", "electrical", 30, 5,
+  "This is a rudimentary understanding of the principles of electricity, simple circuits, wiring, and so on. This person can do basic wiring, repair appliances, and read schematics as well as assist electrical engineers.",
+  "Base Skill: 30% +5% per level.\nThe character can attempt to hot-wire a commercial vehicle (not military) using Basic Electronics but with a -20% skill penalty and it takes 1D4+2 melee rounds ( 45-90 seconds) to do so.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Computer Repair", "Electrical", "electrical", 30, 5,
+  "Knowledge of the internal electronics of computers and related devices (terminals, printers, modems, circuit boards, etc.). The character can attempt to repair or sabotage computers. Note that figuring out the repair or sabotage procedure counts as one roll, and the actual repair is a second roll. A failed roll means the repair is faulty and does not work (try again).",
+  "Base Skill: 30% +5% per level.\nNo computer operation or programming skills are included nor required to fix computers. Many computer repair personnel don't even know how to tum the computer on!",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Electrical Engineer", "Electrical", "electrical", 35, 5,
+  "Knowledge of electricity. Characters can diagnose and locate electrical problems, repair complex electrical devices, wire entire buildings or vehicles, and build electrical equipment. The character can also attempt to bypass security systems, alarms, and surveillance systems, but at a penalty of -20% for simple systems and -50% for complex systems (reduce these penalties by half if the character also has the Surveillance Skill. The character can hot-wire any vehicle without penalty but it takes 1D4 melee rounds (15-60 seconds) to do so.",
+  "Base Skill: 35% +5% per level.\nThere is a -30% penalty when working on alien or extremely unfamiliar electronics. This includes Techno-Wizard devices.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Advanced Mathematics, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Electricity Generation", "Electrical", "electrical", 50, 5,
+  "Electricity is generated in from a variety of ways: from sunlight, wind and hydro systems (using solar panels, windmills and water turbines) to batteries, combustion engines and generators. This skill gives the character the understanding of how and why these generation systems work and he is able to use, link and repair such motors, turbines and generator systems, but not to build them from scratch. He can even install small nuclear energy systems like those used in power armor and vehicles, as well as hook up a means to \"recharge\" E-Clips and E-Packs from generators.",
+  "Base Skill: 50% +5% per level.\n-40% skill penalty when working on alien or magical systems, including Techno-Wizard devices.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Math, Basic Electronics, Basic Mechanic.", selectModifiers: "", bonusesText: "" });
+
+skill("Robot Electronics", "Electrical", "electrical", 30, 5,
+  "This is the complex and specialized study of robotics and robot/military engineering, micro-circuitry, and artificial intelligence. It includes knowledge of the Coalition robot assault units, exoskeletons, and robot systems.",
+  "Base Skill: 30% +5% per level.\nThere is a -40% penalty when working on alien or extremely unfamiliar robot electronics",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Electrical Engineering, Computer Programming", selectModifiers: "", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
