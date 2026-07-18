@@ -83,6 +83,21 @@ cyb("Tongue", "Bio-Systems for the Head", 14000, "Replaces a damaged tongue with
 
 cyb("Larynx and Voice Box", "Bio-Systems for the Head", 18000, "Replaces the damaged organ with a synthetic but lifelike Bio-System that can simulate human sound/voice. The voice can be made to simulate the original voice exactly, as long as a quality recording is provided. Or the patient may create a new voice by selecting the desired aspects and quality of that voice, all of which are programmed into the replacement unit.", [{ label: "Cost (Single)", value: "18,000 credits" }], "");
 
+// ═══ BIO-SYSTEM INTERNAL ORGANS (from Bio-System_Internal_Organs.xlsx) ═
+cyb("Artificial Heart", "Bio-System Internal Organs", 70000, "", [{ label: "Lifespan", value: "40 year life" }, { label: "Cost", value: "70,000 credits" }], "");
+
+cyb("Artificial Lungs", "Bio-System Internal Organs", 50000, "", [{ label: "Lifespan", value: "40 year life" }, { label: "Cost", value: "50,000 credits" }], "");
+
+cyb("Artificial Kidney", "Bio-System Internal Organs", 30000, "", [{ label: "Lifespan", value: "30 year life" }, { label: "Cost", value: "30,000 credits" }], "");
+
+cyb("Artificial Liver", "Bio-System Internal Organs", 30000, "", [{ label: "Lifespan", value: "30 year life" }, { label: "Cost", value: "30,000 credits" }], "");
+
+cyb("Artificial Spleen", "Bio-System Internal Organs", 30000, "", [{ label: "Lifespan", value: "30 year life" }, { label: "Cost", value: "30,000 credits" }], "");
+
+cyb("Artificial Intestine", "Bio-System Internal Organs", 10000, "", [{ label: "Lifespan", value: "25 year life" }, { label: "Cost", value: "10,000 credits" }], "");
+
+cyb("Artificial Skin/Plastic Surgery", "Bio-System Internal Organs", 0, "", [{ label: "Lifespan", value: "50 year life" }, { label: "Cost", value: "Varies" }], "1D4x1000 credits for minor skin grafts. 2D6x1000 for minimal work. 1D4x10,000 for muscle and skin reconstruction. 2D6X10,000 or more for muscle, skin, and bone reconstruction.");
+
 // ── Build ──────────────────────────────────────────────────
 const index = await pack.getIndex();
 const byName = new Map(index.map((e) => [e.name, e]));
