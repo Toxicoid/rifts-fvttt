@@ -480,6 +480,72 @@ skill("Sea Holistic Effectiveness", "Medical", "medical", 20, 5,
   "Base Skill: 20% +5% per level.\nBonuse skill to Sea Holistic Medicine. Add to sheet.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "Sea Holistic Medicine", selectModifiers: "", bonusesText: "" });
 
+// ═══ MILITARY ═════════════════════════════════════════════
+skill("Camouflage", "Military", "military", 20, 5,
+  "The skill of concealing a fixed base position, vehicle, equipment or individual, using natural and/or artificial materials. A fair amount of time is involved in the preparation of a larger position. Large cargo nets, cut branches or underbrush are used most often in camouflage. This skill is also used to conceal traps.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Demolitions", "Military", "military", 60, 3,
+  "Demolitions provides the character with an advanced knowledge in the use and workings of explosives and detonation devices for the purpose of blowing up bridges, buildings, barriers, fortifications and sabotage. This includes all types of explosives, such as mines, dynamite, plastics, nitro, blasting caps, etc. It also includes a basic understanding of the strategic placement of mines and booby traps. This skill increases the character' s awareness of suspicious rope, string, and wire.",
+  "Base Skill: 60% +3% per level.\nA failed roll means a dud; no explosion.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Demolitions Disposal", "Military", "military", 60, 3,
+  "The skill to safely defuse unexploded mines, bombs, explosive booby traps, dud artillery rounds, dud explosive charges, or any other type of explosive device.",
+  "Base Skill: 60% +3% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Demolitions: Underwater", "Military", "military", 56, 4,
+  "Fundamentally the same basic skills and training as Demolitions, but with an emphasis on using explosives in an underwater environment, including underwater techniques, area effect, sound wave damage, different types of explosives, as well as arming, disarming and repairing torpedoes and depth charges.",
+  "Base Skill: 56% +4% per level.\nAny character with the Demolitions skill can use explosives underwater, but is -10%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Field Armorer & Munitions Expert", "Military", "military", 40, 5,
+  "This is a somewhat simplistic and basic version of the Weapons Engineer as it applies to infantry weapons. The character can maintain, unj am, fix, modify, mount, reload ammunition, recharge E-Clips, and figure out most small arms (conventional and energy pistols and rifles). The Armorer can repair all types of pistols and rifles, repair minor damage to body armor (20 M.D.C. maximum), adjust targeting sights, use and repair optical enhancements, reload missiles and ammo drums, install/mount machine-guns and rocket launchers on a vehicle, as well sharpen blades, make arrows and arrowheads, make horseshoes and basic metal items (nails, spikes, and chain links). A major overhaul is not possible.",
+  "Base Skill: 40% +5% per level.\nAutomatically gets the Basic Mechanics skill at 30% +5% per level as part of this package.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Etiquette", "Military", "military", 35, 5,
+  "A clear understanding of the way the military works, including rules of behavior (when to salute, how to address superiors and subalterns, etc.), military procedures and routines, standard issue of equipment, special ordering procedures, proper display of rank and medals, advancement in rank (and the duties that come with it), proper troop formations, how to deal with military bureaucracy, the chain of command, proper channels, who to contact to get things done, and other useful information in matters of military protocol and bureaucracy.",
+  "Base Skill: 35% +5% per level.\nAll soldiers have a fundamental knowledge of military etiquette (base skill 30% with no improvement), but this skill is much more complete with a strong knowledge of what is expected, correct and the formal approach (i.e. by the book knowledge).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Fortification", "Military", "military", 30, 5,
+  "Knowledge in the design and building of basic defensive structures suitable for modern Mega-Damage combat. If provided with the right materials and time, the character can build defensive walls, bunkers, and tank traps, as well as understand the value of natural terrain that includes obstacles to impede movement and protective structures to shield friendly forces from enemy fire. The character is trained to prepare barbed wire, tank obstacles, tanglefoot wire, booby traps, trenches, tank ditches, foxholes/shell scrapes, reinforced concrete or earthen walls, bunker complexes, rail gun/mortar emplacements, tunnel systems and similar defensive constructions.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Naval History", "Military", "military", 30, 5,
+  "A basic historical knowledge of past navies, naval warfare, and naval combat vessels, as well as a general knowledge about the oceans and seas of Rifts Earth and the beings who travel them. The base skill percentage indicates the approximate degree of information the character has learned or can remember accurately.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Naval Tactics", "Military", "military", 25, 5,
+  "A basic understanding of naval military combat strategies and tactics, preferred methods of fighting in both small scale engagements and full battles, river, lake and sea combat tactics, boarding and capturing enemy vessels, the \"do's\" and \"don'ts\" of naval warfare, and other basic naval military methods. A successful tactics roll will reveal some hints as to the best way to approach a potential combat situation, like recognizing a potential attack/retreat area, combat or defensive weaknesses, a trap, etc.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("NBC Warfare", "Military", "military", 35, 5,
+  "This is the knowledge of safety precautions to protect oneself and others from the effects of nuclear, biological or chemical warfare, waste and contamination. The character is also knowledgeable in the safe handling and \"clean-up\" and containment of such hazardous materials.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Parachuting (uncommon)", "Military", "military", 40, 5,
+  "The methods, procedures, and techniques of parachuting, packing the chute, skydiving, precision landing, landing without injury, and practice of j umping from a high altitude aircraft. The advantage of parachuting is secrecy, since the troopers' insertion into enemy territory is silent and often goes unnoticed. Even if the jump goes without a hitch, there is a 20% chance of taking 6D6 S.D.C. from an awkward landing, even if wearing M.D. armor.",
+  "Base Skill: 40% +5% per level.\nFailure on a Parachuting roll indicates that there are complications somewhere along the jump and the chute does not open or opens late. Even a character in M.D.C. body armor will take damage from the high velocity impact! 1D6 x 10+60 direct to Hit Points!",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Recognize Weapon Quality", "Military", "military", 25, 5,
+  "The ability to accurately determine a weapon's durability, reliability, and quality by physically examining it. This includes knowing which manufacturers are reputed to make the best weapons, the ability to recognize damage or signs of wear or misuse, modifications/customization, whether the weapon can be made as good as new with a little repair work and/or cleaning, whether it is a cheap (or quality) \"knock-off' (copy/imitation), and so on.",
+  "Base Skill: 25% +5% per level.\nReduce the skill ability by half if the item is not actually handled (seen but not physically examined).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Trap & Mine Detection", "Military", "military", 20, 5,
+  "Knowledge of the strategic placement of booby traps and mines, the telltale trademarks and indications of traps and mines, how to avoid them, and the use of mine and explosive detection equipment. The character has been trained to watch for suspicious objects, dirt mounds, trip wires and camouflaging materials that may denote the presence of a trap. Simple snare traps and trip wires can be easily disarmed by the character, but the Demolitions Disposal skill is required to disarm mines, explosives or complex traps.",
+  "Base Skill: 20% +5% per level.\nAdd +50% when using special detection equipment to locate mines/explosives and +10% to locate other types of traps with detection equipment. Dog Boys and other nonhumans with a keen sense of smell are +10% to \"sniff out\" explosives.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
