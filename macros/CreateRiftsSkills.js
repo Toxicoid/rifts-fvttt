@@ -207,6 +207,82 @@ skill("Robot Electronics", "Electrical", "electrical", 30, 5,
   "Base Skill: 30% +5% per level.\nThere is a -40% penalty when working on alien or extremely unfamiliar robot electronics",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "Electrical Engineering, Computer Programming", selectModifiers: "", bonusesText: "" });
 
+// ═══ ESPIONAGE ════════════════════════════════════════════
+skill("Detect Ambush", "Espionage", "espionage", 30, 5,
+  "Training which develops an eye for spotting locations and terrains suitable for ambushes and being ambushed. It also provides a rudimentary knowledge of guerilla tactics used by the enemy.",
+  "Base Skill: 30% +5% per level.\nThe Detect Ambush skill gives its user the ability to spot potential ambush sites based on terrain and possible modes of attack. It is not specific enough to detect individuals prowling.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Detect Concealment", "Espionage", "espionage", 25, 5,
+  "This is a skill which enables the individual to spot and recognize camouflage, concealed structures/buildings and vehicles, as well as the ability to construct unobtrusive shelters, use camouflage and blend into the environment.",
+  "Base Skill: 25% +5% per level.\nThe Detect Concealment skill is specifically designed to help a character to spot things that are deliberately hidden. For spotting \"normal\" things, the character can use the rules for Perception rolls.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Camouflage skill", bonusesText: "" });
+
+skill("Disguise", "Espionage", "espionage", 25, 5,
+  "The character knows how to apply make-up, wigs, skin putty, dyes, and other special effects in order to alter his appearance or that of somebody else.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Undercover Ops and Impersonation skills.", bonusesText: "" });
+
+skill("Escape Artist", "Espionage", "espionage", 30, 5,
+  "The methods, principles, and tricks of escape artists. Includes muscle control (tensing and relaxing muscles), flexing and popping joints, knowledge of knots, and the ability to conceal tiny objects on the person. The character can try slipping out of handcuffs, ropes, straightjacket, etc.",
+  "Base Skill: 30% +5% per level.\nPicking locks is a separate and distinct skill.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Pick Locks skill.", bonusesText: "" });
+
+skill("Forgery", "Espionage", "espionage", 20, 5,
+  "The techniques of making false copies of official documents, signatures, passports, I.D.s, and other printed material. The forger must have an original or photocopy to work from in order to make an accurate copy.",
+  "Base Skill: 20% +5% per level.\nSkilled forgers can recognize other counterfeits but with a skill penalty of -10%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+10% if the Art skill is also known to the forger.", bonusesText: "" });
+
+skill("Impersonation", "Espionage", "espionage", 30, 4,
+  "This skill enables a character to impersonate another person or general type of person (soldier, worker, etc.). This means he must have a rudimentary (if not comprehensive) knowledge of the person or general type of personnel that he plans to impersonate. This includes a knowledge of that person or type of person or job, work procedure or protocol, local laws and customs, individual habits, dress/uniform/lifestyle, hierarchy of command/leadership, rank, and speaking the proper language(s).",
+  "Base Skill: 30% +4% per level.\nA successful impersonation requires the player to roll under his character's Impersonation skill for each of his first THREE encounters. Afterward, the character must roll under his skill for each encounter with an officer, high ranking official or any close friend or close family member who knows the person he is impersonating.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+10% to the Undercover Ops skill.", bonusesText: "" });
+
+skill("Impersonate Specific", "Espionage", "espionage", 16, 4,
+  "To impersonate a specific individual (which may require weeks of study and special disguise)",
+  "Base Skill: 16% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+10% to the Undercover Ops skill.", bonusesText: "" });
+
+skill("Intelligence", "Espionage", "espionage", 32, 4,
+  "This is the specific training in the practices and principles of recognizing and analyzing sources of information about the enemy, observation techniques, counterintelligence measures and proper procedure. This includes the practical assessment of sights and sounds, estimation of ranges, what to report, handling prisoners of war, and handling captured documents and equipment (tagging and reporting to group leader or proper authority). This means the character will be able to accurately estimate ranges, the number of enemies, direction, purpose, and assess the importance of specific information. Further intelligence training includes a working knowledge of indigenous guerilla warfare, enemy practices, appearance, and current activities.",
+  "Base Skill: 32% +4% per level.\nA failed roll in any of the areas of Intelligence means that the evidence is inconclusive, or that the character has incorrectly assessed the information or situation, and is uncertain what it all means. A failed roll involving individual clues may mean the character has dismissed clues and information as being meaningless.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Interrogation", "Espionage", "espionage", 30, 5,
+  "This skill is common among policemen, intelligence officers, and assassins/spies/bounty hunters. The character knows the techniques to get information from (typically unwilling) subjects. This includes such old methods as \"good cop, bad cop\" (one interrogator is threatening and intimidating, the other is sympathetic and friendly), deceiving and misleading the subject into giving away information, and similar. The character can also judge if the subject is lying (the Game Master might assess bonuses and penalties depending on how good a liar the subject is, and/or on the victim's M.E., M.A. and/or P.B.; the higher any or each of these attributes, the more convincing the lies). This skill also includes some basic knowledge on methods of torture, from basic tactics like depriving the subject of sleep, to the use of \"medieval\" instruments, drugs and psionics.",
+  "Base Skill: 30% +5% per level.\nOnly evil characters will engage in actual torture. -20% on supernatural creatures, monsters and dragons.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Pick Locks", "Espionage", "espionage", 30, 5,
+  "The character knows the methods and tools for picking/opening key and basic tumbler type locks. This does not include sophisticated computer or electronic locks.",
+  "Base Skill: 30% +5% per level.\nIt takes 1D6 melee rounds for each attempt to pick a lock. A failed roll means the lock holds; try again.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Pick Pockets", "Espionage", "espionage", 25, 5,
+  "An ability to remove items from a person without their being aware of it.",
+  "Base Skill: 25% +5% per level.\nIf a pick pocket attempt fails, the item has not been removed and there is a 01-67% likelihood of the intended victim recognizing the intent of the action.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Sniper", "Espionage", "espionage", 0, 0,
+  "This skill represents special training in long-range rifle firing and marksmanship. Only rifles that can be made to fire a single round or blast can be used for sniping (no automatic/multi-firing rifles).",
+  "COMBAT BONUS SKILL — not a percentile roll. Enter the aimed-shot strike bonus from the book in the Bonuses field (RUE lists +2 to strike on an aimed shot — VERIFY vs your copy).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2 to strike on a Called or Aimed Shot only.", bonusesText: "" });
+
+skill("Tracking", "Espionage", "espionage", 25, 5,
+  "Visual tracking is the identification of tracks, and following the path of men or animals by the signs they leave on the ground and vegetation. Tracking is a precise art, requiring much practice. The skill includes the evaluation of tracks, indicating whether the person being tracked is loaded down with equipment, running, moving slowly (by measuring the space between steps), and so on. By this means, the tracker can estimate the person's rate of movement, apparent direction, the number of persons in the party, and whether the person knows he is being followed. Other methods of tracking require recognizing other telltale signs, such as blood and other stains, broken and displaced vegetation, overturned rocks, litter (such as cigarette butts, ration cans, candy wrappers, soiled bandages and campfire remains), and even odors carried by the wind. Counter-Tracking techniques are also known, such as covering one's trail, misdirection, parallel trails, avoiding obvious pitfalls like littering and others.",
+  "Base Skill: 25% +5% per level.\nCharacters attempting to follow a skilled tracker who is deliberately trying to conceal his trail suffer a penalty of -25% to stay on him.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Undercover Ops", "Espionage", "espionage", 30, 5,
+  "Training in undercover operations in which the character learns the methods and techniques of blending smoothly into the background and appearing as if he belongs there. Just another unmemorable face in the crowd or one of the guys), as well as assuming a false identity and playing a \"role\" to track, spy upon or gather information or evidence.",
+  "Base Skill: 30% +5% per level.\nThis skill is typically reserved for law enforcement, espionage agents, mercenaries, con artists and other criminal types.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Wilderness Survival", "Espionage", "espionage", 30, 5,
+  "Techniques for finding and getting water, food, shelter, and help when stranded in wild forests, deserts, or mountains.",
+  "Base Skill: 30% +5% per level.\nCharacters without this skill will not be able to stay healthy for more than a few days in the wilderness once their supplies run out.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
