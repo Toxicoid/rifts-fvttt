@@ -130,7 +130,7 @@ const occSkills = [
   { name: choices.cookBrew,                     category: "domestic",       basePercent: choices.cookBrew === "Cooking" ? 50 : 40, perLevelBonus: 5, notes: `Base ${choices.cookBrew === "Cooking" ? "35%" : "25%"} +15% OCC bonus — VERIFY base` },
   { name: "Singing",                            category: "domestic",       basePercent: 50, perLevelBonus: 5, notes: "Base 35% +15% OCC bonus — PROFESSIONAL quality" },
   { name: "Dancing",                            category: "domestic",       basePercent: 50, perLevelBonus: 5, notes: "Base 30% +20% OCC bonus — PROFESSIONAL quality" },
-  { name: "Seduction",                          category: "rogue",          basePercent: 0,  perLevelBonus: 0, notes: "+23% OCC bonus — enter the base % from the skill description (not in RUE core), then add 23" },
+  { name: "Seduction",                          category: "rogue",          basePercent: 20, perLevelBonus: 3, notes: "Base 20% +3%/level. +23% OCC bonus — enter 23 in Bonus % (L1 total: 43%)" },
   { name: choices.ride,                         category: choices.ride.startsWith("Pilot") ? "pilot" : "horsemanship", basePercent: choices.ride.startsWith("Pilot") ? 60 : 0, perLevelBonus: choices.ride.startsWith("Pilot") ? 5 : 0, notes: choices.ride.startsWith("Pilot") ? "Base 50% +10% OCC bonus — VERIFY base" : "Enter Horsemanship: General base % +10% OCC bonus" },
   { name: named(choices.lore1, "Lore: Choice #1"), category: "technical",   basePercent: 0, perLevelBonus: 0, notes: "Enter the chosen Lore's base % +15% OCC bonus" },
   { name: named(choices.lore2, "Lore: Choice #2"), category: "technical",   basePercent: 0, perLevelBonus: 0, notes: "Enter the chosen Lore's base % +15% OCC bonus" },

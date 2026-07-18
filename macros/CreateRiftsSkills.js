@@ -788,6 +788,102 @@ skill("Water Skiing & Surfing", "Pilot", "pilot", 40, 4,
   "Base Skill: 40% +4% per level.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
+// ═══ PILOT RELATED & ROGUE ════════════════════════════════
+skill("Navigation", "Pilot Related", "pilotRelated", 40, 5,
+  "Training in map reading, star charts, course computation, following landmarks, and use of navigational equipment. Includes land, air, and water navigation, as well as piloting by instruments alone. A failed roll means the pilot is off course. Roll 2D6x 100 for most aircraft, 4D6 x 100 for jets, and 2D6 x 10 for ground vehicles to determine how many miles/kilometers they are off course. Roll for every hour that one is off course. This skill enables characters to navigate any vehicle, including ships and other water vessels that ride on the surface of the water, by charting the stars and landmarks and using instruments. Like wise, the character can navigate submersibles using instruments and other data.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Mathematics, Sensory Equipment, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Radar/Sonar Operation", "Pilot Related", "pilotRelated", 0, 0,
+  "See Sensory Equipment.",
+  "BASE % MISSING FROM SOURCE — verify vs the book and enter Base % / per-level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Sensory Equipment", "Pilot Related", "pilotRelated", 30, 5,
+  "See Communication Skills for the description.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Weapon Systems", "Pilot Related", "pilotRelated", 40, 5,
+  "This is the complete understanding of weapon units and systems incorporated into military vehicles, power armor, and robot vehicles. It includes lasers, particle beams, rail guns, missile and grenade launchers, cannons, turrets and vehicle/robot weapon systems. Adds a special bonus of +1 to strike when using these types of weapons; this does not include handheld weapons (see Weapon Proficiencies).",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Cardsharp (or Card Shark)", "Rogue", "rogue", 24, 4,
+  "A skill that involves the manual dexterity of hand and finger manipulation to perform tricks, palming, and other gimmicks of sleight of hand with playing cards. This includes dealing from the bottom or middle of the deck, stacking a deck (to the card shark's favor), hiding cards up the sleeve (and elsewhere), fancy and impressive methods of shuffling and dealing the cards, as well as card counting and understanding the odds.",
+  "Base Skill: 24% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+4% to the Palming skill. +6% to Gambling (Dirty Tricks) skill", bonusesText: "" });
+
+skill("Computer Hacking", "Rogue", "rogue", 20, 5,
+  "This is a computer skill similar to Computer Programming (see Technical skills), however, the emphasis of this skill is breaking computer access codes to gain illegal access to other computer systems and steal or sabotage its data.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Literacy, Computer Operation, Computer Programming, and at least Basic Mathematics.", selectModifiers: "+5% to Cryptography, Surveillance, Locksmith", bonusesText: "" });
+
+skill("Concealment", "Rogue", "rogue", 20, 4,
+  "The practiced ability to hide small items on one ' s body or in hand, usually by continually moving it around from hand to hand or place to place, or hide them on one's person or an innocent by stander unnoticed. Objects must be no larger than 14 inches (35.5 cm) in height/length, and six inches ( 15.2 cm) in width.",
+  "Base Skill: 20% +4% per level.\nLarger items such as a book, scroll, club, statue, or similarly large or heavy objects are more difficult to conceal on one' s person for obvious reasons.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Find Contraband", "Rogue", "rogue", 26, 4,
+  "The character with this skill knows where to find illegal arms dealers, the Black Market, smugglers, thieves, forgers (mainly fake I.D.s), fences, pawn shops, blind pigs (illegal gambling establishments), exotic animal dealers (illegal wild animals, endangered species and the bizarre), automobile chop-shops, cybernetic body-chop-shops, slavers, prostitutes, arms dealers, drug dealers, illegal medical treatment, stolen antiquities, Juicer and Crazy conversion facilities, and other people and places that traffic in illegal goods and services.",
+  "Base Skill: 26% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+10% to I.D. Undercover Agents", bonusesText: "" });
+
+skill("Gambling (Standard)", "Rogue", "rogue", 30, 5,
+  "This skill enables the character to skillfully play several different games of chance. The character knows the rules of 1D4 games, plus one additional game for every 2 points of the character's I.Q. (rounded up). In addition to rules, the character understands the theories of mathematical \"odds\" some basic strategies and tactics for winning consistently, when to hold them, fold them, etc.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to Basic Math", bonusesText: "" });
+
+skill("Gambling (Dirty Tricks)", "Rogue", "rogue", 20, 4,
+  "This is the other side of gambling in which the character is skilled at cheating in games of chance. This includes knowledge of dirty tricks such as counting cards, how to use marked cards, using trick/loaded dice, stacking the deck (in one's favor), sleight of hand tricks to hide cards up sleeves or in the palm of the hand, dealing from the bottom of the deck, and other cheats.",
+  "Base Skill: 20% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Palming", selectModifiers: "", bonusesText: "" });
+
+skill("I.D. Undercover Agents", "Rogue", "rogue", 30, 4,
+  "A combination skill, good eye and knack for identifying undercover agents; typically members of law enforcement, but may also include government agents, private detectives, spies, bounty hunters, and anybody snooping around.",
+  "Base Skill: 30% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Imitate Voices", "Rogue", "rogue", 42, 4,
+  "The ability to imitate voices, accents and expressions of different vocal systems, dialects and languages.",
+  "Base Skill: 42% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Imitate Sounds", "Rogue", "rogue", 36, 4,
+  "The ability to duplicate various calls, screams, chirps and buzzes that are found in the wilderness. Distinctive calls are often used as signals during sneak attacks, with different calls meaning to the people who know them \"all is calm/quiet,\" \"guard on watch,\" \"move cautiously,\" \"danger\" and \"attack! \"",
+  "Base Skill: 36% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Impersonation skill", bonusesText: "" });
+
+skill("Palming", "Rogue", "rogue", 20, 5,
+  "Simply the ability to pick up and seemingly make a small object, such as a coin, key, dagger, or playing card, vanish by concealing it in one's hand.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Cardsharp, Concealment, Pick Pockets", bonusesText: "" });
+
+skill("Roadwise", "Rogue", "rogue", 26, 4,
+  "A regional skill in which the character knows the streets, alleys, back roads, shortcuts, fastest routes, construction zones, speedtraps, highways, police stations and posts in his city and State (or Province) like the back of his hand. Also knows all the local junkyards, the best mechanic garages (including a few who don't ask questions), and the best places to hide a vehicle or lay low for a few hours or a few days, as well as the best place to \"dump\" (abandon) a vehicle where it will not be found any time soon.",
+  "Base Skill: 26% +4% per level.\nTypically reserved for car thieves, Operators and City Rats.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Safe-Cracking", "Rogue", "rogue", 20, 4,
+  "This is a specialized skill in which the character studies the strengths, weaknesses, and construction of safes and how to open them without damaging the contents inside. The fingers of the safecracker are so sensitive that they can \"feel\" the subtle calibration of combination locks and other locking mechanisms. When using explosives, they can use their abilities to such precision that they can \"blow\" the lock off a safe, security door, safe deposit box and similar without creating a big, area effect explosion or inflicting damage to the contents (a failed Safe-Cracking skill or Demolitions roll means the explosion was too much and the contents are damaged).",
+  "Base Skill: 20% +4% per level.\nRequires focus, concentration and keen hearing, so characters with an M.E. of 14 or less are -10% on this skill.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% bonus to the Pick Locks, Demolitions skills. +4% to Locksmith ,+6% to Mechanical Engineer", bonusesText: "" });
+
+skill("Seduction", "Rogue", "rogue", 20, 3,
+  "This is the ability to make the opposite sex melt with desire. This skill is somewhat similar to the Interrogation skill in that the seducer knows how to ask the right questions to get information without being obvious. The seducer usually seems attentive, sympathetic, alluring and sexy. Men and women who are seduced tend to have loose lips and will spill secrets. +1% for every one M.A. attribute point over 20, and every two P.B. points over 17 (round up).",
+  "Base Skill: 20% +3% per level.\nThe seducer can influence more than one person at a time; one additional victim per every three levels of experience. Seduction victims who are intoxicated or drugged are easier to seduce (+5%).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to pick the pockets, palm, or plant things. +5% to the Cardsharp, Sing, and Dance skills.", bonusesText: "" });
+
+skill("Streetwise", "Rogue", "rogue", 20, 4,
+  "An understanding of the darker side of life and the scoundrels who roam the streets. The streetwise character will be able to recognize gang members by their actions and philosophies, gang colors (emblems and clothing that denote membership to a particular organization), gang symbols and mannerisms, and dangerous locations and gangland haunts. The individual will also recognize a potential brawl situation, assess a gang member' s rank/power in the organization, and know some of the hangouts, modes of operation, rituals, ethics, and perhaps even notorious gang leaders of the more infamous street gangs. It also includes knowing the \"street names\" of common drugs, their symptoms, their cost and recognizing the drug when he sees it, and the danger it represents.",
+  "Base Skill: 20% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+10% to I.D. Undercover Agents.", bonusesText: "" });
+
+skill("Tailing", "Rogue", "rogue", 30, 5,
+  "The practiced ability to follow someone without their knowledge. Includes basic stake-out procedures. A failed Tailing roll indicates that the character being \"tailed\" has noticed that he is being followed and may take evasive action to lose the \"tail,\" or confront or attack the person (unless he makes a run for it). Either way, the subject of the \"tail\" is likely to escape being followed any further.",
+  "Base Skill: 30% +5% per level.\nTailing is also part of the Surveillance skill",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Tailing skill if the character also has Prowl.", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
