@@ -642,6 +642,152 @@ skill("Wrestling", "Physical", "physical", 0, 0,
   "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to roll with impactlfall, +2 to P.S., +1 to P.E., +4D6 to S.D.C.", bonusesText: "" });
 
+// ═══ PILOT ════════════════════════════════════════════════
+skill("Airplane", "Pilot", "pilot", 50, 4,
+  "Includes old propeller, single and twin engine types.",
+  "Base Skill: 50% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Automobile", "Pilot", "pilot", 60, 2,
+  "Manual and automatic transmission; includes dune buggies, jeeps, and small trucks.",
+  "Base Skill: 60% +2% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Bicycling", "Pilot", "pilot", 44, 4,
+  "Means the character can ride over rough terrain, reach two times normal running speed and travel cross-country at normal running speed, and perform tricks and jumps (roll skill level; failed roll means a crash) on a bike. Maximum speed can be maintained for a time equal to the P.E. x5 in minutes. Skill also includes basic maintenance/repairs for bicycle.",
+  "Base Skill: 44% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Boats Motor, Race & Hydrofoil Types", "Pilot", "pilot", 55, 5,
+  "These include all types of small motor driven boats, racing craft and yachts.",
+  "Base Skill: 55% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Boats Paddle Types/Canoe/Kayak", "Pilot", "pilot", 50, 5,
+  "Includes paddled boats and canoes, rowboats and knee boards, as well as the Kayak. Speed in stillwater is usually equal to the character' s P.S. attribute (treated for all purposes as Spd) and can be maintained for P.E. x5 in minutes without pause. The skill also includes basic principles behind using currents, maintenance, and even \"tricks\" like sculling and right-siding a flipped canoe, etc.",
+  "Base Skill: 50% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Boats Sail Types", "Pilot", "pilot", 60, 5,
+  "Small sail boats and medium-sized sailing yachts, and fishing boats.",
+  "Base Skill: 60% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Boats Ships/Seamanship", "Pilot", "pilot", 45, 5,
+  "An in depth knowledge about sailing vessels, large and small, as well as the terms and principles of sailing. The character knows how to sail, whether it be in belaying, hauling, dropping or trimming sail, which means he also knows the difference between a crossjack, a mizzenmast, a fore lower topgallant and a hundred other names for specific sails, ropes, masts and cross-masts. The skill also includes being able to judge, evaluate and repair sails, ropes and rigging (every sailor has to be handy with a needle and thread), and operate the pumps needed to remove the water that collects in the bilge, as well as knowing how to braid rope, and the basics of cleaning and maintaining a vessel.",
+  "Base Skill: 45% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Sewing, Rope Works", selectModifiers: "", bonusesText: "" });
+
+skill("Boats Ships/Seamanship Sailing", "Pilot", "pilot", 40, 5,
+  "For piloting large ships on the open seas.",
+  "Base Skill: 40% +5% per level.\nBonus Skill to Boats Ships/Seamanship. Add to sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Boats Ships/Seamanship", selectModifiers: "", bonusesText: "" });
+
+skill("Combat Driving", "Pilot", "pilot", 0, 0,
+  "This skill supplements other driving skills by helping to make the character a master of the roads when driving automobiles, jeeps, trucks, motorcycles and other ground vehicles. It helps to turn the character into an aggressive road-hog and cool-headed \"chicken\" player. In fact, tricks, dangerous maneuvers and highspeed car chases are challenging and fun for this daredevil, although his passengers are likely to fear for their lives. This is a supplemental piloting skill applicable only to ground vehicles and does not have a base skill or level of progression other than reducing penalties an additional one point per level of the driver's experience.",
+  "BONUS SKILL — not a percentile roll. Grants the piloting/combat bonuses listed in the description; add them to the sheet manually when applicable (e.g. while piloting).\nIn game mechanics, skill penalties for tricks, vehicular attacks (ram, sideswipe, etc.), and evasive maneuvers are reduced by half when this character is at the wheel, plus he is +2 to dodge when driving, +2 to survive a crash/impact, can fire a weapon from a moving vehicle at only a -2 penalty, and can even make an Aimed or \"Called Shot\" (at -2 to strike) while on a m oving vehicle (or talk, or engage in some other activity while driving without penalty).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Flight System Combat (Juicer)", "Pilot", "pilot", 40, 5,
+  "Exclusive to Juicers, Crazies and similarly augmented people/O.C.C.s. This skill allows the character to use specialized flight packs like the Icarus Flight System at full efficiency and take advantage of all possible bonuses. The sophisticated control systems of the Icarus are as quick to react as the systems of a suit of power armor. Those without training do not get the following bonuses and the base skill level is reduced by half.",
+  "Base Skill: 40% +5% per level.\nIf the pilot has auto-dodge, he can use it while flying!",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 attack/APM while flying at levels I, 3, 5, 8 and I I, +2 to dodge when flying.", bonusesText: "" });
+
+skill("Hover Craft (Ground)", "Pilot", "pilot", 50, 5,
+  "The knowledge needed to pilot all types of hover vehicles used for ground transport, including basic hovercycles and hover trucks. These vehicles can be tricky, because they utilize several air jets and directional thrusters that push the craft on a cushion of air 1-3 feet (0.3 to 0.9m) above the ground. The vehicles can usually attain great speeds (100- 160 mph/ 160 to 256 km), are capable of driving over incredibly rugged terrain, and making jumps over small craters, ravines, boulders and fallen trees (10 feet/3m +4 feet/ 1.2m per additional level of experience).",
+  "Base Skill: 50% +5% per level.\n-20% to piloting skill rolls when pulling jumps, tricks, dodging gunfire and stunt driving",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Hovercycles, Skycycles & Rocket Bikes", "Pilot", "pilot", 70, 3,
+  "Characters who select the Pilot Hover Craft (Ground) skill can drive hover cars, hover trucks, and hovercycles on a basic level. However, those who specifically select the Pilot Hovercycle skill can pilot any type of hovercycle, rocketbike, sky cycle (like the Sky King) or jet propelled one-or two-man hover ground or air vehicles with greater skill and finesse. They can perform spectacular jumps (20 feet/6.1m + 7 feet/2.1m per additional level of experience), stop on a dime, perform dive-drops (soar off the edge of a cliff or skyscraper, keep control of the hovercycle as it drops, land on the ground without crashing or falling off and keep on going; 120 foot/36.6m drop +20 feet/6.1m per additional level of experience!), and perform tricks, stunts, jumps and dodging without penalty.",
+  "Base Skill: 70% +3% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Jet Aircraft", "Pilot", "pilot", 40, 4,
+  "Includes large and small commercial transport jets.",
+  "Base Skill: 40% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Jet Packs", "Pilot", "pilot", 42, 4,
+  "Piloting backpack-style units that strap to the back of an individual to carry him airborne. The typical jet pack is a one person unit capable of hovering above the ground and flying at an average altitude of 300-1000 feet (91.5 to 305 m).",
+  "Base Skill: 42% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Jump Bike Combat (Juicer)", "Pilot", "pilot", 45, 4,
+  "Exclusive to Juicers, Crazies and similarly augmented people/O.C.C.s for the use of the specialized Tarantula Jump Bike.",
+  "Base Skill: 45% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 APM with bike's weapon systems, +1 to Automatic Dodge.", bonusesText: "" });
+
+skill("Bike Jump Attack", "Pilot", "pilot", 25, 5,
+  "This attack uses the rockets to have the bike jump in the air and then land on a target. The sensitive rocket controls require a special skill roll. If the skill roll is successful, the pilot can make a normal attack roll (at +1 to strike in addition to normal bonuses) to hit the target. Damage to his opponent is 3D6 M.D.",
+  "Base Skill: 25% +5% per level.\nThis attack can only be done if there is room to maneuver (open terrain only).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to strike", bonusesText: "" });
+
+skill("Military Combat Helicopters", "Pilot", "pilot", 52, 3,
+  "The specialized skill required to fly all types of helicopters, including combat 'choppers, and operate their related Weapon Systems.",
+  "Base Skill: 52% +3% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Jet Fighters", "Pilot", "pilot", 40, 4,
+  "Training includes flying, maneuvering, aerial combat strategies, and typical fighter jet weapon systems.",
+  "Base Skill: 40% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Submersibles", "Pilot", "pilot", 40, 4,
+  "Underwater sleds, mini-subs and commercial and military submarines and submersibles.",
+  "Base Skill: 40% +4% per level.\n-20% when using alien or unusual submarines. Does not include power armor or deep sea diving suits.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Tanks & APCs", "Pilot", "pilot", 36, 4,
+  "Military vehicles often have unconventional controls and handle differently from conventional vehicles, especially the many ton, armored combat vehicles such as tanks and armored personnel carriers (APCs). Thus, special training is required to pilot them.",
+  "Base Skill: 36% +4% per level.\nThose with this skill can also pilot other types of \"tracked vehicles.\"",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Warships & Patrol Boats", "Pilot", "pilot", 40, 4,
+  "Special training in the use of military warships, combat hydrofoils, patrol boats and amphibious beach craft/transports. Includes a basic idea of how to use sonar and targeting equipment, depth charges, torpedoes, and other common weapon systems, as well as evasive maneuvers and piloting.",
+  "Base Skill: 40% +4% per level.\nCharacters with the Motor Boat or Ship skill can also pilot these vessels but at a -12% penalty",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Motorcycles & Snowmobiles", "Pilot", "pilot", 60, 4,
+  "This skill includes the piloting of all two- and three-wheeled vehicles such as motorcycles of all types, dirt bikes, and mopeds as well as snowmobiles, jet sleds, miniature- ATVs and other scaled-down vehicles.",
+  "Base Skill: 60% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Robots and Power Armor", "Pilot", "pilot", 56, 3,
+  "Piloting and basic operations without any combat training or bonuses. Characters with this skill are taught the fundamentals of maneuvering light and medium giant robots (like the Titan Reconnaissance Scout or NG-M56 Multi-Bot) and power armorsuits (such as the Triax Terrain Hopper, Flying Titan and Samson). These are robot exoskeletons and vehicle type robots that require a pilot and/or crew to be inside to pilot them. The training focuses on piloting, not combat, thus, robot combat is a separate and distinct skill (see Robot Combat skills as follows).",
+  "Base Skill: 56% +3% per level.\nPenalties: In fact, the use of weapons and special combat features (targeting, radar, etc.) are so unfamiliar that they confuse the ordinary non-combat pilot, causing the following penalties whenever he tries to use weapons or fight with the robot: -1 attack per melee round, -2 to strike (with punches, blades, guns or missiles), and -1 to parry and dodge. Penalties do not apply if the character has the Weapon Systems skill",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Robot (and Power Armor) Combat Basic", "Pilot", "pilot", 0, 0,
+  "Basic combat training in robot vehicles and power armor gives the pilot a fair working knowledge of most robot vehicles and their most basic combat capabilities. The pilot will be able to operate the robot and use the various weapon systems and fighting capabilities, but not at maximum skill and efficiency.",
+  "BONUS SKILL — not a percentile roll. Grants the piloting/combat bonuses listed in the description; add them to the sheet manually when applicable (e.g. while piloting).\nHand to Hand Bonuses from Power Armor Basic Training applies to ALL types of power armor, ground, aquatic and flyers. Use \"basic\" tables only.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Robot (and Power Armor) Combat Elite", "Pilot", "pilot", 0, 0,
+  "Each robot or power armor type has different weapon systems, hand to hand aptitude, and quirks that make each specific type unique. Because each handles differently, the \"elite\" pilot studies individual types of robot war machines to familiarize himself with every element of that specific type of robot. This means the pilot must select the Robot Combat: Elite skill for each specific robot or power armor type in which he desires to be an expert operator to enjoy its maximum combat effectiveness.",
+  "BONUS SKILL — not a percentile roll. Grants the piloting/combat bonuses listed in the description; add them to the sheet manually when applicable (e.g. while piloting).\nElite training automatically gives the pilot a basic understanding and the ability to pilot ALL standard types of robot vehicles and power armor at the \"basic\" level plus one \"elite\" class of power armor or robot. This skill may be taken multiple times to pilot several robots at the elite level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Tracked & Construction Vehicles", "Pilot", "pilot", 40, 4,
+  "Includes landcrawlers, half-tracks, light tanks, and big-wheeled heavy construction vehicles and earthmovers like bulldozers, steam shovels/excavators, scrapers, graders, tractors, loaders, backhoes, dump trucks, haulers, etc.",
+  "Base Skill: 40% +4% per level.\nCan pilot tanks and APCs but at a -15% penalty and -1 attack per melee round.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Truck", "Pilot", "pilot", 40, 4,
+  "Specifically applies to driving large cargo and transport vehicles like eight- to sixteen-wheeled commercial trucks and multi-ton transports.",
+  "Base Skill: 40% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Water Scooters", "Pilot", "pilot", 50, 5,
+  "The knowledge and skill of piloting all types of one- and two-man water sleds (underwater) and jet skis (surface sleds).",
+  "Base Skill: 50% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Water Skiing & Surfing", "Pilot", "pilot", 40, 4,
+  "All water skiing techniques, methods and use of most types of recreational forms of \"riding the waves,\" including skis, water jet scooters, water boards, surfboards and sailboards.",
+  "Base Skill: 40% +4% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
