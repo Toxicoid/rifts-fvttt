@@ -884,6 +884,82 @@ skill("Tailing", "Rogue", "rogue", 30, 5,
   "Base Skill: 30% +5% per level.\nTailing is also part of the Surveillance skill",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to the Tailing skill if the character also has Prowl.", bonusesText: "" });
 
+// ═══ SCIENCE ══════════════════════════════════════════════
+skill("Anthropology", "Science", "science", 30, 5,
+  "This is the behavioral study of man and other intelligent life-forms and their environments. Studies include societies, customs and beliefs, religions, and political structure, as well as rudimentary history and archaeological background. It is important to note that anthropology is more concerned with the study of modern races and societies than ancient ones.",
+  "Base Skill: 30% +5% per level.\nThe anthropologist is one of the few who knows about pre-Rifts human society, culture and artifacts. As a result, he can often identify pre-Rifts technology and man-made creations, and is also knowledgeable in their Black Market value as well as the many CS laws that prohibit the possession, sale, and scavenging of ancient artifacts.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to all Lore skills and Pre-Rifts History.", bonusesText: "" });
+
+skill("Archaeology", "Science", "science", 30, 5,
+  "This is the scientific study of relics from ancient civilizations by excavation and other means. The skill teaches proper excavation (dig) techniques, analysis, preservation, restoration, and dating methods (including carbon dating), as well as a rudimentary history and anthropology background.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2% to all Lore skills and + 10% to History.", bonusesText: "" });
+
+skill("Archaeology (Pre- Rifts)", "Science", "science", 20, 5,
+  "Expert in the identification of pre-Rifts technology and man-made creations, from books and clothing to vehicles and buildings. The character can ascertain whether the item is an ancient artifact or of recent construction, and therefore, if an item is an authentic artifact or a forgery. He is also well versed in their Black Market value and the CS laws that prohibit the possession, sale, and scavenging of ancient artifacts.",
+  "Base Skill: 20% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2% to all Lore skills and + 10% to History.", bonusesText: "" });
+
+skill("Artificial Intelligence", "Science", "science", 30, 3,
+  "An area of science that is usually available only to those who specialize in robotics and computers (which may include the Operator and Rogue Scientist O.C.C.S). True artificial intelligences (A.l.s) - robots that can think and learn for themselves are incredibly rare in North America and most of Rifts Earth. Thus, this skill is more common \"off-planet\" on advanced worlds accessible by the Rifts. A character with this science skill understands the many principles and theories behind advanced artificial intelligences, how they \"think\" and \"understand\" the world around them, how to communicate with them and how to reprogram them, either directly or by argument.",
+  "Base Skill: 30% +3% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Computer Operation", selectModifiers: "+5% to all other Computer skills, including Programing and Hacking.", bonusesText: "" });
+
+skill("Astronomy & Navigation", "Science", "science", 30, 5,
+  "The study of the stars and other celestial bodies, their movements, positions, cycles, alignments, and interrelations with the planets and each other. This knowledge can also be used to determine direction, approximate distances, identify the seasons, and tell the time of day. Training includes reading maps and star charts, course computation, following landmarks, and the use of navigational equipment. Includes land, air, and water navigation as well as piloting by the stars and instruments alone. This ability is ideal for sailors and those characters who can fly.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Mathematics, Literacy", selectModifiers: "+10% bonus if the character has Advanced Mathematics.", bonusesText: "" });
+
+skill("Astrophysics", "Science", "science", 30, 5,
+  "Knowledge of stellar astronomy and how it relates to nuclear physics, quantum mechanics, relativity and other explanations for the creation of deep space phenomena, like quasars and black holes.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic, Advanced Mathematics", selectModifiers: "", bonusesText: "" });
+
+skill("Biology", "Science", "science", 30, 5,
+  "Basic understanding of cells, anatomy, physiology, evolution, and genetics. The character will know how to use a microscope, cultivate bacteria, and how to dissect, study, evaluate and classify new organisms.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Botany", "Science", "science", 25, 5,
+  "Plants, their categories and functions, are studied extensively. Characters will know the basics of cross-fertilization and germinating, as well as growing experimental plants.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Chemistry", "Science", "science", 30, 5,
+  "The basic understanding of chemical principles and formulae. Characters know enough chemical laboratory procedures for analyzing and synthesizing chemical compounds to act as competent assistants.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Chemistry Analytical", "Science", "science", 25, 5,
+  "Training in chemical engineering theories useful in the analysis of compounds and their practical applications. Characters will be highly skilled in the use of laboratory equipment and can analyze and synthesize chemicals.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Chemistry, Advanced Mathematics,Literacy.", selectModifiers: "", bonusesText: "" });
+
+skill("Chemistry Pharmaceutical", "Science", "science", 30, 5,
+  "This is the study of drugs and their interaction with the human body. Knowledge includes a familiarity with common medical drugs, drug interactions, prescribed dosages, the use/distribution of drugs, their effects on the human body, and other biological applications. The character can recognize and prescribe common drugs, knows their effects and side effects, recognizes poisons/toxins, and can safely administer painkillers, hallucinogens, stimulants, relaxants, antibiotics, antidepressants, anti-psychotics, sodium pentothal/truth serum, tranquilizers, sedatives, and so on. Also has a theoretical understanding of Juicers and the drugs they use.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+10% to Lore: Juicer.", bonusesText: "" });
+
+skill("Mathematics (Basic)", "Science", "science", 45, 5,
+  "Knowledge of basic math, including the ability to count, addition, subtraction, multiplication, division, and fractions.",
+  "Base Skill: 45% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Mathematics (Advanced)", "Science", "science", 45, 5,
+  "Knowledge of all basic and advanced mathematics, including algebra, geometry, trigonometry, calculus, and techniques for using advanced mathematical formulae.",
+  "Base Skill: 45% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Mathematics.", selectModifiers: "", bonusesText: "" });
+
+skill("Xenology", "Science", "science", 30, 5,
+  "The biological and physiological study of alien species (rather than their culture or society). This skill provides general medical and physiological information about the most commonly encountered species in a particular region or solar system (the type of air they breathe, how their body works, any natural weapons, poisons or toxins, strengths and weaknesses, presence of psionics or other natural abilities, etc.).",
+  "Base Skill: 30% +5% per level.\nWithout Xenology, any attempts to use a medical skill on an alien species has a -20% skill penalty.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Zoology", "Science", "science", 30, 5,
+  "An academic knowledge of wildlife, nature and habits, including domesticated and wild animals indigenous to the planet, and known alien animal species. This includes knowledge of animal habitats, behavior, instincts, mating, hunting, food or favored prey, breeding, physiology and biology, flight/fight responses, natural weapons and defenses, the best way to handle the animals, and so on. This skill may be specialized by taking the skill twice. When specialized, the character receives a one time bonus of +20% to the skill when dealing with that one specific type/species of animal.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+5% to Herding, Track & Trap Animals, +10% to Veterinary Science.", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
