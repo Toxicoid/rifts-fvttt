@@ -369,6 +369,117 @@ skill("Weapons Engineer", "Mechanical", "mechanical", 25, 5,
   "Base Skill: 25% +5% per level.\n-30% when working on TW or very alien weapon systems or vehicles.",
   { requiredOCC: "Mechanical Engineering", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to strike when using heavy weapons or vehicular weapon systems.", bonusesText: "" });
 
+// ═══ MEDICAL ══════════════════════════════════════════════
+skill("Animal Husbandry", "Medical", "medical", 35, 5,
+  "Knowledge in the behavior, care, feeding, breeding, reproduction habits and health of domesticated animals such as cattle, sheep, goats, horses, ducks, chickens, dogs, cats, and similar livestock and pets. The percentile number indicates the degree of knowledge and skill one has about animals and their care. Reduce the skill ability by half when caring for captive or injured wild animals.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Brewing Medicinal", "Medical", "medical", 25, 5,
+  "This is the making of teas, elixirs, tonics, vapors (breathed in rather than drunken) and other \"brews\" for medicinal purposes.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "Adds a +5% to Holistic Medicine if the skill is known.", bonusesText: "" });
+
+skill("Medicinal Effectiveness", "Medical", "medical", 30, 5,
+  "The effectiveness of the medicinal teas, elixirs, tonics, vapors (breathed in rather than drunken) and other \"brews\".",
+  "Base Skill: 30% +5% per level.\nBonus Skill to Brewing Medicinal. Add to sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Brewing Medicinal", selectModifiers: "", bonusesText: "" });
+
+skill("Crime Scene Investigation", "Medical", "medical", 35, 5,
+  "The procedures, methods, and techniques in police crime scene investigation, including protecting the integrity of a crime scene, gathering and preserving evidence, fingerprinting, recognizing and preserving DNA evidence, ballistics (matching bullets to weapons and angles of impact), and finding, processing and analyzing clues and evidence.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Biology, Chemistry, Chemistry: Analytical, Advanced Mathematics, Literacy", selectModifiers: "+1 to Perception Rolls.", bonusesText: "" });
+
+skill("Entomological Medicine", "Medical", "medical", 40, 5,
+  "This skill involves the unique specialization in insect biology and its applications to medicine and science. Body Fixers/Doctors versed in Entomological Medicine will be able to cure most insect complaints and injury, from diseases to broken limbs and cracked chitin, but even they work at a -10% skill penalty (applied to M.D. skill).",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Math, Chemistry, or Chemistry: Analytical", selectModifiers: "", bonusesText: "" });
+
+skill("Entomological Medicine Treatment", "Medical", "medical", 20, 5,
+  "Treat insectoids and create anti-venoms and drugs using insect chemicals.",
+  "Base Skill: 20% +5% per level.\nBonus Skill to Entomological Medicine. Add to sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Entomological Medicine", selectModifiers: "", bonusesText: "" });
+
+skill("Field Surgery", "Medical", "medical", 16, 4,
+  "This skill reflects training in emergency, life-saving surgical procedures that can be performed \"in the field\" to keep critically wounded individuals alive. Given the proper tools, the field surgeon can perform amputations, suture tom arteries, check internal bleeding, cauterize wounds, give blood transfusions and even install cybernetic implants (the latter is done with a penalty of -15% unless the character has basic cybernetics skill). Field expedient surgery is a dangerous proposition that all too often results in the death of the patient. Because of the risk involved, field surgery is attempted only when it is the only chance the wounded character has for survival! If the operation is successful the patient lives and can be evacuated to a hospital, but a failed roll results in the immediate death of the patient.",
+  "Base Skill: 16% +4% per level.\n+14% if the character is also a Medical Doctor.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+14 if the character is also an M.D.", bonusesText: "" });
+
+skill("First Aid", "Medical", "medical", 45, 5,
+  "Rudimentary medical treatment which includes how to bandage wounds, stop bleeding, administer CPR, artificial respiration, and use antiseptics and common anti-inflammatory drugs and painkillers.",
+  "Base Skill: 45% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Forensics", "Medical", "medical", 35, 5,
+  "Forensic medicine, the proper medical procedure of performing an autopsy on a corpse, finding evidence regarding the time of death, cause of death, age and sex of the victim, identifying physical trauma, internal injury, the presence of toxins, and other details related to the condition of the body and cause of death.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Biology, Chemistry", selectModifiers: "", bonusesText: "" });
+
+skill("Holistic Medicine", "Medical", "medical", 30, 5,
+  "Training in the recognition, preparation, and application of natural medicines usually made from whole plants and/or their parts (roots, leaves, fruit). The Holistic Doctor is basically a pharmacist and naturalist who creates drugs from herbs and vegetation, as well as studies and treats common ailments. He can find and use plants to create salves, balms, ointments, and lotions to soothe bums, boils, rashes, and insect bites, reduce swelling, as well as create local anesthetics, and to heal wounds faster (twice as quick as normal). Potions and tonics are created to settle upset stomachs, induce drowsiness, or hallucinations. The individual can also make poison (hemlock and mandrake for example).",
+  "Base Skill: 30% +5% per level.\n+10% to the Brewing, IdentifY Plants & Fruits and Preserve Food skills.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Holistic Medicine Effectiveness", "Medical", "medical", 20, 5,
+  "The healer's skill at successfully treating the problem with herbs and making healing teas, tonics and salves.",
+  "Base Skill: 20% +5% per level.\nBonus skill to Holistic Medicine. Add to sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Holistic Medicine", selectModifiers: "", bonusesText: "" });
+
+skill("Juicer Technology", "Medical", "medical", 40, 5,
+  "This is a medical specialty dealing with the Juicer! Note: A character needs this skill and an M.D. in Medicine or Cybernetics to install the bio-comp and other Juicer implants. This skill allows a doctor to supply and administer the right drugs to a Juicer, recognize Juicer variants, diagnose most Juicer side effects and syndromes, tell if the Juicer is beyond detoxification, administer detox, and assist in the Juicer creation process at a Juicer Augmentation facility.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Paramedic", "Medical", "medical", 40, 5,
+  "An advanced form of emergency medical treatment which includes all first-aid techniques, the setting of broken bones, suturing of wounds, use of oxygen and emergency medical equipment, administering of drugs, knowledge of how to move a critically injured person, the removal of cybernetic prosthetics, and other life-saving techniques.",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Medical Doctor", "Medical", "medical", 60, 5,
+  "The medical doctor is a trained surgeon and has a doctorate in the medical sciences. Areas of training include: clinical skills, medical discipline, code of ethics, physiology (muscle, respiratory, blood, body fluids), pathology (diseases, their structure and function), rudimentary pharmacology (use, reaction, and interaction of drugs), laboratory skills, and techniques and methods of data collection.",
+  "Base Skill: 60% +5% per level.\nThe medical doctor (M.D.) is also a trained surgeon and has a basic knowledge regarding cybernetics. This means the M.D. can remove and attach most cybernetic mechanisms (although at a penalty of -10%, and -40% on bionics).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Biology, Pathology, Chemistry, Basic Math or Advanced Mathematics, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Medical Doctor Treatment", "Medical", "medical", 50, 5,
+  "Atempt to treat the illness.",
+  "Base Skill: 50% +5% per level.\nBonus Skill to Medical Doctor. Add to sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Medical Doctor", selectModifiers: "", bonusesText: "" });
+
+skill("Cybernetic Medicine", "Medical", "medical", 40, 5,
+  "This doctor is a specialist in the science of cybernetics and a master surgeon. The character has all the basic knowledge and requirements of the Medical Doctor, although his diagnostic skills are nowhere near as honed, but is a specialist in surgery involving the removal of limbs and internal organs and the surgical attachment of cybernetic replacements (artificial organs and prosthetics). The Cyber-Doc can also work on, calibrate and repair, bionic implants as well as install them, but suffers a -15% skill penalty. The science of bionics is much more complex and machine oriented than basic cybernetics.",
+  "Base Skill: 40% +5% per level.\nBionic Skill Upgrade: A Doctor in Cybernetics needs to select this Cybernetic Medicine skill twice and Electrical Engineering to be capable of working on bionic systems.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Cybernetic Medicine Treatment", "Medical", "medical", 60, 5,
+  "Doctor's ability to perform complex surgery, remove and install all types of cybernetic organs and devices, implants and bionics.",
+  "Base Skill: 60% +5% per level.\nBonus Skill to M.D in Cybernetics. Add to sheet",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Cybernetic Medicine", selectModifiers: "", bonusesText: "" });
+
+skill("Pathology", "Medical", "medical", 40, 5,
+  "This branch of medicine deals with the nature of diseases, their cause, and symptoms, and the functional and structural changes caused by disease. Training includes anatomy, physiology, cell biology, manifestation of disease, tissue injury and repair, abnormal cell structure, metabolism, diagnosis of human diseases, tissue culture methods and applications, analysis of drugs in biological samples and laboratory research, investigative methods, and use of instruments and equipment.",
+  "Base Skill: 40% +5% per level.\n+5% to Forensics skill.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Biology, Chemistry, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Psychology", "Medical", "medical", 35, 5,
+  "The principles, theories and evaluation of human behavior as they apply to psychology and psycho-therapy. Includes analysis, understanding and treatment of emotional and mental illness, motivational and perceptual disorders, personality assessment, alcoholism, drug abuse and treatment, and other aspects and studies of the mind and human behavior.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Biology, Chemistry, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("Veterinary Science", "Medical", "medical", 50, 4,
+  "A doctor who specializes in the medical care and treatment of wild and domestic animals. Areas of study are biology (specifically animal), reproduction, breeding, animal anatomy, physiology, pathology, toxicology, surgery, suturing wounds, setting bones, disease, medical care and other applications and techniques in the medical treatment of animals.",
+  "Base Skill: 50% +4% per level.\nA Medical Doctor can also treat an animal, but is at a -35% penalty to do so.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Biology, Animal Husbandry", selectModifiers: "", bonusesText: "" });
+
+skill("Sea Holistic Medicine", "Medical", "medical", 30, 5,
+  "This skill is rarely known to characters living on the mainland. It is most common among seafaring folk and those who live on islands or along an ocean coastline. The skill includes training in the recognition, preparation, and applications of natural medicines derived from aquatic plants/seaweed and sea animals, including ink, blood, poisons, glands and other secretions and chemicals. This skill also includes the knowledge of where to find the necessary plants or animals, how to extract the necessary components and some knowledge of legends as they pertain to the healing properties of the sea and sea animals. Otherwise, the skill is fundamentally the same as the standard Holistic Medicine skill.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Sea Holistic Effectiveness", "Medical", "medical", 20, 5,
+  "The healer's skill at successfully treating the problem with herbs and making healing teas, tonics and salves from the sea.",
+  "Base Skill: 20% +5% per level.\nBonuse skill to Sea Holistic Medicine. Add to sheet.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Sea Holistic Medicine", selectModifiers: "", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
