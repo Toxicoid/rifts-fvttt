@@ -2202,3 +2202,7 @@
   cursor: default;
 }
 .rifts .notes-preview em { opacity: 0.4; }
+
+/* Skill requirement fields grid */
+.rifts .skill-req-grid { display:grid; grid-template-columns:1fr 1fr; gap:6px; margin-top:6px; }
+.rifts .skill-req-grid .is-full { grid-column: 1 / -1; }

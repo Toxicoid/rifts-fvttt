@@ -184,6 +184,29 @@
           <input type="number" data-path-number="system.perLevelBonus" value="{{system.perLevelBonus}}" min="0" />
         </div>
       </div>
+      <div class="is-grid skill-req-grid">
+        <div class="is-field">
+          <label>Required O.C.C.</label>
+          <input type="text" data-path="system.requiredOCC" value="{{system.requiredOCC}}" placeholder="Any" />
+        </div>
+        <div class="is-field">
+          <label>Required Location</label>
+          <input type="text" data-path="system.requiredLocation" value="{{system.requiredLocation}}" placeholder="—" />
+        </div>
+        <div class="is-field">
+          <label>Required Skill(s)</label>
+          <input type="text" data-path="system.requiredSkills" value="{{system.requiredSkills}}" placeholder="None" />
+        </div>
+        <div class="is-field">
+          <label>Select Modifiers</label>
+          <input type="text" data-path="system.selectModifiers" value="{{system.selectModifiers}}" placeholder="—" />
+        </div>
+        <div class="is-field is-full">
+          <label>Bonuses <span class="hm-hint">(added manually by the player)</span></label>
+          <input type="text" data-path="system.bonusesText" value="{{system.bonusesText}}" placeholder="e.g. +5% from O.C.C., +2% Mathematics" />
+        </div>
+      </div>
+
       {{#if system.isHorsemanship}}
       <div class="is-field is-full hm-panel">
         <label>Sub-Skills <span class="hm-hint">(click to roll — scales with your Level)</span></label>

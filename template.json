@@ -203,6 +203,11 @@
     "skill": {
       "category": "",
       "description": "",
+      "requiredOCC": "",
+      "requiredLocation": "",
+      "requiredSkills": "",
+      "selectModifiers": "",
+      "bonusesText": "",
       "isSecondary": false,
       "isHorsemanship": false,
       "horsemanship": {

@@ -42,8 +42,8 @@ async function categoryFolder(name) {
 // categoryKey = the system's category value (matches the sheet's
 // category dropdown); folderName = display folder in the pack.
 const skillDefs = [];
-const skill = (name, folderName, categoryKey, base, perLevel, description, notes = "") =>
-  skillDefs.push({ name, folderName, categoryKey, base, perLevel, description, notes });
+const skill = (name, folderName, categoryKey, base, perLevel, description, notes = "", extra = {}) =>
+  skillDefs.push({ name, folderName, categoryKey, base, perLevel, description, notes, extra });
 
 // Horsemanship variants carry a structured `horsemanship` block
 // (sub-skills, mounted bonuses, charge data) consumed by the
@@ -56,12 +56,104 @@ const horseSkill = (name, base, perLevel, description, notes, hm) =>
 
 // ═══ COMMUNICATIONS ════════════════════════════════════════
 skill("Barter", "Communications", "communications", 30, 4,
-  "A skill at bargaining with merchants, businessmen, thieves, traders and other characters to get a fair price or fair exchange of trade goods or services. Depending on the character's point of view and effort at bartering, he can raise the amount he gets or lower the price he pays by 3D6+2% — not applicable to rare items and alien technology. Generally, if the haggler rolls under his Bartering skill percentage, he gets the discount when buying, or the better price when he is the one doing the selling or trading. If the price is disputed, the two bartering characters can each make rolls on percentile dice: the highest roll wins and gets their price — and not a penny less or nickel more.",
-  "Base Skill: 30% +4% per level.\nRESTRICTION: Available only to Adventurer & Scholar O.C.C.s.\nMathematics and Literacy are not required but helpful — EACH adds a +2% bonus to Barter (enter in Bonus % if known).");
+  "A skill at bargaining with merchants, businessmen, thieves, traders and other characters to get a fair price or fair exchange of trade goods or services. Generally, if the haggler rolls under his Bartering skill percentage, he gets the discount when buying or the better price when he is the one doing the selling or trading. If the price is disputed, the two bartering characters can each make rolls on percentile dice, the highest roll wins and gets their price and not a penny less or nickle more.",
+  "Base Skill: 30% +4% per level.\nMathematics and Literacy are not required but helpful, with each adding a +2% bonus to Barter.",
+  { requiredOCC: "Adventurer, Scholar", requiredLocation: "", requiredSkills: "", selectModifiers: "3D6+2%", bonusesText: "" });
 
 skill("Creative Writing", "Communications", "communications", 25, 5,
-  "The ability to write prose/stories, poems, and journalistic reports, studies, news, and otherwise entertaining text (including songs at -15%). Taking the skill TWICE indicates professional quality and gets a bonus of +10%; selecting it once indicates a talented amateur. A failed roll means an awkward and poorly written work that is boring and difficult to understand. Try again.",
-  "Base Skill: 25% +5% per level.\nREQUIRES: Literacy.\nSongs: -15%. Taken twice (professional): +10% (enter in Bonus %).\nThis skill does NOT provide the ability to recite written words with any level of charm — see Public Speaking for that.");
+  "The ability to write prose/stories, poems, and journalistic reports, studies, news, and otherwise entertaining text (including songs at -15%) This skill does not provide a character with the ability to recite his or her written words with any level of charm. See Public Speaking for that.",
+  "Base Skill: 25% +5% per level.\nTaking the skill twice indicates a professional quality and gets a bonus of +10%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Literacy.", selectModifiers: "", bonusesText: "" });
+
+skill("Cryptography", "Communications", "communications", 25, 5,
+  "Skill in recognizing, designing, and cracking secret codes and messages. The character must study the code for two hours to attempt to break it successfully. A failed roll means the individual must study the code for an additional two hours before he can try to break it again.",
+  "Base Skill: 25% +5% per level.\nThe character may attempt to break the code sooner, after only 10 minutes of study, but suffers a penalty of -30%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Literacy.", selectModifiers: "", bonusesText: "" });
+
+skill("Electronic Countermeasures", "Communications", "communications", 30, 5,
+  "The ability to shield, encrypt and protect electronic transmissions, as well as jamming, scrambling, coding and decoding radio, video and wireless transmissions. This skill also includes knowledge in the use of technology to locate electronic bugs/listening devices and deactivate, underm ine and otherwise circumvent them. The use of electronic masking, scrambling and unscrambling equipment, as well as codes to help foil the detection, interception and interpretation of radio and wireless transmissions is all part of this skill. A radio operator who makes a successful scramble roll can transmit coded or scrambled messages without fear that the enemy will intercept or understand his transmission.",
+  "Base Skill: 30% +5% per level.\nJamming military or police communications can cause unit confusion and disrupt communications. Military organization breaks down, causing a loss of effectiveness to all but the best units. Just about any high-powered radio can be used for jamming.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Radio: Basic.", selectModifiers: "", bonusesText: "" });
+
+skill("Language: Native Tongue", "Communications", "communications", 88, 1,
+  "The character has a very good to excellent understanding of his native language. It is not, however, an absolute and total understanding, because there are always words, scientific terms, slang and fancy or outdated words and terms a character may not know. Thus, the necessity for dictionaries, thesauruses, grammar guides and computer spelling programs.",
+  "Base Skill: 88% +1% per level.\nAn O.C.C. skill bonus usually applies to \"other\" languages and communication skills, not the Native Tongue.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Language: Other", "Communications", "communications", 50, 3,
+  "The character can understand and speak in a language other than his own. Language is one of the few skills that can be selected repeatedly in order to speak several different languages. Each selection gives the character knowledge of one different language, but each language counts as one skill selection.",
+  "Base Skill: 50% +3% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Laser Communications", "Communications", "communications", 30, 5,
+  "This skill provides the character with an in depth knowledge of advanced electronics, laser communication systems and fiber optic communications.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Radio: Basic, Electrical Engineer, Computer Operation", selectModifiers: "", bonusesText: "" });
+
+skill("Literacy: Native Language", "Communications", "communications", 40, 5,
+  "The character can read and write the language of his culture. This is usually the common language where he was born and grew up (or has lived most of his life). For example, most of us born in America speak, read and write American English, complete with contemporary slang. English is our predominant language, even if our ethnic heritage has roots in another country (Mexico, Poland, Russia, Cuba, etc.). Reading and writing means the character can read and comprehend the written word, read written instructions, printed books, etc. This skill has no bearing on creative writing.",
+  "Base Skill: 40% +5% per level.\nThe ability to read and write is a rare and valuable commodity on Rifts Earth. The majority of the world's population cannot read.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Literacy: Other", "Communications", "communications", 30, 5,
+  "The character may read and write one or more different languages, but each language counts as a separate skill selection. American English is the official written language of the Coalition States and North America in general. Note that just because a character can \"read\" a foreign language does NOT mean he can speak it or understand others speaking it (has only the most basic understanding of the spoken language, catching one or two words out of ten. (See Language: Other to \"speak\" other languages.) Usually, only the Rogue Scholar, Rogue Scientist and practitioners of magic can read even one language let alone two or more.",
+  "Base Skill: 30% +5% per level.\nIf a character fails his attempt to read a book (such as a character with Literacy: Dragonese/Elven at 50% ), it means the book is currently too difficult for his skill level. The character may again attempt to read the book when his Literacy score changes, such as when it goes up an experience level and gains a +5% bonus.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Optic Systems", "Communications", "communications", 30, 5,
+  "Provides expert training in the use of special optical enhancement equipment such as telescopic lenses, laser targeting, thermal imagers, passive light intensifiers, infrared and ultraviolet systems, polarization, light filters, optical scanners, video and digital cameras, holograms and related devices.",
+  "Base Skill: 30% +5% per level.\nAdds a special one time bonus of +5% to the T. V./Video skill if both are selected.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Performance", "Communications", "communications", 30, 5,
+  "The methods and fundamentals used by actors, entertainers, politicians and other public figures to impress and sway the public. A character with this skill knows how to do things with flair. If a skill roll is successful, it works like an attempt to charm, captivate, impress, intimidate, or incense (or motivate) the audience.",
+  "Base Skill: 30% +5% per level.\nBonus: +5% to the Undercover Ops and Impersonation skills.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Public Speaking", "Communications", "communications", 30, 5,
+  "Training in the quality of sound, tone, pitch, enunciation, clarity, and pacing when speaking to the public. The character speaks loudly, distinctly and in a pleasing manner. Also includes the practice of good, enticing storytelling, dramatic pauses and composition of the spoken word. A successful roll indicates the overall quality and charisma of the speaker and the spoken word; people are enjoying listening to the character.",
+  "Base Skill: 30% +5% per level.\nThis skill adds a +5% bonus to the Performance skill.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Radio: Basic", "Communications", "communications", 45, 5,
+  "The rudimentary knowledge of the operation and maintenance of all sorts of radio equipment, including military radio systems, field radios and walkie-talkies, audio recording devices, wire laying, installation, radio procedure, communication security and Morse code. It does not include the ability to make repairs nor operate video equipment.",
+  "Base Skill: 45% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Sensory Equipment", "Communications", "communications", 30, 5,
+  "Individuals with this training can operate, maintain, understand, and \"read\" or interpret sensory data from all types of conventional, military, medical and scientific equipment, scanners, and sensory devices. These devices include radar, sonar, motion detectors, surveillance equipment, optical enhancements, industrial gauges, instrument panels, medical monitors (EKGs, CAT scans, etc.), life support systems, and so on. Note that characters without this skill cannot understand or operate advanced aircraft, medical equipment or sensor/detection equipment. Radar & Sonar Note : The character can expertly use radar equipment (radio echo bounces) and sonar (underwater sound echo bounces) and correctly read the information to precisely locate and track aircraft, ships and submarines, as the case may be.",
+  "Base Skill: 30% +5% per level.\nMost vessels will not use active sonar unless absolutely necessary, most rely on passive sonar systems. This is much more difficult since the sonar operator must sift through the background noise to find any enemy targets. Sometimes they will not be able to distinguish the location of a ship from the background static. Despite this fact, passive sonar is used because it does not give away the location of the vessel. -15% skill penalty when using passive sonar or radar.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Sign Language", "Communications", "communications", 25, 5,
+  "The universal sign language of the deaf, Requires line of sight ( i.e., one must be able to see the signer). Signing for the hearing impaired requires the sender to do a skill check per every 20 words \"signed\" to successfully transmit his message. Likewise, the interpreter must roll to interpret every batch of 20 words. A failed roll means a misunderstanding to no idea of what has been said.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Military Sign Language", "Communications", "communications", 25, 5,
+  "The military sign language of hand signals used to indicate action, response and combat positions in the field when verbal or radio communication would alert the enemy.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Military Etiquette", selectModifiers: "", bonusesText: "" });
+
+skill("Sing", "Communications", "communications", 35, 5,
+  "The simple ability to read music and carry a pleasant tune.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Surveillance", "Communications", "communications", 30, 5,
+  "The use and deployment of bugs and spy equipment, tailing and stakeouts. The character understands the methods, operation, techniques, tools and devices used in surveillance operations. Includes motion detectors, simple and complex alarm systems, audio/visual recording and display equipment, recording methods, amplified sound systems, miniature listening devices (bugs, line tapping, parabolic electronic ears, etc.), miniature \"hidden\" cameras, and optical enhancement systems specifically as they relate to camera lenses and spy devices.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Basic Electronics, Electrical Engineering, Computer Operation, Literacy", selectModifiers: "", bonusesText: "" });
+
+skill("TV/Video", "Communications", "communications", 25, 5,
+  "In depth training in the use of video, digital and audio recording equipment as well as filming, editing, dubbing, title making, duplication, and transmission. Includes the use of field equipment; i.e., portable video or digital camera and studio equipment.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Laser", "Communications", "communications", 30, 5,
+  "This skill provides the character with an in-depth knowledge of sophisticated laser communication systems and fiber optic communications.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "The Radio: Basic, Electrical Engineer, Computer Operation", selectModifiers: "", bonusesText: "" });
 
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
@@ -269,6 +361,11 @@ for (const def of skillDefs) {
         perLevelBonus: def.perLevel,
         relatedAttribute: "",
         notes: def.notes,
+        requiredOCC: def.extra?.requiredOCC ?? "",
+        requiredLocation: def.extra?.requiredLocation ?? "",
+        requiredSkills: def.extra?.requiredSkills ?? "",
+        selectModifiers: def.extra?.selectModifiers ?? "",
+        bonusesText: def.extra?.bonusesText ?? "",
         ...(def.horsemanship ? { horsemanship: def.horsemanship } : {}),
       },
     },
