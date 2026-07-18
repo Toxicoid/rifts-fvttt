@@ -155,6 +155,32 @@ skill("Laser", "Communications", "communications", 30, 5,
   "Base Skill: 30% +5% per level.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "The Radio: Basic, Electrical Engineer, Computer Operation", selectModifiers: "", bonusesText: "" });
 
+// ═══ COWBOY ═══════════════════════════════════════════════
+skill("Branding", "Cowboy", "cowboy", 50, 5,
+  "The techniques and methods for tethering, controlling and marking, or \"branding,\" animals. A brand is a mark burned on the skin to identify and show ownership of an animal; typically used on horses and cattle, sometimes on human and D-Bee slaves. This skill also includes a basic knowledge of common and notable insignias and emblems.",
+  "Base Skill: 50% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Breaking/Taming a Wild Horse", "Cowboy", "cowboy", 20, 5,
+  "To \"break\" a horse, first the trainer must get the horse used to being around people, then used to having a saddle on its back (this takes 3D4 days), and then you \"bit\" train it (gets used to having a bit in its mouth and reins). Finally, the trainer must get the horse used to having a rider on its back. Depending on the horse, this can take a couple weeks (making an attempt every day) to several weeks with moderate success. It takes a lot of skill to stay on a wild horse when the animal wants you off. Some horses are never completely tame, and some will allow certain people to ride it, while bucking and throwing other riders. During this initial training period the rider must hang on for dear life while the horse does every thing in its power to throw him. This battle of wills can last hours and take up to 12 weeks.",
+  "Base Skill: 20% +5% per level.\n-10% when breaking exotic and alien animals. Also includes riding wild bulls (cannot be broken), wild broncos, and other wild animals, as well as steer wrestling, but all at -15%.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Herding Cattle", "Cowboy", "cowboy", 30, 5,
+  "The techniques and methods of leading, directing and controlling cattle in a contained and orderly herd. Also includes keeping animals calm, basic care and feeding, how to tend cattle, recognize disease and illness, give birth to young, how to survive and regain control of a stampede, gather strays, how best to pen and corral livestock, mend fences, etc.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Roping", "Cowboy", "cowboy", 20, 5,
+  "The rope is the cowboy' s most important and famous tool. Characters with the roping skill can expertly throw a rope to snare/lasso a cow's horns, a horse's neck, or the hoofs of either, to enable a 140 pound (63 kg) man to capture and subdue a half ton animal! Hitched around the saddle hom, a lariat can be used to pull a mired animal out of a bog, mud or river, as well as keep a hobbled horse or other animal from straying away in the night or rain, and the rope can even be used to create an instant, makeshift corral, when stretched taut by several men, to contain and hold a herd of animals, and even for quick justice at the end of a hangman's noose. Against human and intelligent opponents, roll to lasso as if it were a combat attack to strike and ensnare. The intended victim can try to dodge; parry is not applicable.",
+  "Base Skill: 20% +5% per level.\nIt takes 1D4 melee actions to cut through a lasso, but it is impossible to draw a weapon and cut oneself loose if both arms are pinned or while being dragged. In this combat usage, the roping character is +1 to strike and entangle for every 20 points of skill, so a skill of 65% means +3 to strike ensnare/entangle.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Trick Riding", "Cowboy", "cowboy", 0, 0,  // SPECIAL: % comes from Horsemanship
+  "Riding bareback, standing on the animal's back, hanging from the side, or under its belly (usually for rodeo tricks or to hide from enemies), side saddle, as well as quick mounts and dismounts, mounting a horse by leaping down from above or with a running start, leaping from the back of a horse onto another horse or wagon, and similar.",
+  "Base Skill: SPECIAL — equal to the FIRST (larger) number of your Horsemanship skill; enter that value in Base % and keep it matched as you level.\nThe first (larger) number of the Horsemanship skill; Characters without this skill can try any of these tricks, but must roll on the second percentage number of their Horsemanship skill after reducing it by half.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Horsemanship", selectModifiers: "", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",

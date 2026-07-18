@@ -78,6 +78,7 @@ export class RiftsActorSheet extends ActorSheet {
 
     context.skillCategories = {
       communications: "Communications",
+      cowboy: "Cowboy",
       domestic: "Domestic",
       electrical: "Electrical",
       espionage: "Espionage",
