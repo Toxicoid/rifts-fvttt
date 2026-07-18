@@ -156,6 +156,7 @@ Hooks.once("ready", async () => {
     { name: "Armory: Cybernetics",        file: "CreateCybernetics.js", img: "icons/svg/regen.svg" },
     { name: "Create Rifts OCCs Compendium", file: "CreateRiftsOCCs.js",  img: "icons/svg/book.svg" },
     { name: "Create Rifts Skills",          file: "CreateRiftsSkills.js", img: "icons/svg/book.svg" },
+    { name: "Create Cybernetics (Data)",     file: "CreateCyberneticsData.js", img: "icons/svg/upgrade.svg" },
   ];
 
   let folder = game.folders.find((f) => f.type === "Macro" && f.name === "Rifts");
