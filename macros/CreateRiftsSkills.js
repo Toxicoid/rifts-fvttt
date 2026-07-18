@@ -546,6 +546,102 @@ skill("Trap & Mine Detection", "Military", "military", 20, 5,
   "Base Skill: 20% +5% per level.\nAdd +50% when using special detection equipment to locate mines/explosives and +10% to locate other types of traps with detection equipment. Dog Boys and other nonhumans with a keen sense of smell are +10% to \"sniff out\" explosives.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
+// ═══ PHYSICAL ═════════════════════════════════════════════
+skill("Acrobatics", "Physical", "physical", 0, 0,
+  "Aerial feats of agility and strength, such as walking a tightrope, high wire, trapeze, and stunts performed above ground. Other physical abilities include rolls, somersaults, leaps, and falls. Provides all of the following: An automatic kick attack at first level (1D8 S.D.C. damage), Sense of balance (60% +5% per level), Walk tightrope or high wire (60% +3% per level), Climb Rope (80% +2% per level), Back Flip (60% +5% per level), Basic Climb ability (40%; or adds a + 15% to Climbing skill), Basic Prowl ability (30%; or adds a +5% to Prowl skill).",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2 bonus to roll with impact, +1 to P.S., P.P., and P.E. attributes, +1D6 to S.D.C., and no fear of heights.", bonusesText: "" });
+
+skill("Aerobic Athletics", "Physical", "physical", 0, 0,
+  "A type of aerobic exercise to build the body, develop reflexes and grace, and learn a few very basic self-defense moves.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to disarm, +1 to pull punch, +2D4 S.D.C. and +2 to kicking damage. Sense of balance (30% +5% per level of experience).", bonusesText: "" });
+
+skill("Athletics (General)", "Physical", "physical", 0, 0,
+  "Training in, and enjoyment of, vigorous exertion for non-professional, competitive sports, exercises, and contests of strength, endurance, and agility. Includes sports and hobbies such as tennis, track and field, skateboarding, bicycling, golf, skiing, swimming, bowling, baseball, basketball, and similar activities.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to parry and dodge, +1 to roll with impact, +1 to P.S., +1D6 to Spd and +1D8 to S.D.C", bonusesText: "" });
+
+skill("Body Building & Weight Lifting", "Physical", "physical", 0, 0,
+  "The building of muscle tone and body strength through weight lifting and exercise.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2 to P.S. and +10 S.D.C", bonusesText: "" });
+
+skill("Boxing", "Physical", "physical", 0, 0,
+  "Classic art of fighting with fists. Training helps build the body and reflexes. Skilled boxers will automatically knockout opponents on a roll of a Natural Twenty. The victim of a knockout will remain unconscious for 1D6 melees. Unlike normal knockout/stun, the player does not have to announce that he is trying to knockout his opponent before making a roll to strike.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 additional attack per melee round, +2 to parry and dodge, +1 to roll with impact/punch, +2 to P.S. and +3D6 to S.D.C", bonusesText: "" });
+
+skill("Climbing", "Physical", "physical", 40, 5,
+  "Knowledge of the tools and techniques for climbing up sheer surfaces. Players should roll once for every 20 feet (6m) of a vertical climb. If the roll fails, it means he is losing his grip, however, every \"skilled\" climber gets a chance to regain his grip, roll again. Two consecutive failed rolls means the character falls (takes 1D6 damage per 10 feet/3m of a fall).",
+  "Base Skill: 40% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Rappelling", "Physical", "physical", 30, 5,
+  "Is a specialized rope climbing skill used in scaling walls, towers, and cliff facings. For game purposes, rappelling will include ascending and descending climbs.",
+  "Base Skill: 30% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Fencing", "Physical", "physical", 0, 0,
+  "This is the formal art of fighting with a sword and dagger. This includes not only Olympic style fencing with a foil, epee or saber, but also Kendo (the use of a samurai katana) and other blades. Swordsmanship is practiced in many places and is also all the rage, especially among the nobility, for its flashy looks and for the amount of blood it can spill.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "W.P. Sword", selectModifiers: "+1 to strike and parry with a sword or dagger, and +1D6 to damage with a sword.", bonusesText: "" });
+
+skill("Forced March", "Physical", "physical", 0, 0,
+  "Practiced training in uniform marching with a full field pack and weapons. This is done at an even pace and rhythm that enables the marchers to cover great distances on foot at a faster than normal pace. Increase the normal Physical Endurance rate as to how long an activity like marching can be maintained by five times; applicable only to forced marches/traveling. Maximum speed on a forced march is roughly 60% of one's speed attribute, which enables a large group of dozens to hundreds of soldiers to travel at the same consistent pace; suitable for everybody in the group (never less than a Speed of 8). Likewise, this skill trains soldiers to make coordinated charges and maneuvers, including spear runs, spear and shield placement, and so on.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2 to P.E., +1D4 to Speed, +2D6 to S.D.C.", bonusesText: "" });
+
+skill("Gymnastics", "Physical", "physical", 0, 0,
+  "Learning to do falls, rolls, tumbles, cartwheels, somersaults and to work the parallel bars and rings. This sport builds great upper body strength, grace, and balance. Provides all of the following: An automatic kick attack at first level (2D4 damage), Sense of balance (50% +3% per level), Work parallel bars & rings (60% +3% per level), Back Flip (70% +2% per level), Basic Prowl ability (30%; or adds a +5% to Prowl skill), Basic Climb ability (25%; or adds a +5% to Climbing skill), Climb Rope/Rappel (60% +2% per level).",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2 bonus to roll with impact, +2 to P.S., +1 to P.P., +2 to P.E. and +2D6 to S.D.C.", bonusesText: "" });
+
+skill("Juggling", "Physical", "physical", 35, 5,
+  "The ability to toss \"up\" a number of objects, such as balls, clubs, knives, lit torches, and almost any small objects, and keep them continuously in the air with fast hand movements. It is used for the entertainment of others and to develop greater hand-eye coordination; +1 on initiative roll.",
+  "Base Skill: 35% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Kick Boxing", "Physical", "physical", 0, 0,
+  "Kick Boxing is a form of martial arts self-defense. The character who takes Kick Boxing has done maybe a few months or a year of casual training as a supplement to his usual Hand to Hand Combat skill. Add the following strikes to the usual list of known attacks: Roundhouse Kick (3D6 damage), Axe Kick (2D8 damage), Knee Strike (1D8 damage) and Leap Kick (3D8 damage, but counts as two melee attacks). Humans and other mortals inflict S.D.C./Hit Point damage, characters with Supernatural P. S. inflict the same number of damage dice as M.D., but true supernatural creatures/demons never study formal fighting techniques like Kick Boxing. Characters with Robot P.S. inflict half the damage listed as M.D. (i.e., Roundhouse does 2D4 M.D., Axe Kick 1D8 M.D. and so on).",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to P.E., + 1 to P.S. and +1D10 to S.D.C", bonusesText: "" });
+
+skill("Outdoorsmanship", "Physical", "physical", 0, 0,
+  "Being an avid outdoorsman and survivalist, this character has spent a significant portion of his/her life living off the land or in the wild. As a result, the character is hardened to the rigors of outdoor life. Add +5% to the Dowsing, Fasting, I.D. Plants and Fruit, and Wilderness Survival skills.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Wilderness Survival.", selectModifiers: "+1 to P.E., +2D6 to S.D.C.", bonusesText: "" });
+
+skill("Physical Labor", "Physical", "physical", 0, 0,
+  "Not all strength and conditioning comes from deliberate training or sports, some comes from old-fashioned hard work. This skill represents the strength and endurance gained from hard physical labor either due to a physical occupation (such as construction, ditch digging, warehouse work loading and unloading boxes, etc.) or really demanding chores at home such as chopping wood, bailing hay, mending fences, etc.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+2 to P.S., +1 to P.E., +2D8 to S.D.C", bonusesText: "" });
+
+skill("Prowl", "Physical", "physical", 25, 5,
+  "This skill helps the character to move with stealth; quietly, slowly, and carefully. Techniques include balance and footing, short steps and pacing, weapon positioning, prone positions for low visibility, and crawling. A failed Prowl roll means that the character has been seen or heard. If the Prowl roll is successful, then the character is not seen or heard and may make a sneak attack.",
+  "Base Skill: 25% +5% per level.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("Running", "Physical", "physical", 0, 0,
+  "A routine of running and exercise to build speed and endurance. For game purposes, the character is able to run at an even pace (half speed) for a half mile (0.8 km) for every one point of P.E. without undue fatigue. If pushing oneself to the limit and running at maximum speed, the character can run one third that distance before collapsing.",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to P.E., +4D4 to Spd, +1D6 to S.D.C.", bonusesText: "" });
+
+skill("Swimming", "Physical", "physical", 50, 5,
+  "The rudimentary skill of keeping afloat, swimming, diving and lifesaving techniques. The percentile number indicates the overall quality of form as well as skill of execution. A character can swim a distance equal to 3x his P.S. in yards/meters per melee round. This pace can be maintained for a total of minutes equal to his P.E. attribute number before starting to feel fatigued. Swim Fatigue Note: The act of swimming on the surface of the water has the same fatigue rate as running and medium to heavy exertion, especially at great speed or for very long periods of time.",
+  "Base Skill: 50% +5% per level.\nCharacters who fail their Swimming skill roll flounder, but manage to stay afloat, they just don't cover any distance. Three failed swim rolls in a row means the character slips underwater and will drown unless rescued.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
+
+skill("SCUBA", "Physical", "physical", 50, 5,
+  "The letters S.C.U.B.A. stand for Self-Contained Underwater Breathing Apparatus. Individuals learn the methods and equipment needed for skin diving and underwater swimming. A character can swim a distance equal to 2x his P.S. in yards/meters per melee round. This pace can be maintained for a total of minutes equal to his P.E./endurance before tiring.",
+  "Base Skill: 50% +5% per level.\nThe maximum safe depth one can go without getting the bends is about 120 feet (36.5 m). Deeper depths are possible with depressurization, special suits, power armor, robots and submarines.",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "Swimming", selectModifiers: "", bonusesText: "" });
+
+skill("Wrestling", "Physical", "physical", 0, 0,
+  "As taught in old high schools and colleges, wrestling is more of a sport than a combat skill, but it does provide some useful combat moves. Wrestling Special Moves: 1. Body Block/Tackle: does 1D4 damage (double if the wrestler is 8 to 12 feet/2.4 to 3.6m tall, and 3D6 damage if larger). The opponent must dodge or parry (push away/deflect attacker) to avoid being knocked down. If knocked down, the opponent loses one melee attack/action and initiative for the rest of that round. 2. Pin/Incapacitate: on a natural roll of 18, 19, or 20. This means that the wrestler can hold his opponent in such a way that his opponent can not physically attack or move. However, the character who is using the \"pin\" hold cannot attack or move without releasing his opponent. 3. Crush/Squeeze: does 1D4 S.D.C. damage per squeeze attack (double damage if 8 to 12 feet/2.4 to 3.6m tall, and 3D6 damage if larger). Each \"squeeze\" counts as one melee action/attack",
+  "BONUS SKILL — not a percentile roll. Grants the bonuses listed in the description; add them to the sheet manually (attributes, S.D.C., combat stats, or the Bonuses field of other skills).",
+  { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "+1 to roll with impactlfall, +2 to P.S., +1 to P.E., +4D6 to S.D.C.", bonusesText: "" });
+
 // ═══ DOMESTIC ═════════════════════════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
