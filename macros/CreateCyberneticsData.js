@@ -68,6 +68,21 @@ cyb("Polarized Eye", "Bio-System Eyes", 30000, "Looks completely natural, but ha
 
 cyb("Underwater Eye", "Bio-System Eyes", 35000, "The cornea is designed to automatically distort when submerged underwater, enabling it to compensate to the new watery environment without need of goggles or other eye protection. The character can see with crystal clarity underwater and in low light depths of up to 600 feet ( 183 m). The eye also contains a self-replicating oil that is automatically released into the eye whenever the water is murky or bright with sunlight. The oil droplets are haze filters which reduce glare from sunlight and filter out reflections and haze from tiny debris particles floating in the water, allowing for quality vision. The oil droplets are also released above water when exposed to bright light, creating a natural and instant filter/sunglasses effect, reducing glare (not as good as polarized vision, but equal to a cheap pair of sunglasses). 20/20 vision. Choice of eye color.", [{ label: "Cost (Single)", value: "35,000 credits" }, { label: "Cost (Pair)", value: "65,000 credits" }], "");
 
+// ═══ BIO-SYSTEMS FOR THE HEAD (from Bio-Systems_for_the_Head.xlsx) ═
+cyb("Inner Ear", "Bio-Systems for the Head", 20000, "Completely rebuilds inner ear and eardrum to create perfect human hearing. No augmentation.", [{ label: "Cost (Single)", value: "20,000 credits" }, { label: "Cost (Pair)", value: "36,000 credits" }], "");
+
+cyb("Outer Ear", "Bio-Systems for the Head", 2000, "A cosmetic procedure that replaces a damaged or missing outer ear with a natural living ear. Looks and feels just like the genuine article; no scarring.", [{ label: "Cost (Single)", value: "2,000 credits" }, { label: "Cost (Generic)", value: "500 credits" }], "A generic replacement does not match the skin color nor shape of the original.");
+
+cyb("Nasal Passages", "Bio-Systems for the Head", 5000, "Restores or replaces damaged nasal passages with synthetic skin and olfactory sensors. Duplicates the human's natural ability to smell at 75%.", [{ label: "Cost (Single)", value: "5,000 credits" }], "");
+
+cyb("Outer Nose", "Bio-Systems for the Head", 2000, "A cosmetic procedure that replaces a damaged or missing nose with natural looking living tissue built over a synthetic frame.", [{ label: "Cost (Single)", value: "2,000 credits" }, { label: "Cost (Generic)", value: "900 credits" }], "A generic replacement that does not match the skin color nor perfectly match the shape of the face (could be a little too big, too small, or too wide).");
+
+cyb("Lips", "Bio-Systems for the Head", 600, "A cosmetic procedure that replaces damaged or missing lips with natural looking and feeling living tissue; good as new. Now give me a kiss!", [{ label: "Cost (Single)", value: "600 credits" }], "");
+
+cyb("Tongue", "Bio-Systems for the Head", 14000, "Replaces a damaged tongue with a synthetic one composed of living tissue, blood vessels, and taste buds/sensors. Duplicates the natural ability to taste by 63% and offers full speech articulation.", [{ label: "Cost (Single)", value: "14,000 credits" }], "");
+
+cyb("Larynx and Voice Box", "Bio-Systems for the Head", 18000, "Replaces the damaged organ with a synthetic but lifelike Bio-System that can simulate human sound/voice. The voice can be made to simulate the original voice exactly, as long as a quality recording is provided. Or the patient may create a new voice by selecting the desired aspects and quality of that voice, all of which are programmed into the replacement unit.", [{ label: "Cost (Single)", value: "18,000 credits" }], "");
+
 // ── Build ──────────────────────────────────────────────────
 const index = await pack.getIndex();
 const byName = new Map(index.map((e) => [e.name, e]));
