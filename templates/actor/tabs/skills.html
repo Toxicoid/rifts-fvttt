@@ -81,13 +81,15 @@
               <option value="wilderness" {{#if (eq this.system.category "wilderness")}}selected{{/if}}>Wilderness</option>
             </select>
 
-            <input class="skill-base"
-                   type="number"
-                   data-item-id="{{this.id}}"
-                   data-item-path="system.basePercent"
-                   value="{{this.system.basePercent}}"
-                   min="0" max="98" />
-            {{#if this.system.perLevelBonus}}<span class="skill-perlvl" title="Gains +{{this.system.perLevelBonus}}% per level automatically (edit on the skill's sheet)">+{{this.system.perLevelBonus}}/lvl</span>{{else}}<span class="skill-perlvl skill-perlvl-none" title="No per-level gain set — open the skill to add one">+0/lvl</span>{{/if}}
+            <div class="skill-base-cell">
+              <input class="skill-base"
+                     type="number"
+                     data-item-id="{{this.id}}"
+                     data-item-path="system.basePercent"
+                     value="{{this.system.basePercent}}"
+                     min="0" max="98" />
+              {{#if this.system.perLevelBonus}}<span class="skill-perlvl" title="Base % is your LEVEL 1 value. +{{this.system.perLevelBonus}}% is added automatically at each level after the first (applies from Level 2 onward)">+{{this.system.perLevelBonus}}/lvl</span>{{else}}<span class="skill-perlvl skill-perlvl-none" title="No per-level gain set — open the skill to add one">+0/lvl</span>{{/if}}
+            </div>
 
             <input class="skill-bonus"
                    type="number"
