@@ -113,8 +113,13 @@ export class RiftsActorSheet extends ActorSheet {
 
     // ── Encumbrance calculation ──────────────────────────
     const ps = actor.system.attributes?.ps?.value ?? 10;
-    context.carryLimit = ps * 10;   // P.S. x 10 lbs
-    context.liftLimit = ps * 20;    // P.S. x 20 lbs
+    // Carry/Lift from the P.S.-Type engine (RiftsActor derived values);
+    // a numeric manual override in Physical Capabilities wins.
+    const combatSys = actor.system.combat ?? {};
+    const manualCarry = parseFloat(String(combatSys.carryCapacity ?? "").replace(/[^\d.]/g, ""));
+    const manualLift = parseFloat(String(combatSys.liftCapacity ?? "").replace(/[^\d.]/g, ""));
+    context.carryLimit = (manualCarry > 0 ? manualCarry : null) ?? combatSys.autoCarryLbs ?? ps * 10;
+    context.liftLimit = (manualLift > 0 ? manualLift : null) ?? combatSys.autoLiftLbs ?? ps * 20;
 
     let totalWeight = 0;
     for (const item of actor.items) {
