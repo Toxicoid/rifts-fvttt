@@ -46,7 +46,7 @@
     </h2>
 
     {{#if weapons.length}}
-      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 168px;gap:4px;align-items:end;">
+      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px;gap:4px;align-items:end;">
         <span>Name</span>
         <span>Damage</span>
         <span>Type</span>
@@ -54,11 +54,10 @@
         <span>ROF</span>
         <span>Ammo</span>
         <span>Strike</span>
-        <span></span>
       </div>
 
       {{#each weapons}}
-        <div class="gear-row weapon-item-row item-row {{#if this.system.equipped}}weapon-equipped{{/if}}" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 70px 80px 70px 60px 44px 44px 168px;gap:4px;align-items:center;">
+        <div class="gear-row weapon-item-row item-row {{#if this.system.equipped}}weapon-equipped{{/if}}" data-item-id="{{this.id}}">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
@@ -302,7 +301,7 @@
     </h2>
 
     {{#if equipment.length}}
-      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 96px;gap:4px;align-items:end;">
+      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr;gap:4px;align-items:end;">
         <span>Name</span>
         <span>Qty</span>
         <span>Weight</span>
@@ -312,7 +311,7 @@
       </div>
 
       {{#each equipment}}
-        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr 96px;gap:4px;align-items:center;">
+        <div class="gear-row equip-item-row item-row" data-item-id="{{this.id}}">
           <input class="item-name-input"
                  type="text"
                  value="{{this.name}}"
