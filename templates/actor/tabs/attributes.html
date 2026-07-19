@@ -637,12 +637,20 @@
         </div>
         <div class="damage-field">
           <label>Lift (lbs)</label>
-          <input type="text" data-path="system.combat.liftCapacity" value="{{system.combat.liftCapacity}}" placeholder="e.g. 200 lbs" title="Auto value = P.S. x 20 lbs (normal human). Augmented/Robot P.S. use the Strength Tables — enter manually." />
+          <input type="text" data-path="system.combat.liftCapacity" value="{{system.combat.liftCapacity}}" placeholder="e.g. 200 lbs" title="Manual override. Auto value = lift per P.S. Type (normal/supernatural: 2x carry; Robot 17+: same as carry, x25)." />
           <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoLiftLbs}} lbs</span>
         </div>
         <div class="damage-field">
+          <label>P.S. Type</label>
+          <select data-path="system.combat.psType" title="Sets the auto Carry/Lift formulas. Normal: x10 (x20 at P.S. 17+), lift double. Robot: x25 lift-and-carry at P.S. 17+. Supernatural: x50 carry at P.S. 18+, lift double.">
+            <option value="normal" {{#if (eq system.combat.psType "normal")}}selected{{/if}}>Normal</option>
+            <option value="robot" {{#if (eq system.combat.psType "robot")}}selected{{/if}}>Robot</option>
+            <option value="supernatural" {{#if (eq system.combat.psType "supernatural")}}selected{{/if}}>Supernatural</option>
+          </select>
+        </div>
+        <div class="damage-field">
           <label>Carry (lbs)</label>
-          <input type="text" data-path="system.combat.carryCapacity" value="{{system.combat.carryCapacity}}" placeholder="e.g. 100 lbs" title="Auto value = P.S. x 10 lbs (normal human). Augmented/Robot P.S. use the Strength Tables — enter manually." />
+          <input type="text" data-path="system.combat.carryCapacity" value="{{system.combat.carryCapacity}}" placeholder="e.g. 100 lbs" title="Manual override. Auto value uses the P.S. Type formula (verified RUE Carry Weight rules)." />
           <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoCarryLbs}} lbs</span>
         </div>
         <div class="damage-field">

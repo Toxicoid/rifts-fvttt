@@ -251,8 +251,25 @@ export class RiftsActor extends Actor {
     // Strength Tables (pending upload) — enter those manually.
     const psVal = attrs.ps?.value ?? 0;
     combat.autoRunMph = attrs.spd?.mph ?? 0;          // Spd x 0.682
-    combat.autoCarryLbs = psVal * 10;                 // P.S. x 10 lbs
-    combat.autoLiftLbs = psVal * 20;                  // P.S. x 20 lbs
+    // Carry/Lift by P.S. type (RUE Carry Weight rules, verified):
+    //  normal:       P.S. 3-16 carry x10; 17+ carry x20; lift = 2x carry
+    //  robot:        P.S. <17 as normal human; 17+ lift AND carry x25
+    //                (giant robots 40+ carry x100 / pull x200 — enter manually)
+    //  supernatural: P.S. <=17 carry x20 (as strong human); 18+ carry x50; lift = 2x carry
+    const psType = combat.psType || "normal";
+    let carry, lift;
+    if (psType === "robot") {
+      if (psVal >= 17) { carry = psVal * 25; lift = psVal * 25; }
+      else { carry = psVal * 10; lift = carry * 2; }
+    } else if (psType === "supernatural") {
+      carry = psVal * (psVal >= 18 ? 50 : 20);
+      lift = carry * 2;
+    } else {
+      carry = psVal * (psVal >= 17 ? 20 : 10);
+      lift = carry * 2;
+    }
+    combat.autoCarryLbs = carry;
+    combat.autoLiftLbs = lift;
 
     // ── Unified display/roll totals ─────────────────────────
     combat.initiativeTotal = (combat.initiativeBonus || 0)

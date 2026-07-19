@@ -50,7 +50,8 @@
         "mounted": false,
         "mountedSkillId": "",
         "hthStyle": "none",
-        "apmExtra": 0
+        "apmExtra": 0,
+        "psType": "normal"
       },
 
       "money": {

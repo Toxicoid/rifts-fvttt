@@ -47,6 +47,7 @@ await actor.update({
   "system.attributes.spd.value": 132,    // 90 mph (Speed Factor 132, verified)
   // P.S. / P.P.: NOT SET — missing from source. VERIFY vs Rifts New West and enter manually.
   "system.combat.attacksPerMelee": 4,    // adjust for HtH level
+  "system.combat.psType": "robot",
   "system.combat.initiativeBonus": 1,    // combat computer
   "system.combat.dodgeBonus": 1,         // combat computer
   "system.combat.rollBonus": 2,          // combat computer

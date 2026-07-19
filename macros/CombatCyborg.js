@@ -169,6 +169,7 @@ await actor.update({
   "system.attributes.pp.value": 18,      // Arm P.P. (max 26; 2,000 cr/pt)
   "system.attributes.spd.value": 132,    // 90 mph (max 176; 1,500 cr/pt)
   "system.combat.attacksPerMelee": 4,    // Hand to Hand: Expert base
+  "system.combat.psType": "robot",       // Robot P.S. — auto carry/lift x25 at P.S. 17+
   "system.money.credits": credits,
   "system.money.blackMarket": blackMarket,
 });
@@ -350,10 +351,10 @@ bionicItems.push(
     name: "Punch (Robot P.S.)",
     type: "weapon",
     system: {
-      equipped: true, damage: "varies", damageType: "MDC", range: "melee",
+      equipped: true, damage: "1d4", damageType: "MDC", range: "melee",
       rateOfFire: "1 melee attack", payload: 0, weight: "", cost: 0, bonusToStrike: 0,
-      special: "Robot Strength: inflicts Mega-Damage with an ordinary punch. Damage per the Robot P.S. damage table (RUE Strength Tables) for the character's P.S. — fill in the dice once verified.",
-      notes: "Natural attack. Kicks and other strikes use the same table.",
+      special: "Robot P.S. 21-25 (VERIFIED): full-strength punch 1D4 M.D.; RESTRAINED punch 6D6 S.D.C. (roll 6d6 and announce restrained). If P.S. is boosted past 25, use the Robot P.S. Damage Table ability.",
+      notes: "Natural attack — Robot P.S. 24 falls in the 21-25 bracket.",
       description: "A bare-handed strike from the cyborg's bionic arms.",
     },
   },
@@ -361,11 +362,33 @@ bionicItems.push(
     name: "POWER PUNCH (Robot P.S.)",
     type: "weapon",
     system: {
-      equipped: true, damage: "varies", damageType: "MDC", range: "melee",
+      equipped: true, damage: "2d4", damageType: "MDC", range: "melee",
       rateOfFire: "Counts as TWO melee attacks", payload: 0, weight: "", cost: 0, bonusToStrike: 0,
-      special: "POWER PUNCH: the character winds up and delivers DOUBLE the normal Robot P.S. punch damage — and it COUNTS AS TWO MELEE ATTACKS/ACTIONS. Announce before rolling; mark off two attacks from A.P.M.",
-      notes: "Fill damage with double the Punch dice once the Robot P.S. table is verified (e.g. Punch 1d6 -> Power Punch 2d6).",
+      special: "POWER PUNCH (Robot P.S. 21-25, VERIFIED): 2D4 M.D. — COUNTS AS TWO MELEE ATTACKS/ACTIONS. Announce before rolling; mark off two attacks from A.P.M.",
+      notes: "Double the full-strength punch. Re-check the Robot P.S. Damage Table if P.S. is boosted.",
       description: "A full wind-up strike putting the machine body's entire power behind the blow.",
+    },
+  },
+  {
+    name: "Kick (Robot P.S.)",
+    type: "weapon",
+    system: {
+      equipped: true, damage: "1d6", damageType: "MDC", range: "melee",
+      rateOfFire: "1 melee attack", payload: 0, weight: "", cost: 0, bonusToStrike: 0,
+      special: "Robot P.S. 21-25 (VERIFIED): kick inflicts 1D6 M.D.",
+      notes: "Re-check the Robot P.S. Damage Table if P.S. is boosted.",
+      description: "A kick driven by the bionic legs.",
+    },
+  },
+  {
+    name: "LEAP KICK (Robot P.S.)",
+    type: "weapon",
+    system: {
+      equipped: true, damage: "2d6", damageType: "MDC", range: "melee",
+      rateOfFire: "Counts as TWO melee attacks", payload: 0, weight: "", cost: 0, bonusToStrike: 0,
+      special: "LEAP KICK (Robot P.S. 21-25, VERIFIED): 2D6 M.D. — COUNTS AS TWO MELEE ATTACKS/ACTIONS.",
+      notes: "Re-check the Robot P.S. Damage Table if P.S. is boosted.",
+      description: "A flying kick with the chassis's full mass behind it.",
     },
   },
 );
@@ -400,6 +423,30 @@ const equipmentItems = [
 
 // ── 8. OCC ABILITY CARDS ──────────────────────────────────
 const occAbilities = [
+  {
+    name: "Robot P.S. Damage Table",
+    type: "occ_ability",
+    system: {
+      level: 1,
+      description: "VERIFIED. Restrained / Full-Strength / Power Punch (power & leap kicks count as TWO attacks):\nP.S. 15 or less: 1D6 SDC / 2D6 SDC / 4D6 SDC; kick 2D6 SDC, leap kick 3D6 SDC (no M.D. possible; P.S. bonus adds to SDC attacks).\nP.S. 16-20: 2D6 SDC / 1 M.D. / 1D6 M.D.; kick 1D4 M.D., leap kick 2D4 M.D.\nP.S. 21-25: 6D6 SDC / 1D4 M.D. / 2D4 M.D.; kick 1D6 M.D., leap kick 2D6 M.D.\nP.S. 26-30: 1D4 M.D. / 1D6 M.D. / 2D6 M.D.; kick 2D4 M.D., leap kick 2D8 M.D.\nP.S. 31-35: 1D4 M.D. / 2D4 M.D. / 4D4 M.D.; kick 2D8 M.D., leap kick 4D8 M.D.\nP.S. 36-40: 1D4 M.D. / 2D6 M.D. / 4D6 M.D.; kick 3D8 M.D., leap kick 5D8 M.D.\nP.S. 41-50: 1D6 M.D. / 3D6 M.D. / 1D6x10 M.D.; kick 5D8 M.D., leap kick 1D8x10 M.D.\nP.S. 51-60: 2D6 M.D. / 6D6 M.D. / 2D6x10 M.D.; kick 6D8 M.D., leap kick 2D6x10 M.D.",
+    },
+  },
+  {
+    name: "Chassis Upgrade Limits",
+    type: "occ_ability",
+    system: {
+      level: 1,
+      description: "VERIFIED maximums for the full-conversion chassis:\nM.D.C. by location — Hands max 50 each, Forearms max 50 each, Upper Arms max 70 each, Feet max 20 each, Legs max 90 each, Head max 90, Main Body max 280.\nRobot P.S.: starts 24, max 36 (2,000 credits per point above 24).\nP.P.: starts 18, max 26 (2,000 credits per point above 18).\nSpd: starts 132 (90 mph), max 176 (120 mph) on human legs — 1,500 credits per point above 132. Leap 7 ft high / 15 ft across (+20% with a running start).\nLeg P.S. & P.P.: start 18, max 24 (2,000 credits per point above 18).",
+    },
+  },
+  {
+    name: "Experience Table",
+    type: "occ_ability",
+    system: {
+      level: 1,
+      description: "Level 1: 0-2,100\nLevel 2: 2,101-4,200\nLevel 3: 4,201-8,400\nLevel 4: 8,401-17,200\nLevel 5: 17,201-25,400\nLevel 6: 25,401-35,800\nLevel 7: 35,801-51,000\nLevel 8: 51,001-71,200\nLevel 9: 71,201-96,400\nLevel 10: 96,401-131,600\nLevel 11: 131,601-181,800\nLevel 12: 181,801-232,000\nLevel 13: 232,001-282,200\nLevel 14: 282,201-342,400\nLevel 15: 342,401-402,600\n(Combat Cyborg, Headhunter & Robot Pilot table, RUE p.295 — VERIFIED)",
+    },
+  },
   {
     name: "Robot Strength & Bionic Body",
     type: "occ_ability",
