@@ -152,7 +152,6 @@ Hooks.once("ready", async () => {
     { name: "Chassis: The Kid (CSLNGR Mk I)", file: "KidCyborg.js", img: "icons/svg/cowled.svg", book: "Rifts New West" },
     { name: "OCC Setup: Saloon Girl", file: "SaloonGirl.js", img: "icons/svg/tankard.svg", book: "Rifts New West" },
     { name: "Create Rifts Armory",        file: "CreateRiftsArmory.js", img: "icons/svg/chest.svg" },
-    { name: "Armory: Cyborg Bionics",     file: "CreateCyborgBionics.js", img: "icons/svg/pawprint.svg" },
     { name: "Armory: Cybernetics",        file: "CreateCybernetics.js", img: "icons/svg/regen.svg" },
     { name: "Create Rifts OCCs Compendium", file: "CreateRiftsOCCs.js",  img: "icons/svg/book.svg" },
     { name: "Create Rifts Skills",          file: "CreateRiftsSkills.js", img: "icons/svg/book.svg" },

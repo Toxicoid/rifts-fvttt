@@ -236,6 +236,7 @@
       "notes": ""
     },
     "weapon": {
+      "specs": [],
       "equipped": false,
       "description": "",
       "damage": "",

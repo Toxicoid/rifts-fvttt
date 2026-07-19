@@ -39,6 +39,9 @@ async function categoryFolder(name) {
 const defs = [];
 const cyb = (name, folderName, cost, description, specs, notes = "") =>
   defs.push({ name, folderName, cost, description, specs, notes });
+// Weapon variant: creates a rollable weapon item (forearm blasters, blades...)
+const cybW = (name, folderName, cost, description, weapon, specs, notes = "") =>
+  defs.push({ name, folderName, cost, description, specs, notes, weapon });
 
 // ═══ MEDICAL CYBERNETICS (from Medical_Cybernectics.xlsx) ═
 cyb("Medical Blood Analysis/Tox-Screen", "Medical Cybernetics", 30000, "Special sensors and implants in the hand enable it to do a basic screen for 60 common toxins and blood anomalies (i.e., too much or too little insulin, sugar, cholesterol, white and red cell count, poison, etc.). The subject's blood to be tested must physically touch the area of the hand (may be a particular fmger or area of the palm) to do the analysis. Can also indicate whether the sample is of a human, animal, D-Bee or unknown (alien) blood type.", [{ label: "Cost", value: "30,000 credits" }]);
@@ -268,6 +271,59 @@ cyb("Polarized Eye (Cybernetic)", "Cybernetic-System Eyes", 15000, "Special came
 
 cyb("Underwater Eye (Cybernetic)", "Cybernetic-System Eyes", 17500, "Robotic eyes designed to automatically distort when submerged underwater, enabling it to compensate to the new watery environment without need of goggles or other eye protection. The character can see with crystal clarity underwater and in low light depths of up to 600 feet ( 183 m). The camera lense also contains a self-replicating oil that is automatically released into the eye whenever the water is murky or bright with sunlight. The oil droplets are haze filters which reduce glare from sunlight and filter out reflections and haze from tiny debris particles floating in the water, allowing for quality vision. The oil droplets are also released above water when exposed to bright light, creating a natural and instant filter/sunglasses effect, reducing glare (not as good as polarized vision, but equal to a cheap pair of sunglasses). 20/20 vision. Choice of eye color.", [{ label: "Cost (Single)", value: "17,500 credits" }, { label: "Cost (Pair)", value: "32,500 credits" }, { label: "Penalty (P.B.)", value: "-2" }], "");
 
+// ═══ BIONIC WEAPONS & TOOLS (from Bionic_Weapons___Tools.xlsx) ═
+cyb("Additional Hand and Arm", "Bionic Weapons & Tools", 130000, "A pair of additional hands and arms can be attached to the reinforced rib cage just below the usual pair. The second set of limbs are a bit smaller and lighter than the normal full body replacements, but are still quite formidable additions.", [{ label: "P.S.", value: "10 base, 20 maximum" }, { label: "P.P.", value: "10 base, 20 maximum" }, { label: "M.D.C. (Hand)", value: "5" }, { label: "M.D.C. (Arm)", value: "25" }, { label: "Cost (Single)", value: "130,000 credits" }, { label: "Cost (Pair)", value: "250,000 credits" }, { label: "Bonus — Strike", value: "+1" }, { label: "Bonus — Parry", value: "+1" }], "APPLY MANUALLY: a PAIR grants +1 Strike, +1 Parry and +1 attack per melee — set APM Extra +1 in the Hand to Hand bar and add the strike/parry to the Bonus fields. A single hand and arm adds only +1 to Parry. The arm's own attribute values apply only to that arm.");
+
+cyb("Legs for Leaping", "Bionic Weapons & Tools", 30000, "Bionic legs specifically designed for leaping and quick movement (dodging). Can leap 15 feet (4.6 m) high and 30 feet (9.1m) lengthwise. Increase by 50% if combined with booster jets in the legs.", [{ label: "Cost (Single)", value: "30,000 credits" }, { label: "Bonus — Dodge", value: "+1" }, { label: "Bonus — Initiative", value: "+1" }], "");
+
+cyb("Energy-Clip Hand or Arm Port", "Bionic Weapons & Tools", 3000, "A special connector unit is built into the hand or arm, enabling the 'Borg to slap in additional E-Clips to power his bionic energy weapons. A separate port is needed for each individual energy weapon.", [{ label: "Cost (Single)", value: "3,000 credits" }], "");
+
+cybW("Forearm Light Laser Blaster", "Bionic Weapons & Tools", 25000, "", { damage: "2d6", damageType: "MDC", range: "2,000 ft", rateOfFire: "1", payload: 20, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "25,000 credits" }], "");
+
+cybW("Forearm Medium Laser Blaster", "Bionic Weapons & Tools", 32000, "", { damage: "3d6", damageType: "MDC", range: "2,000 ft", rateOfFire: "1", payload: 15, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "32,000 credits" }], "");
+
+cybW("Forearm Heavy Laser Blaster", "Bionic Weapons & Tools", 40000, "", { damage: "4d6", damageType: "MDC", range: "1,600 ft", rateOfFire: "1", payload: 12, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "40,000 credits" }], "");
+
+cybW("Forearm Ion Blaster Standard", "Bionic Weapons & Tools", 20000, "", { damage: "3d6", damageType: "MDC", range: "1,200 ft", rateOfFire: "1", payload: 20, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "20,000 credits" }], "");
+
+cybW("Forearm Mini-Machine-Gun", "Bionic Weapons & Tools", 20000, "", { damage: "2d4", damageType: "MDC", range: "2,000 ft", rateOfFire: "1", payload: 300, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "20,000 credits" }, { label: "Damage (S.D.C. mode)", value: "1D6 x 10" }], "");
+
+cybW("Forearm or Shoulder Mini-Missile Launcher", "Bionic Weapons & Tools", 40000, "", { damage: "1d4*10", damageType: "MDC", range: "1 mile", rateOfFire: "See Fire Modes", payload: 3, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "40,000 credits" }, { label: "Fire Modes", value: "Aimed, Burst, Wild" }], "");
+
+cybW("Forearm Plasma Ejector Standard", "Bionic Weapons & Tools", 40000, "", { damage: "4d6", damageType: "MDC", range: "1,000 ft", rateOfFire: "1", payload: 10, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "40,000 credits" }], "");
+
+cybW("Forearm Particle Beam", "Bionic Weapons & Tools", 60000, "", { damage: "6d6 + 6", damageType: "MDC", range: "1,000 ft", rateOfFire: "1", payload: 10, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "60,000 credits" }], "");
+
+cyb("Garrote Wrist Wire", "Bionic Weapons & Tools", 200, "A thin, strong wire is hidden inside the bionic wrist junction that can be pulled out and used to strangle an opponent. S.D.C. strangle damage applicable only.", [{ label: "Cost (Single)", value: "200 credits" }], "");
+
+cyb("Grapnel & Launcher", "Bionic Weapons & Tools", 5000, "A launch compartment and housing that like a small weapon nozzle fires a collapsible grappling hook and line. A pneumatic winch reels the line back in, helping characters to scale walls and non-metallic surfaces and hitch rides on giant robots and vehicles. The cord is a super thin, super strong wire with a test strength of 2000 pounds (900 kg).", [{ label: "Cost (Single)", value: "5,000 credits" }, { label: "Range", value: "100 ft" }], "");
+
+cybW("Hand & Forearm Attachment Jackhammer", "Bionic Weapons & Tools", 60000, "Instead of a hand and forearm there is a heavy-duty Jackhammer designed to break rock into small pieces, typically used on rock that has already been drilled, or for construction or demolition of buildings.", { damage: "2d6", damageType: "MDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "60,000 credits" }, { label: "M.D.C. (item)", value: "50 per" }], "");
+
+cybW("Hand & Forearm Attachment Heavy Mining Drill", "Bionic Weapons & Tools", 66000, "In place of a hand and forearm is a huge, powerful drill for making large holes (a man can fit his arm through these holes and still have room) in rock and metal and drilling away rock. A handful of detachable drill bits in a variety of large sizes are available.", { damage: "3d6", damageType: "MDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "66,000 credits" }, { label: "M.D.C. (item)", value: "50 per" }], "");
+
+cybW("Hand & Forearm Attachment Precision Mining Drill", "Bionic Weapons & Tools", 60000, "In place of a hand and forearm is a thin, narrow, high-powered drill for making small holes and precision drilling; detachable drill bits come in a variety of sizes. Can be used for mining and building/construction.", { damage: "2d4", damageType: "MDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "60,000 credits" }, { label: "M.D.C. (item)", value: "30 per" }, { label: "Damage (S.D.C. mode)", value: "4D6" }], "");
+
+cybW("Hand & Forearm Attachment Plasma Torch", "Bionic Weapons & Tools", 75000, "In place of an arm and hand is a versatile plasma torch used for repairs, welding and cutting.", { damage: "4d6", damageType: "MDC", range: "3 ft", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "75,000 credits" }, { label: "M.D.C. (item)", value: "45 per" }, { label: "Damage (S.D.C. mode)", value: "1D6 x 10" }], "");
+
+cybW("High Explosive Finger Joints", "Bionic Weapons & Tools", 3000, "Usually limited to the little finger, because the explosive finger has no movement.", { damage: "2d4", damageType: "MDC", range: "100 ft", rateOfFire: "1", payload: 12, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "3,000 credits" }], "");
+
+cybW("Knuckle Spikes", "Bionic Weapons & Tools", 1200, "Four sharp metal spikes protrude from the knuckles.", { damage: "1d6", damageType: "SDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "1,200 credits" }, { label: "M.D.C. (item)", value: "5 per" }], "");
+
+cybW("Laser Eye", "Bionic Weapons & Tools", 130000, "Suitable for robots and 'Borgs. Usually draws its energy from the cyborg's internal power supply rather than any sort of E-Clip. The eye (or eyes) are unusually large or a visor-like implant rather than human-looking eyes.", { damage: "2d6", damageType: "MDC", range: "1,000 ft", rateOfFire: "1", payload: "unlimited", bonusToStrike: 1 }, [{ label: "Cost (Single)", value: "130,000 credits" }, { label: "Bonus — Strike", value: "+1" }], "");
+
+cybW("Laser Finger Blaster", "Bionic Weapons & Tools", 20000, "A tiny Mega-Damage weapon contained in a finger.", { damage: "1d4", damageType: "MDC", range: "300 ft", rateOfFire: "1", payload: 6, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "20,000 credits" }], "");
+
+cybW("Laser Utility Finger", "Bionic Weapons & Tools", 5000, "A simple laser tool similar to the laser soldering torch.", { damage: "3d6", damageType: "SDC", range: "50 ft", rateOfFire: "1", payload: 12, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "5000 credits" }], "");
+
+cybW("Pneumatic Punching Jackhammer Arm", "Bionic Weapons & Tools", 60000, "Designed not for reach but punching and combat. Character's arm is actually a pneumatic piston that strikes with the impact of a jackhammer and inflicts Mega Damage. Another innovation from the whiz kids at W.M. Smith R&D.", { damage: "1d6", damageType: "MDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "60,000 credits" }, { label: "Bonus — Initiative", value: "+1" }, { label: "Bonus — Disarm", value: "+1" }, { label: "Bonus — Additional Attack", value: "+1" }], "");
+
+cybW("Retractable Finger Blades", "Bionic Weapons & Tools", 1200, "Two to three inch (0.78- 1.18 cm) long, double-edged blades extend from the fingers.", { damage: "1d4", damageType: "SDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "1,200 credits" }], "");
+
+cybW("Retractable Knuckle Blades", "Bionic Weapons & Tools", 2500, "Four, three to five inch ( 1.18 to 1.96 cm) blades extend from the knuckle housing.", { damage: "3d4", damageType: "SDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "2,500 credits" }], "");
+
+cybW("Retractable Vibro-Blade", "Bionic Weapons & Tools", 5000, "A standard Vibro-Blade (typically a short sword) is concealed in a housing in one or both of the forearms. The blade is used as both a defensive and offensive weapon. Concealed, retractable Vibro-B lades are commonly installed in cyborgs, robots and, to a lesser degree, power armor.", { damage: "1d6", damageType: "MDC", range: "", rateOfFire: "1", payload: 0, bonusToStrike: 0 }, [{ label: "Cost (Single)", value: "5,000 credits" }], "");
+
 // ── Build ──────────────────────────────────────────────────
 const index = await pack.getIndex();
 const byName = new Map(index.map((e) => [e.name, e]));
@@ -284,23 +340,43 @@ for (const def of defs) {
     }
     continue;
   }
-  await Item.create(
-    {
-      name: def.name,
-      type: "equipment",
-      img: "icons/svg/upgrade.svg",
-      folder: folder.id,
-      system: {
-        specs: def.specs,
-        quantity: 1,
-        weight: "",
-        cost: def.cost,
-        description: def.description,
-        notes: def.notes,
-      },
-    },
-    { pack: pack.collection }
-  );
+  const doc = def.weapon
+    ? {
+        name: def.name,
+        type: "weapon",
+        img: "icons/svg/sword.svg",
+        folder: folder.id,
+        system: {
+          specs: def.specs,
+          equipped: false,
+          damage: def.weapon.damage ?? "",
+          damageType: def.weapon.damageType ?? "MDC",
+          range: def.weapon.range ?? "",
+          rateOfFire: def.weapon.rateOfFire ?? "",
+          payload: def.weapon.payload ?? 0,
+          weight: "",
+          cost: def.cost,
+          bonusToStrike: def.weapon.bonusToStrike ?? 0,
+          special: def.weapon.special ?? "",
+          description: def.description,
+          notes: def.notes,
+        },
+      }
+    : {
+        name: def.name,
+        type: "equipment",
+        img: "icons/svg/upgrade.svg",
+        folder: folder.id,
+        system: {
+          specs: def.specs,
+          quantity: 1,
+          weight: "",
+          cost: def.cost,
+          description: def.description,
+          notes: def.notes,
+        },
+      };
+  await Item.create(doc, { pack: pack.collection });
   created++;
 }
 
