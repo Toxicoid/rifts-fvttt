@@ -1226,6 +1226,132 @@ skill("Wilderness Survival", "Wilderness", "wilderness", 30, 5,
   "Base Skill: 30% +5% per level.",
   { requiredOCC: "", requiredLocation: "", requiredSkills: "", selectModifiers: "", bonusesText: "" });
 
+// ═══ WEAPON PROFICIENCIES (from Weapon_Proficiencies.xlsx) ═
+skill("W.P. Archery", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 2, 4, 6, 8, 10, 12, 14 — cumulative (+8 total by level 14).\nParry: +1 at levels 1, 2, 5, 10, 15 — cumulative (+5 total by level 15).\nDisarm: +1 at levels 2, 5, 10, 15 — cumulative (+4 total by level 15).\nRate of Fire (per APM): +2 at levels 1 — cumulative (+2 total by level 1).\nExtra Shot (per APM): +1 at levels 2, 4, 5, 8, 10, 12, 14 — cumulative (+7 total by level 14).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Axe", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 5, 8, 12, 15 — cumulative (+5 total by level 15).\nParry: +1 at levels 2, 5, 8, 12, 15 — cumulative (+5 total by level 15).\nThrown — Strike: +1 at levels 5, 8, 12 — cumulative (+3 total by level 12).\nThrown — Parry: +1 at levels 5, 8, 12 — cumulative (+3 total by level 12).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Blunt", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nParry: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nThrown — Strike: +1 at levels 5, 10, 15 — cumulative (+3 total by level 15).\nThrown — Parry: +1 at levels 5, 10, 15 — cumulative (+3 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Chain", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 7, 10, 13 — cumulative (+5 total by level 13).\nParry: +1 at levels 4, 8, 12 — cumulative (+3 total by level 12).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Forked", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 5, 8, 11, 13 — cumulative (+6 total by level 13).\nParry: +1 at levels 1, 3, 6, 10, 13 — cumulative (+5 total by level 13).\nEntangle: +1 at levels 1, 3, 5, 8, 11, 13 — cumulative (+6 total by level 13).\nThrown — Strike: +1 at levels 4, 10, 15 — cumulative (+3 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Grappling Hook", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 3, 6, 9, 12 — cumulative (+4 total by level 12).\nEntangle: +1 at levels 3, 6, 9, 12 — cumulative (+4 total by level 12).\nThrown — Strike: +1 at levels 3, 6, 9, 12 — cumulative (+4 total by level 12).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Knife", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 4, 7, 10, 13 — cumulative (+5 total by level 13).\nParry: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nThrown — Strike: +1 at levels 1, 3, 6, 8, 10, 13 — cumulative (+6 total by level 13).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Pole Arm", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nParry: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nThrown — Strike: +1 at levels 3, 8, 12 — cumulative (+3 total by level 12).\nDamage: +2 at levels 2, 8 — cumulative (+4 total by level 8).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Quick Draw", "W.P.", "weaponProficiency", 0, 0,
+  "Initiative (on the draw) with P.P. 17: +1.\nInitiative with P.P. 18-23: +2.\nInitiative with P.P. 24-30: +3.\nInitiative with P.P. 31+: +4.",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Rope", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 4, 8, 12, 15 — cumulative (+5 total by level 15).\nDisarm: +1 — LEVEL SCHEDULE MISSING FROM SOURCE.\nEntangle: +1 — LEVEL SCHEDULE MISSING FROM SOURCE.\nCowboy & Saddle Tramp O.C.C. — Strike: +2.\nCowboy & Saddle Tramp O.C.C. — Disarm: +2.",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field. VERIFY: level schedule missing for Disarm, Entangle.",
+  { });
+
+skill("W.P. Shield", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 4, 8, 12 — cumulative (+3 total by level 12).\nParry: +1 at levels 1, 3, 7, 10, 13 — cumulative (+5 total by level 13).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Sling Shot", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 7, 10 — cumulative (+4 total by level 10).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Spear", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nParry: +1 at levels 1, 3, 6, 9, 12 — cumulative (+5 total by level 12).\nThrown — Strike: +1 at levels 3, 6, 10, 14 — cumulative (+4 total by level 14).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Staff", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 7, 10, 13 — cumulative (+5 total by level 13).\nParry: +1 at levels 2, 5, 8, 11, 14 — cumulative (+5 total by level 14).\nThrown — Strike: +1 at levels 5, 10, 15 — cumulative (+3 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Sword", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 9, 12, 15 — cumulative (+6 total by level 15).\nParry: +1 at levels 2, 4, 7, 10, 13 — cumulative (+5 total by level 13).\nThrown — Strike: +1 at levels 4, 8, 12 — cumulative (+3 total by level 12).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Handguns", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 4, 6, 8, 10, 12, 14 — cumulative (+7 total by level 14).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Rifles", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 5, 7, 9, 11, 13 — cumulative (+7 total by level 13).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Shotgun", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 10, 14 — cumulative (+5 total by level 14).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Submachine-Gun", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 9, 12, 15 — cumulative (+6 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Heavy Military Weapons", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 6, 10, 14 — cumulative (+5 total by level 14).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Heavy Military Flamethrowers", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 5, 10, 15 — cumulative (+4 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Harpoon & Spear Gun", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 4, 7, 10, 15 — cumulative (+5 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Energy Pistol", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 1, 3, 5, 7, 9, 11, 13, 15 — cumulative (+8 total by level 15).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
+skill("W.P. Energy Pistol 2", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 4, 6, 8, 10, 12, 14 — cumulative (+7 total by level 14).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field. VERIFY: column header duplicates 'Energy Pistol' — likely W.P. Energy Rifle; confirm vs book and rename.",
+  { });
+
+skill("W.P. Heavy Energy Weapons", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 4, 7, 10, 13 — cumulative (+5 total by level 13).",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
+  { });
+
 // ═══ DOMESTIC (from master list) ══════════════════════════
 skill("Bonsai", "Domestic", "domestic", 50, 4,
   "Tending, trimming and growing tiny miniature trees known as the \"Bonsai.\" Experts can tell the difference between new (under 50 years old) and truly ancient bonsai (hundreds of years old). The character can also estimate the value and quality of the miniature tree. Bonsai is a common pastime of the noble castes in the New Empire of Japan and is unlikely to be practiced by anybody outside of the Japanese Is lands.",
