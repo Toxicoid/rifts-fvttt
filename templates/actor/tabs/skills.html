@@ -40,7 +40,6 @@
         Total %
         <span class="sh-sub">max 98%</span>
       </span>
-      <span class="sh-actions"></span>
     </div>
 
     {{#each skillsByCategory as |categorySkills categoryKey|}}
@@ -51,7 +50,7 @@
         </div>
 
         {{#each categorySkills}}
-          <div class="skill-row item-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 140px 54px 54px 60px 70px;gap:4px;align-items:center;">
+          <div class="skill-row item-row" data-item-id="{{this.id}}">
 
             <input class="skill-name-input item-name-input"
                    type="text"
@@ -196,7 +195,6 @@
       <span class="sh-base">Base %<span class="sh-sub">starting %</span></span>
       <span class="sh-bonus">Bonus %<span class="sh-sub">+% per lvl</span></span>
       <span class="sh-total">Total %<span class="sh-sub">max 98%</span></span>
-      <span class="sh-actions"></span>
     </div>
 
     {{#each secondaryByCategory as |categorySkills categoryKey|}}
@@ -207,7 +205,7 @@
         </div>
 
         {{#each categorySkills}}
-          <div class="skill-row item-row secondary-skill-row" data-item-id="{{this.id}}" style="display:grid;grid-template-columns:1fr 140px 54px 54px 60px 70px;gap:4px;align-items:center;">
+          <div class="skill-row item-row secondary-skill-row" data-item-id="{{this.id}}">
 
             <input class="skill-name-input item-name-input"
                    type="text"

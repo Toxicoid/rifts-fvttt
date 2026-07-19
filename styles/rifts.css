@@ -889,7 +889,7 @@
 /* ── Skills Column Headers ───────────────────────────────── */
 .skills-column-headers {
   display: grid;
-  grid-template-columns: 1fr 140px 54px 54px 60px 70px;
+  grid-template-columns: 1fr 140px 96px 54px 60px;
   gap: 4px;
   padding: 4px var(--gap-sm);
   margin-bottom: 2px;
@@ -950,12 +950,46 @@
 /* ── Skill Row ───────────────────────────────────────────── */
 .skill-row {
   display: grid;
-  grid-template-columns: 1fr 140px 54px 54px 60px 70px;
-  gap: var(--gap-xs);
+  grid-template-columns: 1fr 140px 96px 54px 60px;
+  grid-auto-rows: auto;
+  gap: 2px var(--gap-xs);
   align-items: center;
-  padding: 3px var(--gap-xs);
+  padding: 2px var(--gap-xs) 3px;
   border-bottom: 1px solid var(--rifts-border);
   transition: background 0.1s ease;
+}
+/* Row 1: data cells */
+.skill-row .skill-name-input { grid-column: 1; grid-row: 1; }
+.skill-row .skill-category-select { grid-column: 2; grid-row: 1; }
+.skill-row .skill-base-cell { grid-column: 3; grid-row: 1; }
+.skill-row .skill-bonus { grid-column: 4; grid-row: 1; }
+.skill-row .skill-total { grid-column: 5; grid-row: 1; }
+/* Row 2: compact horizontal action strip under the name */
+.skill-row .skill-actions {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 4px;
+  justify-content: flex-start;
+  padding-left: 2px;
+  min-height: 0;
+}
+.skill-row .skill-actions .icon-btn,
+.skill-row .skill-actions .roll-btn,
+.rifts-sheet .skill-row .skill-actions button {
+  width: auto !important;
+  flex: 0 0 auto;
+  padding: 1px 7px;
+  font-size: 11px;
+  line-height: 1.4;
+}
+/* Base cell: input gets real width, chip sits beside it */
+.skill-row .skill-base-cell input.skill-base {
+  min-width: 44px !important;
+  width: 44px !important;
+  flex: 0 0 auto;
 }
 
 .skill-row:hover {
