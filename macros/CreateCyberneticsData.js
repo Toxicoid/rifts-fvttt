@@ -248,6 +248,13 @@ cyb("Thermo-Imager Eye", "Commercial Cybernetics (Eyes)", 12000, "This artificia
 
 cyb("Third Eye", "Commercial Cybernetics (Eyes)", 350000, "This is a cybernetic eye that is implanted either above a real eye or in the center of the forehead. The mechanical eye can be any of the available artificial eyes, but is typically one of the camera eyes or a multi-optic eye.", [{ label: "Cost (Single)", value: "350,000 credits" }, { label: "Penalty", value: "Reduce the character's P.B . by -2" }], "Sometimes illegal for the average citizen. Illegal in the CS.");
 
+// ═══ CYBERNETIC LUNG IMPLANTS (from Cybernetic_Lung_Implants.xlsx) ═
+cyb("Molecular Analyzer", "Cybernetic Lung Implants", 35000, "This micro-chip based sensor is used for testing and analyzing impurities in the air. It can specifically identify any chemical, or strange and dangerous molecules, like the presence of gas, oil, pollution, or other chemicals in the air. Data can be transmitted as an audio report through one of the ear implants or to a wristwatch-like receiver. It does not enable one to track.", [{ label: "Cost", value: "35,000 credits" }], "");
+
+cyb("Oxygen Storage Cell", "Cybernetic Lung Implants", 60000, "A special chemical cell, controlled by micro-processors, that stores oxygen from the character's normal breathing. Then, when oxygen is low, the oxygen is released back into the lungs. The net effect is to give the character the ability to go without breathing for up to 30 minutes.", [{ label: "Cost", value: "60,000 credits" }], "The character must breathe normally for about an hour to recharge the cell between uses.");
+
+cyb("Toxic Filter", "Cybernetic Lung Implants", 40000, "A mechanism designed to filter most toxic gases out before they enter the lungs. The filter is effective against all types of tear gas, smoke, and purely chemical fumes. There is an 80% chance that it will also work against nerve gases and poison gases.", [{ label: "Cost", value: "40,000 credits" }], "");
+
 // ── Build ──────────────────────────────────────────────────
 const index = await pack.getIndex();
 const byName = new Map(index.map((e) => [e.name, e]));
