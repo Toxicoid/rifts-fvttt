@@ -1338,13 +1338,13 @@ skill("W.P. Harpoon & Spear Gun", "W.P.", "weaponProficiency", 0, 0,
   { });
 
 skill("W.P. Energy Pistol", "W.P.", "weaponProficiency", 0, 0,
-  "Strike: +1 at levels 1, 3, 5, 7, 9, 11, 13, 15 — cumulative (+8 total by level 15).",
+  "Strike: +1 at levels 1, 3, 5, 7, 9, 11, 13, 15 — cumulative (+8 total by level 15).\nCovers pistol and submachine-gun style energy weapons — lasers, ion beams, particle beams and pulse weapons in handgun shape and size.",
   "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field.",
   { });
 
-skill("W.P. Energy Pistol 2", "W.P.", "weaponProficiency", 0, 0,
-  "Strike: +1 at levels 2, 4, 6, 8, 10, 12, 14 — cumulative (+7 total by level 14).",
-  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field. VERIFY: column header duplicates 'Energy Pistol' — likely W.P. Energy Rifle; confirm vs book and rename.",
+skill("W.P. Energy Rifle", "W.P.", "weaponProficiency", 0, 0,
+  "Strike: +1 at levels 2, 4, 6, 8, 10, 12, 14 — cumulative (+7 total by level 14).\nCovers rifle-style energy weapons firing Mega-Damage beams, blasts, pulses or M.D. rounds.",
+  "W.P. — combat bonus progression, NOT a percentile roll. Bonuses accumulate at the listed levels; add your current totals to weapon Strike (and Parry) or track them in the Bonuses field. (Book-verified.)",
   { });
 
 skill("W.P. Heavy Energy Weapons", "W.P.", "weaponProficiency", 0, 0,
