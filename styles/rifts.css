@@ -2167,7 +2167,7 @@
 .rifts .hth-style-select { max-width: 220px; }
 .rifts .hth-summary { font-size:12px; font-family:"Share Tech Mono",monospace; opacity:0.9; }
 .rifts .hth-summary b { color: var(--rifts-orange,#e8751a); }
-.rifts .hth-moves-toggle { margin-left:auto; white-space:nowrap; }
+.rifts .hth-moves-toggle { white-space:nowrap; }
 .rifts .hth-moves-panel { display:none; padding:8px 12px; margin:2px 0 8px; background:rgba(0,0,0,0.15); border-left:2px solid var(--rifts-orange,#e8751a); border-radius:3px; }
 .rifts .hth-moves-panel.open { display:block; }
 .rifts .hth-moves-head { font-weight:bold; font-size:12px; margin-bottom:5px; }
@@ -2310,18 +2310,18 @@
 /* HtH bar: keep the moves button clear of the summary text */
 .rifts .hth-bar { row-gap: 6px; column-gap: 12px; }
 .rifts .hth-summary {
-  flex: 1 1 260px;
+  flex: 0 1 auto;
   min-width: 0;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   flex-wrap: wrap;
 }
-.rifts .hth-moves-toggle {
-  margin-left: auto;
+/* Sits right after the summary — no auto margin shoving it to the edge */
+.rifts .hth-bar .hth-moves-toggle,
+.rifts-sheet .hth-bar .hth-moves-toggle {
+  margin-left: 0 !important;
   flex: 0 0 auto;
   white-space: nowrap;
   padding: 2px 10px;
-  position: relative;
-  z-index: 1;
 }
