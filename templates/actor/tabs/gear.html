@@ -315,13 +315,11 @@
     </h2>
 
     {{#if equipment.length}}
-      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 60px 70px 1fr;gap:4px;align-items:end;">
+      <div class="gear-column-headers" style="display:grid;grid-template-columns:1fr 44px 60px 70px;gap:4px;align-items:end;">
         <span>Name</span>
         <span>Qty</span>
         <span>Weight</span>
         <span>Cost</span>
-        <span>Notes</span>
-        <span></span>
       </div>
 
       {{#each equipment}}
@@ -345,7 +343,6 @@
                  data-item-path="system.cost"
                  value="{{this.system.cost}}"
                  min="0" />
-          <span class="notes-preview" {{#if this.system.notes}}title="{{this.system.notes}}"{{/if}}>{{#if this.system.notes}}{{this.system.notes}}{{else}}<em>—</em>{{/if}}</span>
           <div class="gear-actions">
             <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="What is this? (description &amp; details)">
               <i class="fas fa-book-open"></i>

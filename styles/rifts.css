@@ -2278,7 +2278,7 @@
 }
 .rifts .gear-row.equip-item-row {
   display: grid;
-  grid-template-columns: 1fr 44px 60px 70px 1fr;
+  grid-template-columns: 1fr 44px 60px 70px;
   gap: 2px 4px;
   align-items: center;
   padding: 2px 4px 3px;
