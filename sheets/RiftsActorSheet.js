@@ -20,7 +20,41 @@ export class RiftsActorSheet extends ActorSheet {
       ],
       scrollY: [".sheet-body"],
       resizable: true,
+      // Gear rows and armor cards are draggable: within the sheet this
+      // reorders them, and dragging one OUT still works normally
+      // (e.g. onto an Item Piles merchant token).
+      dragDrop: [
+        { dragSelector: ".item-row[data-item-id]", dropSelector: ".sheet-body" },
+        { dragSelector: ".armor-card[data-item-id]", dropSelector: ".sheet-body" },
+      ],
     });
+  }
+
+  // ── Drag feedback ─────────────────────────────────────────
+  // Foundry handles the actual reordering (_onDropItem -> _onSortItem);
+  // these only add the visual cues.
+  _onDragStart(event) {
+    event.currentTarget.classList.add("dragging");
+    return super._onDragStart(event);
+  }
+
+  _onDragOver(event) {
+    const row = event.target.closest?.(".item-row[data-item-id], .armor-card[data-item-id]");
+    this.element?.[0]
+      ?.querySelectorAll(".drop-above, .drop-below")
+      .forEach((el) => el.classList.remove("drop-above", "drop-below"));
+    if (row && !row.classList.contains("dragging")) {
+      const box = row.getBoundingClientRect();
+      row.classList.add(event.clientY < box.top + box.height / 2 ? "drop-above" : "drop-below");
+    }
+    return super._onDragOver(event);
+  }
+
+  async _onDrop(event) {
+    this.element?.[0]
+      ?.querySelectorAll(".dragging, .drop-above, .drop-below")
+      .forEach((el) => el.classList.remove("dragging", "drop-above", "drop-below"));
+    return super._onDrop(event);
   }
 
   getData() {
@@ -35,9 +69,11 @@ export class RiftsActorSheet extends ActorSheet {
       .filter((i) => i.type === "skill")
       .sort((a, b) => a.name.localeCompare(b.name));
 
-    context.weapons = actor.items.filter((i) => i.type === "weapon");
-    context.armor = actor.items.filter((i) => i.type === "armor");
-    context.equipment = actor.items.filter((i) => i.type === "equipment");
+    // Gear keeps the player's own order (drag a row to reorder).
+    const bySort = (a, b) => (a.sort || 0) - (b.sort || 0);
+    context.weapons = actor.items.filter((i) => i.type === "weapon").sort(bySort);
+    context.armor = actor.items.filter((i) => i.type === "armor").sort(bySort);
+    context.equipment = actor.items.filter((i) => i.type === "equipment").sort(bySort);
 
     context.occAbilities = actor.items
       .filter((i) => i.type === "occ_ability")
