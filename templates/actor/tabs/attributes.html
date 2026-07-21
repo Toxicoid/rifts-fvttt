@@ -205,15 +205,13 @@
         <div class="equipped-weapons-list">
           {{#each equippedWeapons}}
             <div class="equipped-weapon-row">
-              <span class="ew-name">{{this.name}}</span>
-              <span class="ew-damage">{{this.system.damage}}</span>
-              <span class="ew-type">{{this.system.damageType}}</span>
-              <span class="ew-range">{{this.system.range}}</span>
-              {{#if this.system.bonusToStrike}}
-                <span class="ew-strike">+{{this.system.bonusToStrike}} strike</span>
-              {{else}}
-                <span class="ew-strike"></span>
-              {{/if}}
+              <div class="ew-title" title="{{this.name}}">{{this.name}}</div>
+              <div class="ew-stats">
+                <span class="ew-damage">{{this.system.damage}}</span>
+                <span class="ew-type">{{this.system.damageType}}</span>
+                {{#if this.system.range}}<span class="ew-range">{{this.system.range}}</span>{{/if}}
+                {{#if this.system.bonusToStrike}}<span class="ew-strike">+{{this.system.bonusToStrike}} strike</span>{{/if}}
+              </div>
               <div class="ew-actions">
                 <button type="button"
                         class="weapon-strike-roll icon-btn"
