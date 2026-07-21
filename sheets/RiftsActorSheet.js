@@ -263,18 +263,10 @@ export class RiftsActorSheet extends ActorSheet {
       if (weapon) await this.actor.rollWeaponDamage(weapon);
     });
 
-    // Armor detail expand/collapse
-    html.find(".armor-expand-toggle").click((event) => {
-      const wrap = event.currentTarget.closest(".armor-item-wrap");
-      wrap.classList.toggle("expanded");
-      const icon = event.currentTarget.querySelector("i");
-      icon.classList.toggle("fa-chevron-down");
-      icon.classList.toggle("fa-chevron-up");
-    });
-
     // ── Gear accordion ────────────────────────────────────
-    // Click a gear row's chevron to unfold its description /
-    // special rules; opening one folds up the previous one.
+    // Click a row's book icon to unfold its description, specs
+    // and notes; opening one folds up the previous one. Same
+    // pattern as the Skills accordion.
     const openGearDetail = (itemId) => {
       // Fold everything, reset all chevrons.
       html.find(".gear-detail.open").removeClass("open");

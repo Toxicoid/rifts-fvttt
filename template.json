@@ -157,8 +157,6 @@
         "damageBonus": 0,
         "punchDamage": "1d4",
         "kickDamage": "1d6",
-        "powerPunch": "2d6",
-        "leapKick": "2d8",
         "runSpeed": "",
         "runMelees": "",
         "swimSpeed": "",

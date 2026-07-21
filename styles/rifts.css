@@ -131,6 +131,7 @@
   color: var(--rifts-text-bright);
 }
 
+/* textarea-only additions to the shared input rule above (not a duplicate) */
 .rifts-sheet textarea {
   resize: vertical;
   line-height: 1.5;
@@ -262,6 +263,7 @@
   border-width: 2px 0 0 2px;
 }
 
+/* ::after positioning; shares the base styling with ::before above */
 .sheet-header::after {
   bottom: -2px;
   right: 6px;
@@ -2157,7 +2159,8 @@
 
 /* ═══ Hand to Hand style picker + moves panel ═══ */
 .rifts .hth-bar {
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  display: flex; align-items: center; flex-wrap: wrap;
+  row-gap: 6px; column-gap: 12px;
   padding: 6px 10px; margin: 6px 0;
   background: rgba(60,70,90,0.15); border: 1px solid rgba(232,117,26,0.25); border-radius: 4px;
 }
@@ -2165,14 +2168,12 @@
 .rifts .hth-label { display:flex; align-items:center; gap:5px; font-weight:bold; white-space:nowrap; }
 .rifts .hth-label i { color: var(--rifts-orange,#e8751a); }
 .rifts .hth-style-select { max-width: 220px; }
-.rifts .hth-summary { font-size:12px; font-family:"Share Tech Mono",monospace; opacity:0.9; }
 .rifts .hth-summary b { color: var(--rifts-orange,#e8751a); }
 .rifts .hth-moves-toggle { white-space:nowrap; }
 .rifts .hth-moves-panel { display:none; padding:8px 12px; margin:2px 0 8px; background:rgba(0,0,0,0.15); border-left:2px solid var(--rifts-orange,#e8751a); border-radius:3px; }
 .rifts .hth-moves-panel.open { display:block; }
 .rifts .hth-moves-head { font-weight:bold; font-size:12px; margin-bottom:5px; }
 .rifts .hth-moves-list { list-style:none; margin:0; padding:0; font-size:12px; }
-.rifts .hth-moves-list li { padding:3px 0; border-bottom:1px solid rgba(255,255,255,0.06); line-height:1.4; }
 .rifts .hth-move-lvl { display:inline-block; min-width:26px; color:var(--rifts-orange,#e8751a); font-family:"Share Tech Mono",monospace; font-size:11px; }
 
 /* HtH move roll buttons */
@@ -2182,14 +2183,14 @@
   border:none; border-radius:3px; cursor:pointer; white-space:nowrap;
 }
 .rifts .hth-move-roll:hover { background: var(--rifts-orange,#e8751a); }
-.rifts .hth-move-text { font-size: 12px; }
 .rifts .hth-apm-extra { width: 38px; text-align: center; font-size: 11px; padding: 0 2px; }
-.rifts .hth-extra-wrap { font-size: 11px; opacity: 0.85; }
 
 /* ═══ #1 fixes: compact APM-extra input and inline move buttons ═══ */
 .rifts .hth-extra-wrap { display: inline-flex; align-items: center; gap: 2px; font-size: 11px; opacity: 0.9; }
+/* apm-extra + move buttons must beat the global "inputs/buttons are 100% wide" rule */
 .rifts .hth-bar input.hth-apm-extra,
-.rifts input.hth-apm-extra {
+.rifts input.hth-apm-extra,
+.rifts-sheet input.hth-apm-extra {
   width: 40px !important;
   min-width: 40px;
   max-width: 40px;
@@ -2199,17 +2200,20 @@
   padding: 1px 2px;
   font-size: 12px;
 }
-.rifts .hth-moves-list li { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
-.rifts button.hth-move-roll {
+.rifts .hth-moves-list li {
+  display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap;
+  padding: 3px 0; line-height: 1.4;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.rifts button.hth-move-roll,
+.rifts-sheet button.hth-move-roll {
   width: auto !important;
   flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   gap: 4px;
 }
-.rifts .hth-move-text { flex: 1 1 auto; min-width: 200px; }
-.rifts-sheet input.hth-apm-extra { width: 40px !important; min-width: 40px; max-width: 40px; flex: 0 0 auto; text-align: center; }
-.rifts-sheet button.hth-move-roll { width: auto !important; flex: 0 0 auto; }
+.rifts .hth-move-text { flex: 1 1 auto; min-width: 200px; font-size: 12px; }
 
 /* Gear column headers: small, aligned over their columns */
 .rifts .gear-column-headers span,
@@ -2307,11 +2311,13 @@
 .rifts .gear-detail-specs { margin: 4px 0 6px; }
 
 /* HtH bar: keep the moves button clear of the summary text */
-.rifts .hth-bar { row-gap: 6px; column-gap: 12px; }
 /* Summary is sized by its own content and never shrinks under it.
    min-width:0 (removed) was letting the text overflow the box, which
    is what put the moves button on top of "rolls +N". */
 .rifts .hth-summary {
+  font-size: 12px;
+  font-family: "Share Tech Mono", monospace;
+  opacity: 0.9;
   display: inline-flex;
   align-items: center;
   flex-wrap: wrap;
