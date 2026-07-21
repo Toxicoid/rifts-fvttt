@@ -114,8 +114,8 @@
                     title="{{#if this.system.equipped}}Unequip{{else}}Equip{{/if}}">
               <i class="fas {{#if this.system.equipped}}fa-hand-fist{{else}}fa-hand{{/if}}"></i>
             </button>
-            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show details">
-              <i class="fas fa-chevron-down"></i>
+            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="What is this? (description &amp; details)">
+              <i class="fas fa-book-open"></i>
             </button>
             <button type="button" class="item-edit icon-btn" title="Edit">
               <i class="fas fa-edit"></i>
@@ -127,6 +127,13 @@
         </div>
         <div class="gear-detail" data-detail-for="{{this.id}}">
           {{#if this.system.description}}<p class="gear-detail-desc">{{this.system.description}}</p>{{/if}}
+          {{#if this.system.specs.length}}
+          <div class="specs-grid gear-detail-specs">
+            {{#each this.system.specs}}
+            <div class="spec-row"><span class="spec-label">{{this.label}}</span><span class="spec-value">{{this.value}}</span></div>
+            {{/each}}
+          </div>
+          {{/if}}
           {{#if this.system.special}}<p class="gear-detail-special"><strong>Special:</strong> {{this.system.special}}</p>{{/if}}
           {{#if this.system.notes}}<p class="gear-detail-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
           {{#unless this.system.description}}{{#unless this.system.special}}{{#unless this.system.notes}}<p class="gear-detail-empty">No details. Use Edit to add description or special rules.</p>{{/unless}}{{/unless}}{{/unless}}
@@ -157,7 +164,7 @@
                    placeholder="Armor name" />
             <div class="gear-actions">
               <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show details">
-                <i class="fas fa-chevron-down"></i>
+                <i class="fas fa-book-open"></i>
               </button>
               <button type="button" class="item-edit icon-btn" title="Open item sheet">
                 <i class="fas fa-edit"></i>
@@ -279,6 +286,13 @@
           </div>
           <div class="gear-detail" data-detail-for="{{this.id}}">
             {{#if this.system.description}}<p class="gear-detail-desc">{{this.system.description}}</p>{{/if}}
+          {{#if this.system.specs.length}}
+          <div class="specs-grid gear-detail-specs">
+            {{#each this.system.specs}}
+            <div class="spec-row"><span class="spec-label">{{this.label}}</span><span class="spec-value">{{this.value}}</span></div>
+            {{/each}}
+          </div>
+          {{/if}}
             {{#if this.system.mobility}}<p class="gear-detail-notes"><strong>Mobility:</strong> {{this.system.mobility}}</p>{{/if}}
             {{#if this.system.notes}}<p class="gear-detail-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
             {{#unless this.system.description}}{{#unless this.system.notes}}<p class="gear-detail-empty">No details. Use Edit to add a description.</p>{{/unless}}{{/unless}}
@@ -333,8 +347,8 @@
                  min="0" />
           <span class="notes-preview" {{#if this.system.notes}}title="{{this.system.notes}}"{{/if}}>{{#if this.system.notes}}{{this.system.notes}}{{else}}<em>—</em>{{/if}}</span>
           <div class="gear-actions">
-            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="Show full notes &amp; description">
-              <i class="fas fa-chevron-down"></i>
+            <button type="button" class="gear-expand-toggle icon-btn" data-item-id="{{this.id}}" title="What is this? (description &amp; details)">
+              <i class="fas fa-book-open"></i>
             </button>
             <button type="button" class="item-edit icon-btn" title="Edit (description &amp; notes)">
               <i class="fas fa-edit"></i>
@@ -346,8 +360,15 @@
         </div>
         <div class="gear-detail" data-detail-for="{{this.id}}">
           {{#if this.system.description}}<p class="gear-detail-desc">{{this.system.description}}</p>{{/if}}
+          {{#if this.system.specs.length}}
+          <div class="specs-grid gear-detail-specs">
+            {{#each this.system.specs}}
+            <div class="spec-row"><span class="spec-label">{{this.label}}</span><span class="spec-value">{{this.value}}</span></div>
+            {{/each}}
+          </div>
+          {{/if}}
           {{#if this.system.notes}}<p class="gear-detail-notes"><strong>Notes:</strong> {{this.system.notes}}</p>{{/if}}
-          {{#unless this.system.description}}{{#unless this.system.notes}}<p class="gear-detail-empty">No details. Use Edit to add a description.</p>{{/unless}}{{/unless}}
+          {{#unless this.system.description}}{{#unless this.system.notes}}{{#unless this.system.specs.length}}<p class="gear-detail-empty">No details. Use Edit to add a description.</p>{{/unless}}{{/unless}}{{/unless}}
         </div>
       {{/each}}
     {{else}}

@@ -2302,3 +2302,7 @@
   font-size: 11px;
   line-height: 1.4;
 }
+
+/* Detail toggles share one look across Skills, Weapons, Armor, Equipment */
+.rifts .gear-expand-toggle.active { color: var(--rifts-orange, #e8751a); }
+.rifts .gear-detail-specs { margin: 4px 0 6px; }

@@ -278,19 +278,14 @@ export class RiftsActorSheet extends ActorSheet {
     const openGearDetail = (itemId) => {
       // Fold everything, reset all chevrons.
       html.find(".gear-detail.open").removeClass("open");
-      html.find(".gear-expand-toggle i.fa-chevron-up")
-        .removeClass("fa-chevron-up")
-        .addClass("fa-chevron-down");
+      html.find(".gear-expand-toggle").removeClass("active");
       this._openGearDetail = null;
       if (!itemId) return;
       const detail = html.find(`.gear-detail[data-detail-for="${itemId}"]`)[0];
-      const toggle = html.find(`.gear-expand-toggle[data-item-id="${itemId}"] i`)[0];
+      const toggle = html.find(`.gear-expand-toggle[data-item-id="${itemId}"]`)[0];
       if (!detail) return;
       detail.classList.add("open");
-      if (toggle) {
-        toggle.classList.remove("fa-chevron-down");
-        toggle.classList.add("fa-chevron-up");
-      }
+      if (toggle) toggle.classList.add("active");
       this._openGearDetail = itemId;
     };
 
