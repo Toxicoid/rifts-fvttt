@@ -271,6 +271,29 @@ export class RiftsActor extends Actor {
     combat.autoCarryLbs = carry;
     combat.autoLiftLbs = lift;
 
+    // Leaping (player-sourced rule; adjust if the book differs):
+    // base leap ~5 ft long / 4 ft high; +2 ft length per level after 1st;
+    // a running start boosts the numbers by 50%.
+    const charLvl = Math.max(this.system.identity?.level ?? 1, 1);
+    combat.autoLeapStanding = 5 + 2 * (charLvl - 1);
+    combat.autoLeapRunning = Math.round(combat.autoLeapStanding * 1.5);
+    combat.autoLeapHeight = 4;
+
+    // Running endurance (RUE Running skill, verified from provided text):
+    // even pace (HALF speed) for 1/2 mile per P.E. point without fatigue;
+    // at MAXIMUM speed, one third that distance before collapsing.
+    // Max-speed melees = (P.E. x 880 ft) / (Spd x 15 ft per melee).
+    const peVal = attrs.pe?.value ?? 0;
+    const spdForRun = attrs.spd?.value ?? 0;
+    combat.autoRunMaxMelees = spdForRun > 0 ? Math.floor((peVal * 880) / (spdForRun * 15)) : 0;
+
+    // Swimming (RUE Swimming skill, verified from provided text):
+    // 3 x P.S. yards per melee round; sustainable for P.E. minutes
+    // (4 melees per minute) before starting to feel fatigued.
+    combat.autoSwimYdMelee = psVal * 3;
+    combat.autoSwimMph = Math.round(((psVal * 3 * 240) / 1760) * 10) / 10; // yd/melee -> mph
+    combat.autoSwimMaxMelees = peVal * 4;
+
     // ── Unified display/roll totals ─────────────────────────
     combat.initiativeTotal = (combat.initiativeBonus || 0)
       + (combat.hthInit || 0)
@@ -486,7 +509,16 @@ export class RiftsActor extends Actor {
     if (mult) formula = `(${formula}) * ${mult}`;
     if (plus) formula = `${formula} + ${plus}`;
 
-    // Add character damage bonus for melee/SDC hand weapons? Keep manual - just roll weapon dice.
+    // Damage bonus (RUE): applies to MELEE combat only, and it's S.D.C.-scale —
+    // never guns/bows/thrown, and not on top of M.D. dice (Robot P.S. tables
+    // already incorporate strength). So: melee + S.D.C. weapons only.
+    const isMelee = /melee/i.test(weapon.system.range ?? "");
+    const dmgBonus = this.system.combat?.damageTotal ?? 0;
+    let bonusNote = "";
+    if (isMelee && weapon.system.damageType !== "MDC" && dmgBonus > 0) {
+      formula = `${formula} + ${dmgBonus}`;
+      bonusNote = ` (incl. +${dmgBonus} damage bonus)`;
+    }
     const roll = new Roll(formula);
     await roll.evaluate();
 
@@ -494,7 +526,7 @@ export class RiftsActor extends Actor {
 
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: `<strong>${weapon.name}</strong> — Damage (${dmgType})${specialHtml}`,
+      flavor: `<strong>${weapon.name}</strong> — Damage (${dmgType})${bonusNote}${specialHtml}`,
     });
   }
 

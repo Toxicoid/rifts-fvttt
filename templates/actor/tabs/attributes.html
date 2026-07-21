@@ -613,27 +613,33 @@
         </div>
         <div class="damage-field">
           <label>Run (max melees)</label>
-          <input type="text" data-path="system.combat.runMelees" title="How long full speed can be maintained (P.E.-based). Paste the RUE endurance text to Claude to auto-calc." value="{{system.combat.runMelees}}" placeholder="e.g. 10" />
+          <input type="text" data-path="system.combat.runMelees" title="Auto = melees at MAXIMUM speed before collapsing: (P.E. x 880 ft) / (Spd x 15). RUE Running: even pace (half speed) covers 1/2 mile per P.E. point without fatigue; max speed manages one third that distance." value="{{system.combat.runMelees}}" placeholder="e.g. 10" />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoRunMaxMelees}}</span>
         </div>
         <div class="damage-field">
           <label>Swim Speed (mph)</label>
-          <input type="text" data-path="system.combat.swimSpeed" title="Requires the Swimming skill. Paste the RUE Swimming text to auto-calc." value="{{system.combat.swimSpeed}}" placeholder="e.g. 5 mph" />
+          <input type="text" data-path="system.combat.swimSpeed" title="Auto = 3 x P.S. yards per melee round (shown converted to mph). Requires the Swimming skill. RUE-verified." value="{{system.combat.swimSpeed}}" placeholder="e.g. 5 mph" />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoSwimMph}} mph</span>
         </div>
         <div class="damage-field">
           <label>Swim (max melees)</label>
-          <input type="text" data-path="system.combat.swimMelees" title="Swimming endurance (P.E.-based). Paste the RUE text to auto-calc." value="{{system.combat.swimMelees}}" placeholder="e.g. 8" />
+          <input type="text" data-path="system.combat.swimMelees" title="Auto = P.E. x 4 melees (the 3xP.S. pace can be held for P.E. minutes before feeling fatigued). RUE-verified." value="{{system.combat.swimMelees}}" placeholder="e.g. 8" />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoSwimMaxMelees}}</span>
         </div>
         <div class="damage-field">
           <label>Leap (running)</label>
-          <input type="text" data-path="system.combat.leapLengthRunning" title="Paste the RUE leaping rules to auto-calc from attributes." value="{{system.combat.leapLengthRunning}}" placeholder="e.g. 5 ft" />
+          <input type="text" data-path="system.combat.leapLengthRunning" title="Auto = standing leap +50% for a running start (player-sourced rule — adjust if your book text differs)." value="{{system.combat.leapLengthRunning}}" placeholder="e.g. 5 ft" />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoLeapRunning}} ft</span>
         </div>
         <div class="damage-field">
           <label>Leap (standing)</label>
-          <input type="text" data-path="system.combat.leapLengthStanding" title="Paste the RUE leaping rules to auto-calc from attributes." value="{{system.combat.leapLengthStanding}}" placeholder="e.g. 3 ft" />
+          <input type="text" data-path="system.combat.leapLengthStanding" title="Auto = 5 ft base +2 ft per level after 1st (player-sourced rule — adjust if your book text differs)." value="{{system.combat.leapLengthStanding}}" placeholder="e.g. 3 ft" />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoLeapStanding}} ft</span>
         </div>
         <div class="damage-field">
           <label>Leap (height)</label>
-          <input type="text" data-path="system.combat.leapHeight" title="Paste the RUE leaping rules to auto-calc from attributes." value="{{system.combat.leapHeight}}" placeholder="e.g. 4 ft" />
+          <input type="text" data-path="system.combat.leapHeight" title="Auto = 4 ft base; ~6 ft with a running start (+50%) (player-sourced rule)." value="{{system.combat.leapHeight}}" placeholder="e.g. 4 ft" />
+          <span class="bonus-total" title="Auto-calculated">= {{system.combat.autoLeapHeight}} ft</span>
         </div>
         <div class="damage-field">
           <label>Lift (lbs)</label>
