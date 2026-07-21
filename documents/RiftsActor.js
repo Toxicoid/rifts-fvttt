@@ -321,7 +321,11 @@ export class RiftsActor extends Actor {
   // ── Saving throw roll ──────────────────────────────────
   // ── rollHthMove ───────────────────────────────────────────
   async rollHthMove({ moveName, damage, addPS, ruleText }) {
-    const dmgBonus = addPS ? (this.system.combat.damageTotal ?? 0) : 0;
+    // HtH special moves are melee attacks, so the P.S. damage bonus
+    // applies (RUE: bonus is for melee combat). It's an S.D.C.-scale
+    // bonus, so it is NOT added to moves that already deal M.D.
+    const dealsMD = /\bM\.?D\b/i.test(String(damage) + " " + String(ruleText ?? ""));
+    const dmgBonus = dealsMD ? 0 : (this.system.combat.damageTotal ?? 0);
     const base = String(damage).replace(/D/g, "d").replace(/\s*\(.*\)\s*/, "").trim();
     const formula = `${base}${dmgBonus ? ` + ${dmgBonus}` : ""}`;
     const roll = new Roll(formula);
@@ -329,7 +333,7 @@ export class RiftsActor extends Actor {
     roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
       flavor: `
-        <strong>${moveName}</strong> — damage${addPS ? " (incl. damage bonus)" : ""}<br>
+        <strong>${moveName}</strong> — damage${dmgBonus ? ` (incl. +${dmgBonus} damage bonus)` : ""}<br>
         <em style="font-size:11px;">${ruleText || ""}</em>
       `,
     });

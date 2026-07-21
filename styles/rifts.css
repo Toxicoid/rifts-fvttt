@@ -2306,3 +2306,22 @@
 /* Detail toggles share one look across Skills, Weapons, Armor, Equipment */
 .rifts .gear-expand-toggle.active { color: var(--rifts-orange, #e8751a); }
 .rifts .gear-detail-specs { margin: 4px 0 6px; }
+
+/* HtH bar: keep the moves button clear of the summary text */
+.rifts .hth-bar { row-gap: 6px; column-gap: 12px; }
+.rifts .hth-summary {
+  flex: 1 1 260px;
+  min-width: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.rifts .hth-moves-toggle {
+  margin-left: auto;
+  flex: 0 0 auto;
+  white-space: nowrap;
+  padding: 2px 10px;
+  position: relative;
+  z-index: 1;
+}
