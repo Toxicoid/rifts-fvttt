@@ -156,6 +156,7 @@ Hooks.once("ready", async () => {
     { name: "Create Rifts OCCs Compendium", file: "CreateRiftsOCCs.js",  img: "icons/svg/book.svg" },
     { name: "Create Rifts Skills",          file: "CreateRiftsSkills.js", img: "icons/svg/book.svg" },
     { name: "Create Cybernetics (Data)",     file: "CreateCyberneticsData.js", img: "icons/svg/upgrade.svg" },
+    { name: "Create Races & O.C.C.s (Drag-Drop)", file: "CreateRiftsCreationItems.js", img: "icons/svg/card-hand.svg" },
   ];
 
   let folder = game.folders.find((f) => f.type === "Macro" && f.name === "Rifts");

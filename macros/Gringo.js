@@ -5,15 +5,19 @@
 // armored — trades the Mark I/II speed for firepower.
 // ============================================================
 
-const actor = canvas.tokens.controlled[0]?.actor ?? game.user.character;
+// Target: a drag-and-drop creation item sets riftsCreationTarget;
+// otherwise fall back to the selected token / assigned character.
+const actor = globalThis.riftsCreationTarget
+  ?? canvas.tokens.controlled[0]?.actor
+  ?? game.user.character;
 
 if (!actor) {
   ui.notifications.warn("Please select a token or assign a character first.");
   return;
 }
 
-if (actor.type !== "character") {
-  ui.notifications.warn(`${actor.name} is a ${actor.type} actor. Chassis setup macros are built for Character actors — create major named NPCs as Characters.`);
+if (actor.type !== "character" && actor.type !== "npc") {
+  ui.notifications.warn(`${actor.name} is a ${actor.type} actor. Race/O.C.C./Chassis setups apply to Character and NPC actors only.`);
   return;
 }
 

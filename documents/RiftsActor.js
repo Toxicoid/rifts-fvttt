@@ -4,6 +4,7 @@
 // ============================================================
 
 import { HTH_STYLES, hthBonus, hthCrit, hthMoves, matchMove } from "./hth-data.js";
+import { applyCreation, summarizeForNpc } from "./creation.js";
 
 export class RiftsActor extends Actor {
 
@@ -343,18 +344,65 @@ export class RiftsActor extends Actor {
   // ── HtH skill drag-sync ───────────────────────────────────
   // Dropping a "Hand to Hand: X" skill onto the sheet also sets
   // the combat H2H style so the auto-progression engine engages.
-  _onCreateDescendantDocuments(parent, collection, documents, ...rest) {
-    super._onCreateDescendantDocuments(parent, collection, documents, ...rest);
-    if (this.type !== "character") return;
+  async _onCreateDescendantDocuments(parent, collection, documents, result, options, userId) {
+    super._onCreateDescendantDocuments(parent, collection, documents, result, options, userId);
+    // Only the client that made the drop acts on it — otherwise every
+    // connected owner would run the same setup.
+    if (userId && userId !== game.user.id) return;
+
+    // ── Hand to Hand style sync (characters) ────────────────
+    if (this.type === "character") {
+      for (const doc of documents) {
+        if (doc.type !== "skill") continue;
+        const m = /^hand to hand[:\s]+(.+)$/i.exec(doc.name ?? "");
+        if (!m) continue;
+        const key = {
+          basic: "basic", expert: "expert", "martial arts": "martialArts",
+          assassin: "assassin", commando: "commando", dragon: "dragon",
+        }[m[1].trim().toLowerCase()];
+        if (key) this.update({ "system.combat.hthStyle": key });
+      }
+    }
+
+    // ── Drag-and-drop creation (Race / R.C.C. / O.C.C. / Chassis) ──
+    // Items created BY a setup script never carry the flag, so this
+    // cannot recurse; the guard is belt and braces.
+    if (this._riftsApplyingCreation) return;
     for (const doc of documents) {
-      if (doc.type !== "skill") continue;
-      const m = /^hand to hand[:\s]+(.+)$/i.exec(doc.name ?? "");
-      if (!m) continue;
-      const key = {
-        basic: "basic", expert: "expert", "martial arts": "martialArts",
-        assassin: "assassin", commando: "commando", dragon: "dragon",
-      }[m[1].trim().toLowerCase()];
-      if (key) this.update({ "system.combat.hthStyle": key });
+      const file = doc.flags?.rifts?.creationFile ?? doc.getFlag?.("rifts", "creationFile");
+      if (file) await this._applyCreationItem(doc, file);
+    }
+  }
+
+  // ── _applyCreationItem ────────────────────────────────────
+  // Runs a dropped setup item against this actor. Confirms first
+  // if the same setup has already been applied.
+  async _applyCreationItem(item, file) {
+    if (this.type === "vehicle") {
+      ui.notifications.warn(`${this.name} is a vehicle — Race/O.C.C. setups apply to characters and NPCs.`);
+      return;
+    }
+
+    const applied = this.getFlag("rifts", "appliedCreations") ?? [];
+    if (applied.includes(file)) {
+      const again = await Dialog.confirm({
+        title: "Already Applied",
+        content: `<p><strong>${item.name}</strong> has already been applied to ${this.name}.</p>
+                  <p>Applying it again will add another set of skills, equipment and bonuses.</p>
+                  <p>Apply it a second time?</p>`,
+        defaultYes: false,
+      });
+      if (!again) return;
+    }
+
+    this._riftsApplyingCreation = true;
+    try {
+      const ok = await applyCreation(this, file);
+      if (!ok) return;
+      await this.setFlag("rifts", "appliedCreations", [...new Set([...applied, file])]);
+      if (this.type === "npc") await summarizeForNpc(this);
+    } finally {
+      this._riftsApplyingCreation = false;
     }
   }
 

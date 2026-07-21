@@ -8,15 +8,19 @@
 // This macro INCREMENTS M.A. (+1D4+1) and S.D.C. (+2D6).
 // ============================================================
 
-const actor = canvas.tokens.controlled[0]?.actor ?? game.user.character;
+// Target: a drag-and-drop creation item sets riftsCreationTarget;
+// otherwise fall back to the selected token / assigned character.
+const actor = globalThis.riftsCreationTarget
+  ?? canvas.tokens.controlled[0]?.actor
+  ?? game.user.character;
 
 if (!actor) {
   ui.notifications.warn("Please select a token or assign a character first.");
   return;
 }
 
-if (actor.type !== "character") {
-  ui.notifications.warn(`${actor.name} is a ${actor.type} actor. OCC/RCC setup macros are built for Character actors — create major named NPCs as Characters instead.`);
+if (actor.type !== "character" && actor.type !== "npc") {
+  ui.notifications.warn(`${actor.name} is a ${actor.type} actor. Race/O.C.C./Chassis setups apply to Character and NPC actors only.`);
   return;
 }
 
