@@ -180,18 +180,34 @@ Hooks.once("ready", async () => {
   for (const m of SYSTEM_MACROS) {
     const target = await bookFolder(m.book);
     const existing = game.macros.find((x) => x.name === m.name);
+
+    // Always read the shipped script so an already-imported macro can be
+    // refreshed when the system updates. Without this, an old copy of the
+    // macro sits in the world forever and system updates appear to do
+    // nothing (the "delete the macro to get the new one" trap).
+    let command = null;
+    try {
+      const resp = await fetch(`systems/rifts/macros/${m.file}`);
+      if (resp.ok) command = await resp.text();
+    } catch (err) {
+      console.warn(`Rifts | Failed to read macro file ${m.file}`, err);
+    }
+
     if (existing) {
-      // Already imported — just make sure it sits in the right book folder.
-      if (existing.folder?.id !== target.id) {
-        await existing.update({ folder: target.id });
-        console.log(`Rifts | Moved macro into ${m.book ?? "Rifts"}: ${m.name}`);
+      const changes = {};
+      if (existing.folder?.id !== target.id) changes.folder = target.id;
+      if (command !== null && existing.command !== command) changes.command = command;
+      if (Object.keys(changes).length) {
+        await existing.update(changes);
+        console.log(
+          `Rifts | Updated macro: ${m.name}${changes.command ? " (script refreshed)" : ""}`
+        );
       }
       continue;
     }
+
+    if (command === null) continue;
     try {
-      const resp = await fetch(`systems/rifts/macros/${m.file}`);
-      if (!resp.ok) continue;
-      const command = await resp.text();
       await Macro.create({
         name: m.name,
         type: "script",
