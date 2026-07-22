@@ -242,6 +242,7 @@
     },
     "weapon": {
       "specs": [],
+      "quantity": 1,
       "equipped": false,
       "description": "",
       "damage": "",
@@ -265,6 +266,7 @@
       "notes": ""
     },
     "armor": {
+      "quantity": 1,
       "dcType": "MDC",
       "ar": 0,
       "main": { "value": 0, "max": 0 },

@@ -1,7 +1,6 @@
 {
   "RIFTS": {
     "SheetTitle": "Rifts Character Sheet",
-
     "Tabs": {
       "Attributes": "Attributes",
       "Combat": "Combat",
@@ -10,7 +9,6 @@
       "Background": "Background",
       "Notes": "Notes"
     },
-
     "Attributes": {
       "iq": "I.Q.",
       "me": "M.E.",
@@ -21,7 +19,6 @@
       "pb": "P.B.",
       "spd": "Spd"
     },
-
     "AttributesFull": {
       "iq": "Intelligence Quotient",
       "me": "Mental Endurance",
@@ -32,7 +29,6 @@
       "pb": "Physical Beauty",
       "spd": "Speed"
     },
-
     "Health": {
       "HP": "H.P.",
       "HPFull": "Hit Points",
@@ -43,7 +39,6 @@
       "Current": "Current",
       "Max": "Max"
     },
-
     "Identity": {
       "OCC": "O.C.C.",
       "OCCType": "O.C.C. Type",
@@ -59,7 +54,6 @@
       "Homeland": "Homeland",
       "Languages": "Languages Spoken"
     },
-
     "Alignments": {
       "principled": "Principled (Good)",
       "scrupulous": "Scrupulous (Good)",
@@ -69,7 +63,6 @@
       "aberrant": "Aberrant (Evil)",
       "diabolic": "Diabolic (Evil)"
     },
-
     "Combat": {
       "Title": "Combat",
       "AttacksPerMelee": "Attacks per Melee",
@@ -86,7 +79,6 @@
       "PunchDamage": "Punch Damage",
       "KickDamage": "Kick Damage"
     },
-
     "Saves": {
       "Title": "Saving Throws",
       "Magic": "vs. Magic",
@@ -98,13 +90,11 @@
       "Death": "vs. Death",
       "Coma": "Coma/Death %"
     },
-
     "Money": {
       "Title": "Currency",
       "Credits": "Credits",
       "BlackMarket": "Black Market Items"
     },
-
     "Skills": {
       "Title": "Skills",
       "Name": "Skill Name",
@@ -117,7 +107,6 @@
       "Notes": "Notes",
       "Roll": "Roll Skill"
     },
-
     "SkillCategories": {
       "communications": "Communications",
       "domestic": "Domestic",
@@ -136,7 +125,6 @@
       "weaponProficiency": "W.P.",
       "wilderness": "Wilderness"
     },
-
     "Weapons": {
       "Title": "Weapons",
       "Name": "Weapon",
@@ -150,13 +138,11 @@
       "StrikeBonus": "Strike Bonus",
       "Notes": "Notes"
     },
-
     "DamageTypes": {
       "sdc": "S.D.C.",
       "mdc": "M.D.C.",
       "md": "Mega-Damage"
     },
-
     "Armor": {
       "Title": "Armor",
       "Name": "Armor",
@@ -167,7 +153,6 @@
       "Cost": "Cost",
       "Notes": "Notes"
     },
-
     "Equipment": {
       "Title": "Equipment",
       "Name": "Item",
@@ -176,24 +161,20 @@
       "Cost": "Cost",
       "Notes": "Notes"
     },
-
     "OCCAbilities": {
       "Title": "O.C.C. Abilities",
       "Name": "Ability",
       "Level": "Gained at Level",
       "Description": "Description"
     },
-
     "Background": {
       "Title": "Background",
       "Biography": "Biography & Background"
     },
-
     "Notes": {
       "Title": "Notes",
       "Content": "Session Notes"
     },
-
     "Buttons": {
       "AddSkill": "Add Skill",
       "AddWeapon": "Add Weapon",
@@ -203,6 +184,20 @@
       "Delete": "Delete",
       "Edit": "Edit",
       "Roll": "Roll"
+    }
+  },
+  "TYPES": {
+    "Actor": {
+      "character": "Character",
+      "npc": "NPC",
+      "vehicle": "Vehicle"
+    },
+    "Item": {
+      "skill": "Skill",
+      "weapon": "Weapon",
+      "armor": "Armor",
+      "equipment": "Equipment",
+      "occ_ability": "O.C.C. Ability"
     }
   }
 }
