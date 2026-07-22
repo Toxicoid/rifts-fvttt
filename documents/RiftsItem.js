@@ -42,6 +42,11 @@ export class RiftsItem extends Item {
     const dt = String(this.system.damageType ?? "").toUpperCase();
     this.system.damageType = dt === "MD" ? "MDC" : (dt || "SDC");
 
+    // Melee weapons keep the quick damage button: no ammo, no power
+    // settings, and their damage gets rolled over and over. Ranged
+    // weapons roll damage inside the attack dialog instead.
+    this.system.isMelee = /melee|hand|punch|kick|bite|claw/i.test(this.system.range ?? "");
+
     const weapon = this.system;
 
     // Ensure payload is never negative
