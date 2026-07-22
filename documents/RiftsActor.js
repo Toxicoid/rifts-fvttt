@@ -543,6 +543,17 @@ export class RiftsActor extends Actor {
     return roll;
   }
 
+  // ── _multiplyDice ─────────────────────────────────────────
+  // "2d6" x3 -> "6d6"; "1d4*10" x3 -> "3d4*10"; flat numbers untouched.
+  // Used for burst fire when a weapon has no printed burst damage.
+  static _multiplyDice(formula, factor) {
+    if (!formula || factor <= 1) return formula;
+    return String(formula).replace(/(\d*)[dD](\d+)/g, (m, count, faces) => {
+      const n = Number(count || 1) * factor;
+      return `${n}d${faces}`;
+    });
+  }
+
   // ── Attack dialog ─────────────────────────────────────────
   // One prompt covering shot type, situational modifiers, power
   // setting and ammo, so a player fires without leaving the sheet.
@@ -700,14 +711,26 @@ export class RiftsActor extends Actor {
 
     // ── Damage ──
     if (choice.dmg) {
-      const formula = isBurst && w.burstDamage ? w.burstDamage : setting.damage;
-      const dtype = isBurst && w.burstDamage ? (w.damageType ?? "MDC") : setting.type;
+      // Burst damage: a printed figure always wins (books often list LESS
+      // than the round count — the Bandit rail gun fires 6 rounds for 2D6
+      // against 1D6 single, because not every round lands). With nothing
+      // printed, roll the dice once per round in the burst.
+      let formula = setting.damage;
+      let dtype = setting.type;
+      let note = "";
+      if (isBurst) {
+        if (w.burstDamage) {
+          formula = w.burstDamage;
+          dtype = w.damageType ?? "MDC";
+          note = ` <em style="font-size:11px;">(printed burst damage)</em>`;
+        } else {
+          formula = RiftsActor._multiplyDice(setting.damage, burstRounds);
+          note = ` <em style="font-size:11px;">(burst of ${burstRounds} — dice x${burstRounds})</em>`;
+        }
+      }
       if (formula) {
         const dmgRoll = new Roll(String(formula).replace(/D/g, "d"));
         await dmgRoll.evaluate();
-        const note = isBurst && !w.burstDamage
-          ? ' <em style="font-size:11px;">(burst — apply your table\'s burst rule)</em>'
-          : "";
         await dmgRoll.toMessage({
           speaker: ChatMessage.getSpeaker({ actor: this }),
           flavor: `<strong>${weapon.name}</strong> — Damage (${dtype === "MDC" ? "M.D." : "S.D.C."})${note}`,
