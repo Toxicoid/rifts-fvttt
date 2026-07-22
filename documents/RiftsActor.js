@@ -536,6 +536,153 @@ export class RiftsActor extends Actor {
     return roll;
   }
 
+  // ── Attack dialog ─────────────────────────────────────────
+  // One prompt covering shot type, power setting, modifier and ammo,
+  // so a player fires without leaving the sheet.
+  async rollWeaponAttack(weapon) {
+    const w = weapon.system;
+    const settings = [
+      { key: "normal", label: `Standard — ${w.damage || "?"} ${w.damageType === "MDC" ? "M.D." : "S.D.C."}`, damage: w.damage, type: w.damageType, cost: 1 },
+    ];
+    if (w.settingHigh) settings.push({ key: "high", label: `High — ${w.settingHigh} M.D.`, damage: w.settingHigh, type: "MDC", cost: 1 });
+    if (w.settingSdc) settings.push({ key: "sdc", label: `S.D.C. — ${w.settingSdc}`, damage: w.settingSdc, type: "SDC", cost: 1 });
+
+    const burstRounds = Number(w.burstRounds) || 0;
+    const payload = Number(w.payload) || 0;
+    const payloadMax = Number(w.payloadMax) || 0;
+    const reloadActions = Number(w.reloadActions) || 0;
+    const tracksAmmo = payloadMax > 0 || payload > 0;
+
+    const ammoLine = tracksAmmo
+      ? `<p class="rifts-ammo">Ammo: <strong>${payload}</strong>${payloadMax ? ` / ${payloadMax}` : ""}${payload <= 0 ? ' — <span style="color:#e33;">EMPTY</span>' : ""}</p>`
+      : "";
+
+    const content = `
+      <form class="rifts-attack-dialog">
+        ${ammoLine}
+        <div class="form-group">
+          <label>Shot Type</label>
+          <select name="shot">
+            <option value="normal">Normal shot</option>
+            <option value="aimed">Aimed shot</option>
+            <option value="called">Called shot</option>
+            <option value="wild">Wild shot (running / unbalanced — no bonuses)</option>
+            ${burstRounds ? `<option value="burst">Burst of ${burstRounds}</option>` : ""}
+          </select>
+        </div>
+        ${settings.length > 1 ? `
+        <div class="form-group">
+          <label>Power Setting</label>
+          <select name="setting">
+            ${settings.map((s) => `<option value="${s.key}">${s.label}</option>`).join("")}
+          </select>
+        </div>` : ""}
+        <div class="form-group">
+          <label>Situational Modifier</label>
+          <input type="number" name="mod" value="0" />
+        </div>
+        <div class="form-group">
+          <label><input type="checkbox" name="dmg" checked /> Also roll damage</label>
+        </div>
+      </form>`;
+
+    const choice = await new Promise((resolve) => {
+      new Dialog({
+        title: `${weapon.name} — Attack`,
+        content,
+        buttons: {
+          fire: {
+            label: "Fire",
+            callback: (html) => resolve({
+              shot: html.find('[name="shot"]').val() ?? "normal",
+              setting: html.find('[name="setting"]').val() ?? "normal",
+              mod: Number(html.find('[name="mod"]').val()) || 0,
+              dmg: html.find('[name="dmg"]').is(":checked"),
+            }),
+          },
+          cancel: { label: "Cancel", callback: () => resolve(null) },
+        },
+        default: "fire",
+        close: () => resolve(null),
+      }).render(true);
+    });
+    if (!choice) return;
+
+    const setting = settings.find((s) => s.key === choice.setting) ?? settings[0];
+    const isBurst = choice.shot === "burst";
+    const shotsUsed = isBurst ? burstRounds : setting.cost;
+
+    // ── Ammo check ──
+    if (tracksAmmo && payload < shotsUsed) {
+      await ChatMessage.create({
+        speaker: ChatMessage.getSpeaker({ actor: this }),
+        content: `<div class="rifts-chat"><strong>${weapon.name}</strong> — <span style="color:#e33;">OUT OF AMMO</span><br>
+          <span style="font-size:11px;">Needs ${shotsUsed} charge(s), has ${payload}. RELOAD — ${reloadActions || "?"} action(s).</span></div>`,
+      });
+      return;
+    }
+
+    // ── Strike ──
+    // Wild shots lose all bonuses (Palladium's standard treatment for
+    // firing while running, from a moving vehicle or otherwise unbalanced).
+    const aimedLike = choice.shot === "aimed" || choice.shot === "called";
+    const charStrike = this.system.combat.strikeTotal ?? this.system.combat.strikeBonus ?? 0;
+    const weaponStrike = Number(w.bonusToStrike) || 0;
+    const aimedBonus = aimedLike ? Number(w.aimedStrike) || 0 : 0;
+    const wild = choice.shot === "wild";
+    const total = wild ? choice.mod : charStrike + weaponStrike + aimedBonus + choice.mod;
+
+    const roll = new Roll(`1d20 + ${total}`);
+    await roll.evaluate();
+    const natural = roll.dice[0].total;
+    let resultText = "";
+    if (natural === 20) resultText = ` — <span style="color:#e8751a;font-weight:bold;">NATURAL 20! CRITICAL!</span>`;
+    else if (natural === 1) resultText = ` — <span style="color:#e33;font-weight:bold;">NATURAL 1!</span>`;
+    else if (roll.total >= 5) resultText = ` — <span style="color:#3c3;">HIT (5+)</span>`;
+    else resultText = ` — <span style="color:#e33;">MISS (under 5)</span>`;
+
+    const shotLabel = { normal: "Normal shot", aimed: "Aimed shot", called: "Called shot", wild: "Wild shot", burst: `Burst of ${burstRounds}` }[choice.shot];
+    const parts = wild
+      ? [`d20 ${natural}`, "wild — no bonuses apply", choice.mod ? `${choice.mod > 0 ? "+" : ""}${choice.mod} mod` : ""]
+      : [`d20 ${natural}`, `+${charStrike} strike`, weaponStrike ? `+${weaponStrike} weapon` : "", aimedBonus ? `+${aimedBonus} aimed` : "", choice.mod ? `${choice.mod > 0 ? "+" : ""}${choice.mod} mod` : ""];
+
+    await roll.toMessage({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      flavor: `<strong>${weapon.name}</strong> — ${shotLabel}${resultText}<br>
+               <span style="font-size:11px;">${parts.filter(Boolean).join(" ")}</span>`,
+    });
+
+    // ── Damage ──
+    if (choice.dmg) {
+      const formula = isBurst && w.burstDamage ? w.burstDamage : setting.damage;
+      const dtype = isBurst && w.burstDamage ? (w.damageType ?? "MDC") : setting.type;
+      if (formula) {
+        const dmgRoll = new Roll(String(formula).replace(/D/g, "d"));
+        await dmgRoll.evaluate();
+        const note = isBurst && !w.burstDamage
+          ? ' <em style="font-size:11px;">(burst — apply your table\'s burst rule to this figure)</em>'
+          : "";
+        await dmgRoll.toMessage({
+          speaker: ChatMessage.getSpeaker({ actor: this }),
+          flavor: `<strong>${weapon.name}</strong> — Damage (${dtype === "MDC" ? "M.D." : "S.D.C."})${note}`,
+        });
+      }
+    }
+
+    // ── Spend ammo ──
+    if (tracksAmmo) {
+      const left = Math.max(0, payload - shotsUsed);
+      await weapon.update({ "system.payload": left });
+      if (left <= 0) {
+        await ChatMessage.create({
+          speaker: ChatMessage.getSpeaker({ actor: this }),
+          content: `<div class="rifts-chat"><strong>${weapon.name}</strong> — <span style="color:#e33;">EMPTY</span><br>
+            <span style="font-size:11px;">RELOAD — ${reloadActions || "?"} action(s).</span></div>`,
+        });
+      }
+    }
+  }
+
   async rollWeaponStrike(weapon, { skipDialog = false } = {}) {
     const strikeBonus = this.system.combat.strikeTotal ?? this.system.combat.strikeBonus ?? 0;
     const weaponBonus = weapon.system.bonusToStrike ?? 0;

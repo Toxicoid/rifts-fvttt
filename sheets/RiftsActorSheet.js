@@ -290,7 +290,11 @@ export class RiftsActorSheet extends ActorSheet {
     html.find(".weapon-strike-roll").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;
       const weapon = this.actor.items.get(itemId);
-      if (weapon) await this.actor.rollWeaponStrike(weapon, { skipDialog: event.shiftKey });
+      // Shift-click keeps the old quick strike roll; a normal click opens
+      // the full attack dialog (shot type, power setting, ammo).
+      if (!weapon) return;
+      if (event.shiftKey) await this.actor.rollWeaponStrike(weapon, { skipDialog: true });
+      else await this.actor.rollWeaponAttack(weapon);
     });
 
     html.find(".weapon-damage-roll").click(async (event) => {

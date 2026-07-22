@@ -2431,3 +2431,13 @@
   flex: 0 0 auto;
   margin: 0;
 }
+
+/* Attack dialog */
+.rifts-attack-dialog .form-group { margin-bottom: 6px; }
+.rifts-attack-dialog .rifts-ammo {
+  font-family: var(--font-mono, monospace);
+  font-size: 12px;
+  margin: 0 0 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--rifts-border, #444);
+}

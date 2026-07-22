@@ -252,6 +252,13 @@
       "weight": "",
       "cost": 0,
       "bonusToStrike": 0,
+      "aimedStrike": 0,
+      "burstRounds": 0,
+      "burstDamage": "",
+      "payloadMax": 0,
+      "reloadActions": 0,
+      "settingHigh": "",
+      "settingSdc": "",
       "special": "",
       "notes": ""
     },

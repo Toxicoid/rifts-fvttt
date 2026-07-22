@@ -44,7 +44,35 @@
         </div>
         <div class="is-field">
           <label>Bonus to Strike</label>
-          <input type="number" data-path-number="system.bonusToStrike" value="{{system.bonusToStrike}}" />
+          <input type="number" data-path-number="system.bonusToStrike" value="{{system.bonusToStrike}}" title="Applies to every shot." />
+        </div>
+        <div class="is-field">
+          <label>Aimed-Only Strike</label>
+          <input type="number" data-path-number="system.aimedStrike" value="{{system.aimedStrike}}" title="Bonus that applies ONLY on Aimed or Called shots — e.g. laser targeting +1." />
+        </div>
+        <div class="is-field">
+          <label>Payload (max)</label>
+          <input type="number" data-path-number="system.payloadMax" value="{{system.payloadMax}}" min="0" title="Full E-Clip/magazine capacity. Set this to enable ammo tracking; Payload holds the current count." />
+        </div>
+        <div class="is-field">
+          <label>Burst (rounds)</label>
+          <input type="number" data-path-number="system.burstRounds" value="{{system.burstRounds}}" min="0" title="Rounds spent per burst. 0 = no burst mode." />
+        </div>
+        <div class="is-field">
+          <label>Burst Damage</label>
+          <input type="text" data-path="system.burstDamage" value="{{system.burstDamage}}" placeholder="e.g. 2d6" title="Damage for a burst if the book prints one. Blank = use your table's burst rule." />
+        </div>
+        <div class="is-field">
+          <label>Setting: High M.D.</label>
+          <input type="text" data-path="system.settingHigh" value="{{system.settingHigh}}" placeholder="e.g. 4d6" title="Alternate high-power setting offered in the attack dialog." />
+        </div>
+        <div class="is-field">
+          <label>Setting: S.D.C.</label>
+          <input type="text" data-path="system.settingSdc" value="{{system.settingSdc}}" placeholder="e.g. 6d6" title="Alternate S.D.C. setting offered in the attack dialog." />
+        </div>
+        <div class="is-field">
+          <label>Reload (actions)</label>
+          <input type="number" data-path-number="system.reloadActions" value="{{system.reloadActions}}" min="0" title="Melee actions needed to reload — reported when the weapon runs dry." />
         </div>
         <div class="is-field">
           <label>Weight</label>
