@@ -231,14 +231,25 @@ const index = await pack.getIndex();
 const byName = new Map(index.map((e) => [e.name, e]));
 
 let created = 0;
+let updated = 0;
 let moved = 0;
 for (const itemData of items) {
   const entry = byName.get(itemData.name);
   if (entry) {
-    if ((entry.folder ?? null) !== itemData.folder) {
-      const doc = await pack.getDocument(entry._id);
-      await doc.update({ folder: itemData.folder });
-      moved++;
+    // Refresh an existing entry so system updates actually reach the
+    // compendium — without this, a corrected stat block never lands and
+    // re-running the macro looks like it did nothing.
+    const doc = await pack.getDocument(entry._id);
+    const changes = {};
+    if ((entry.folder ?? null) !== itemData.folder) changes.folder = itemData.folder;
+    if (JSON.stringify(doc.system) !== JSON.stringify(foundry.utils.mergeObject(doc.system, itemData.system, { inplace: false }))) {
+      changes.system = itemData.system;
+    }
+    if (itemData.img && doc.img !== itemData.img) changes.img = itemData.img;
+    if (Object.keys(changes).length) {
+      await doc.update(changes);
+      if (changes.system || changes.img) updated++;
+      else moved++;
     }
     continue;
   }
@@ -246,4 +257,4 @@ for (const itemData of items) {
   created++;
 }
 
-ui.notifications.info(`${PACK_LABEL}: ${created} item(s) added, ${moved} moved into folders, ${items.length - created - moved} already in place.`);
+ui.notifications.info(`${PACK_LABEL}: ${created} added, ${updated} updated, ${moved} moved into folders, ${items.length - created - updated - moved} already current.`);

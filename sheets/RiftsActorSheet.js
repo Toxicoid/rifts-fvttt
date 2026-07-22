@@ -106,10 +106,10 @@ export class RiftsActorSheet extends ActorSheet {
       diabolic: "Diabolic (Evil)",
     };
 
+    // Values match what items store (see RiftsItem._prepareWeaponData).
     context.damageTypes = {
-      sdc: "S.D.C.",
-      mdc: "M.D.C.",
-      md: "Mega-Damage",
+      SDC: "S.D.C.",
+      MDC: "M.D.C.",
     };
 
     context.skillCategories = {

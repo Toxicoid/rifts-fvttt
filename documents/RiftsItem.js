@@ -35,6 +35,13 @@ export class RiftsItem extends Item {
   // ── _prepareWeaponData ────────────────────────────────────
   // Any derived weapon calculations go here
   _prepareWeaponData() {
+    // Damage type is stored uppercase ("SDC" / "MDC"). Older items and
+    // hand-edited data may hold lowercase, which broke the gear-tab
+    // dropdown (nothing matched, so it displayed the first option and
+    // could silently save an M.D. weapon as S.D.C.).
+    const dt = String(this.system.damageType ?? "").toUpperCase();
+    this.system.damageType = dt === "MD" ? "MDC" : (dt || "SDC");
+
     const weapon = this.system;
 
     // Ensure payload is never negative

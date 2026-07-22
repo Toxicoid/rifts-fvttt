@@ -69,12 +69,8 @@
                  placeholder="2d6" />
           <select data-item-id="{{this.id}}"
                   data-item-path="system.damageType">
-            {{#each ../damageTypes as |label key|}}
-              <option value="{{key}}"
-                {{#if (eq ../../this.system.damageType key)}}selected{{/if}}>
-                {{label}}
-              </option>
-            {{/each}}
+            <option value="SDC" {{#if (eq this.system.damageType "SDC")}}selected{{/if}}>S.D.C.</option>
+            <option value="MDC" {{#if (eq this.system.damageType "MDC")}}selected{{/if}}>M.D.C.</option>
           </select>
           <input type="text"
                  data-item-id="{{this.id}}"
