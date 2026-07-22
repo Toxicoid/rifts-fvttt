@@ -297,6 +297,12 @@ export class RiftsActorSheet extends ActorSheet {
       else await this.actor.rollWeaponAttack(weapon);
     });
 
+    html.find(".weapon-reload").click(async (event) => {
+      const itemId = event.currentTarget.dataset.itemId;
+      const weapon = this.actor.items.get(itemId);
+      if (weapon) await this.actor.reloadWeapon(weapon);
+    });
+
     html.find(".weapon-damage-roll").click(async (event) => {
       const itemId = event.currentTarget.dataset.itemId;
       const weapon = this.actor.items.get(itemId);

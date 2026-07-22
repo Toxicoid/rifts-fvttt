@@ -95,9 +95,17 @@
             <button type="button"
                     class="weapon-strike-roll icon-btn"
                     data-item-id="{{this.id}}"
-                    title="Roll Strike (d20)">
+                    title="Attack — shot type, modifiers, ammo (shift-click for a quick strike roll)">
               <i class="fas fa-crosshairs"></i>
             </button>
+            {{#if this.system.payloadMax}}
+            <button type="button"
+                    class="weapon-reload icon-btn"
+                    data-item-id="{{this.id}}"
+                    title="Reload — choose standard or long E-Clip">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+            {{/if}}
             <button type="button"
                     class="weapon-damage-roll icon-btn"
                     data-item-id="{{this.id}}"

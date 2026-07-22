@@ -5,6 +5,7 @@
 
 import { HTH_STYLES, hthBonus, hthCrit, hthMoves, matchMove } from "./hth-data.js";
 import { applyCreation, summarizeForNpc } from "./creation.js";
+import { SHOT_TYPES, SITUATIONAL, shotType } from "./shot-data.js";
 
 export class RiftsActor extends Actor {
 
@@ -177,6 +178,12 @@ export class RiftsActor extends Actor {
     combat.parryTotal = Math.round((combat.parryBonus || 0) + (combat.attrParry || 0));
     combat.dodgeTotal = Math.round((combat.dodgeBonus || 0) + (combat.attrDodge || 0));
     combat.damageTotal = Math.round((combat.damageBonus || 0) + (combat.attrDamage || 0));
+
+    // Ranged strike total. VERIFIED RULE: "A Character's P.P. Bonuses do
+    // NOT count when shooting a gun." Hand to Hand training bonuses are
+    // melee too, so guns use only the stored strike bonus — which is
+    // where W.P. bonuses are tracked.
+    combat.strikeRanged = Math.round(combat.strikeBonus || 0);
 
     // ── Hand to Hand style (auto level progression) ────────
     // The selected style contributes cumulative bonuses by the
@@ -537,10 +544,12 @@ export class RiftsActor extends Actor {
   }
 
   // ── Attack dialog ─────────────────────────────────────────
-  // One prompt covering shot type, power setting, modifier and ammo,
-  // so a player fires without leaving the sheet.
+  // One prompt covering shot type, situational modifiers, power
+  // setting and ammo, so a player fires without leaving the sheet.
   async rollWeaponAttack(weapon) {
     const w = weapon.system;
+    const isMelee = /melee/i.test(w.range ?? "");
+
     const settings = [
       { key: "normal", label: `Standard — ${w.damage || "?"} ${w.damageType === "MDC" ? "M.D." : "S.D.C."}`, damage: w.damage, type: w.damageType, cost: 1 },
     ];
@@ -551,10 +560,14 @@ export class RiftsActor extends Actor {
     const payload = Number(w.payload) || 0;
     const payloadMax = Number(w.payloadMax) || 0;
     const reloadActions = Number(w.reloadActions) || 0;
-    const tracksAmmo = payloadMax > 0 || payload > 0;
+    const tracksAmmo = !isMelee && (payloadMax > 0 || payload > 0);
+    const clipLabel = w.clipType === "long" ? "long E-Clip" : "standard E-Clip";
+
+    // Melee weapons only need the plain strike path.
+    const typeKeys = Object.keys(SHOT_TYPES).filter((k) => (k !== "burst" || burstRounds > 0));
 
     const ammoLine = tracksAmmo
-      ? `<p class="rifts-ammo">Ammo: <strong>${payload}</strong>${payloadMax ? ` / ${payloadMax}` : ""}${payload <= 0 ? ' — <span style="color:#e33;">EMPTY</span>' : ""}</p>`
+      ? `<p class="rifts-ammo">Ammo: <strong>${payload}</strong>${payloadMax ? ` / ${payloadMax}` : ""} <span class="rifts-clip">(${clipLabel})</span>${payload <= 0 ? ' — <span style="color:#e33;">EMPTY</span>' : ""}</p>`
       : "";
 
     const content = `
@@ -563,11 +576,7 @@ export class RiftsActor extends Actor {
         <div class="form-group">
           <label>Shot Type</label>
           <select name="shot">
-            <option value="normal">Normal shot</option>
-            <option value="aimed">Aimed shot</option>
-            <option value="called">Called shot</option>
-            <option value="wild">Wild shot (running / unbalanced — no bonuses)</option>
-            ${burstRounds ? `<option value="burst">Burst of ${burstRounds}</option>` : ""}
+            ${typeKeys.map((k) => `<option value="${k}">${SHOT_TYPES[k].label}</option>`).join("")}
           </select>
         </div>
         ${settings.length > 1 ? `
@@ -577,8 +586,15 @@ export class RiftsActor extends Actor {
             ${settings.map((s) => `<option value="${s.key}">${s.label}</option>`).join("")}
           </select>
         </div>` : ""}
+        <div class="form-group rifts-sit">
+          <label>Situation</label>
+          <div class="rifts-sit-list">
+            ${Object.entries(SITUATIONAL).map(([k, v]) =>
+              `<label class="rifts-sit-item"><input type="checkbox" name="${k}" /> ${v.label}</label>`).join("")}
+          </div>
+        </div>
         <div class="form-group">
-          <label>Situational Modifier</label>
+          <label>Other Modifier</label>
           <input type="number" name="mod" value="0" />
         </div>
         <div class="form-group">
@@ -593,12 +609,17 @@ export class RiftsActor extends Actor {
         buttons: {
           fire: {
             label: "Fire",
-            callback: (html) => resolve({
-              shot: html.find('[name="shot"]').val() ?? "normal",
-              setting: html.find('[name="setting"]').val() ?? "normal",
-              mod: Number(html.find('[name="mod"]').val()) || 0,
-              dmg: html.find('[name="dmg"]').is(":checked"),
-            }),
+            callback: (html) => {
+              const sit = {};
+              for (const k of Object.keys(SITUATIONAL)) sit[k] = html.find(`[name="${k}"]`).is(":checked");
+              resolve({
+                shot: html.find('[name="shot"]').val() ?? "normal",
+                setting: html.find('[name="setting"]').val() ?? "normal",
+                mod: Number(html.find('[name="mod"]').val()) || 0,
+                dmg: html.find('[name="dmg"]').is(":checked"),
+                sit,
+              });
+            },
           },
           cancel: { label: "Cancel", callback: () => resolve(null) },
         },
@@ -608,8 +629,9 @@ export class RiftsActor extends Actor {
     });
     if (!choice) return;
 
+    const shot = shotType(choice.shot);
     const setting = settings.find((s) => s.key === choice.setting) ?? settings[0];
-    const isBurst = choice.shot === "burst";
+    const isBurst = !!shot.isBurst;
     const shotsUsed = isBurst ? burstRounds : setting.cost;
 
     // ── Ammo check ──
@@ -622,15 +644,30 @@ export class RiftsActor extends Actor {
       return;
     }
 
-    // ── Strike ──
-    // Wild shots lose all bonuses (Palladium's standard treatment for
-    // firing while running, from a moving vehicle or otherwise unbalanced).
-    const aimedLike = choice.shot === "aimed" || choice.shot === "called";
-    const charStrike = this.system.combat.strikeTotal ?? this.system.combat.strikeBonus ?? 0;
+    // ── Strike total ──
+    // Guns: P.P. and Hand to Hand bonuses do NOT apply (verified) — only
+    // the stored strike bonus, which is where W.P. bonuses live.
+    // Melee weapons keep the full total.
+    const c = this.system.combat;
+    let base = isMelee ? (c.strikeTotal ?? 0) : (c.strikeRanged ?? c.strikeBonus ?? 0);
+    const notes = [];
+
+    if (shot.wpHalf) { base = Math.floor(base / 2); notes.push("W.P. bonus halved (burst)"); }
+    if (shot.halfIfAimed) notes.push("aimed/called with this mode uses half the strike bonus");
+    if (shot.wild) { base = 0; notes.push("wild — no bonuses apply"); }
+
     const weaponStrike = Number(w.bonusToStrike) || 0;
+    const aimedLike = ["aimed", "called", "aimedCalled", "quickCalled"].includes(choice.shot);
     const aimedBonus = aimedLike ? Number(w.aimedStrike) || 0 : 0;
-    const wild = choice.shot === "wild";
-    const total = wild ? choice.mod : charStrike + weaponStrike + aimedBonus + choice.mod;
+
+    let sitMod = 0;
+    for (const [k, on] of Object.entries(choice.sit)) {
+      if (!on) continue;
+      if (k === "noWp" && !isBurst) continue;   // the -3 is a burst penalty
+      sitMod += SITUATIONAL[k].mod;
+    }
+
+    const total = (shot.wild ? 0 : base + weaponStrike + aimedBonus) + shot.mod + sitMod + choice.mod;
 
     const roll = new Roll(`1d20 + ${total}`);
     await roll.evaluate();
@@ -641,15 +678,24 @@ export class RiftsActor extends Actor {
     else if (roll.total >= 5) resultText = ` — <span style="color:#3c3;">HIT (5+)</span>`;
     else resultText = ` — <span style="color:#e33;">MISS (under 5)</span>`;
 
-    const shotLabel = { normal: "Normal shot", aimed: "Aimed shot", called: "Called shot", wild: "Wild shot", burst: `Burst of ${burstRounds}` }[choice.shot];
-    const parts = wild
-      ? [`d20 ${natural}`, "wild — no bonuses apply", choice.mod ? `${choice.mod > 0 ? "+" : ""}${choice.mod} mod` : ""]
-      : [`d20 ${natural}`, `+${charStrike} strike`, weaponStrike ? `+${weaponStrike} weapon` : "", aimedBonus ? `+${aimedBonus} aimed` : "", choice.mod ? `${choice.mod > 0 ? "+" : ""}${choice.mod} mod` : ""];
+    const parts = [
+      `d20 ${natural}`,
+      shot.wild ? "no bonuses (wild)" : (base ? `+${base} strike` : ""),
+      !shot.wild && weaponStrike ? `+${weaponStrike} weapon` : "",
+      aimedBonus ? `+${aimedBonus} aimed` : "",
+      shot.mod ? `${shot.mod > 0 ? "+" : ""}${shot.mod} shot` : "",
+      sitMod ? `${sitMod} situational` : "",
+      choice.mod ? `${choice.mod > 0 ? "+" : ""}${choice.mod} mod` : "",
+    ].filter(Boolean);
+
+    const apmLine = `Costs ${shot.apm} of your ${c.attacksPerMelee ?? "?"} attacks per melee.`;
+    const extra = notes.length ? `<br><em style="font-size:11px;">${notes.join(" · ")}</em>` : "";
 
     await roll.toMessage({
       speaker: ChatMessage.getSpeaker({ actor: this }),
-      flavor: `<strong>${weapon.name}</strong> — ${shotLabel}${resultText}<br>
-               <span style="font-size:11px;">${parts.filter(Boolean).join(" ")}</span>`,
+      flavor: `<strong>${weapon.name}</strong> — ${shot.label}${resultText}<br>
+               <span style="font-size:11px;">${parts.join(" ")}</span><br>
+               <span style="font-size:11px;opacity:0.75;">${apmLine}</span>${extra}`,
     });
 
     // ── Damage ──
@@ -660,7 +706,7 @@ export class RiftsActor extends Actor {
         const dmgRoll = new Roll(String(formula).replace(/D/g, "d"));
         await dmgRoll.evaluate();
         const note = isBurst && !w.burstDamage
-          ? ' <em style="font-size:11px;">(burst — apply your table\'s burst rule to this figure)</em>'
+          ? ' <em style="font-size:11px;">(burst — apply your table\'s burst rule)</em>'
           : "";
         await dmgRoll.toMessage({
           speaker: ChatMessage.getSpeaker({ actor: this }),
@@ -681,6 +727,57 @@ export class RiftsActor extends Actor {
         });
       }
     }
+  }
+
+  // ── Reload ────────────────────────────────────────────────
+  // Choose which clip goes in; the weapon's capacity follows the
+  // clip, so ammo stays accurate without hand-editing numbers.
+  async reloadWeapon(weapon) {
+    const w = weapon.system;
+    const std = Number(w.payloadMax) || 0;
+    const long = Number(w.payloadLong) || 0;
+    const reloadActions = Number(w.reloadActions) || 0;
+    if (!std && !long) {
+      ui.notifications.warn(`${weapon.name} has no clip capacity set — add a Payload (max) on the item sheet.`);
+      return;
+    }
+
+    const options = [{ key: "standard", label: `Standard E-Clip — ${std} charges`, size: std }];
+    if (long) options.push({ key: "long", label: `Long E-Clip — ${long} charges`, size: long });
+
+    const pick = await new Promise((resolve) => {
+      new Dialog({
+        title: `${weapon.name} — Reload`,
+        content: `
+          <form class="rifts-attack-dialog">
+            <p class="rifts-ammo">Currently: <strong>${w.payload ?? 0}</strong> / ${std || long} (${w.clipType === "long" ? "long E-Clip" : "standard E-Clip"})</p>
+            <div class="form-group">
+              <label>Load</label>
+              <select name="clip">
+                ${options.map((o) => `<option value="${o.key}" ${o.key === (w.clipType || "standard") ? "selected" : ""}>${o.label}</option>`).join("")}
+              </select>
+            </div>
+          </form>`,
+        buttons: {
+          reload: { label: "Reload", callback: (html) => resolve(html.find('[name="clip"]').val()) },
+          cancel: { label: "Cancel", callback: () => resolve(null) },
+        },
+        default: "reload",
+        close: () => resolve(null),
+      }).render(true);
+    });
+    if (!pick) return;
+
+    const chosen = options.find((o) => o.key === pick) ?? options[0];
+    await weapon.update({
+      "system.clipType": chosen.key,
+      "system.payload": chosen.size,
+    });
+    await ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: `<div class="rifts-chat"><strong>${weapon.name}</strong> — RELOADED<br>
+        <span style="font-size:11px;">${chosen.label}. Takes ${reloadActions || "?"} melee action(s).</span></div>`,
+    });
   }
 
   async rollWeaponStrike(weapon, { skipDialog = false } = {}) {

@@ -211,6 +211,8 @@ const items = [
       rateOfFire: "Each laser blast OR burst counts as one melee attack (shots per melee = your attacks per melee)",
       payload: 20,
       payloadMax: 20,
+      payloadLong: 30,
+      clipType: "standard",
       weight: "7 lbs",
       cost: 20000,
       bonusToStrike: 0,

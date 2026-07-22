@@ -256,6 +256,8 @@
       "burstRounds": 0,
       "burstDamage": "",
       "payloadMax": 0,
+      "payloadLong": 0,
+      "clipType": "standard",
       "reloadActions": 0,
       "settingHigh": "",
       "settingSdc": "",

@@ -2441,3 +2441,23 @@
   padding-bottom: 6px;
   border-bottom: 1px solid var(--rifts-border, #444);
 }
+
+/* Attack dialog — situational modifier list */
+.rifts-attack-dialog .rifts-sit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-top: 2px;
+}
+.rifts-attack-dialog .rifts-sit-item {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.rifts-attack-dialog .rifts-sit-item input[type="checkbox"] {
+  width: auto;
+  flex: 0 0 auto;
+  margin: 0;
+}
+.rifts-attack-dialog .rifts-clip { opacity: 0.75; font-size: 11px; }
