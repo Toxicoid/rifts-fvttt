@@ -52,6 +52,11 @@ await actor.update({
   // P.S. / P.P.: NOT SET — missing from source. VERIFY vs Rifts New West and enter manually.
   "system.combat.attacksPerMelee": 4,    // adjust for HtH level
   "system.combat.psType": "robot",
+  "system.combat.hasBionicLimbs": true,   // show the Bionic Limb panel
+  "system.combat.legPS": 18,                 // chassis legs start at 18 (max 24)
+  "system.combat.legPP": 18,
+  "system.combat.legBase": 18,               // leap bonus counts points bought above this
+  "system.combat.armBase": 10,               // standard prosthetic base (Rifts Bionics p.70)
   "system.combat.initiativeBonus": 1,    // combat computer
   "system.combat.dodgeBonus": 1,         // combat computer
   "system.combat.rollBonus": 2,          // combat computer

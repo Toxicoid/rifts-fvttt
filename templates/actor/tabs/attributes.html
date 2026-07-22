@@ -652,6 +652,13 @@
             <option value="supernatural" {{#if (eq system.combat.psType "supernatural")}}selected{{/if}}>Supernatural</option>
           </select>
         </div>
+        <div class="damage-field bionic-toggle-field">
+          <label>Bionic Limbs</label>
+          <label class="inline-check" title="Show the bionic limb attributes below. Set automatically by cyborg chassis setups; tick it yourself if a character gains a bionic arm or leg later.">
+            <input type="checkbox" data-path-bool="system.combat.hasBionicLimbs" {{#if system.combat.hasBionicLimbs}}checked{{/if}} />
+            <span>track limbs</span>
+          </label>
+        </div>
         <div class="damage-field">
           <label>Carry (lbs)</label>
           <input type="text" data-path="system.combat.carryCapacity" value="{{system.combat.carryCapacity}}" placeholder="e.g. 100 lbs" title="Manual override. Auto value uses the P.S. Type formula (verified RUE Carry Weight rules)." />
@@ -662,6 +669,53 @@
           <input type="text" data-path="system.combat.throwCapacity" value="{{system.combat.throwCapacity}}" placeholder="e.g. 50 lbs" />
         </div>
       </div>
+
+      {{#if system.combat.hasBionicLimbs}}
+      {{!-- ── BIONIC LIMB ATTRIBUTES ───────────────────────── --}}
+      <div class="bionic-limbs">
+        <div class="bionic-limbs-title">
+          <i class="fas fa-hand-rock"></i> Bionic Limb Attributes
+          <span class="bionic-hint">separate from your own P.S./P.P. &middot; base 10 &middot; max 20 partial / 32 full conversion</span>
+        </div>
+
+        <div class="damage-grid">
+          <div class="damage-field">
+            <label>Arm P.S.</label>
+            <input type="number" data-path-number="system.combat.armPS" value="{{system.combat.armPS}}" min="0"
+                   title="The bionic ARM's own P.S. Full-conversion chassis: leave blank — your arms use the main Robot P.S. above. Fill this for a prosthetic or additional arm. Upgrades cost 1,000-3,000 credits per point per limb (Rifts Bionics p.70)." />
+            <span class="bonus-total" title="Damage bonus for melee attacks made with this arm (P.S. 16+ adds P.S. minus 15)">dmg +{{system.combat.armDamageBonus}}</span>
+          </div>
+          <div class="damage-field">
+            <label>Arm P.P.</label>
+            <input type="number" data-path-number="system.combat.armPP" value="{{system.combat.armPP}}" min="0"
+                   title="The bionic ARM's own P.P. Drives strike and parry for attacks made with that arm (P.P. 16+ adds P.P. minus 15)." />
+            <span class="bonus-total" title="Strike and parry for attacks made with this arm">strike/parry +{{system.combat.armStrikeBonus}}</span>
+          </div>
+          <div class="damage-field">
+            <label>Leg P.S.</label>
+            <input type="number" data-path-number="system.combat.legPS" value="{{system.combat.legPS}}" min="0"
+                   title="The bionic LEGS' own P.S. Legs improve leaping and speed — they do NOT grant hand-to-hand strike or parry bonuses. HOUSE RULE: each point bought above the base adds 1 ft of leap." />
+            <span class="bonus-total" title="House rule: +1 ft leap per point above the limb base">leap +{{system.combat.legLeapBonus}} ft</span>
+          </div>
+          <div class="damage-field">
+            <label>Leg P.P.</label>
+            <input type="number" data-path-number="system.combat.legPP" value="{{system.combat.legPP}}" min="0"
+                   title="The bionic LEGS' own P.P. Recorded for reference — no book formula ties leg P.P. to a specific bonus, so any effect is the GM's call." />
+            <span class="bonus-total" title="No book bonus — reference only">&mdash;</span>
+          </div>
+          <div class="damage-field">
+            <label>Limb Base (arm)</label>
+            <input type="number" data-path-number="system.combat.armBase" value="{{system.combat.armBase}}" min="0"
+                   title="Starting value for this limb: 10 for a standard prosthetic, higher for a purpose-built chassis limb." />
+          </div>
+          <div class="damage-field">
+            <label>Limb Base (leg)</label>
+            <input type="number" data-path-number="system.combat.legBase" value="{{system.combat.legBase}}" min="0"
+                   title="Starting value for the legs: 10 for a standard prosthetic, 18 for a full-conversion combat chassis. Leap bonus counts points bought above this." />
+          </div>
+        </div>
+      </div>
+      {{/if}}
 
     </div>
   </div>

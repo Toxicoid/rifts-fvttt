@@ -49,6 +49,11 @@ await actor.update({
   "system.attributes.spd.value": 88,     // 60 mph
   "system.combat.attacksPerMelee": 4,    // adjust for HtH level
   "system.combat.psType": "robot",
+  "system.combat.hasBionicLimbs": true,   // show the Bionic Limb panel
+  "system.combat.legPS": 18,                 // chassis legs start at 18 (max 24)
+  "system.combat.legPP": 18,
+  "system.combat.legBase": 18,               // leap bonus counts points bought above this
+  "system.combat.armBase": 10,               // standard prosthetic base (Rifts Bionics p.70)
   "system.combat.initiativeBonus": 6,    // hearing +3, holsters +1, combat computer +1, ion blaster +1
   "system.combat.parryBonus": 1,         // amplified hearing (+1 more with Vibro-Blades — on the blade items)
   "system.combat.dodgeBonus": 3,         // hearing +2, combat computer +1

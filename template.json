@@ -51,7 +51,14 @@
         "mountedSkillId": "",
         "hthStyle": "none",
         "apmExtra": 0,
-        "psType": "normal"
+        "psType": "normal",
+        "hasBionicLimbs": false,
+        "armPS": 0,
+        "armPP": 0,
+        "armBase": 10,
+        "legPS": 0,
+        "legPP": 0,
+        "legBase": 10
       },
 
       "money": {

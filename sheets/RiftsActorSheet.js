@@ -366,6 +366,12 @@ export class RiftsActorSheet extends ActorSheet {
       await this.actor.update({ [path]: value });
     });
 
+    // ── Actor checkboxes ──────────────────────────────────
+    html.find("input[data-path-bool]").on("change", async (event) => {
+      const path = event.currentTarget.dataset.pathBool;
+      await this.actor.update({ [path]: event.currentTarget.checked });
+    });
+
     // ── Actor select dropdowns ────────────────────────────
     html.find("select[data-path]").on("change", async (event) => {
       const path = event.currentTarget.dataset.path;

@@ -118,6 +118,27 @@ export class RiftsActor extends Actor {
     combat.attrParry = ppBonus;
     combat.attrDodge = ppBonus;
 
+    // ── Bionic limb attributes ─────────────────────────────
+    // Limb attributes are SEPARATE from the character's own P.S./P.P.
+    // (Rifts Bionics p.70: a standard prosthetic starts at 10; caps are
+    // 20 for partial cyborgs, 32 for full conversions — full-conversion
+    // chassis legs start higher, e.g. 18.)
+    // Bonuses use the same attribute tables the character uses, applied
+    // to the limb doing the work:
+    //   ARM  P.P. -> strike & parry, ARM P.S. -> melee damage
+    //        (applies to attacks made WITH that bionic arm)
+    //   LEG  -> leaping and speed; explicitly NOT hand-to-hand strike/parry
+    const armPS = combat.armPS ?? 0;
+    const armPP = combat.armPP ?? 0;
+    const legPS = combat.legPS ?? 0;
+    combat.armDamageBonus = armPS >= 16 ? armPS - 15 : 0;
+    combat.armStrikeBonus = armPP >= 16 ? armPP - 15 : 0;
+    combat.armParryBonus = combat.armStrikeBonus;
+    // House rule (no book formula exists): each P.S. point bought above the
+    // limb's base adds 1 ft to leap distance. Purchased Spd is tracked
+    // separately on the chassis, so legs don't add speed twice.
+    combat.legLeapBonus = Math.max(0, legPS - (combat.legBase ?? 10));
+
     // ── P.E. Bonus ─────────────────────────────────────────
     // PE affects saves vs poison/disease and coma/death
     const pe = attrs.pe.value;
@@ -276,9 +297,10 @@ export class RiftsActor extends Actor {
     // base leap ~5 ft long / 4 ft high; +2 ft length per level after 1st;
     // a running start boosts the numbers by 50%.
     const charLvl = Math.max(this.system.identity?.level ?? 1, 1);
-    combat.autoLeapStanding = 5 + 2 * (charLvl - 1);
+    const legLeap = combat.legLeapBonus ?? 0;
+    combat.autoLeapStanding = 5 + 2 * (charLvl - 1) + legLeap;
     combat.autoLeapRunning = Math.round(combat.autoLeapStanding * 1.5);
-    combat.autoLeapHeight = 4;
+    combat.autoLeapHeight = 4 + legLeap;
 
     // Running endurance (RUE Running skill, verified from provided text):
     // even pace (HALF speed) for 1/2 mile per P.E. point without fatigue;

@@ -173,7 +173,12 @@ await actor.update({
   "system.attributes.pp.value": 18,      // Arm P.P. (max 26; 2,000 cr/pt)
   "system.attributes.spd.value": 132,    // 90 mph (max 176; 1,500 cr/pt)
   "system.combat.attacksPerMelee": 4,    // Hand to Hand: Expert base
-  "system.combat.psType": "robot",       // Robot P.S. — auto carry/lift x25 at P.S. 17+
+  "system.combat.psType": "robot",
+  "system.combat.hasBionicLimbs": true,   // show the Bionic Limb panel
+  "system.combat.legPS": 18,                 // chassis legs start at 18 (max 24)
+  "system.combat.legPP": 18,
+  "system.combat.legBase": 18,               // leap bonus counts points bought above this
+  "system.combat.armBase": 10,               // standard prosthetic base (Rifts Bionics p.70)       // Robot P.S. — auto carry/lift x25 at P.S. 17+
   "system.money.credits": credits,
   "system.money.blackMarket": blackMarket,
 });
