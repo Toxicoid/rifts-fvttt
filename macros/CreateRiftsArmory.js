@@ -192,6 +192,27 @@ const items = [
     },
   },
 
+  {
+    name: "C-12 Heavy Assault Laser Rifle",
+    type: "weapon",
+    img: "icons/weapons/guns/gun-blaster-military.webp",
+    folder: weaponsFolder.id,
+    system: {
+      equipped: false,
+      description: "The old standard Coalition infantry weapon, still favoured by Commandos and Special Ops. Sturdy and reliable — it survives heavy combat abuse without mechanical failure. Three power settings (one S.D.C., two M.D.), and it can fire a single shot or a burst of three. Comes standard with a passive night-vision scope and laser targeting.",
+      damage: "2d6",
+      damageType: "MDC",
+      range: "2000 ft",
+      rateOfFire: "Each laser blast OR burst counts as one melee attack (shots per melee = your attacks per melee)",
+      payload: 20,
+      weight: "7 lbs",
+      cost: 20000,
+      bonusToStrike: 1,
+      special: "POWER SETTINGS — choose before firing:\n  \u2022 Low M.D.: 2D6 M.D. (this item's damage roll)\n  \u2022 High M.D.: 4D6 M.D.\n  \u2022 S.D.C.: 6D6 S.D.C. — six S.D.C. shots drain the same charge as one M.D. blast.\nSINGLE SHOT or BURST OF THREE: both cost one melee attack. A burst spends three charges; this stat block prints no separate burst damage, so use your table's standard burst rule.\nLASER TARGETING: +1 to strike on an AIMED shot only (included in Bonus to Strike — ignore it on snap shots).\nPASSIVE NIGHT-VISION SCOPE included.",
+      notes: "Payload: 20 M.D. blasts from a standard E-Clip, 30 from a long E-Clip, plus another 30 from an E-Clip canister. Black Market cost: 20,000 credits. Source: RUE p.258. The Rifts GM Guide p.121 lists R.O.F. as equal to the user's hand to hand attacks — the same rule stated from the other end; RUE wins for core mechanics.",
+    },
+  },
+
 ];
 
 // ── Create items; move existing ones into their folders ───
